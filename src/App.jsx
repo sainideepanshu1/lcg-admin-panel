@@ -1,15 +1,16 @@
-import React from 'react'
 import Sidebar from '../src/Components/Sidebar'
-import Inventory from './Components/Inventory'
+import Inventory from './Components/Inventory'    
+import Navbar from "./Components/Navbar";
+import AddProduct from "./Components/AddProduct";
 
-
-const App = () => {
+function App() {
   return (
     <>
+      <Navbar />
+      <AddProduct />
     <div className='flex'> <Sidebar/>
-     <Inventory/></div>
-      
-     
+     <Inventory/>
+    </div>
     </>
   )
 }
