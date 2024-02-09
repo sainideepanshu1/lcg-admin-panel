@@ -1,8 +1,57 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
+import { useState } from "react";
 
 const AddProduct = () => {
+  const [product, setProduct] = useState({
+    title: "",
+    description: "",
+    price: "",
+    comparePrice: "",
+    status: "",
+    productCategory: "",
+    productType: "",
+    tags: "",
+    collections: "",
+    vendor: "",
+    tax: false,
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
+  };
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: checked,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form submitted with data:", product);
+    setProduct({
+      title: "",
+      description: "",
+      price: "",
+      comparePrice: "",
+      status: "",
+      productCategory: "",
+      productType: "",
+      tags: "",
+      collections: "",
+      vendor: "",
+      tax: false,
+    });
+  };
+
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -13,7 +62,7 @@ const AddProduct = () => {
             </Link>
             Add product
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="flex gap-3 sm:flex-col sm:items-center">
               <div className="w-[70%] flex flex-col sm:w-[93%]">
                 <div className="rounded-xl bg-white shadow-md p-4">
@@ -27,6 +76,9 @@ const AddProduct = () => {
                       <input
                         className="hover:bg-[#FAFAFA] text-[0.8125rem] text-[#303030] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]"
                         type="text"
+                        name="title"
+                        onChange={handleChange}
+                        value={product.title}
                         placeholder="Short sleeve t-shirt"
                       />
                     </div>
@@ -39,6 +91,9 @@ const AddProduct = () => {
                       <input
                         className="text-[0.8125rem] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030] text-[#303030] font-[450]"
                         type="text"
+                        onChange={handleChange}
+                        name="description"
+                        value={product.description}
                         placeholder="Short sleeve t-shirt"
                       />
                     </div>
@@ -61,8 +116,11 @@ const AddProduct = () => {
                         <div className="group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
                           <span className="p-1 text-[#616161]">&#8377;</span>
                           <input
+                            onChange={handleChange}
                             type="number"
                             placeholder="0.00"
+                            name="price"
+                            value={product.price}
                             className="w-[90%] px-1 outline-none focus:outline-none"
                           />
                         </div>
@@ -72,8 +130,11 @@ const AddProduct = () => {
                         <div className="group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
                           <span className="p-1 text-[#616161]">&#8377;</span>
                           <input
+                            onChange={handleChange}
                             type="number"
                             placeholder="0.00"
+                            name="comparePrice"
+                            value={product.comparePrice}
                             className="w-[90%] px-1 outline-none focus:outline-none"
                           />
                           <div className="group relative">
@@ -92,7 +153,13 @@ const AddProduct = () => {
                         className="text-sm flex items-center gap-2"
                         htmlFor="tax"
                       >
-                        <input type="checkbox" id="tax" className="" />
+                        <input
+                          type="checkbox"
+                          id="tax"
+                          name="tax"
+                          checked={product.tax || false}
+                          onChange={handleCheckboxChange}
+                        />
                         Charge tax on this product
                       </label>
                     </div>
@@ -111,12 +178,17 @@ const AddProduct = () => {
                     </div>
                     <div className="p-4 pt-2">
                       <select
+                        value={product.status}
+                        onChange={handleChange}
                         className="w-full text-heading border-[#8a8a8a] border rounded-[0.5rem] py-[6px] pl-[12px] pr-[8px]"
-                        name=""
+                        name="status"
                         id=""
                       >
-                        <option value="">Active</option>
-                        <option value="">Draft</option>
+                        <option value="" disabled>
+                          --Select--
+                        </option>
+                        <option value="Active">Active</option>
+                        <option value="Draft">Draft</option>
                       </select>
                     </div>
                   </div>
@@ -133,6 +205,9 @@ const AddProduct = () => {
                         <input
                           type="text"
                           placeholder="Search"
+                          name="productCategory"
+                          onChange={handleChange}
+                          value={product.productCategory}
                           className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                         />
                       </div>
@@ -146,6 +221,9 @@ const AddProduct = () => {
                       <div className="p-4 pt-2">
                         <input
                           type="text"
+                          value={product.productType}
+                          name="productType"
+                          onChange={handleChange}
                           placeholder="Add Custom Category"
                           className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                         />
@@ -160,6 +238,9 @@ const AddProduct = () => {
                       <div className="p-4 pt-2">
                         <input
                           type="text"
+                          name="vendor"
+                          value={product.vendor}
+                          onChange={handleChange}
                           className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                         />
                       </div>
@@ -173,6 +254,9 @@ const AddProduct = () => {
                       <div className="p-4 pt-2">
                         <input
                           type="text"
+                          name="collections"
+                          value={product.collections}
+                          onChange={handleChange}
                           className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                         />
                       </div>
@@ -185,6 +269,9 @@ const AddProduct = () => {
                       </div>
                       <div className="p-4 pt-2">
                         <input
+                          name="tags"
+                          value={product.tags}
+                          onChange={handleChange}
                           type="text"
                           className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                         />
@@ -196,7 +283,10 @@ const AddProduct = () => {
             </div>
             <div>
               <div className="rounded-xl flex items-center justify-center  p-4">
-                <button className="bg-[#1A1A1A] text-[#E3E3E3] text-heading p-3 rounded-lg">
+                <button
+                  type="submit"
+                  className="bg-[#1A1A1A] text-[#E3E3E3] text-heading p-3 rounded-lg"
+                >
                   Add Product
                 </button>
               </div>
