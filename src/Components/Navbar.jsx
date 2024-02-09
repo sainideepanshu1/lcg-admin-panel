@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Lovecraft from "../assets/lovecrafts2.png";
 import { IoIosSearch } from "react-icons/io";
 // import { FaBell } from "react-icons/fa";
@@ -6,12 +6,48 @@ import { FaRegBell } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { TbMenuDeep } from "react-icons/tb";
 import { CgSortAz } from "react-icons/cg";
-
+import { IoMdMenu } from "react-icons/io";
+import { useState } from "react";
+import "../Style/Style.css";
 function Navbar() {
+  const [popup, setPopup] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const popupRef = useRef(null);
+  function togglePopup() {
+    setPopup(true);
+  }
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+  };
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.ctrlKey && event.key === "k") {
+        setPopup(true);
+      }
+    };
+    const handleClickOutside = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setPopup(false);
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [popup]);
   return (
     <>
-      <div className=" flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
+      <div className=" Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
         <div className="">
+          <div className=" bg-white  ">
+            <span>
+              {/* <IoMdMenu /> */}
+            </span>
+          </div>
           <img
             className="w-[10rem] object-contain "
             src={Lovecraft}
@@ -19,8 +55,11 @@ function Navbar() {
           />
         </div>
 
-        <div className="flex items-center border-[1px] divide-solid px-2 w-[37%] rounded-lg h-[30px] border-[rgba(204,204,204,1)] hover:border-white">
-          <button className="flex  cursor-pointer items-center gap-2 ">
+        <div
+          onClick={togglePopup}
+          className="flex items-center  cursor-pointer border-[1px] divide-solid px-2 w-[37%] rounded-lg h-[30px] border-[rgba(204,204,204,1)] hover:border-white"
+        >
+          <button className=" flex  cursor-pointer items-center gap-2 ">
             <div className="" style={{ color: "rgba(204,204,204,1)" }}>
               <span className="">
                 <IoIosSearch />
@@ -34,17 +73,26 @@ function Navbar() {
               {/* <span>Ctrl k</span> */}
             </div>
           </button>
+        </div>
 
-          <div  className="bg-white   relative top-[81px] h-[203px] left-[-130px] border-solid min-w-[600px] pt-[14px] pb-[150px] rounded-xl shadow-xl">
-            <div className=" flex items-center  border-[1px] mx-[10px] rounded-lg border-[#202223] px-[10px]  py-[3px] ">
+        {/* hidden search bar */}
+
+        <div ref={popupRef} className={` ${popup ? "open" : "close"}`}>
+          <div className="Searchbar bg-white   absolute top-[7px] h-[203px] left-[290px] border-solid min-w-[600px] pt-[14px] pb-[150px] rounded-xl shadow-xl  md:left-[120px] sm:left-[0px]  xm:min-w-[315px] xm:left-[40px] ">
+            <div className=" flex items-center  border-[1px] mx-[10px] rounded-lg border-[#202223] px-[10px]  py-[3px] sm:[100vw] ">
               <span className="text-[17px]">
                 <IoIosSearch />
               </span>
               <div className="w-full px-1 ">
-                <input className="w-full outline-none" placeholder="Search" />
+                <input
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  className="w-full outline-none"
+                  placeholder="Search"
+                />
               </div>
               <div className="flex  gap-2">
-                <button>
+                <button onClick={handleClearSearch}>
                   <span className="text-[18px] ">
                     <IoCloseCircleOutline />
                   </span>
@@ -68,16 +116,16 @@ function Navbar() {
               </button>
             </div>
 
-
-
             <div className="flex flex-col gap-2 justify-center items-center py-[35px]">
-              <div><span className="text-[18px] text-[#767777] "><IoIosSearch /></span></div>
-              <div className="text-[14px] font-semibold"><h1>Find anything in love craft gift</h1></div>
-
-
+              <div>
+                <span className="text-[18px] text-[#767777] ">
+                  <IoIosSearch />
+                </span>
+              </div>
+              <div className="text-[14px] font-semibold">
+                <h1>Find anything in love craft gift</h1>
+              </div>
             </div>
-
-
           </div>
         </div>
 

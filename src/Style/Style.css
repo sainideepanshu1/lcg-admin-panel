@@ -1,0 +1,8 @@
+.open .Searchbar{
+   
+    display: block;
+}
+
+.Searchbar{
+    display: none;
+}
