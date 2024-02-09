@@ -1,7 +1,9 @@
+import AddProduct from "./Components/AddProduct";
+
 function App() {
   return (
     <>
-      <div className="text-2xl">ap</div>
+      <AddProduct />
     </>
   );
 }
