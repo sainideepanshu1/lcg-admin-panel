@@ -22,6 +22,12 @@ export default {
           "sans-serif",
         ],
       },
+      textColor: {
+        "heading-color": "#303030",
+      },
+      fontSize: {
+        heading: "0.8125rem",
+      },
     },
   },
   plugins: [],

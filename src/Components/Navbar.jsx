@@ -10,7 +10,7 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 import { LuDot } from "react-icons/lu";
 import {Alert} from '../Data/Alertdata'
 import { TbAlertSquareRounded } from "react-icons/tb";
-function Navbar() {
+function Navbar({ toggleSidebar }) {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   
@@ -81,7 +81,7 @@ function ToggleProfile(){
         >
           <button className=" flex  cursor-pointer items-center gap-2 ">
             <div className="" style={{ color: "rgba(204,204,204,1)" }}>
-              <span className="">
+              <span onClick={toggleSidebar} className="">
                 <IoIosSearch />
               </span>
             </div>
@@ -161,7 +161,6 @@ function ToggleProfile(){
 
           {/* <div className="Alert">
             <div className="">
-              <div className=""><h3>Alerts</h3></div>
               <div className="">
               <button>   <span> <CgSortAz /></span></button>
                 <button><span><FaRegCircleCheck /></span></button>
