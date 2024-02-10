@@ -1,14 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import Lovecraft from "../assets/lovecrafts2.png";
 import { IoIosSearch } from "react-icons/io";
-// import { FaBell } from "react-icons/fa";
 import { FaRegBell } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import { TbMenuDeep } from "react-icons/tb";
 import { CgSortAz } from "react-icons/cg";
-import { IoMdMenu } from "react-icons/io";
 import { useState } from "react";
 import "../Style/Style.css";
+import { IoMdMenu } from "react-icons/io";
 function Navbar() {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -43,13 +41,13 @@ function Navbar() {
     <>
       <div className=" Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
         <div className="">
-          <div className=" bg-white  ">
+          <div className="Navicon text-[20px] text-white pr-[8px] sm:block  hidden ">
             <span>
-              {/* <IoMdMenu /> */}
+              <IoMdMenu />
             </span>
           </div>
           <img
-            className="w-[10rem] object-contain "
+            className="NavImg w-[10rem] sm:hidden object-contain block"
             src={Lovecraft}
             alt="Not Found"
           />
@@ -137,7 +135,7 @@ function Navbar() {
           </div>
 
           <div className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors">
-            <span className="text-[14px] font-semibold">love craft gift </span>
+            <span className="text-[14px] font-semibold  sm:hidden">love craft gift </span>
             <span className=" text-black text-[12px] bg-[#25E82B] rounded-lg p-[6px]">
               lcg
             </span>
