@@ -45,7 +45,6 @@ const Sidebar = () => {
             </ul>
           </div>
         </div>
-        <div className='w-[85%]'></div>
       </div>
     </>
   )
