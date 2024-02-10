@@ -10,10 +10,12 @@ function App() {
       <Navbar />
       <div className="flex">
         <Sidebar />
+        {/* <div className="ml-[13%] w-full"> */}
         <Routes>
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/inventory" element={<Inventory />} />
         </Routes>
+        {/* </div> */}
       </div>
     </>
   );
