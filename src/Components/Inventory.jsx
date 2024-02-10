@@ -57,7 +57,7 @@ const Inventory = () => {
           </div>
           <div >
           <table className=" flex  w-full">
-            <thead className='w-full'><hr />
+            <thead className='w-full'>
               <tr className='w-full  flex items-center justify-between text-[14px] text-[#666161] bg-[#f1f1f1] pl-[1.5rem]  pr-[7.5rem] pt-2 pb-2'>
                 <input  className='h-4 w-4'  type="checkbox" />
                 <th className='flex gap-2 items-center  text-[#666161]'>Product <div className='flex flex-col text-[8px] '><SlArrowUp /> <SlArrowDown /></div></th>
@@ -65,7 +65,7 @@ const Inventory = () => {
                 <th className='flex gap-2 items-center  text-[#666161]'>Committed <div className='flex flex-col text-[8px] '><SlArrowUp /> <SlArrowDown /></div></th>
                 <th className='flex gap-2 items-center  text-[#666161]'>Available <div className='flex flex-col text-[8px] '><SlArrowUp /> <SlArrowDown /></div></th>
                 <th className='flex gap-2 items-center  text-[#666161]'>On hand <div className='flex  flex-col text-[8px] '><SlArrowUp /> <SlArrowDown /></div></th>
-              </tr><hr />
+              </tr>
             </thead>
           </table>
           <table className=" flex  w-full">
