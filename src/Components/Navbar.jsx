@@ -5,7 +5,6 @@ import { FaRegBell } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { useState } from "react";
-import "../Style/Style.css";
 import { IoMdMenu } from "react-icons/io";
 function Navbar() {
   const [popup, setPopup] = useState(false);
