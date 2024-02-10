@@ -7,7 +7,7 @@ import { CgSortAz } from "react-icons/cg";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { FaRegCircleCheck } from "react-icons/fa6";
-function Navbar() {
+function Navbar({ toggleSidebar }) {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const popupRef = useRef(null);
@@ -67,7 +67,7 @@ function Navbar() {
         >
           <button className=" flex  cursor-pointer items-center gap-2 ">
             <div className="" style={{ color: "rgba(204,204,204,1)" }}>
-              <span className="">
+              <span onClick={toggleSidebar} className="">
                 <IoIosSearch />
               </span>
             </div>
@@ -147,19 +147,21 @@ function Navbar() {
 
           <div className="Alert">
             <div className="">
-              <div className=""><h3>Alerts</h3></div>
               <div className="">
-                <span> <CgSortAz /></span>
-                <span><FaRegCircleCheck /></span>
+                <h3>Alerts</h3>
               </div>
-
+              <div className="">
+                <span>
+                  {" "}
+                  <CgSortAz />
+                </span>
+                <span>
+                  <FaRegCircleCheck />
+                </span>
+              </div>
             </div>
 
-            <div>
-              
-            </div>
-
-
+            <div></div>
           </div>
 
           <div className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors">

@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
 import { useState } from "react";
-
+import axios from "axios";
+import toast from "react-hot-toast";
 const AddProduct = () => {
   const [product, setProduct] = useState({
     title: "",
@@ -34,22 +35,32 @@ const AddProduct = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted with data:", product);
-    setProduct({
-      title: "",
-      description: "",
-      price: "",
-      comparePrice: "",
-      status: "",
-      productCategory: "",
-      productType: "",
-      tags: "",
-      collections: "",
-      vendor: "",
-      tax: false,
-    });
+  const handleSubmit = async (e) => {
+    try {
+      e.preventDefault();
+      const res = await axios.post(
+        "http://localhost:8000/api/product/add-product",
+        product
+      );
+      toast.success(res.data.message);
+      console.log("Form submitted with data:", product);
+      setProduct({
+        title: "",
+        description: "",
+        price: "",
+        comparePrice: "",
+        status: "",
+        productCategory: "",
+        productType: "",
+        tags: "",
+        collections: "",
+        vendor: "",
+        tax: false,
+      });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message, { duration: 2000 });
+    }
   };
 
   return (
