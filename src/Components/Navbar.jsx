@@ -6,6 +6,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
+import { FaRegCircleCheck } from "react-icons/fa6";
 function Navbar() {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -20,6 +21,7 @@ function Navbar() {
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.key === "k") {
+        event.preventDefault();
         setPopup(true);
       }
     };
@@ -36,6 +38,13 @@ function Navbar() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [popup]);
+
+  useEffect(() => {
+    if (popup) {
+      popupRef.current.querySelector("input").focus();
+    }
+  }, [popup]);
+
   return (
     <>
       <div className=" Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
@@ -54,7 +63,7 @@ function Navbar() {
 
         <div
           onClick={togglePopup}
-          className="flex items-center  cursor-pointer border-[1px] divide-solid px-2 w-[37%] rounded-lg h-[30px] border-[rgba(204,204,204,1)] hover:border-white"
+          className="searchbarbutton  flex items-center  cursor-pointer border-[1px] divide-solid px-2 w-[37%] rounded-lg h-[30px] border-[rgba(204,204,204,1)] hover:border-white sm:w-[68%]  "
         >
           <button className=" flex  cursor-pointer items-center gap-2 ">
             <div className="" style={{ color: "rgba(204,204,204,1)" }}>
@@ -64,17 +73,17 @@ function Navbar() {
             </div>
             <div
               style={{ color: "rgba(204,204,204,1)" }}
-              className="flex justify-between  h-[2rem] items-center "
+              className="flex justify-between   h-[2rem] items-center "
             >
-              <span>Search </span>
-              {/* <span>Ctrl k</span> */}
+              <h2>Search </h2>
+              {/* <h2>Ctrl k</h2> */}
             </div>
           </button>
         </div>
 
         {/* hidden search bar */}
 
-        <div ref={popupRef} className={` ${popup ? "open" : "close"}`}>
+        <div ref={popupRef} className={` ${popup ? "block" : "hidden"}`}>
           <div className="Searchbar bg-white   absolute top-[7px] h-[203px] left-[290px] border-solid min-w-[600px] pt-[14px] pb-[150px] rounded-xl shadow-xl  md:left-[120px] sm:left-[0px]  xm:min-w-[315px] xm:left-[40px] ">
             <div className=" flex items-center  border-[1px] mx-[10px] rounded-lg border-[#202223] px-[10px]  py-[3px] sm:[100vw] ">
               <span className="text-[17px]">
@@ -82,8 +91,11 @@ function Navbar() {
               </span>
               <div className="w-full px-1 ">
                 <input
+                  autoFocus
                   value={searchValue}
-                  onChange={(e) => setSearchValue(e.target.value)}
+                  onChange={(e) => {
+                    setSearchValue(e.target.value);
+                  }}
                   className="w-full outline-none"
                   placeholder="Search"
                 />
@@ -133,8 +145,27 @@ function Navbar() {
             </span>
           </div>
 
+          <div className="Alert">
+            <div className="">
+              <div className=""><h3>Alerts</h3></div>
+              <div className="">
+                <span> <CgSortAz /></span>
+                <span><FaRegCircleCheck /></span>
+              </div>
+
+            </div>
+
+            <div>
+              
+            </div>
+
+
+          </div>
+
           <div className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors">
-            <span className="text-[14px] font-semibold  sm:hidden">love craft gift </span>
+            <span className="text-[14px] font-semibold  sm:hidden">
+              love craft gift{" "}
+            </span>
             <span className=" text-black text-[12px] bg-[#25E82B] rounded-lg p-[6px]">
               lcg
             </span>
