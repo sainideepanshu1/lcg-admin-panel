@@ -7,9 +7,23 @@ import { CgSortAz } from "react-icons/cg";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { FaRegCircleCheck } from "react-icons/fa6";
+import { LuDot } from "react-icons/lu";
+import {Alert} from '../Data/Alertdata'
+import { TbAlertSquareRounded } from "react-icons/tb";
 function Navbar({ toggleSidebar }) {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  
+  const[profile,setprofile] =useState(false);
+
+// profile open
+const popprofile=useRef(null);
+function ToggleProfile(){
+  setprofile(!profile);
+}
+
+
+  //Searchbar open 
   const popupRef = useRef(null);
   function togglePopup() {
     setPopup(true);
@@ -47,7 +61,7 @@ function Navbar({ toggleSidebar }) {
 
   return (
     <>
-      <div className=" Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
+      <div className=" fixed w-full Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
         <div className="">
           <div className="Navicon text-[20px] text-white pr-[8px] sm:block  hidden ">
             <span>
@@ -145,32 +159,68 @@ function Navbar({ toggleSidebar }) {
             </span>
           </div>
 
-          <div className="Alert">
+          {/* <div className="Alert">
             <div className="">
               <div className="">
-                <h3>Alerts</h3>
+              <button>   <span> <CgSortAz /></span></button>
+                <button><span><FaRegCircleCheck /></span></button>
               </div>
-              <div className="">
-                <span>
-                  {" "}
-                  <CgSortAz />
-                </span>
-                <span>
-                  <FaRegCircleCheck />
-                </span>
-              </div>
+
             </div>
 
-            <div></div>
-          </div>
+            <div className="">
+               <div>
+                  <span>Billing </span>
+                  <span><LuDot /></span>
+                   <span>Tuesday at 8:15 am</span>
+                   <button><input type="radio" /></button>
 
-          <div className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors">
+               </div>
+               <div className="">{
+                Alert.map((Product,index)=>{
+                  return( <div>
+                    <span><TbAlertSquareRounded /></span>
+
+                    <div key={index}>
+                      <h3>{Product.h3}</h3>
+                      <h4>{Product.h4}</h4>
+                        
+                    </div>
+
+                  </div>)
+                 
+                })
+               }
+                    
+
+               </div>
+            </div>
+
+
+          </div> */}
+<div className="">
+          <div onClick={ToggleProfile} className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors">
             <span className="text-[14px] font-semibold  sm:hidden">
               love craft gift{" "}
             </span>
             <span className=" text-black text-[12px] bg-[#25E82B] rounded-lg p-[6px]">
               lcg
             </span>
+          </div>
+
+<div ref={popprofile} className={`${profile ? "block" : "hidden"}`}>
+          <div className="cursor-pointer bg-white absolute border-[1px]  rounded-lg top-[60px] right-[20px] p-[10px] w-[317px]">
+            <div className="px-[4px]  ">
+              <h1 className="text-[#050505ef] text-[0.9rem] font-medium ">Raman Goyal</h1>
+              <span className="text-[0.8rem] text-[#0c0b0b6e] font-medium">lovecraftgifts@gmail.com</span>
+            </div>
+            <div className="py-[4px] flex flex-col gap-[3px]">
+              <h3 className="  py-[2px] px-[4px] text-[#161616ef] text-[0.9rem] font-medium rounded-lg hover:bg-[#00000026] ">Security</h3>
+              <h3 className="text-[#050505ef]  px-[4px] py-[2px] text-[0.9rem] font-medium  rounded-lg hover:bg-[#00000026] ">Log out</h3>
+            </div>
+          </div>
+          </div>
+
           </div>
         </div>
       </div>
