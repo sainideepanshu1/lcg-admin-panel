@@ -112,7 +112,7 @@ const AddProduct = () => {
                   <div className="flex flex-col gap-3">
                     <div className="grid grid-cols-3 px-2 py-4 gap-3 sm:flex sm:flex-col">
                       <div>
-                        <div>Price</div>
+                        <div className="text-heading">Price</div>
                         <div className="group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
                           <span className="p-1 text-[#616161]">&#8377;</span>
                           <input
@@ -126,7 +126,7 @@ const AddProduct = () => {
                         </div>
                       </div>
                       <div>
-                        <div>Compare-at price</div>
+                        <div className="text-heading">Compare-at price</div>
                         <div className="group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
                           <span className="p-1 text-[#616161]">&#8377;</span>
                           <input
