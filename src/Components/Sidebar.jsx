@@ -8,6 +8,7 @@ import { TbTargetArrow } from "react-icons/tb";
 import { FaInbox } from "react-icons/fa6";
 import { IoMdPricetag } from "react-icons/io";
 import { TbSettingsFilled } from "react-icons/tb";
+import { HiCollection } from "react-icons/hi";
 
 const Sidebar = () => {
   return (
@@ -38,7 +39,15 @@ const Sidebar = () => {
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/add-product"
                 >
-                  <IoMdPricetag /> Products
+                  <IoMdPricetag /> Add Product
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to="/collections"
+                >
+                  <HiCollection /> Collections
                 </Link>
               </li>
               <li>
