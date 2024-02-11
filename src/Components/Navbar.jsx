@@ -61,7 +61,7 @@ function ToggleProfile(){
 
   return (
     <>
-      <div className=" fixed w-full Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
+      <div className="w-full Navbar flex bg-[rgba(26,26,26,1)]  justify-between items-center px-[20px] py-[6px] ">
         <div className="">
           <div className="Navicon text-[20px] text-white pr-[8px] sm:block  hidden ">
             <span>
