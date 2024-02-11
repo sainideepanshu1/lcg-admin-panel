@@ -8,6 +8,7 @@ import { TbTargetArrow } from "react-icons/tb";
 import { FaInbox } from "react-icons/fa6";
 import { IoMdPricetag } from "react-icons/io";
 import { TbSettingsFilled } from "react-icons/tb";
+import { FaLayerGroup } from "react-icons/fa6";
 
 
 const Sidebar = () => {
@@ -25,6 +26,9 @@ const Sidebar = () => {
               </li>
               <li>
                 <Link className='flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg' to="/"> <IoMdPricetag /> Products</Link>
+              </li>
+              <li>
+                <Link className='flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg' to="/"> <FaLayerGroup /> Collections</Link>
               </li>
               <li>
                 <Link className='flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg' to="/"> <IoMdPerson />Customers</Link>
