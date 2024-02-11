@@ -1,10 +1,11 @@
 import Sidebar from "../src/Components/Sidebar";
-import Inventory from "./Components/Inventory";
 import Navbar from "./Components/Navbar";
 import AddProduct from "./Components/AddProduct";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
+import Collectons from './Components/Collectons';
+
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -17,15 +18,17 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
+      
       <div className="flex">
         <Sidebar />
         {/* <div className="ml-[13%] w-full"> */}
         <Routes>
           <Route path="/add-product" element={<AddProduct />} />
-          <Route path="/inventory" element={<Inventory />} />
+         <Route path="/collections" element={<Collectons />} />
         </Routes>
         {/* </div> */}
-      </div>
+       </div>
+  
     </>
   );
 }
