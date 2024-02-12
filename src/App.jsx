@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import Collectons from './Components/Collectons';
+import Dublicate from './Components/Dublicate'
 
 
 function App() {
@@ -18,9 +19,10 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
+      <Dublicate/>
       
       <div className="flex">
-        <Sidebar />
+        {/* <Sidebar /> */}
         {/* <div className="ml-[13%] w-full"> */}
         <Routes>
           <Route path="/add-product" element={<AddProduct />} />
