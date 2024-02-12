@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import Collectons from './Components/Collectons';
+import Products from "./Components/Products";
 
 
 function App() {
@@ -23,8 +24,9 @@ function App() {
         <Sidebar />
         {/* <div className="ml-[13%] w-full"> */}
         <Routes>
+          <Route path="/products" element={<Products/>} />
           <Route path="/add-product" element={<AddProduct />} />
-         <Route path="/collections" element={<Collectons />} />
+          <Route path="/collections" element={<Collectons />} />
         </Routes>
         {/* </div> */}
        </div>
