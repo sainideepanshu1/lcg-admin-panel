@@ -4,8 +4,15 @@ import { CgSortAz } from "react-icons/cg";
 import { CiViewColumn } from "react-icons/ci";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from 'react-router-dom';
-
+import { BsThreeDots } from "react-icons/bs";
+import { useState } from 'react';
 const Products = () => {
+const [toggle,settoggle]=useState(false);
+
+function option(){
+  settoggle(!toggle)
+}
+
   return (
     <>
       <div className="bg-[#f1f1f1] w-full flex flex-col gap-3">
@@ -17,17 +24,35 @@ const Products = () => {
               </h1>
             </div>
             <div className='flex gap-3 font-[600] '>
-              <div className="flex items-center">
+              <button onClick={option}  className='relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading '><BsThreeDots />
+              <div className={`${toggle?"block":"hidden"}`}>
+              <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
+                <button >
+                  Export
+                </button>
+                <button >
+                  Import
+                </button>
+
+              </div>
+              </div>
+              
+              </button>
+               
+
+              <div className="flex sm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Export
                 </button>
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Import
                 </button>
+
               </div>
+
               <button>   <Link
-              to='/add-product' className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]">
-              Add product
+                to='/add-product' className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]">
+                Add product
               </Link>
               </button>
             </div>
@@ -61,7 +86,7 @@ const Products = () => {
               </div>
             </div>
             <div>
-              <div className="grid w-full">
+              <div className="grid w-full overflow-auto ">
                 <div className="w-full px-2 grid items-center text-[14px] text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
                   <div
                     className="grid items-center "
@@ -98,12 +123,12 @@ const Products = () => {
 
                   </div>
                 </div>
-                  
 
 
 
 
-                <div className="w-full px-2 grid items-center text-[14px]  pt-2 pb-2">
+
+                <div className="w-full px-2 grid items-center text-[14px] pt-2 pb-2">
                   <div
                     className="grid items-center "
                     style={{ gridTemplateColumns: " 0fr 0.5fr 1.5fr 0.5fr 1.5fr 1fr 0.5fr 1fr 0.5fr" }}
@@ -112,7 +137,7 @@ const Products = () => {
                       <input className="h-4 w-4" type="checkbox" />
                     </div>
                     <div></div>
-                    <div className="flex font-[600] gap-2 items-center text-heading text-[#666161] group ">
+                    <div className="flex font-[600] gap-2 items-center text-heading group ">
                       Product
                       <div className="flex-col hidden  text-[8px] group-hover:flex cursor-pointer  ">
                         <SlArrowUp /> <SlArrowDown />
@@ -139,7 +164,7 @@ const Products = () => {
 
                   </div>
                 </div>
-                  
+
 
 
 

@@ -13,8 +13,8 @@ import { HiCollection } from "react-icons/hi";
 const Sidebar = () => {
   return (
     <>
-      <div className="h-screen w-[15%] sticky top-0 sm:hidden">
-        <div className="bg-[#ebebeb]  w-full h-full pt-8 px-6">
+      <div className="h-screen w-[15%] sticky top-0 sm:hidden ">
+        <div className="bg-[#ebebeb] overflow-auto w-full h-full pt-8 px-6">
           <div>
             <ul className="  text-[14px] font-medium  flex flex-col gap-3 text-[#303030] ">
               <li>
