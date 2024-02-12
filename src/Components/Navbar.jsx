@@ -13,17 +13,16 @@ import { IoMdMenu } from "react-icons/io";
 function Navbar({ toggleSidebar }) {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  
-  const[profile,setprofile] =useState(false);
 
-// profile open
-const popprofile=useRef(null);
-function ToggleProfile(){
-  setprofile(!profile);
-}
+  const [profile, setprofile] = useState(false);
 
+  // profile open
+  const popprofile = useRef(null);
+  function ToggleProfile() {
+    setprofile(!profile);
+  }
 
-  //Searchbar open 
+  //Searchbar open
   const popupRef = useRef(null);
   function togglePopup() {
     setPopup(true);
@@ -32,7 +31,6 @@ function ToggleProfile(){
   const handleClearSearch = () => {
     setSearchValue("");
   };
-
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -200,29 +198,39 @@ function ToggleProfile(){
 
 
           </div> */}
-<div className="">
-          <div onClick={ToggleProfile} className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors">
-            <span className="text-[14px] font-semibold  sm:hidden">
-              love craft gift{" "}
-            </span>
-            <span className=" text-black text-[12px] bg-[#25E82B] rounded-lg p-[6px]">
-              lcg
-            </span>
-          </div>
-
-<div ref={popprofile} className={`${profile ? "block" : "hidden"}`}>
-          <div className="cursor-pointer bg-white absolute border-[1px]  rounded-lg top-[60px] right-[20px] p-[10px] w-[317px]">
-            <div className="px-[4px]  ">
-              <h1 className="text-[#050505ef] text-[0.9rem] font-medium ">Raman Goyal</h1>
-              <span className="text-[0.8rem] text-[#0c0b0b6e] font-medium">lovecraftgifts@gmail.com</span>
+          <div className="">
+            <div
+              onClick={ToggleProfile}
+              className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors"
+            >
+              <span className="text-[14px] font-semibold  sm:hidden">
+                love craft gift{" "}
+              </span>
+              <span className=" text-black text-[12px] bg-[#25E82B] rounded-lg p-[6px]">
+                lcg
+              </span>
             </div>
-            <div className="py-[4px] flex flex-col gap-[3px]">
-              <h3 className="  py-[2px] px-[4px] text-[#161616ef] text-[0.9rem] font-medium rounded-lg hover:bg-[#00000026] ">Security</h3>
-              <h3 className="text-[#050505ef]  px-[4px] py-[2px] text-[0.9rem] font-medium  rounded-lg hover:bg-[#00000026] ">Log out</h3>
-            </div>
-          </div>
-          </div>
 
+            <div ref={popprofile} className={`${profile ? "block" : "hidden"}`}>
+              <div className="cursor-pointer bg-white absolute border-[1px]  rounded-lg top-[60px] right-[20px] p-[10px] w-[317px]">
+                <div className="px-[4px]  ">
+                  <h1 className="text-[#050505ef] text-[0.9rem] font-medium ">
+                    Raman Goyal
+                  </h1>
+                  <span className="text-[0.8rem] text-[#0c0b0b6e] font-medium">
+                    lovecraftgifts@gmail.com
+                  </span>
+                </div>
+                <div className="py-[4px] flex flex-col gap-[3px]">
+                  <h3 className="  py-[2px] px-[4px] text-[#161616ef] text-[0.9rem] font-medium rounded-lg hover:bg-[#00000026] ">
+                    Security
+                  </h3>
+                  <h3 className="text-[#050505ef]  px-[4px] py-[2px] text-[0.9rem] font-medium  rounded-lg hover:bg-[#00000026] ">
+                    Log out
+                  </h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
