@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
 import Collectons from './Components/Collectons';
+import Dublicate from './Components/Dublicate'
 import Products from "./Components/Products";
 
 
@@ -20,6 +21,7 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
+      <Dublicate/>
 
       <div className="flex">
         <Sidebar />
