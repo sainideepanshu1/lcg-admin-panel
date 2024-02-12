@@ -13,7 +13,7 @@ import { HiCollection } from "react-icons/hi";
 const Sidebar = () => {
   return (
     <>
-      <div className="h-screen w-[15%] sticky top-0 sm:hidden">
+      <div className="h-screen w-[17%] sticky top-0 sm:hidden">
         <div className="bg-[#ebebeb]  w-full h-full pt-8 px-6">
           <div>
             <ul className="  text-[14px] font-medium  flex flex-col gap-3 text-[#303030] ">
@@ -37,9 +37,9 @@ const Sidebar = () => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to="/add-product"
+                  to="/products"
                 >
-                  <IoMdPricetag /> Add Product
+                  <IoMdPricetag /> Products
                 </Link>
               </li>
               <li>
@@ -100,8 +100,8 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen w-full bg-[#00000080] top-[68px] hidden sm:absolute sm:block fixed">
-        <div className="bg-[#ebebeb] w-[70%] h-full pt-8 px-6">
+      <div className="h-screen w-full z-10 bg-[#00000080] top-[48px] hidden sm:absolute sm:block fixed">
+        <div className="bg-[#ebebeb]  w-[50%] h-full pt-8 px-6">
           <div>
             <ul className="  text-[14px] font-medium  flex flex-col gap-3 text-[#303030] ">
               <li>
@@ -124,7 +124,7 @@ const Sidebar = () => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to="/add-product"
+                  to="/products"
                 >
                   <IoMdPricetag /> Products
                 </Link>
