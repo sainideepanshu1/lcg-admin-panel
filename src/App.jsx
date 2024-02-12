@@ -21,11 +21,11 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
-      <Dublicate/>
 
       <div className="flex">
         <Sidebar />
         <Routes>
+          <Route path="/duplicate" element={<Dublicate/>} />
           <Route path="/products" element={<Products/>} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collectons />} />
