@@ -4,8 +4,8 @@ import AddProduct from "./Components/AddProduct";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import Collectons from './Components/Collectons';
-
+import Collectons from "./Components/Collectons";
+import CreateCollection from "./Components/CreateCollection";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -18,17 +18,15 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
-      
+
       <div className="flex">
         <Sidebar />
-        {/* <div className="ml-[13%] w-full"> */}
         <Routes>
           <Route path="/add-product" element={<AddProduct />} />
-         <Route path="/collections" element={<Collectons />} />
+          <Route path="/collections" element={<Collectons />} />
+          <Route path="/create-collection" element={<CreateCollection />} />
         </Routes>
-        {/* </div> */}
-       </div>
-  
+      </div>
     </>
   );
 }

@@ -3,6 +3,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { CiViewColumn } from "react-icons/ci";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
+import { Link } from "react-router-dom";
 
 const Collections = () => {
   return (
@@ -16,9 +17,12 @@ const Collections = () => {
               </h1>
             </div>
             <div>
-              <button className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]">
+              <Link
+                to="/create-collection"
+                className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+              >
                 Create collection
-              </button>
+              </Link>
             </div>
           </div>
           <div className="rounded-lg mt-[24px] bg-[#ffffff] w-full gap-4 justify-between flex flex-col">
@@ -58,7 +62,9 @@ const Collections = () => {
                       </div>
                     </div>
                     <div className="text-heading font-[600] ">Products </div>
-                    <div className="text-heading font-[600] ">Product conditions</div>
+                    <div className="text-heading font-[600] ">
+                      Product conditions
+                    </div>
                   </div>
                 </div>
               </div>
