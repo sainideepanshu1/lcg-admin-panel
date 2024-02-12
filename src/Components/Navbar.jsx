@@ -6,10 +6,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
-import { FaRegCircleCheck } from "react-icons/fa6";
-import { LuDot } from "react-icons/lu";
-import {Alert} from '../Data/Alertdata'
-import { TbAlertSquareRounded } from "react-icons/tb";
+
 function Navbar({ toggleSidebar }) {
   const [popup, setPopup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
@@ -32,6 +29,8 @@ function ToggleProfile(){
   const handleClearSearch = () => {
     setSearchValue("");
   };
+
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.ctrlKey && event.key === "k") {

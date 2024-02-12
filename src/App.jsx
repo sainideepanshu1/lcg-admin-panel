@@ -4,7 +4,9 @@ import AddProduct from "./Components/AddProduct";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
+import CreateCollection from "./Components/CreateCollection";
 import Collectons from './Components/Collectons';
+import Dublicate from './Components/Dublicate'
 import Products from "./Components/Products";
 
 
@@ -19,18 +21,17 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
-      
+      <Dublicate/>
+
       <div className="flex">
         <Sidebar />
-        {/* <div className="ml-[13%] w-full"> */}
         <Routes>
           <Route path="/products" element={<Products/>} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collectons />} />
+          <Route path="/create-collection" element={<CreateCollection />} />
         </Routes>
-        {/* </div> */}
-       </div>
-  
+      </div>
     </>
   );
 }

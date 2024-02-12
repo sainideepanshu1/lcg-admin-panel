@@ -1,12 +1,47 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Editor from "./Editor";
-
+import { Customers } from "../Data/CustomerData";
+import { FaReddit } from "react-icons/fa";
+// import { FaAngleRight } from "react-icons/fa";
+// import { FaAngleLeft } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
+// import { FaChevronRight } from "react-icons/fa";
+// import { FaAngleDown } from "react-icons/fa";
+// import { FaChevronLeft } from "react-icons/fa";
+import { PiLinkSimpleLight } from "react-icons/pi";
+import { FaFacebook } from "react-icons/fa6";
+import { FaTwitter } from "react-icons/fa";
+import { FaPinterest } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa6";
+import { useRef } from "react";
 const AddProduct = () => {
+    const [Share,setshare] =useState(false);
+    const optionRef =useRef(null)
+
+
+    // share outcllick function
+    useEffect(()=>{
+      const handleclickout=(event)=>{
+          if(optionRef.current && !optionRef.current.contains(event.target));
+          setshare(false);
+      }
+      document.addEventListener("mousedown",handleclickout);
+      
+    return()=>{
+      document.removeEventListener("mousedown",handleclickout)
+    }
+
+    })
+
+
+    function Searchbar(){
+        setshare(!Share)
+    }
+
   const [product, setProduct] = useState({
     title: "",
     description: "",
@@ -20,13 +55,6 @@ const AddProduct = () => {
     vendor: "",
     tax: false,
   });
-
-  const updateDescription = (newDescription) => {
-    setProduct((prevProduct) => ({
-      ...prevProduct,
-      description: newDescription,
-    }));
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,11 +104,96 @@ const AddProduct = () => {
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
         <div className="w-[62.375rem] ml-auto mr-auto sm:w-full">
-          <div className="flex items-center py-6 text-lg font-sans font-bold sm:px-2">
-            <Link className="p-1" to="/">
-              <FaArrowLeftLong />
-            </Link>
-            Add product
+          <div className="flex  justify-between lg:gap-[10px] ">
+            <div className="flex   items-center py-6 text-lg font-sans font-bold sm:px-2 sm:flex-wrap ">
+              <Link className="p-1" to="/">
+                <FaArrowLeftLong />
+              </Link>
+              <div className="break-words">
+                {Customers.map((product, index) => {
+                  return (
+                    <div key={index}>
+                      <h2>{product.h1}</h2>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="flex items-center gap-[8px] px-[10px]">
+              <div className="flex px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
+                <h3>Duplicate</h3>
+              </div>
+              <div className=" flex  px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
+                <h3>View</h3>
+              </div>
+
+              <div>
+                <div  onClick={Searchbar} className=" relative flex gap-3 items-center justify-center px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
+                  <h3>Share</h3>
+                  <h3>
+                    <FaChevronDown />
+                  </h3>
+                </div>
+                 <div ref={optionRef}  className={`${Share ? "block":"hidden"}`}>
+                <div  className=" flex flex-col  gap-3 absolute  top-[118px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px]">
+                  <div className=""> 
+                   <a className="flex gap-2 items-center" href="/"> <span>
+                      <PiLinkSimpleLight />
+                    </span>
+                    <span className="text-[14px]">Copy link</span></a>
+                  </div>
+
+                  <div>
+                  <a  className="flex gap-2 items-center"  href="/"> <span>
+                      <FaFacebook />
+                    </span>
+                    <span className="text-[14px]">Facebook</span></a>
+                  </div>
+
+                  <div>
+                  <a  className="flex gap-2 items-center"  href="/"> <span>
+                      <FaTwitter />
+                    </span>
+                    <span className="text-[14px]">Twitter</span></a>
+                  </div>
+
+                  <div>
+
+                  <a  className="flex gap-2 items-center" href="/">  <span>
+                      <FaReddit />
+                    </span>
+                    <span className="text-[14px]">Reddit</span></a>
+                  </div>
+
+                  <div>
+                  <a  className="flex gap-2 items-center" href="/"> <span>
+                  <FaLinkedin />
+                    </span>
+                    <span className="text-[14px]">LinkedIn</span></a>
+                  </div>
+
+                  <div>
+                  <a  className="flex gap-2 items-center" href="/">   <span>
+                    <FaPinterest />
+                    </span>
+                    <span className="text-[14px]">Pinterest</span></a>
+                  </div>
+
+
+                </div>
+                </div>
+              </div>
+              {/* <div className="flex  bg-[#E3E3E3]   rounded-md text-[13px] font-medium cursor-pointer transition duration-2000 gap-0 ">
+                <h3 className=" rounded-md px-[10px] py-[7px] hover:bg-[rgb(206,204,204)] ">
+                <FaChevronLeft />
+
+                </h3>
+                <h3 className=" rounded-md  px-[10px] py-[7px] hover:bg-[rgb(206,204,204)] ">
+                <FaChevronRight />
+                </h3>
+              </div> */}
+            </div>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="flex gap-3 sm:flex-col sm:items-center">
@@ -108,9 +221,13 @@ const AddProduct = () => {
                           Description
                         </label>
                       </div>
-                      <Editor
-                        description={product.description}
-                        updateDescription={updateDescription}
+                      <input
+                        className="text-[0.8125rem] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030] text-[#303030] font-[450]"
+                        type="text"
+                        onChange={handleChange}
+                        name="description"
+                        value={product.description}
+                        placeholder="Short sleeve t-shirt"
                       />
                     </div>
                   </div>
@@ -118,14 +235,7 @@ const AddProduct = () => {
                 <div className="rounded-xl my-4 bg-white shadow-md p-4">
                   <div className="px-5 pt-5">Media</div>
                   <div className="p-4">
-                    <input
-                      type="file"
-                      // multiple
-                      accept="image/*"
-                      className="w-full"
-                      name=""
-                      id=""
-                    />
+                    <input type="file" className="w-full" name="" id="" />
                   </div>
                 </div>
                 <div className="rounded-xl my-4 bg-white shadow-md p-4">
