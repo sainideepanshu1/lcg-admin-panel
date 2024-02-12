@@ -8,7 +8,6 @@ import { useState } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { FaRegCircleCheck } from "react-icons/fa6";
 import { LuDot } from "react-icons/lu";
-import {Alert} from '../Data/Alertdata'
 import { TbAlertSquareRounded } from "react-icons/tb";
 function Navbar({ toggleSidebar }) {
   const [popup, setPopup] = useState(false);
