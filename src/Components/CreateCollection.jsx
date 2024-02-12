@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Editor from "./Editor";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const CreateCollection = () => {
   const [collection, setCollection] = useState({
@@ -10,19 +12,36 @@ const CreateCollection = () => {
     image: "",
   });
 
-  const updateDescription = (newDescription) => {
-    setCollection((prevCollection) => ({
-      ...prevCollection,
-      description: newDescription,
-    }));
-  };
-
   const handleChange = (e) => {
     setCollection({ ...collection, [e.target.name]: e.target.value });
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(collection);
+    if (!collection.title || !collection.description) {
+      toast.error("Please fill in all required fields.");
+      return;
+    }
+    try {
+      const { data, status } = await axios.post(
+        "http://localhost:8000/api/collection/add-collection",
+        collection
+      );
+      if (status === 201 && data.success) {
+        toast.success(data.message);
+        setCollection({
+          title: "",
+          description: "",
+          image: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response.data) {
+        toast.error(error.response.data.message, { duration: 2000 });
+      } else {
+        toast.error(error.message, { duration: 2000 });
+      }
+    }
   };
   return (
     <>

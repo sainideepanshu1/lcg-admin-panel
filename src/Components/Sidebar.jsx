@@ -10,7 +10,7 @@ import { IoMdPricetag } from "react-icons/io";
 import { TbSettingsFilled } from "react-icons/tb";
 import { HiCollection } from "react-icons/hi";
 
-const Sidebar = () => {
+const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   return (
     <>
       <div className="h-screen w-[17%] sticky top-0 sm:hidden ">
@@ -100,14 +100,24 @@ const Sidebar = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen w-full z-10 bg-[#00000080] top-[48px] hidden sm:absolute sm:block fixed">
+      <div
+        className={`h-screen w-full transition-all duration-500 z-10 bg-[#00000080] top-[48px] hidden sm:absolute ${
+          isSidebarOpen ? "sm:left-0" : "sm:left-[-100%]"
+        }  sm:block fixed`}
+        onClick={(e) => {
+          if (e.target.classList.contains("bg-[#00000080]")) {
+            toggleSidebar();
+          }
+        }}
+      >
         <div className="bg-[#ebebeb]  w-[50%] h-full pt-8 px-6">
           <div>
-            <ul className="  text-[14px] font-medium  flex flex-col gap-3 text-[#303030] ">
+            <ul className=" text-[14px] font-medium  flex flex-col gap-3 text-[#303030] ">
               <li>
                 <Link
                   className="flex items-center gap-2  py-1 px-2  hover:bg-[#fafafa] rounded-lg"
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <AiFillHome />
                   Home
@@ -117,6 +127,7 @@ const Sidebar = () => {
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <FaInbox /> Orders
                 </Link>
@@ -125,6 +136,7 @@ const Sidebar = () => {
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/products"
+                  onClick={toggleSidebar}
                 >
                   <IoMdPricetag /> Products
                 </Link>
@@ -132,7 +144,17 @@ const Sidebar = () => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to="/collections"
+                  onClick={toggleSidebar}
+                >
+                  <HiCollection /> Collections
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <IoMdPerson />
                   Customers
@@ -142,6 +164,7 @@ const Sidebar = () => {
                 <Link
                   className="flex items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <TbBrandGoogleAnalytics />
                   Analytics
@@ -152,6 +175,7 @@ const Sidebar = () => {
                 <Link
                   className="flex items-center gap-2 py-1 px-2  hover:bg-[#fafafa] rounded-lg"
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <TbTargetArrow />
                   Marketing
@@ -161,6 +185,7 @@ const Sidebar = () => {
                 <Link
                   className="flex items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <PiDivideFill />
                   Discounts
@@ -170,6 +195,7 @@ const Sidebar = () => {
                 <Link
                   className="flex items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg "
                   to="/"
+                  onClick={toggleSidebar}
                 >
                   <TbSettingsFilled />
                   Settings
