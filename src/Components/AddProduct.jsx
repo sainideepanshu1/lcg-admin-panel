@@ -4,8 +4,6 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import Editor from "./Editor";
 
 const AddProduct = () => {
