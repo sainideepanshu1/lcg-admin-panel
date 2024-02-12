@@ -4,8 +4,10 @@ import AddProduct from "./Components/AddProduct";
 import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
-import Collectons from "./Components/Collectons";
 import CreateCollection from "./Components/CreateCollection";
+import Collectons from './Components/Collectons';
+import Products from "./Components/Products";
+
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -22,6 +24,7 @@ function App() {
       <div className="flex">
         <Sidebar />
         <Routes>
+          <Route path="/products" element={<Products/>} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collectons />} />
           <Route path="/create-collection" element={<CreateCollection />} />

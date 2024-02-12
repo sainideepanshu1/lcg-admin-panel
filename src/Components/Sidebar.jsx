@@ -37,9 +37,9 @@ const Sidebar = () => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to="/add-product"
+                  to="/products"
                 >
-                  <IoMdPricetag /> Add Product
+                  <IoMdPricetag /> Products
                 </Link>
               </li>
               <li>
@@ -124,7 +124,7 @@ const Sidebar = () => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to="/add-product"
+                  to="/products"
                 >
                   <IoMdPricetag /> Products
                 </Link>
