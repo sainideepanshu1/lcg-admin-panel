@@ -60,9 +60,13 @@ const CreateCollection = () => {
                           Description
                         </label>
                       </div>
-                      <Editor
-                        description={collection.description}
-                        updateDescription={updateDescription}
+                      <input
+                        type="text"
+                        className="hover:bg-[#FAFAFA] text-[0.8125rem] text-[#303030] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]"
+                        name="description"
+                        onChange={handleChange}
+                        value={collection.description}
+                        placeholder="Collection Description"
                       />
                     </div>
                   </div>
@@ -88,7 +92,7 @@ const CreateCollection = () => {
                   type="submit"
                   className="bg-[#1A1A1A] text-[#E3E3E3] text-heading p-3 rounded-lg"
                 >
-                  Add Product
+                  Add Collection
                 </button>
               </div>
             </div>
