@@ -1,45 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { CiViewColumn } from "react-icons/ci";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
-import { useState } from 'react';
-const Products = () => {
-const [toggle,settoggle]=useState(false);
 
-function option(){
-  settoggle(!toggle)
-}
+const Products = () => {
+  const [toggle, setToggle] = useState(false);
+
+  function option() {
+    setToggle(!toggle);
+  }
 
   return (
     <>
       <div className="bg-[#f1f1f1] w-full flex flex-col gap-3">
-        <div className="bg-[#f1f1f1] justify-between px-12 py-1">
+        <div className="bg-[#f1f1f1] h-screen justify-between px-12 py-1">
           <div className="flex mt-6 items-center justify-between">
             <div>
               <h1 className="text-[20px] font-[600] text-[#000000]">
                 Products
               </h1>
             </div>
-            <div className='flex gap-3 font-[600] '>
-              <button onClick={option}  className='relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading '><BsThreeDots />
-              <div className={`${toggle?"block":"hidden"}`}>
-              <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
-                <button >
-                  Export
-                </button>
-                <button >
-                  Import
-                </button>
-
+            <div className="flex cursor-pointer gap-3 font-[600] ">
+              <div
+                onClick={option}
+                className="relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
+              >
+                <BsThreeDots />
+                <div className={`${toggle ? "block" : "hidden"}`}>
+                  <div className="flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
+                    <button>Export</button>
+                    <button>Import</button>
+                  </div>
+                </div>
               </div>
-              </div>
-              
-              </button>
-               
-
               <div className="flex sm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Export
@@ -47,7 +43,6 @@ function option(){
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Import
                 </button>
-
               </div>
               <button>
                 <Link
@@ -56,10 +51,6 @@ function option(){
                 >
                   Add product
                 </Link>
-              <button>   <Link
-                to='/add-product' className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]">
-                Add product
-              </Link>
               </button>
             </div>
           </div>
@@ -137,7 +128,7 @@ function option(){
                   </div>
                 </div>
 
-
+                {/* Another grid section (you can continue this pattern as needed) */}
                 <div className="w-full px-2 grid items-center text-[14px] pt-2 pb-2">
                   <div
                     className="grid items-center "
