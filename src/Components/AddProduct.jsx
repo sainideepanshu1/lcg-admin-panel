@@ -4,6 +4,10 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import Editor from "./Editor";
+
 const AddProduct = () => {
   const [product, setProduct] = useState({
     title: "",
@@ -18,6 +22,13 @@ const AddProduct = () => {
     vendor: "",
     tax: false,
   });
+
+  const updateDescription = (newDescription) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      description: newDescription,
+    }));
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -99,13 +110,9 @@ const AddProduct = () => {
                           Description
                         </label>
                       </div>
-                      <input
-                        className="text-[0.8125rem] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030] text-[#303030] font-[450]"
-                        type="text"
-                        onChange={handleChange}
-                        name="description"
-                        value={product.description}
-                        placeholder="Short sleeve t-shirt"
+                      <Editor
+                        description={product.description}
+                        updateDescription={updateDescription}
                       />
                     </div>
                   </div>
@@ -113,7 +120,14 @@ const AddProduct = () => {
                 <div className="rounded-xl my-4 bg-white shadow-md p-4">
                   <div className="px-5 pt-5">Media</div>
                   <div className="p-4">
-                    <input type="file" className="w-full" name="" id="" />
+                    <input
+                      type="file"
+                      // multiple
+                      accept="image/*"
+                      className="w-full"
+                      name=""
+                      id=""
+                    />
                   </div>
                 </div>
                 <div className="rounded-xl my-4 bg-white shadow-md p-4">
