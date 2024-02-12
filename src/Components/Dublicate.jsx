@@ -1,46 +1,35 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { Customers } from "../Data/CustomerData";
 import { FaReddit } from "react-icons/fa";
-// import { FaAngleRight } from "react-icons/fa";
-// import { FaAngleLeft } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
-// import { FaChevronRight } from "react-icons/fa";
-// import { FaAngleDown } from "react-icons/fa";
-// import { FaChevronLeft } from "react-icons/fa";
 import { PiLinkSimpleLight } from "react-icons/pi";
 import { FaFacebook } from "react-icons/fa6";
 import { FaTwitter } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
-import { useRef } from "react";
+import { HiDotsHorizontal } from "react-icons/hi";
+
 const AddProduct = () => {
-    const [Share,setshare] =useState(false);
-    const optionRef =useRef(null)
+  const [share, setShare] = useState(false);
+  const optionRef = useRef();
 
-
-    // share outcllick function
-    useEffect(()=>{
-      const handleclickout=(event)=>{
-          if(optionRef.current && !optionRef.current.contains(event.target));
-          setshare(false);
-      }
-      document.addEventListener("mousedown",handleclickout);
-      
-    return()=>{
-      document.removeEventListener("mousedown",handleclickout)
+  const handleClickOutside = (event) => {
+    if (optionRef.current && !optionRef.current.contains(event.target)) {
+      setShare(false);
     }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
 
-    })
-
-
-    function Searchbar(){
-        setshare(!Share)
-    }
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   const [product, setProduct] = useState({
     title: "",
@@ -104,7 +93,7 @@ const AddProduct = () => {
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
         <div className="w-[62.375rem] ml-auto mr-auto sm:w-full">
-          <div className="flex  justify-between lg:gap-[10px] ">
+          <div className="flex items-center  justify-between lg: gap-[10px] ">
             <div className="flex   items-center py-6 text-lg font-sans font-bold sm:px-2 sm:flex-wrap ">
               <Link className="p-1" to="/">
                 <FaArrowLeftLong />
@@ -120,71 +109,89 @@ const AddProduct = () => {
               </div>
             </div>
 
-            <div className="flex items-center gap-[8px] px-[10px]">
-              <div className="flex px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
-                <h3>Duplicate</h3>
-              </div>
-              <div className=" flex  px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
-                <h3>View</h3>
-              </div>
-
-              <div>
-                <div  onClick={Searchbar} className=" relative flex gap-3 items-center justify-center px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
-                  <h3>Share</h3>
-                  <h3>
-                    <FaChevronDown />
-                  </h3>
+            <div>
+              <div className="flex items-center gap-[8px] px-[10px] sm:hidden">
+                <div className="flex px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
+                  <h3>Duplicate</h3>
                 </div>
-                 <div ref={optionRef}  className={`${Share ? "block":"hidden"}`}>
-                <div  className=" flex flex-col  gap-3 absolute  top-[118px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px]">
-                  <div className=""> 
-                   <a className="flex gap-2 items-center" href="/"> <span>
-                      <PiLinkSimpleLight />
-                    </span>
-                    <span className="text-[14px]">Copy link</span></a>
-                  </div>
-
-                  <div>
-                  <a  className="flex gap-2 items-center"  href="/"> <span>
-                      <FaFacebook />
-                    </span>
-                    <span className="text-[14px]">Facebook</span></a>
-                  </div>
-
-                  <div>
-                  <a  className="flex gap-2 items-center"  href="/"> <span>
-                      <FaTwitter />
-                    </span>
-                    <span className="text-[14px]">Twitter</span></a>
-                  </div>
-
-                  <div>
-
-                  <a  className="flex gap-2 items-center" href="/">  <span>
-                      <FaReddit />
-                    </span>
-                    <span className="text-[14px]">Reddit</span></a>
-                  </div>
-
-                  <div>
-                  <a  className="flex gap-2 items-center" href="/"> <span>
-                  <FaLinkedin />
-                    </span>
-                    <span className="text-[14px]">LinkedIn</span></a>
-                  </div>
-
-                  <div>
-                  <a  className="flex gap-2 items-center" href="/">   <span>
-                    <FaPinterest />
-                    </span>
-                    <span className="text-[14px]">Pinterest</span></a>
-                  </div>
-
-
+                <div className=" flex  px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000">
+                  <h3>View</h3>
                 </div>
+
+                <div>
+                  <div
+                    ref={optionRef}
+                    onClick={() => {
+                      setShare(!share);
+                    }}
+                    className=" relative flex gap-3 items-center justify-center px-[10px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)]  py-[4px] rounded-md text-[13px] font-medium cursor-pointer transition duration-2000"
+                  >
+                    <h3>Share</h3>
+                    <h3>
+                      <FaChevronDown />
+                    </h3>
+                  </div>
+                  {share && (
+                    <div>
+                      <div className="  flex flex-col  gap-3 absolute  top-[118px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px]">
+                        <div className="">
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <PiLinkSimpleLight />
+                            </span>
+                            <span className="text-[14px]">Copy link</span>
+                          </a>
+                        </div>
+
+                        <div>
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <FaFacebook />
+                            </span>
+                            <span className="text-[14px]">Facebook</span>
+                          </a>
+                        </div>
+
+                        <div>
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <FaTwitter />
+                            </span>
+                            <span className="text-[14px]">Twitter</span>
+                          </a>
+                        </div>
+
+                        <div>
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <FaReddit />
+                            </span>
+                            <span className="text-[14px]">Reddit</span>
+                          </a>
+                        </div>
+
+                        <div>
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <FaLinkedin />
+                            </span>
+                            <span className="text-[14px]">LinkedIn</span>
+                          </a>
+                        </div>
+
+                        <div>
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <FaPinterest />
+                            </span>
+                            <span className="text-[14px]">Pinterest</span>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
-              </div>
-              {/* <div className="flex  bg-[#E3E3E3]   rounded-md text-[13px] font-medium cursor-pointer transition duration-2000 gap-0 ">
+                {/* <div className="flex  bg-[#E3E3E3]   rounded-md text-[13px] font-medium cursor-pointer transition duration-2000 gap-0 ">
                 <h3 className=" rounded-md px-[10px] py-[7px] hover:bg-[rgb(206,204,204)] ">
                 <FaChevronLeft />
 
@@ -193,6 +200,83 @@ const AddProduct = () => {
                 <FaChevronRight />
                 </h3>
               </div> */}
+              </div>
+
+              <div>
+                <div className="hidden px-[8px] py-[7px] mx-[10px] rounded-lg border-[1px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] cursor-pointer sm:block">
+                  {" "}
+                  <span className="text-black">
+                    <HiDotsHorizontal />
+                  </span>
+                </div>
+
+                <div className="Menusidebar w-[280px]  flex flex-col absolute  top-[124px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px] xm:top-[178px]">
+                  <div className=" flex text-[14px] flex-col gap-3">
+                    <h3>Duplicate</h3>
+                    <h3>View</h3>
+                  </div>
+                  <hr className="" />
+                  <div className="">
+                    <h3>Share</h3>
+
+                    <div className="">
+                      <div className="">
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <PiLinkSimpleLight />
+                          </span>
+                          <span className="text-[14px]">Copy link</span>
+                        </a>
+                      </div>
+
+                      <div>
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <FaFacebook />
+                          </span>
+                          <span className="text-[14px]">Facebook</span>
+                        </a>
+                      </div>
+
+                      <div>
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <FaTwitter />
+                          </span>
+                          <span className="text-[14px]">Twitter</span>
+                        </a>
+                      </div>
+
+                      <div>
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <FaReddit />
+                          </span>
+                          <span className="text-[14px]">Reddit</span>
+                        </a>
+                      </div>
+
+                      <div>
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <FaLinkedin />
+                          </span>
+                          <span className="text-[14px]">LinkedIn</span>
+                        </a>
+                      </div>
+
+                      <div>
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <FaPinterest />
+                          </span>
+                          <span className="text-[14px]">Pinterest</span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <form onSubmit={handleSubmit}>
