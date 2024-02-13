@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
 import { useEffect, useState, useRef } from "react";
