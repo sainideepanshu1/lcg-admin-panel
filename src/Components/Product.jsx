@@ -18,6 +18,7 @@ const Product = () => {
     const { id } = useParams();
     const [Dot, setDot] = useState(false);
   const [share, setShare] = useState(false);
+    const [productData, setProductData] = useState({});
   const [product, setProduct] = useState({
     title: "",
     description: "",
