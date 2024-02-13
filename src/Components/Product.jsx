@@ -133,13 +133,7 @@ const Product = () => {
                 <FaArrowLeftLong />
               </Link>
               <div className="break-words">
-                {Customers.map((product, index) => {
-                  return (
-                    <div key={index}>
-                      <h2>{product.h1}</h2>
-                    </div>
-                  );
-                })}
+                  {product.title}
               </div>
             </div>
 
