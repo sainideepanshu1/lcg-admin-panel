@@ -6,7 +6,7 @@ import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
 import Collections from './Components/Collections';
-import Dublicate from './Components/Dublicate'
+import Product from './Components/Product'
 import Products from "./Components/Products";
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <Routes>          
           <Route path="/" element={<>Home</>} />
-          <Route path="/duplicate" element={<Dublicate />} />
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collections />} />
