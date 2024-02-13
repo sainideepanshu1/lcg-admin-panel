@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
-import Collections from "./Components/Collections";
+import Collections from './Components/Collections';
 import Products from "./Components/Products";
 import Product from "./Components/Product";
 
