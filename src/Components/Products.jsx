@@ -1,17 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { CiViewColumn } from "react-icons/ci";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
+import axios from "axios";
 
 const Products = () => {
+  const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(false);
 
   function option() {
     setToggle(!toggle);
   }
+  const fetchProducts = async () => {
+    try {
+      const { data } = await axios.get(
+        "http://localhost:8000/api/product/allProducts"
+      );
+      setProducts(data.products);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      if (error.response.data) {
+        toast.error(error.response.data.message, { duration: 2000 });
+      } else {
+        toast.error(error.message, { duration: 2000 });
+      }
+    }
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <>
@@ -128,51 +149,52 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* Another grid section (you can continue this pattern as needed) */}
-                <div className="w-full px-2 grid items-center text-[14px] pt-2 pb-2">
-                  <div
-                    className="grid items-center "
-                    style={{
-                      gridTemplateColumns:
-                        " 0fr 0.5fr 1.5fr 0.5fr 1.5fr 1fr 0.5fr 1fr 0.5fr",
-                    }}
-                  >
-                    <div className="text-center flex items-center">
-                      <input className="h-4 w-4" type="checkbox" />
-                    </div>
-                    <div></div>
-                    <div className="flex font-[600] gap-2 items-center text-heading group ">
-                      Product
-                      <div className="flex-col hidden  text-[8px] group-hover:flex cursor-pointer  ">
-                        <SlArrowUp /> <SlArrowDown />
+                {products.map((product, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className="w-full px-2 grid items-center text-[14px] pt-2 pb-2"
+                    >
+                      <div
+                        className="grid items-center "
+                        style={{
+                          gridTemplateColumns:
+                            " 0fr 0.5fr 1.5fr 0.5fr 1.5fr 1fr 0.5fr 1fr 0.5fr",
+                        }}
+                      >
+                        <div className="text-center flex items-center">
+                          <input className="h-4 w-4" type="checkbox" />
+                        </div>
+                        <div></div>
+                        <div className="flex font-[450] gap-2 items-center text-heading group ">
+                          <Link to={`/product/${product._id}`}>
+                            {product.title}
+                          </Link>
+                          <div className="flex-col hidden  text-[8px] group-hover:flex   "></div>
+                        </div>
+                        <div className="text-heading font-[450] ">
+                          {product.status}
+                        </div>
+                        <div className="text-heading font-[450] flex gap-2 items-center group ">
+                          Inventory
+                          <div className="flex-col hidden  text-[8px] group-hover:flex"></div>
+                        </div>
+                        <div className="text-heading font-[450] ">
+                          Sales channels
+                        </div>
+                        <div className="text-heading font-[450] ">Markets</div>
+                        <div className="text-heading font-[450] flex gap-2 items-center group  cursor-pointer ">
+                          {product.product_type}
+                          <div className="flex-col text-[8px] hidden group-hover:flex"></div>
+                        </div>
+                        <div className="text-heading font-[450] flex gap-2 group items-center cursor-pointer ">
+                          {product.vendor}
+                          <div className="flex-col hidden  text-[8px] group-hover:flex"></div>
+                        </div>
                       </div>
                     </div>
-                    <div className="text-heading font-[600] ">Status </div>
-                    <div className="text-heading font-[600] flex gap-2 items-center group cursor-pointer  ">
-                      Inventory
-                      <div className="flex-col hidden  text-[8px] group-hover:flex">
-                        <SlArrowUp /> <SlArrowDown />
-                      </div>
-                    </div>
-                    <div className="text-heading font-[600] ">
-                      Sales channels
-                    </div>
-                    <div className="text-heading font-[600] ">Markets</div>
-                    <div className="text-heading font-[600] flex gap-2 items-center group  cursor-pointer ">
-                      Category
-                      <div className="flex-col text-[8px] hidden group-hover:flex">
-                        <SlArrowUp /> <SlArrowDown />
-                      </div>
-                    </div>
-                    <div className="text-heading font-[600] flex gap-2 group items-center cursor-pointer ">
-                      Vendor
-                      <div className="flex-col hidden  text-[8px] group-hover:flex">
-                        <SlArrowUp /> <SlArrowDown />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
           </div>
