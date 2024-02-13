@@ -23,22 +23,20 @@ const Products = () => {
                 Products
               </h1>
             </div>
-            <div className='flex gap-3 font-[600] '>
-              <span onClick={option}  className='relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading '><BsThreeDots />
-              <div className={`${toggle?"block":"hidden"}`}>
-              <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
-                <button >
-                  Export
-                </button>
-                <button >
-                  Import
-                </button>
-
-              </div>
-              </div>
-              
+            <div className="flex gap-3 font-[600] ">
+              <span
+                onClick={option}
+                className="relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
+              >
+                <BsThreeDots />
+                <div className={`${toggle ? "block" : "hidden"}`}>
+                  <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
+                    <button>Export</button>
+                    <button>Import</button>
+                  </div>
+                </div>
               </span>
-               
+
               <div className="flex sm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Export
