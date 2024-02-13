@@ -13,6 +13,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FaPinterest } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { HiDotsHorizontal } from "react-icons/hi";
+import Editor from "./Editor";
+
 
 const Product = () => {
     const { id } = useParams();
@@ -330,13 +332,9 @@ const Product = () => {
                           Description
                         </label>
                       </div>
-                      <input
-                        className="text-[0.8125rem] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030] text-[#303030] font-[450]"
-                        type="text"
-                        onChange={handleChange}
-                        name="description"
-                        value={product.description}
-                        placeholder="Short sleeve t-shirt"
+                      <Editor
+                        description={product.description}
+                        updateDescription={updateDescription}
                       />
                     </div>
                   </div>
