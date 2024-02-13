@@ -5,9 +5,10 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
-import Collections from "./Components/Collections";
+import Collections from './Components/Collections';
+import Product from './Components/Product'
 import Products from "./Components/Products";
-import Product from "./Components/Product";
+import Customers from "./Components/Customers";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -29,6 +30,7 @@ function App() {
           <Route path="/products/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
+          <Route path="/customers" element={<Customers/>} />
         </Routes>
       </div>
     </>
