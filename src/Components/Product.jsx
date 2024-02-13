@@ -20,44 +20,7 @@ const Product = () => {
     const { id } = useParams();
     const [Dot, setDot] = useState(false);
   const [share, setShare] = useState(false);
-  const [productData, setProductData] = useState({});
-
-  const optionRef = useRef();
-  const handleClickOutside = (event) => {
-    if (optionRef.current && !optionRef.current.contains(event.target)) {
-      setShare(false);
-    } };
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
-
-
-
-
-  ///Mobile three dot options
-const [Dot,setDot] =useState(false);
-const DotRef =useRef();
-
-
-
-const handleClick =(event)=>{
-  if(DotRef.current && !DotRef.current.contains(event.target)){
-    setDot(false);
-
-  }}
-  useEffect(()=>{
-    document.addEventListener("click",handleClick);
-
-    return()=>{
-      document.removeEventListener("click",handleChange);
-    }
-
-  },[])
-
+    const [productData, setProductData] = useState({});
   const [product, setProduct] = useState({
     title: "",
     description: "",
@@ -178,8 +141,9 @@ const handleClick =(event)=>{
               <Link className="p-1" to="/">
                 <FaArrowLeftLong />
               </Link>
-              <div className="break-words">{product.title}</div>
-
+              <div className="break-words">
+                  {product.title}
+              </div>
             </div>
 
             <div>
@@ -204,16 +168,17 @@ const handleClick =(event)=>{
                       <FaChevronDown />
                     </h3>
                   </div>
-                  {share && (                    
-                      <div className="  flex flex-col  gap-3 absolute  top-[118px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px]">
-                        <div className="">
-                          <a className="flex gap-2 items-center" href="/">
-                            <span>
-                              <PiLinkSimpleLight />
-                            </span>
-                            <span className="text-[14px]">Copy link</span>
-                          </a>
-                        </div>
+
+                  {share && (
+                    <div className="  flex flex-col  gap-3 absolute  top-[118px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px]">
+                      <div className="">
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <PiLinkSimpleLight />
+                          </span>
+                          <span className="text-[14px]">Copy link</span>
+                        </a>
+                      </div>
 
                       <div>
                         <a className="flex gap-2 items-center" href="/">
@@ -251,50 +216,51 @@ const handleClick =(event)=>{
                         </a>
                       </div>
 
-                        <div>
-                          <a className="flex gap-2 items-center" href="/">
-                            <span>
-                              <FaPinterest />
-                            </span>
-                            <span className="text-[14px]">Pinterest</span>
-                          </a>
-                        </div>
+                      <div>
+                        <a className="flex gap-2 items-center" href="/">
+                          <span>
+                            <FaPinterest />
+                          </span>
+                          <span className="text-[14px]">Pinterest</span>
+                        </a>
                       </div>
-                    
+                    </div>
                   )}
                 </div>
               </div>
 
               <div>
-                <div ref={DotRef}
-                    onClick={()=>{
-                      setDot(!Dot);
-                    }} className="hidden px-[8px] py-[7px] mx-[10px] rounded-lg border-[1px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] cursor-pointer sm:block">
-                  
+                <div
+                  ref={DotRef}
+                  onClick={() => {
+                    setDot(!Dot);
+                  }}
+                  className="hidden px-[8px] py-[7px] mx-[10px] rounded-lg border-[1px] bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] cursor-pointer sm:block"
+                >
                   <span className="text-black">
                     <HiDotsHorizontal />
                   </span>
                 </div>
-                    
-                {Dot && (
-                <div className="Menusidebar overflow-scroll w-[280px]  flex flex-col absolute  top-[124px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px] xm:top-[178px]">
-                  <div className=" flex text-[14px] flex-col gap-3 pb-[10px]">
-                    <h3>Duplicate</h3>
-                    <h3>View</h3>
-                  </div>
-                  <hr className="" />
-                  <div className="py-[10px]">
-                    <h3 className="text-[14px] text-[#000000d3]">Share</h3>
 
-                    <div className=" flex flex-col gap-3 pt-2">
-                      <div className="">
-                        <a className="flex gap-2 items-center" href="/">
-                          <span>
-                            <PiLinkSimpleLight />
-                          </span>
-                          <span className="text-[14px]">Copy link</span>
-                        </a>
-                      </div>
+                {Dot && (
+                  <div className="Menusidebar overflow-scroll w-[280px]  flex flex-col absolute  top-[124px]   bg-white rounded-lg  border-[1px] text-[#4A4A4A]  px-[12px] py-[10px] sm:right-[10px] xm:top-[178px]">
+                    <div className=" flex text-[14px] flex-col gap-3 pb-[10px]">
+                      <h3>Duplicate</h3>
+                      <h3>View</h3>
+                    </div>
+                    <hr className="" />
+                    <div className="py-[10px]">
+                      <h3 className="text-[14px] text-[#000000d3]">Share</h3>
+
+                      <div className=" flex flex-col gap-3 pt-2">
+                        <div className="">
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <PiLinkSimpleLight />
+                            </span>
+                            <span className="text-[14px]">Copy link</span>
+                          </a>
+                        </div>
 
                         <div>
                           <a className="flex gap-2 items-center" href="/">
@@ -332,17 +298,17 @@ const handleClick =(event)=>{
                           </a>
                         </div>
 
-                      <div>
-                        <a className="flex gap-2 items-center" href="/">
-                          <span>
-                            <FaPinterest />
-                          </span>
-                          <span className="text-[14px]">Pinterest</span>
-                        </a>
+                        <div>
+                          <a className="flex gap-2 items-center" href="/">
+                            <span>
+                              <FaPinterest />
+                            </span>
+                            <span className="text-[14px]">Pinterest</span>
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 )}
               </div>
             </div>
