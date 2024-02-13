@@ -9,7 +9,6 @@ import Collections from './Components/Collections';
 import Dublicate from './Components/Dublicate'
 import Products from "./Components/Products";
 
-
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -21,12 +20,11 @@ function App() {
     <>
       <Toaster />
       <Navbar toggleSidebar={toggleSidebar} />
-
       <div className="flex">
-        <Sidebar />
+        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <Routes>
-          <Route path="/duplicate" element={<Dublicate/>} />
-          <Route path="/products" element={<Products/>} />
+          <Route path="/duplicate" element={<Dublicate />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
