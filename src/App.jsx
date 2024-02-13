@@ -7,6 +7,7 @@ import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
 import Collections from './Components/Collections';
 import Product from './Components/Product'
+import Collections from './Components/Collections';
 import Products from "./Components/Products";
 import Customers from "./Components/Customers";
 
