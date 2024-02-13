@@ -98,7 +98,7 @@ function Navbar({ toggleSidebar }) {
         {/* hidden search bar */}
 
         <div ref={popupRef} className={` ${popup ? "block" : "hidden"}`}>
-          <div className="Searchbar bg-white   absolute top-[7px] h-[203px] left-[290px] border-solid min-w-[600px] pt-[14px] pb-[150px] rounded-xl shadow-xl  md:left-[120px] sm:left-[0px]  xm:min-w-[315px] xm:left-[40px] ">
+          <div className=" z-10 Searchbar bg-white   absolute top-[7px] h-[203px] left-[290px] border-solid min-w-[600px] pt-[14px] pb-[150px] rounded-xl shadow-xl  md:left-[120px] sm:left-[0px]  xm:min-w-[315px] xm:left-[40px] ">
             <div className=" flex items-center  border-[1px] mx-[10px] rounded-lg border-[#202223] px-[10px]  py-[3px] sm:[100vw] ">
               <span className="text-[17px]">
                 <IoIosSearch />
@@ -212,7 +212,7 @@ function Navbar({ toggleSidebar }) {
             </div>
 
             <div ref={popprofile} className={`${profile ? "block" : "hidden"}`}>
-              <div className="cursor-pointer bg-white absolute border-[1px]  rounded-lg top-[60px] right-[20px] p-[10px] w-[317px]">
+              <div className="cursor-pointer z-10 bg-white absolute border-[1px]  rounded-lg top-[60px] right-[20px] p-[10px] w-[317px]">
                 <div className="px-[4px]  ">
                   <h1 className="text-[#050505ef] text-[0.9rem] font-medium ">
                     Raman Goyal

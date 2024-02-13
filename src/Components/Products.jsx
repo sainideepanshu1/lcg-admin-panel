@@ -8,6 +8,7 @@ import { BsThreeDots } from "react-icons/bs";
 
 const Products = () => {
   const [toggle, setToggle] = useState(false);
+  
 
   function option() {
     setToggle(!toggle);
@@ -17,6 +18,7 @@ const Products = () => {
     <>
       <div className="bg-[#f1f1f1] w-full flex flex-col gap-3">
         <div className="bg-[#f1f1f1] h-screen justify-between px-12 py-1">
+
           <div className="flex mt-6 items-center justify-between">
             <div>
               <h1 className="text-[20px] font-[600] text-[#000000]">
