@@ -34,7 +34,14 @@ const Product = () => {
     vendor: "",
     tax: false,
   });
-  
+    
+  const updateDescription = (newDescription) => {
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      description: newDescription,
+    }));
+  };
+    
   const optionRef = useRef();
   const handleClickOutside = (event) => {
     if (optionRef.current && !optionRef.current.contains(event.target)) {
