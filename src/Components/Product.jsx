@@ -14,7 +14,7 @@ import { FaPinterest } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { HiDotsHorizontal } from "react-icons/hi";
 
-const AddProduct = () => {
+const P = () => {
   const [share, setShare] = useState(false);
   const optionRef = useRef();
   const handleClickOutside = (event) => {
