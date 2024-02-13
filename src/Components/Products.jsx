@@ -23,19 +23,22 @@ const Products = () => {
                 Products
               </h1>
             </div>
-            <div className="flex cursor-pointer gap-3 font-[600] ">
-              <div
-                onClick={option}
-                className="relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
-              >
-                <BsThreeDots />
-                <div className={`${toggle ? "block" : "hidden"}`}>
-                  <div className="flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
-                    <button>Export</button>
-                    <button>Import</button>
-                  </div>
-                </div>
+            <div className='flex gap-3 font-[600] '>
+              <span onClick={option}  className='relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading '><BsThreeDots />
+              <div className={`${toggle?"block":"hidden"}`}>
+              <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
+                <button >
+                  Export
+                </button>
+                <button >
+                  Import
+                </button>
+
               </div>
+              </div>
+              
+              </span>
+               
               <div className="flex sm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Export
@@ -54,8 +57,8 @@ const Products = () => {
               </button>
             </div>
           </div>
-          <div className="rounded-lg mt-[24px] bg-[#ffffff] w-full justify-between flex flex-col">
-            <div className="flex justify-between py-3 px-2 text-[#585858] ">
+          <div className="rounded-lg mt-[24px] bg-[#ffffff] w-full gap-4 justify-between flex flex-col border border-stone-200">
+            <div className="flex justify-between py-1 px-1 text-[#585858] ">
               <div className="flex items-center ">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading font-[600] ">
                   All
@@ -84,7 +87,7 @@ const Products = () => {
             </div>
             <div>
               <div className="grid w-full overflow-auto ">
-                <div className="w-full px-2 grid items-center text-[14px] text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
+                <div className="w-full px-2 grid items-center text-[14px] border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
                   <div
                     className="grid items-center "
                     style={{

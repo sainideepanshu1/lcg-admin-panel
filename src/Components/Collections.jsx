@@ -9,8 +9,8 @@ const Collections = () => {
   return (
     <>
       <div className="bg-[#f1f1f1] w-full flex flex-col gap-3">
-        <div className="bg-[#f1f1f1] justify-between px-12 py-1">
-          <div className="flex mt-6 justify-between">
+        <div className="bg-[#f1f1f1] justify-between px-12 py-1 ">
+          <div className="flex mt-6 justify-between ">
             <div>
               <h1 className="text-[20px] font-medium text-[#000000]">
                 Collections
@@ -19,19 +19,19 @@ const Collections = () => {
             <div>
               <Link
                 to="/create-collection"
-                className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+                className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
               >
                 Create collection
               </Link>
             </div>
           </div>
-          <div className="rounded-lg mt-[24px] bg-[#ffffff] w-full gap-4 justify-between flex flex-col">
-            <div className="flex justify-between py-3 px-2">
+          <div className="rounded-lg mt-[24px] bg-[#ffffff] w-full gap-4 justify-between flex flex-col border-stone-200 border">
+            <div className="flex justify-between py-1 px-1">
               <div className="flex items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-3 text-heading">
                   All
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-3 text-[18px]">
+                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px]">
                   +
                 </button>
               </div>
@@ -46,7 +46,7 @@ const Collections = () => {
             </div>
             <div>
               <div className="grid w-full">
-                <div className="w-full px-2 grid items-center text-[14px] text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
+                <div className="w-full px-2 grid items-center text-[14px] border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
                   <div
                     className="grid items-center "
                     style={{ gridTemplateColumns: " 1fr 1fr 5fr 2fr 4fr" }}
@@ -69,7 +69,7 @@ const Collections = () => {
                 </div>
               </div>
               <div className="grid w-full items-center">
-                <div className="w-full px-2 grid items-center text-[14px] text-[#666161] bg-white pt-2 pb-2">
+                <div className="w-full px-2 grid items-center text-[14px]  text-[#666161] bg-white pt-2 pb-2">
                   <div
                     className="grid items-center "
                     style={{ gridTemplateColumns: " 1fr 1fr 5fr 2fr 4fr" }}
