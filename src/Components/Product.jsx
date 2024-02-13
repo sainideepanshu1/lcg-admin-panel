@@ -15,7 +15,23 @@ import { FaLinkedin } from "react-icons/fa6";
 import { HiDotsHorizontal } from "react-icons/hi";
 
 const Product = () => {
+    const { id } = useParams();
+    const [Dot, setDot] = useState(false);
   const [share, setShare] = useState(false);
+  const [product, setProduct] = useState({
+    title: "",
+    description: "",
+    price: "",
+    comparePrice: "",
+    status: "",
+    productCategory: "",
+    productType: "",
+    tags: "",
+    collections: "",
+    vendor: "",
+    tax: false,
+  });
+  
   const optionRef = useRef();
   const handleClickOutside = (event) => {
     if (optionRef.current && !optionRef.current.contains(event.target)) {
@@ -31,7 +47,6 @@ const Product = () => {
   }, []);
 
   ///Mobile three dot options
-  const [Dot, setDot] = useState(false);
   const DotRef = useRef();
 
   const handleClick = (event) => {
@@ -43,24 +58,12 @@ const Product = () => {
     document.addEventListener("click", handleClick);
 
     return () => {
-      document.removeEventListener("click", handleChange);
+      document.removeEventListener("click", handleClick);
     };
   }, []);
 
   // ----------------
-  const [product, setProduct] = useState({
-    title: "",
-    description: "",
-    price: "",
-    comparePrice: "",
-    status: "",
-    productCategory: "",
-    productType: "",
-    tags: "",
-    collections: "",
-    vendor: "",
-    tax: false,
-  });
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -80,32 +83,45 @@ const Product = () => {
 
   const handleSubmit = async (e) => {
     try {
-      e.preventDefault();
-      const res = await axios.post(
-        "http://localhost:8000/api/product/add-product",
-        product
-      );
-      toast.success(res.data.message);
-      console.log("Form submitted with data:", product);
-      setProduct({
-        title: "",
-        description: "",
-        price: "",
-        comparePrice: "",
-        status: "",
-        productCategory: "",
-        productType: "",
-        tags: "",
-        collections: "",
-        vendor: "",
-        tax: false,
-      });
+     
     } catch (error) {
       console.log(error);
       toast.error(error.message, { duration: 2000 });
     }
   };
 
+    const getProductByID = async () => {
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8000/api/product/getProduct/${id}`
+      );
+
+      setProductData(data.product);
+
+      setProduct({
+        title: data.product.title || "",
+        description: data.product.body_html || "",
+        price: data.product.price || "",
+        comparePrice: data.product.comparePrice || "",
+        status: data.product.status || "",
+        productCategory: data.product.productCategory || "",
+        productType: data.product.product_type || "",
+        tags: data.product.tags || "",
+        collections: data.product.collections || "",
+        vendor: data.product.vendor || "",
+        tax: data.product.tax || false,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+    useEffect(() => {
+    getProductByID();
+  }, []);
+
+  
+  
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -529,4 +545,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Product;
