@@ -22,10 +22,11 @@ function App() {
       <Navbar toggleSidebar={toggleSidebar} />
       <div className="flex">
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <Routes>
+        <Routes>          
+          <Route path="/" element={<>Home</>} />
           <Route path="/duplicate" element={<Dublicate />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/add-product" element={<AddProduct />} />
+          <Route path="/products/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
         </Routes>
