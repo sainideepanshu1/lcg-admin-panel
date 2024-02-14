@@ -191,7 +191,7 @@ html.p-theme-light {
   --p-color-border-inverse: rgba(97, 97, 97, 1);
   --p-color-border-inverse-hover: rgba(204, 204, 204, 1);
   --p-color-border-inverse-active: rgba(227, 227, 227, 1);
-  --p-color-icon: rgba(74, 74, 74, 1);
+  --p-color-icon: #4a4a4a;
   --p-color-icon-hover: rgba(48, 48, 48, 1);
   --p-color-icon-active: rgba(26, 26, 26, 1);
   --p-color-icon-disabled: rgba(204, 204, 204, 1);
