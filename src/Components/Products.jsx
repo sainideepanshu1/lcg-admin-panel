@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
-import { CiViewColumn } from "react-icons/ci";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
+import { TbArrowsSort } from "react-icons/tb";
+import Pic from '../assets/Product1.jpg'
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(false);
-  
+
 
   function option() {
     setToggle(!toggle);
@@ -38,9 +39,9 @@ const Products = () => {
   return (
     <>
       <div className="bg-[#f1f1f1] w-full flex flex-col gap-3">
-        <div className="bg-[#f1f1f1] h-screen justify-between px-12 py-1">
+        <div className="bg-[#f1f1f1] h-screen xm:p-0 justify-between px-12 py-1">
 
-          <div className="flex mt-6 items-center justify-between">
+          <div className="flex mt-6 xm:px-5 items-center justify-between">
             <div>
               <h1 className="text-[20px] font-[600] text-[#000000]">
                 Products
@@ -49,7 +50,7 @@ const Products = () => {
             <div className="flex gap-3 font-[600] ">
               <span
                 onClick={option}
-                className="relative hidden sm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
+                className="relative hidden xm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
               >
                 <BsThreeDots />
                 <div className={`${toggle ? "block" : "hidden"}`}>
@@ -60,7 +61,7 @@ const Products = () => {
                 </div>
               </span>
 
-              <div className="flex sm:hidden items-center">
+              <div className="flex xm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Export
                 </button>
@@ -78,37 +79,37 @@ const Products = () => {
               </button>
             </div>
           </div>
-          <div className="rounded-lg mt-[24px] bg-[#ffffff] w-full gap-4 justify-between flex flex-col border border-stone-200">
+          <div className="rounded-lg mt-[24px] xm:p-0 bg-[#ffffff] overflow-x: auto; scrollbar-width: none; w-full gap-4 justify-between flex flex-col border border-stone-200">
             <div className="flex justify-between py-1 px-1 text-[#585858] ">
-              <div className="flex items-center ">
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading font-[600] ">
+              <div className="flex overflow-x-auto items-center ">
+                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   All
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading font-[600] ">
+                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   Active
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading font-[600] ">
+                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   Draft
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading font-[600] ">
+                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   Archived
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] font-[600] ">
+                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] ">
                   +
                 </button>
               </div>
               <div className="flex gap-1">
-                <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all text-[18px] px-2 py-0 rounded-lg flex items-center">
+                <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
                   <IoSearchOutline /> <CgSortAz />
                 </button>
-                <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all rounded-lg text-[18px] px-2 py-0">
-                  <CiViewColumn />
+                <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
+                  <TbArrowsSort />
                 </button>
               </div>
             </div>
             <div>
               <div className="grid w-full overflow-auto ">
-                <div className="w-full px-2 grid items-center text-[14px] border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
+                <div className="w-full px-2 grid xm:hidden items-center text-[14px] border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
                   <div
                     className="grid items-center "
                     style={{
@@ -155,7 +156,7 @@ const Products = () => {
                   return (
                     <div
                       key={index}
-                      className="w-full px-2 grid items-center text-[14px] pt-2 pb-2"
+                      className="w-full px-2 border-l-0  grid border border-y-gray-100 xm:hidden items-center text-[14px] pt-2 pb-2"
                     >
                       <div
                         className="grid items-center "
@@ -168,33 +169,68 @@ const Products = () => {
                           <input className="h-4 w-4" type="checkbox" />
                         </div>
                         <div></div>
-                        <div className="flex font-[450] gap-2 items-center text-heading group ">
+                        <div className="flex font-[450] gap-2 text-[#30304b] items-center text-heading group ">
                           <Link to={`/product/${product._id}`}>
                             {product.title}
                           </Link>
                           <div className="flex-col hidden  text-[8px] group-hover:flex   "></div>
                         </div>
-                        <div className="text-heading font-[450] ">
+                        <div className="text-heading bg-[#B4FED2] w-14 capitalize text-[#5FA681] px-2 py-0 border rounded-xl font-[450] ">
                           {product.status}
                         </div>
-                        <div className="text-heading font-[450] flex gap-2 items-center group ">
+                        <div className="text-heading font-[450] text-[#666161] flex gap-2 items-center group ">
                           Inventory
-                          <div className="flex-col hidden  text-[8px] group-hover:flex"></div>
+                          <div className="flex-col hidden  text-[#666161] text-[8px] group-hover:flex"></div>
                         </div>
-                        <div className="text-heading font-[450] ">
+                        <div className="text-heading text-[#666161] font-[450] ">
                           Sales channels
                         </div>
-                        <div className="text-heading font-[450] ">Markets</div>
-                        <div className="text-heading font-[450] flex gap-2 items-center group  cursor-pointer ">
+                        <div className="text-heading text-[#666161] font-[450] ">Markets</div>
+                        <div className="text-heading font-[450] text-[#666161] flex gap-2 items-center group  cursor-pointer ">
                           {product.product_type}
-                          <div className="flex-col text-[8px] hidden group-hover:flex"></div>
+                          <div className="flex-col text-[8px] text-[#666161] hidden group-hover:flex"></div>
                         </div>
-                        <div className="text-heading font-[450] flex gap-2 group items-center cursor-pointer ">
+                        <div className="text-heading font-[450] text-[#666161] flex gap-2 group items-center cursor-pointer ">
                           {product.vendor}
-                          <div className="flex-col hidden  text-[8px] group-hover:flex"></div>
+                          <div className="flex-col hidden  text-[#666161] text-[8px] group-hover:flex"></div>
                         </div>
                       </div>
                     </div>
+                  );
+                })}
+
+                {products.map((product, index) => {
+                  return (
+
+                    <div
+
+                      key={index}
+                      className="w-full border-l-0 border-r-0 px-2 pl-[1rem] hidden xm:block lg:hidden items-center border border-y-gray-100 text-[#30304b] text-[0.813rem] pt-3 pb-3">
+
+                      <div className="flex gap-4">
+                        <div>
+                          <img className="h-[45px] w-[45px] rounded-xl " src={Pic} alt="Pic" />
+                        </div>
+                        <div>
+                        <div className="flex font-[450] gap-2 items-center text-heading group ">
+                          <Link to={`/product/${product._id}`}>
+                            {product.title}
+                          </Link>
+                        </div>
+                        <div className="text-[12px] text-[#666161] font-[450] flex gap-2 items-center group ">
+                          Inventory
+
+                        </div>
+                        <div className="text-[12px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
+                          {product.vendor}
+                        </div>
+                        <div className="text-[12px] bg-[#B4FED2] w-14 capitalize text-[#5FA681] px-2 py-0 border rounded-xl font-[450] ">
+                          {product.status}
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+
                   );
                 })}
               </div>
