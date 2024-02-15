@@ -25,9 +25,9 @@ html.p-theme-light {
   --p-breakpoints-md: 48rem;
   --p-breakpoints-lg: 65rem;
   --p-breakpoints-xl: 90rem;
-  --p-color-bg: rgba(241, 241, 241, 1);
-  --p-color-bg-inverse: rgba(26, 26, 26, 1);
-  --p-color-bg-surface: rgba(255, 255, 255, 1);
+  --p-color-bg: #f1f1f1;
+  --p-color-bg-inverse: #1a1a1a;
+  --p-color-bg-surface: #ffffff;
   --p-color-bg-surface-hover: rgba(247, 247, 247, 1);
   --p-color-bg-surface-active: rgba(243, 243, 243, 1);
   --p-color-bg-surface-selected: rgba(241, 241, 241, 1);
@@ -120,8 +120,8 @@ html.p-theme-light {
   --p-color-bg-fill-transparent-secondary: rgba(0, 0, 0, 0.06);
   --p-color-bg-fill-transparent-secondary-hover: rgba(0, 0, 0, 0.08);
   --p-color-bg-fill-transparent-secondary-active: rgba(0, 0, 0, 0.11);
-  --p-color-text: rgba(48, 48, 48, 1);
-  --p-color-text-secondary: rgba(97, 97, 97, 1);
+  --p-color-text: #303030;
+  --p-color-text-secondary: #616161;
   --p-color-text-disabled: rgba(181, 181, 181, 1);
   --p-color-text-link: rgba(0, 91, 211, 1);
   --p-color-text-link-hover: rgba(0, 66, 153, 1);
