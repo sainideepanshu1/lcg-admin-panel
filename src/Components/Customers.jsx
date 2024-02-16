@@ -4,7 +4,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { useState } from "react";
 import { useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
-
+import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { CgSortAz } from "react-icons/cg";
 import { IoChevronUp } from "react-icons/io5";
 import { LuLayout } from "react-icons/lu";
@@ -13,6 +13,8 @@ import { LuArrowUp } from "react-icons/lu";
 import { LuArrowDown } from "react-icons/lu";
 import { IoIosSearch } from "react-icons/io";
 import { LuArrowUpDown } from "react-icons/lu";
+import { FaAngleRight } from "react-icons/fa6";
+import { FaAngleLeft } from "react-icons/fa6";
 function Customers() {
   const [toggle, setToggle] = useState(false);
   const [filter, setFilter] = useState(false);
@@ -23,9 +25,15 @@ function Customers() {
 
   // ----sort bar---
   const handleclick = (event) => {
-    if (sortRef.current && !sortRef.current.contains(event.target)) {
-      setSort(!sort);
+    if (sortRef.current && !sortRef.current.contains(event.target) ) {
+      setSort(false)
+      
+
+
+     
+     
     }
+   
   };
   useEffect(() => {
     document.addEventListener("click", handleclick, true);
@@ -114,7 +122,7 @@ function Customers() {
 
       <div
         className=" bg-[ #F3F3F3] 
-      rounded-xl border-[1px] border-[#a09f9fdc] shadow-md my-[20px] mx-7   xm:mx-0 gap-0 justify-normal xm:rounded-md "
+      rounded-xl border-[1px] border-[#a09f9fdc] shadow-md my-[20px] mx-7   xm:mx-0 gap-0 justify-normal xm:rounded-sm  "
       >
         <div className=" flex items-center justify-between ">
           <div className="flex items-center gap-0  flex-wrap xm:gap-0  ">
@@ -218,8 +226,8 @@ function Customers() {
       </div>
       {/* ------------------customer detail----------- */}
 
-      <div className=" bg-white rounded-xl border-[1px] border-[#a09f9fdc] shadow-md my-[20px] mx-7   xm:mx-0 gap-0 justify-normal xm:rounded-md">
-        <div className=" flex justify-between p-[8px] ">
+      <div className=" bg-white rounded-xl border-[1px] border-[#a09f9fdc] shadow-md my-[20px] mx-7   xm:mx-0 gap-0 justify-normal xm:rounded-md xm:border-[0px] " >
+        <div className=" flex justify-between p-[8px]  ">
           <div className="w-full justify-center flex items-center  py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  ">
             <span className="text-[#616161]">
               <IoIosSearch />
@@ -240,9 +248,9 @@ function Customers() {
 
             <div>
               <button
-                ref={sortRef}
+              
                 onClick={() => {
-                  setSort(!sort);
+                  setSort(!sort)
                 }}
                 className=" relative border-[1px] rounded-md bg-white p-[4px]"
               >
@@ -251,12 +259,12 @@ function Customers() {
             </div>
 
             {sort && (
-              <div className=" ">
+              <div    ref={sortRef} className=" ">
                 <div className="text-[#1a1a1a] flex flex-col gap-1 absolute top-[264px] right-[38px] px-[10px] rounded-lg py-[8px] bg-white text-[14px] xm:right-[10px]">
                   <h1>Sort by</h1>
-                  <div className="flex gap-2 outline-[#000] ">
+                  <div  className="flex gap-2 outline-[#000] ">
                     {" "}
-                    <input
+                    <input 
                       className="text-[#1a1a1a]"
                       type="radio"
                       name="radio"
@@ -318,30 +326,104 @@ function Customers() {
             )}
           </div>
         </div>
+        <div>
+          <div
+            className="grid justify-between gap-4 border-t  bg-[#f5f3f3] text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center sm:hidden "
+            style={{ gridTemplateColumns: "0fr 3fr 3fr 4fr 2fr 2fr" }}
+          >
+            <div className="">
+              <input type="checkbox" className="rounded " />
+            </div>
+            <div>
+              <h3>Customer name</h3>
+            </div>
+            <div>
+              <h3>Email subscription</h3>
+            </div>
+            <div>
+              <h3>Location</h3>
+            </div>
 
-        <div
-          className="grid justify-between gap-4  bg-[#f5f3f3] text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center"
-          style={{ gridTemplateColumns: "1fr 3fr 2fr 2fr 2fr 2fr" }}
-        >
-          {/* <div className=" flex gap-[150px]"> */}
-          {/* <div className="flex gap-3 items-center"> */}
-          <div>
-            <input type="checkbox" className="rounded " />
+            <div>
+              <h3>Orders</h3>
+            </div>
+
+            <div>
+              <h3>Amount spent</h3>
+            </div>
           </div>
-          <h3>Customer name</h3>
-          {/* </div> */}
-          {/* <div> */}
-          <h3>Email subscription</h3>
-          {/* </div> */}
-          {/* <div> */}
-          <h3>Location</h3>
-          {/* </div> */}
-          {/* </div> */}
+        </div>
 
-          {/* <div className="flex gap-[70px] items-center pr-[50px]"> */}
-          <h3>Orders</h3>
-          <h3>Amount spent</h3>
-          {/* </div> */}
+        <div>
+          <div
+            className="grid justify-between gap-4 border-t border-b bg-white text-[#303030] px-[10px] py-[8px] text-[13px] font-medium items-center hover:bg-[#f5f3f3] cursor-pointer sm:hidden "
+            style={{ gridTemplateColumns: "0fr 3fr 3fr 4fr 2fr 2fr" }}
+          >
+            <div className="">
+              <input type="checkbox" className="rounded " />
+            </div>
+            <div>
+              <h3>bablu lal</h3>
+            </div>
+            <div>
+              <button className="border-[1px] px-[5px] text-[12.5px] bg-[#b4fed2] text-[#0c5132] rounded-lg">
+                Subscribed
+              </button>
+            </div>
+            <div>
+              <h3>India</h3>
+            </div>
+
+            <div>
+              <h3>0 Orders</h3>
+            </div>
+
+            <div className="flex items-center">
+              <span>
+                <MdOutlineCurrencyRupee />
+              </span>
+              <div className="flex items-center">
+                <h3>500</h3>
+                <h2>.00</h2>
+              </div>
+            </div>
+          </div>
+
+          <div className=" hidden  border-t border-b bg-white text-[#303030] px-[10px] py-[8px] text-[13px] font-medium items-center    sm:block">
+            <div className="text-black text-[14px] py-[1px]">
+              <h3>bablu lal</h3>
+            </div>
+
+            <div className=" py-[1px]">
+              <h3>India</h3>
+            </div>
+
+            <div className="flex gap-1">
+              <div>
+                <h3>0 Orders</h3>
+              </div>
+
+              <div className="flex items-center">
+                <span>
+                  <MdOutlineCurrencyRupee />
+                </span>
+                <div className="flex items-center">
+                  <h3>500</h3>
+                  <h2>.00</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className=" p-3  bg-[#f5f3f3] rounded-bl-xl rounded-br-xl ">
+          <div className="flex justify-end ">
+          <div className=" flex  gap-1 "> 
+            <span className=" cursor-pointer  rounded-xl  p-[5px] text-[13px] hover:bg-[rgb(206,204,204)] " ><FaAngleLeft /></span>
+            <span className=" cursor-pointer p-[5px] text-[13px]   rounded-xl hover:bg-[rgb(206,204,204)] "> <FaAngleRight /></span>
+          </div>
+       
+          </div>
         </div>
       </div>
     </div>

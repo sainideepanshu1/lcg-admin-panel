@@ -78,7 +78,7 @@ html.p-theme-light {
   --p-color-bg-fill-tertiary-hover: rgba(212, 212, 212, 1);
   --p-color-bg-fill-tertiary-active: rgba(204, 204, 204, 1);
   --p-color-bg-fill-brand: rgba(48, 48, 48, 1);
-  --p-color-bg-fill-brand-hover: rgba(26, 26, 26, 1);
+  --p-color-bg-fill-brand-hover: #1a1a1a;
   --p-color-bg-fill-brand-active: rgba(26, 26, 26, 1);
   --p-color-bg-fill-brand-selected: rgba(48, 48, 48, 1);
   --p-color-bg-fill-brand-disabled: rgba(0, 0, 0, 0.17);
@@ -89,7 +89,7 @@ html.p-theme-light {
   --p-color-bg-fill-success: rgba(41, 132, 90, 1);
   --p-color-bg-fill-success-hover: rgba(19, 111, 69, 1);
   --p-color-bg-fill-success-active: rgba(12, 81, 50, 1);
-  --p-color-bg-fill-success-secondary: rgba(180, 254, 210, 1);
+  --p-color-bg-fill-success-secondary: #b4fed2;
   --p-color-bg-fill-warning: rgba(255, 184, 0, 1);
   --p-color-bg-fill-warning-hover: rgba(229, 165, 0, 1);
   --p-color-bg-fill-warning-active: rgba(178, 132, 0, 1);
@@ -137,7 +137,7 @@ html.p-theme-light {
   --p-color-text-info-active: rgba(0, 33, 51, 1);
   --p-color-text-info-secondary: rgba(0, 124, 180, 1);
   --p-color-text-info-on-bg-fill: rgba(0, 33, 51, 1);
-  --p-color-text-success: rgba(12, 81, 50, 1);
+  --p-color-text-success: #0c5132;
   --p-color-text-success-hover: rgba(8, 61, 37, 1);
   --p-color-text-success-active: rgba(9, 42, 27, 1);
   --p-color-text-success-secondary: rgba(41, 132, 90, 1);
