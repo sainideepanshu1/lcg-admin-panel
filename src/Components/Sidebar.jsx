@@ -110,9 +110,9 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           }
         }}
       >
-        <div className="bg-[#ebebeb]  w-[50%] h-full pt-8 px-6">
+        <div className="bg-[#ebebeb]  w-[50%]  h-full pt-[7px] pr-[24px] pl-[8px]">
           <div>
-            <ul className=" text-[14px] font-medium  flex flex-col gap-3 text-[#303030] ">
+            <ul className=" text-[14px] font-medium  flex flex-col gap-[0.35rem] text-[#303030] ">
               <li>
                 <Link
                   className="flex items-center gap-2  py-1 px-2  hover:bg-[#fafafa] rounded-lg"
