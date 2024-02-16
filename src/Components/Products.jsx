@@ -6,16 +6,24 @@ import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
 import { TbArrowsSort } from "react-icons/tb";
-import Pic from '../assets/Product1.jpg'
+import Pic from '../assets/Product1.jpg';
+import Pic2 from '../assets/Product2.jpg';
+import { FaLongArrowAltDown } from "react-icons/fa";
+import { FaLongArrowAltUp } from "react-icons/fa";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(false);
 
 
+
   function option() {
     setToggle(!toggle);
   }
+
+
+
+
   const fetchProducts = async () => {
     try {
       const { data } = await axios.get(
@@ -94,31 +102,83 @@ const Products = () => {
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   Archived
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] ">
-                  +
+
+                <button>
+                  <Link to=""
+                    className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] ">
+                    +
+                  </Link>
                 </button>
               </div>
               <div className="flex gap-1">
                 <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
                   <IoSearchOutline /> <CgSortAz />
                 </button>
-                <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
+
+
+                <span
+                  onClick={option}
+                  className="border shadow-lg hover:bg-[#e3e3e3] transition-all flex items-center rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
                   <TbArrowsSort />
-                </button>
+
+                  <div className={`${toggle ? "block" : "hidden"}`}>
+                    <div className=" flex gap-2 p-[10px] flex-col bg-white border-[1px] absolute  top-[200px] right-[70px]   rounded-lg  text-heading ">
+                      <h1>Sort by</h1>
+                      <div className="flex flex-col gap-2 items-start" >
+                        <label className="flex gap-2 items-center">
+                          <input type="radio" name="sort_option" value="product_title" />
+                          Product title
+                        </label>
+                        <label className="flex gap-2 items-center">
+                          <input type="radio" name="sort_option" value="created" />
+                          Created
+                        </label>
+                        <label className="flex gap-2 items-center">
+                          <input type="radio" name="sort_option" value="updated" />
+                          Updated
+                        </label>
+                        <label className="flex gap-2 items-center">
+                          <input type="radio" name="sort_option" value="inventory" />
+                          Inventory
+                        </label>
+                        <label className="flex gap-2 items-center">
+                          <input type="radio" name="sort_option" value="product_type" />
+                          Product type
+                        </label>
+                        <label className="flex gap-2 items-center">
+                          <input type="radio" name="sort_option" value="vendor" />
+                          Vendor
+                        </label>
+                      </div>
+
+                      <div className="flex flex-col items-center">
+                        <button className="hover:bg-[#E3E3E3] flex  gap-6 items-center rounded-lg py-1 px-4 text-[15px]">
+                          <FaLongArrowAltDown /> A-Z
+                        </button>
+                        <button className="hover:bg-[#E3E3E3] flex gap-6 items-center rounded-lg py-1 px-4 text-[15px]">
+                          <FaLongArrowAltUp /> Z-A
+                        </button>
+                      </div>
+
+
+                    </div>
+                  </div>
+                </span>
               </div>
             </div>
             <div>
-              <div className="grid w-full overflow-auto ">
-                <div className="w-full px-2 grid xm:hidden items-center text-[14px] border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
+              <div className="grid sm:overflow-auto sm:scroll-m-2 w-full ">
+                <div className="w-full px-2 grid xm:hidden   items-center text-[14px] border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
                   <div
-                    className="grid items-center "
+                    className="grid gap-12  items-center "
                     style={{
                       gridTemplateColumns:
                         " 0fr 0.5fr 1.5fr 0.5fr 1.5fr 1fr 0.5fr 1fr 0.5fr",
                     }}
                   >
-                    <div className="text-center flex items-center">
-                      <input className="h-4 w-4" type="checkbox" />
+                    <div className="text-center sm:fixed  flex items-center">
+                      <input className="h-4  sm:static w-4" type="checkbox" />
+
                     </div>
                     <div></div>
                     <div className="flex font-[600] gap-2 items-center text-heading  group ">
@@ -127,8 +187,8 @@ const Products = () => {
                         <SlArrowUp /> <SlArrowDown />
                       </div>
                     </div>
-                    <div className="text-heading font-[600] ">Status </div>
-                    <div className="text-heading font-[600] flex gap-2 items-center group cursor-pointer  ">
+                    <div className="text-heading  font-[600] ">Status </div>
+                    <div className="text-heading font-[600]  flex gap-2 items-center group cursor-pointer  ">
                       Inventory
                       <div className="flex-col hidden  text-[8px] group-hover:flex">
                         <SlArrowUp /> <SlArrowDown />
@@ -159,16 +219,19 @@ const Products = () => {
                       className="w-full px-2 border-l-0  grid border border-y-gray-100 xm:hidden items-center text-[14px] pt-2 pb-2"
                     >
                       <div
-                        className="grid items-center "
+                        className="grid gap-11 items-center "
                         style={{
                           gridTemplateColumns:
                             " 0fr 0.5fr 1.5fr 0.5fr 1.5fr 1fr 0.5fr 1fr 0.5fr",
                         }}
                       >
                         <div className="text-center flex items-center">
-                          <input className="h-4 w-4" type="checkbox" />
+                          <input className="h-4 sm:fixed w-4" type="checkbox" />
                         </div>
-                        <div></div>
+
+                        <div>
+                          <img className="h-[45px] w-[45px] sm:fixed rounded-xl " src={Pic2} alt="Pic" />
+                        </div>
                         <div className="flex font-[450] gap-2 text-[#30304b] items-center text-heading group ">
                           <Link to={`/product/${product._id}`}>
                             {product.title}
@@ -212,21 +275,21 @@ const Products = () => {
                           <img className="h-[45px] w-[45px] rounded-xl " src={Pic} alt="Pic" />
                         </div>
                         <div>
-                        <div className="flex font-[450] gap-2 items-center text-heading group ">
-                          <Link to={`/product/${product._id}`}>
-                            {product.title}
-                          </Link>
-                        </div>
-                        <div className="text-[12px] text-[#666161] font-[450] flex gap-2 items-center group ">
-                          Inventory
+                          <div className="flex font-[450] gap-2 items-center text-heading group ">
+                            <Link to={`/product/${product._id}`}>
+                              {product.title}
+                            </Link>
+                          </div>
+                          <div className="text-[12px] text-[#666161] font-[450] flex gap-2 items-center group ">
+                            Inventory
 
-                        </div>
-                        <div className="text-[12px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
-                          {product.vendor}
-                        </div>
-                        <div className="text-[12px] bg-[#B4FED2] w-14 capitalize text-[#5FA681] px-2 py-0 border rounded-xl font-[450] ">
-                          {product.status}
-                        </div>
+                          </div>
+                          <div className="text-[12px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
+                            {product.vendor}
+                          </div>
+                          <div className="text-[12px] bg-[#B4FED2] w-14 capitalize text-[#5FA681] px-2 py-0 border rounded-xl font-[450] ">
+                            {product.status}
+                          </div>
                         </div>
                       </div>
                     </div>

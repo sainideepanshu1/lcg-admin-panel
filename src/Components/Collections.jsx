@@ -9,7 +9,7 @@ import Pic1 from '../assets/Product1.jpg'
 const Collections = () => {
   return (
     <>
-      <div className="bg-[#f1f1f1] w-full flex flex-col gap-3">
+      <div className="bg-[#f1f1f1] w-full h-[100vh] flex flex-col gap-3">
         <div className="bg-[#f1f1f1] justify-between xm:p-0 px-12 py-1 ">
           <div className="flex mt-6 px-[20px] justify-between ">
             <div>
