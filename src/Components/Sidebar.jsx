@@ -115,7 +115,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
             <ul className=" text-[14px] font-medium  flex flex-col gap-[0.35rem] text-[#303030] ">
               <li>
                 <Link
-                  className="flex items-center gap-2  py-1 px-2  hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2  py-1 px-2  hover:bg-[#fafafa] rounded-lg"
                   to="/"
                   onClick={toggleSidebar}
                 >
@@ -125,7 +125,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
                   onClick={toggleSidebar}
                 >
@@ -134,7 +134,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/products"
                   onClick={toggleSidebar}
                 >
@@ -143,7 +143,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/collections"
                   onClick={toggleSidebar}
                 >
@@ -152,7 +152,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/customers"
                   onClick={toggleSidebar}
                 >
@@ -162,7 +162,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
                   onClick={toggleSidebar}
                 >
@@ -173,7 +173,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
 
               <li>
                 <Link
-                  className="flex items-center gap-2 py-1 px-2  hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2 py-1 px-2  hover:bg-[#fafafa] rounded-lg"
                   to="/"
                   onClick={toggleSidebar}
                 >
@@ -183,7 +183,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  className="flex font-[700] items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
                   onClick={toggleSidebar}
                 >
@@ -193,7 +193,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
-                  className="flex items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg "
+                  className="flex font-[700] items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg "
                   to="/"
                   onClick={toggleSidebar}
                 >
