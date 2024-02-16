@@ -159,46 +159,7 @@ function Navbar({ toggleSidebar }) {
             </span>
           </div>
 
-          {/* <div className="Alert">
-            <div className="">
-              <div className="">
-              <button>   <span> <CgSortAz /></span></button>
-                <button><span><FaRegCircleCheck /></span></button>
-              </div>
-
-            </div>
-
-            <div className="">
-               <div>
-                  <span>Billing </span>
-                  <span><LuDot /></span>
-                   <span>Tuesday at 8:15 am</span>
-                   <button><input type="radio" /></button>
-
-               </div>
-               <div className="">{
-                Alert.map((Product,index)=>{
-                  return( <div>
-                    <span><TbAlertSquareRounded /></span>
-
-                    <div key={index}>
-                      <h3>{Product.h3}</h3>
-                      <h4>{Product.h4}</h4>
-                        
-                    </div>
-
-                  </div>)
-                 
-                })
-               }
-                    
-
-               </div>
-            </div>
-
-
-          </div> */}
-          <div className="">
+         <div className="">
             <div
               onClick={ToggleProfile}
               className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors"
