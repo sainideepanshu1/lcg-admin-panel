@@ -27,10 +27,6 @@ function Customers() {
   const handleclick = (event) => {
     if (sortRef.current && !sortRef.current.contains(event.target) ) {
       setSort(false)
-      
-
-
-     
      
     }
    
@@ -110,7 +106,7 @@ function Customers() {
           </div>
           <button>
             <Link
-              to="/"
+              to="/AddCustomers"
               className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
             >
               Add customer

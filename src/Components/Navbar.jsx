@@ -153,7 +153,7 @@ function Navbar({ toggleSidebar }) {
         </div>
 
         <div className=" flex gap-2 items-center ">
-          <div className="bg-[#303030] border-solid p-[8px] rounded-lg transition-duration: 15ms;  hover:bg-[rgba(74,74,74,1)] transition-all cursor-pointer">
+          <div className="border-solid p-[8px] rounded-lg transition-duration-[15ms] bg-[#303030]  hover:bg-[rgba(74,74,74,1)] transition-all cursor-pointer">
             <span className="text-white">
               <FaRegBell />
             </span>
@@ -162,7 +162,7 @@ function Navbar({ toggleSidebar }) {
          <div className="">
             <div
               onClick={ToggleProfile}
-              className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover);] transition-colors"
+              className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover)] transition-colors"
             >
               <span className="text-[14px] font-semibold  sm:hidden">
                 love craft gift{" "}

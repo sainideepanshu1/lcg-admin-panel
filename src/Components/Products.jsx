@@ -10,16 +10,42 @@ import Pic from '../assets/Product1.jpg';
 import Pic2 from '../assets/Product2.jpg';
 import { FaLongArrowAltDown } from "react-icons/fa";
 import { FaLongArrowAltUp } from "react-icons/fa";
+import { useRef } from "react";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [toggle, setToggle] = useState(false);
+  
+const [sort ,setSort] =useState(false);
+const sortref =useRef(null);
+
+  
+  const imexRef = useRef(null);
+  const handleClickOutside = (event) => {
+    if (imexRef.current && !imexRef.current.contains(event.target)) {
+      setToggle(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  }, []);
 
 
+// -------------sort ------
 
-  function option() {
-    setToggle(!toggle);
+
+const handleSortClick=(event)=>{
+  if(sortref.current && !sortref.current.contains(event.target)){
+
   }
+}
+
+
 
 
 
@@ -55,19 +81,25 @@ const Products = () => {
                 Products
               </h1>
             </div>
-            <div className="flex gap-3 font-[600] ">
-              <span
-                onClick={option}
-                className="relative hidden xm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
+            <div className="flex gap-2 font-[600] ">
+              <span ref={imexRef}
+            onClick={() => {
+              setToggle(!toggle);
+            }}
+                
+                className="relative cursor-pointer hidden xm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
               >
-                <BsThreeDots />
-                <div className={`${toggle ? "block" : "hidden"}`}>
-                  <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[35px] right-[24px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
+                <BsThreeDots /></span>
+                <div >
+
+
+              { toggle &&( <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[100px] right-[174px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
                     <button>Export</button>
                     <button>Import</button>
-                  </div>
+                  </div>)}
+                 
                 </div>
-              </span>
+              
 
               <div className="flex xm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
@@ -117,14 +149,15 @@ const Products = () => {
 
 
                 <span
-                  onClick={option}
-                  className="border shadow-lg hover:bg-[#e3e3e3] transition-all flex items-center rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
+                 
+                  className="border shadow-lg cursor-pointer hover:bg-[#e3e3e3] transition-all flex items-center rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
                   <TbArrowsSort />
+                  </span>
 
-                  <div className={`${toggle ? "block" : "hidden"}`}>
-                    <div className=" flex gap-2 p-[10px] flex-col bg-white border-[1px] absolute  top-[200px] right-[70px]   rounded-lg  text-heading ">
+                  <div className="">
+                    <div className=" flex gap-2 p-[10px] flex-col bg-white border-[1px] absolute  top-[200px] right-[48px]   rounded-lg  text-heading   xm:top-[175px]  xm:right-[4px] ">
                       <h1>Sort by</h1>
-                      <div className="flex flex-col gap-2 items-start" >
+                      <div className="flex flex-col gap-4 items-start" >
                         <label className="flex gap-2 items-center">
                           <input type="radio" name="sort_option" value="product_title" />
                           Product title
@@ -151,7 +184,7 @@ const Products = () => {
                         </label>
                       </div>
 
-                      <div className="flex flex-col items-center">
+                      <div className="flex flex-col">
                         <button className="hover:bg-[#E3E3E3] flex  gap-6 items-center rounded-lg py-1 px-4 text-[15px]">
                           <FaLongArrowAltDown /> A-Z
                         </button>
@@ -163,7 +196,7 @@ const Products = () => {
 
                     </div>
                   </div>
-                </span>
+               
               </div>
             </div>
             <div>
@@ -226,7 +259,7 @@ const Products = () => {
                         }}
                       >
                         <div className="text-center flex items-center">
-                          <input className="h-4 sm:fixed w-4" type="checkbox" />
+                          <input className="h-4  w-4" type="checkbox" />
                         </div>
 
                         <div>

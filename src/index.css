@@ -166,7 +166,7 @@ html.p-theme-light {
   --p-color-text-magic: rgba(87, 0, 209, 1);
   --p-color-text-magic-secondary: rgba(113, 38, 255, 1);
   --p-color-text-magic-on-bg-fill: rgba(253, 253, 255, 1);
-  --p-color-text-inverse: rgba(227, 227, 227, 1);
+  --p-color-text-inverse: #e3e3e3;
   --p-color-text-inverse-secondary: rgba(181, 181, 181, 1);
   --p-color-text-link-inverse: rgba(197, 208, 255, 1);
   --p-color-border: rgba(227, 227, 227, 1);
