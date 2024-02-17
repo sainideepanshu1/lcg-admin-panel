@@ -258,47 +258,47 @@ function Customers() {
               <div    ref={sortRef} className=" ">
                 <div className="text-[#1a1a1a] flex flex-col gap-1 absolute top-[264px] right-[38px] px-[10px] rounded-lg py-[8px] bg-white text-[14px] xm:right-[10px]">
                   <h1>Sort by</h1>
-                  <div  className="flex gap-2 outline-[#000] ">
-                    {" "}
-                    <input 
-                      className="text-[#1a1a1a]"
+                  <div  className="  flex gap-2 outline-[#000] ">
+                    
+                    <label className="cursor-pointer"> <input 
+                      className="text-[#1a1a1a] "
                       type="radio"
                       name="radio"
-                    />
-                    <span>Last update </span>
+                    ></input>
+                  Last update </label>
                   </div>
                   <div className="flex cursor-pointer gap-2">
-                    {" "}
+                  <label className="cursor-pointer">
                     <input type="radio" value="HTML" name="radio" />
-                    <span>Amount spent </span>
+                    Amount spent </label>
                   </div>
                   <div className="flex gap-2">
-                    {" "}
+                  <label className="cursor-pointer">
                     <input type="radio" name="radio" />
-                    <span>Total orders </span>
-                  </div>
-
-                  <div className="flex gap-2">
-                    {" "}
-                    <input type="radio" name="radio" />
-                    <span>Last order date</span>
+                    Total orders </label>
                   </div>
 
                   <div className="flex gap-2">
-                    {" "}
+                  <label className="cursor-pointer">
                     <input type="radio" name="radio" />
-                    <span>First order date </span>
+                   Last order date</label>
                   </div>
 
                   <div className="flex gap-2">
-                    {" "}
+                  <label className="cursor-pointer">
                     <input type="radio" name="radio" />
-                    <span>Date added as customer </span>
+                    First order date </label>
+                  </div>
+
+                  <div className="flex gap-2">
+                  <label className="cursor-pointer">
+                    <input type="radio" name="radio" />
+                    Date added as customer </label>
                   </div>
                   <div className="flex gap-2">
-                    {" "}
+                  <label className="cursor-pointer">
                     <input type="radio" name="radio" />
-                    <span>Last abandoned order date </span>
+                    Last abandoned order date </label>
                   </div>
 
                   <div className="">
