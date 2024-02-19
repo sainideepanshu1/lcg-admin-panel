@@ -122,7 +122,7 @@ html.p-theme-light {
   --p-color-bg-fill-transparent-secondary-active: rgba(0, 0, 0, 0.11);
   --p-color-text: #303030;
   --p-color-text-secondary: #616161;
-  --p-color-text-disabled: rgba(181, 181, 181, 1);
+  --p-color-text-disabled: #b5b5b5;
   --p-color-text-link: rgba(0, 91, 211, 1);
   --p-color-text-link-hover: rgba(0, 66, 153, 1);
   --p-color-text-link-active: rgba(0, 46, 106, 1);
@@ -166,7 +166,7 @@ html.p-theme-light {
   --p-color-text-magic: rgba(87, 0, 209, 1);
   --p-color-text-magic-secondary: rgba(113, 38, 255, 1);
   --p-color-text-magic-on-bg-fill: rgba(253, 253, 255, 1);
-  --p-color-text-inverse: rgba(227, 227, 227, 1);
+  --p-color-text-inverse: #e3e3e3;
   --p-color-text-inverse-secondary: rgba(181, 181, 181, 1);
   --p-color-text-link-inverse: rgba(197, 208, 255, 1);
   --p-color-border: rgba(227, 227, 227, 1);
