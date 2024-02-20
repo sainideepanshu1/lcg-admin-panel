@@ -6,6 +6,7 @@ import { useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
 import { CgSortAz } from "react-icons/cg";
+
 import { IoChevronUp } from "react-icons/io5";
 import { LuLayout } from "react-icons/lu";
 import { IoFilterSharp } from "react-icons/io5";
@@ -19,6 +20,15 @@ function Customers() {
   const [toggle, setToggle] = useState(false);
   const [filter, setFilter] = useState(false);
   const imexRef = useRef(null);
+  const [checkbox,setcheckbox]=useState(false);
+
+    // ---------click option--------
+   
+
+    function Option(){
+      setcheckbox(!checkbox)
+    }
+
 
   const [sort, setSort] = useState(false);
   const sortRef = useRef(null);
@@ -27,10 +37,11 @@ function Customers() {
   const handleclick = (event) => {
     if (sortRef.current && !sortRef.current.contains(event.target) ) {
       setSort(false)
+      
      
     }
-   
-  };
+  }
+
   useEffect(() => {
     document.addEventListener("click", handleclick, true);
 
@@ -38,6 +49,7 @@ function Customers() {
       document.removeEventListener("click", handleclick, true);
     };
   }, []);
+
 
   // ---------filter click-------
   function filterClick() {
@@ -244,7 +256,7 @@ function Customers() {
 
             <div>
               <button
-              
+               ref={sortRef}
                 onClick={() => {
                   setSort(!sort)
                 }}
@@ -255,7 +267,7 @@ function Customers() {
             </div>
 
             {sort && (
-              <div    ref={sortRef} className=" ">
+              <div  ref={sortRef}    className=" ">
                 <div className="text-[#1a1a1a] flex flex-col gap-1 absolute top-[264px] right-[38px] px-[10px] rounded-lg py-[8px] bg-white text-[14px] xm:right-[10px]">
                   <h1>Sort by</h1>
                   <div  className="  flex gap-2 outline-[#000] ">
@@ -328,9 +340,9 @@ function Customers() {
             style={{ gridTemplateColumns: "0fr 3fr 3fr 4fr 2fr 2fr" }}
           >
             <div className="">
-              <input type="checkbox" className="rounded " />
+              <input  type="checkbox" className="rounded " />
             </div>
-            <div>
+            <div className="">
               <h3>Customer name</h3>
             </div>
             <div>
@@ -348,17 +360,46 @@ function Customers() {
               <h3>Amount spent</h3>
             </div>
           </div>
+   <div className={`${checkbox ?"block":"hidden" }`}>
+          <div className="onclick customer option flex gap-[30px] text-[13px] px-3 py-2 xm:gap-1 xm:text-[12px] xm:px-1">
+            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
+              <button>Merge customers</button>
+
+            </div>
+
+            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
+              <button>Add tags</button>
+
+            </div>
+            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
+              <button>Remove tags</button>
+
+            </div>
+
+            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
+              <button>Delete customers</button>
+
+            </div>
+
+
+            
+          </div>
+          </div>
+
+
         </div>
 
         <div>
+        <Link to='/CustomerDetails'>
           <div
             className="grid justify-between gap-4 border-t border-b bg-white text-[#303030] px-[10px] py-[8px] text-[13px] font-medium items-center hover:bg-[#f5f3f3] cursor-pointer sm:hidden "
             style={{ gridTemplateColumns: "0fr 3fr 3fr 4fr 2fr 2fr" }}
           >
             <div className="">
-              <input type="checkbox" className="rounded " />
+              <input onClick={Option} type="checkbox" className="rounded "  />
             </div>
-            <div>
+          
+            <div className="hover:underline">
               <h3>bablu lal</h3>
             </div>
             <div>
@@ -367,7 +408,8 @@ function Customers() {
               </button>
             </div>
             <div>
-              <h3>India</h3>
+              <h3>India
+              </h3>
             </div>
 
             <div>
@@ -383,7 +425,12 @@ function Customers() {
                 <h2>.00</h2>
               </div>
             </div>
+
+        
+
+
           </div>
+          </Link>
 
           <div className=" hidden  border-t border-b bg-white text-[#303030] px-[10px] py-[8px] text-[13px] font-medium items-center    sm:block">
             <div className="text-black text-[14px] py-[1px]">

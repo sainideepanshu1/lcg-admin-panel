@@ -10,6 +10,7 @@ import Product from './Components/Product'
 import Products from "./Components/Products";
 import Customers from "./Components/Customers";
 import AddCustomers from "./Components/AddCustomers";
+import CustomerDetails from "./Components/CustomerDetails";
 
 
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/create-collection" element={<CreateCollection />} />
           <Route path="/customers" element={<Customers/>} />
           <Route path="/AddCustomers" element={<AddCustomers/>} />
+          <Route path="/CustomerDetails" element={<CustomerDetails/>} />
           
           
         </Routes>

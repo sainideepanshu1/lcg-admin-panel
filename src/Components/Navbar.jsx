@@ -13,8 +13,10 @@ function Navbar({ toggleSidebar }) {
 
   const [profile, setprofile] = useState(false);
 
+
   // profile open
   const popprofile = useRef(null);
+  
   function ToggleProfile() {
     setprofile(!profile);
   }

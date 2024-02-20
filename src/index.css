@@ -195,7 +195,7 @@ html.p-theme-light {
   --p-color-icon-hover: rgba(48, 48, 48, 1);
   --p-color-icon-active: rgba(26, 26, 26, 1);
   --p-color-icon-disabled: rgba(204, 204, 204, 1);
-  --p-color-icon-secondary: rgba(138, 138, 138, 1);
+  --p-color-icon-secondary: #8a8a8a;
   --p-color-icon-secondary-hover: rgba(97, 97, 97, 1);
   --p-color-icon-secondary-active: rgba(74, 74, 74, 1);
   --p-color-icon-brand: rgba(26, 26, 26, 1);
