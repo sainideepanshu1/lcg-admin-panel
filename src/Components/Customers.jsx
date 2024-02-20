@@ -37,10 +37,11 @@ function Customers() {
   const handleclick = (event) => {
     if (sortRef.current && !sortRef.current.contains(event.target) ) {
       setSort(false)
+      
      
     }
-   
-  };
+  }
+
   useEffect(() => {
     document.addEventListener("click", handleclick, true);
 
@@ -48,6 +49,7 @@ function Customers() {
       document.removeEventListener("click", handleclick, true);
     };
   }, []);
+
 
   // ---------filter click-------
   function filterClick() {
