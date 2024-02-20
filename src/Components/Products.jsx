@@ -6,20 +6,18 @@ import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
 import axios from "axios";
 import { TbArrowsSort } from "react-icons/tb";
-import Pic from '../assets/Product1.jpg';
-import Pic2 from '../assets/Product2.jpg';
+
+import Pic2 from "../assets/Product2.jpg";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { useRef } from "react";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [toggle, setToggle] = useState(false);
-
-  const [sort, setSort] = useState(false);
+  const [sort, setSort] = useState();
   const sortref = useRef(null);
 
-
+  const [toggle, setToggle] = useState(false);
   const imexRef = useRef(null);
   const handleClickOutside = (event) => {
     if (imexRef.current && !imexRef.current.contains(event.target)) {
@@ -35,20 +33,21 @@ const Products = () => {
     };
   }, []);
 
-
   // -------------sort ------
 
 
   const handleSortClick = (event) => {
     if (sortref.current && !sortref.current.contains(event.target)) {
-
+      setSort(false);
     }
-  }
+  };
+  useEffect(() => {
+    document.addEventListener("click", handleSortClick);
 
-
-
-
-
+    return () => {
+      document.removeEventListener("click", handleSortClick);
+    };
+  }, []);
 
   const fetchProducts = async () => {
     try {
@@ -74,7 +73,6 @@ const Products = () => {
     <>
       <div className="bg-[#f1f1f1] w-full  overflow-hidden flex flex-col gap-3">
         <div className="bg-[#f1f1f1] h-screen  xm:p-0 justify-between px-12 py-1">
-
           <div className="flex mt-6 xm:px-5 items-center justify-between">
             <div>
               <h1 className="text-[20px] font-[600] text-[#000000]">
@@ -82,24 +80,23 @@ const Products = () => {
               </h1>
             </div>
             <div className="flex gap-2 font-[600] ">
-              <span ref={imexRef}
+              <span
+                ref={imexRef}
                 onClick={() => {
                   setToggle(!toggle);
                 }}
-
                 className="relative cursor-pointer hidden xm:block bg-[#E3E3E3] rounded-lg px-3 py-2 text-heading "
               >
-                <BsThreeDots /></span>
-              <div >
-
-
-                {toggle && (<div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[100px] right-[174px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
-                  <button>Export</button>
-                  <button>Import</button>
-                </div>)}
-
+                <BsThreeDots />
+              </span>
+              <div>
+                {toggle && (
+                  <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[100px] right-[174px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
+                    <button>Export</button>
+                    <button>Import</button>
+                  </div>
+                )}
               </div>
-
 
               <div className="flex xm:hidden items-center">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
@@ -136,8 +133,10 @@ const Products = () => {
                 </button>
 
                 <button>
-                  <Link to=""
-                    className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] ">
+                  <Link
+                    to=""
+                    className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] "
+                  >
                     +
                   </Link>
                 </button>
@@ -147,38 +146,66 @@ const Products = () => {
                   <IoSearchOutline /> <CgSortAz />
                 </button>
 
-
                 <span
-                  className="border shadow-lg cursor-pointer hover:bg-[#e3e3e3] transition-all flex items-center rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
+                  ref={sortref}
+                  onClick={() => {
+                    setSort(!sort);
+                  }}
+                  className="border shadow-lg cursor-pointer hover:bg-[#e3e3e3] transition-all flex items-center rounded-lg xm:text-[12px] text-[18px] px-2 py-0"
+                >
                   <TbArrowsSort />
                 </span>
-
-                {/* <div className="">
+                {sort && (
+                  <div className="">
                     <div className=" flex gap-2 p-[10px] flex-col bg-white border-[1px] absolute  top-[200px] right-[48px]   rounded-lg  text-heading   xm:top-[175px]  xm:right-[4px] ">
                       <h1>Sort by</h1>
-                      <div className="flex flex-col gap-4 items-start" >
+                      <div className="flex flex-col gap-4 items-start">
                         <label className="flex gap-2 items-center">
-                          <input type="radio" name="sort_option" value="product_title" />
+                          <input
+                            type="radio"
+                            name="sort_option"
+                            value="product_title"
+                          />
                           Product title
                         </label>
                         <label className="flex gap-2 items-center">
-                          <input type="radio" name="sort_option" value="created" />
+                          <input
+                            type="radio"
+                            name="sort_option"
+                            value="created"
+                          />
                           Created
                         </label>
                         <label className="flex gap-2 items-center">
-                          <input type="radio" name="sort_option" value="updated" />
+                          <input
+                            type="radio"
+                            name="sort_option"
+                            value="updated"
+                          />
                           Updated
                         </label>
                         <label className="flex gap-2 items-center">
-                          <input type="radio" name="sort_option" value="inventory" />
+                          <input
+                            type="radio"
+                            name="sort_option"
+                            value="inventory"
+                          />
                           Inventory
                         </label>
                         <label className="flex gap-2 items-center">
-                          <input type="radio" name="sort_option" value="product_type" />
+                          <input
+                            type="radio"
+                            name="sort_option"
+                            value="product_type"
+                          />
                           Product type
                         </label>
                         <label className="flex gap-2 items-center">
-                          <input type="radio" name="sort_option" value="vendor" />
+                          <input
+                            type="radio"
+                            name="sort_option"
+                            value="vendor"
+                          />
                           Vendor
                         </label>
                       </div>
@@ -191,11 +218,9 @@ const Products = () => {
                           <FaLongArrowAltUp /> Z-A
                         </button>
                       </div>
-
-
-                    </div> */}
-                {/* </div> */}
-
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
             <div>
@@ -204,14 +229,12 @@ const Products = () => {
                   <div
                     className="grid  items-center "
                     style={{
-                      gridTemplateColumns:
-                        "0.3fr 1.5fr ",
+                      gridTemplateColumns: "0.3fr 1.5fr ",
                     }}
                   >
                     <div className=" flex gap-8  sm:sticky sm:left-0 border-y-gray-300 text-[#666161] bg-[#f1f1f1] w-[100px] ">
                       <div className="text-center  flex items-center">
                         <input className="h-4  w-4" type="checkbox" />
-
                       </div>
                       <div className="h-[45px] w-[45px] ">
                         {/* <img className=" w-[45px]  rounded-xl " src={Pic2} alt="Pic" /> */}
@@ -224,7 +247,9 @@ const Products = () => {
                           <SlArrowUp /> <SlArrowDown />
                         </div>
                       </div>
-                      <div className="text-[12px] w-[100px] text-center font-[600] ">Status </div>
+                      <div className="text-[12px] w-[100px] text-center font-[600] ">
+                        Status{" "}
+                      </div>
                       <div className="text-[12px] font-[600] w-[100px] flex gap-2 items-center group cursor-pointer  ">
                         Inventory
                         <div className="flex-col hidden  text-[8px] group-hover:flex">
@@ -234,7 +259,9 @@ const Products = () => {
                       <div className="text-[12px] w-[100px]  font-[600] ">
                         Sales channels
                       </div>
-                      <div className="text-[12px] w-[100px] text-center font-[600] ">Markets</div>
+                      <div className="text-[12px] w-[100px] text-center font-[600] ">
+                        Markets
+                      </div>
                       <div className="text-[12px] w-[100px] font-[600] flex gap-2 items-center group  cursor-pointer ">
                         Category
                         <div className="flex-col text-[8px] hidden group-hover:flex">
@@ -250,6 +277,7 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
+
                 {products.map((product, index) => {
                   return (
                     <div
@@ -259,17 +287,19 @@ const Products = () => {
                       <div
                         className="grid  items-center "
                         style={{
-                          gridTemplateColumns:
-                            " 1.5fr 1.5fr ",
+                          gridTemplateColumns: " 1.5fr 1.5fr ",
                         }}
                       >
                         <div className=" flex gap-6 sm:sticky sm:left-0 bg-white border-y-gray-300 text-[#666161]  w-[100px] ">
                           <div className="text-center  flex items-center">
                             <input className="h-4  w-4" type="checkbox" />
-
                           </div>
                           <div className="h-[45px] w-[45px] ">
-                            <img className=" w-[45px]  rounded-xl " src={Pic2} alt="Pic" />
+                            <img
+                              className=" w-[45px]  rounded-xl "
+                              src={Pic2}
+                              alt="Pic"
+                            />
                           </div>
                         </div>
                         <div className="flex  gap-4">
@@ -277,26 +307,24 @@ const Products = () => {
                             <Link to={`/product/${product._id}`}>
                               {product.title}
                             </Link>
-
                           </div>
                           <div className="text-[12px] w-[100px] bg-[#B4FED2]  capitalize text-[#5FA681] text-center  border rounded-xl  p-1 ">
                             {product.status}
                           </div>
                           <div className="text-[12px] w-[100px] font-[450] text-[#666161] flex gap-2 items-center group ">
                             Inventory
-
                           </div>
                           <div className="text-[12px] w-[100px] text-[#666161] font-[450] ">
                             Sales channels
                           </div>
-                          <div className="text-[12px] w-[100px] text-[#666161] text-center font-[450] ">Markets</div>
+                          <div className="text-[12px] w-[100px] text-[#666161] text-center font-[450] ">
+                            Markets
+                          </div>
                           <div className="text-[12px]  w-[100px] font-[450] text-[#666161] flex gap-2 items-center group  cursor-pointer ">
                             {product.product_type}
-
                           </div>
                           <div className="text-[12px] w-[100px] font-[450] text-[#666161] flex gap-2 group items-center cursor-pointer ">
                             {product.vendor}
-
                           </div>
                         </div>
                       </div>
@@ -306,16 +334,16 @@ const Products = () => {
 
                 {products.map((product, index) => {
                   return (
-
                     <div
-
                       key={index}
-                      className="w-full border-l-0 border-r-0 px-2 pl-[1rem] hidden xm:block lg:hidden items-center border border-y-gray-100 text-[#30304b] text-[0.813rem] pt-3 pb-3">
-
+                      className="w-full border-l-0 border-r-0 px-2 pl-[1rem] hidden xm:block lg:hidden items-center border border-y-gray-100 text-[#30304b] text-[0.813rem] pt-3 pb-3"
+                    >
                       <div className="flex gap-4">
-                        <div>
-
-                        </div>
+                        <div> <img
+                              className=" w-[45px] object-contain  rounded-xl "
+                              src={Pic2}
+                              alt="Pic"
+                            /></div>
                         <div>
                           <div className="flex font-[450] gap-2 items-center text-[14px] group ">
                             <Link to={`/product/${product._id}`}>
@@ -324,7 +352,6 @@ const Products = () => {
                           </div>
                           <div className="text-[14px] text-[#666161] font-[450] flex gap-2 items-center group ">
                             Inventory
-
                           </div>
                           <div className="text-[14px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
                             {product.vendor}
@@ -337,7 +364,6 @@ const Products = () => {
                         </div>
                       </div>
                     </div>
-
                   );
                 })}
               </div>
