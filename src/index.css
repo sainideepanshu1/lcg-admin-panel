@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.table-heading{
+  grid-template-columns: 1.5fr 1.5fr;
+}
+@media (max-width:767px) {
+  .table-heading{
+    grid-template-columns: 0.3fr 1.7fr;
+  }
+}
+
 :root,
 html.p-theme-light {
   color-scheme: light;
