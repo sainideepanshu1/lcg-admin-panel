@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@media (max-width:1918px) {
+  .destop_type{
+    grid-template-columns: 0.3fr 1.5fr;
+  }
+  
+}
+
 .table-heading{
   grid-template-columns: 1.5fr 1.5fr;
 }
