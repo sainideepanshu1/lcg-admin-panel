@@ -11,7 +11,7 @@ import Pic2 from "../assets/Product2.jpg";
 import { FaLongArrowAltDown } from "react-icons/fa";
 import { FaLongArrowAltUp } from "react-icons/fa";
 import { useRef } from "react";
-
+import InfiniteScroll from "react-infinite-scroll-component";
 import { ImCancelCircle } from "react-icons/im";
 
 const Products = () => {
@@ -142,10 +142,10 @@ const Products = () => {
                   </Link>
                 </button>
               </div>
-            
-                <div className=" hidden flex w-full gap-3    ">
-                  <div className=" w-full    py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  flex gap-2 items-center">
-                    <div className="w-full flex items-center">
+
+              <div className=" hidden flex w-full gap-3    ">
+                <div className=" w-full    py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  flex gap-2 items-center">
+                  <div className="w-full flex items-center">
                     <span className="text-[#616161]">
                       <IoIosSearch />
                     </span>
@@ -153,20 +153,29 @@ const Products = () => {
                       placeholder="Searching all products "
                       className="w-full outline-none text-[14px] bg-[#faf8f8] text-[#303030] focus-within:bg-[#f1f1f1c2]"
                     />
-                    </div>
-
-                      <span className=" cursor-pointer"><ImCancelCircle /></span>
-                  
                   </div>
-                  <div className="flex gap-2 ">
-                  <button className=" bg-black text-[14px] text-white rounded-lg 
-          px-[7px] py-[5px]">Cancel</button>
-                  <button className=" bg-black text-[14px] text-white rounded-lg mr-[5px]
-          px-[7px] py-[5px]">Search</button>
+
+                  <span className=" cursor-pointer">
+                    <ImCancelCircle />
+                  </span>
+                </div>
+                <div className="flex gap-2 ">
+                  <button
+                    className=" bg-black text-[14px] text-white rounded-lg 
+          px-[7px] py-[5px]"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    className=" bg-black text-[14px] text-white rounded-lg mr-[5px]
+          px-[7px] py-[5px]"
+                  >
+                    Search
+                  </button>
                 </div>
               </div>
               <div className="flex gap-1">
-                <button  className="  border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
+                <button className="  border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
                   <IoSearchOutline /> <CgSortAz />
                 </button>
 
@@ -250,22 +259,15 @@ const Products = () => {
             <div>
               <div className="grid overflow-auto  w-full ">
                 <div className="w-full px-2 grid xm:hidden  items-center  border border-y-gray-300 text-[#666161] bg-[#f1f1f1] pt-2 pb-2">
-                  <div
-                    className="destop_type  grid  items-center table-heading "
-                    // style={{
-                    //   gridTemplateColumns: "1.5fr 1.5fr ",
-                    // }}
-                  >
+                  <div className="destop_type flex gap-8 items-center table-heading ">
                     <div className=" flex gap-8  sticky left-0 border-y-gray-300 text-[#666161] bg-[#f1f1f1] w-[100px] ">
                       <div className="text-center  flex items-center">
                         <input className="h-4  w-4" type="checkbox" />
                       </div>
-                      <div className="h-[45px] w-[45px] ">
-                        {/* <img className=" w-[45px]  rounded-xl " src={Pic2} alt="Pic" /> */}
-                      </div>
+                      <div className="h-[45px] w-[45px] "></div>
                     </div>
                     <div className="flex sm:overflow-x-hidden gap-4">
-                      <div className="flex font-[600] gap-2 w-[150px] items-center text-[12px]  group ">
+                      <div className="flex font-[600] gap-2 w-[200px] items-center text-[12px]  group ">
                         Product
                         <div className="flex-col hidden  text-[8px] group-hover:flex cursor-pointer  ">
                           <SlArrowUp /> <SlArrowDown />
@@ -274,7 +276,7 @@ const Products = () => {
                       <div className="text-[12px] w-[100px] text-center font-[600] ">
                         Status{" "}
                       </div>
-                      <div className="text-[12px] font-[600] w-[100px] flex gap-2 items-center group cursor-pointer  ">
+                      <div className="text-[12px] font-[600] w-[200px] flex gap-2 items-center group cursor-pointer  ">
                         Inventory
                         <div className="flex-col hidden  text-[8px] group-hover:flex">
                           <SlArrowUp /> <SlArrowDown />
@@ -309,7 +311,7 @@ const Products = () => {
                       className="w-full px-2 border-l-0 grid border border-y-gray-100 xm:hidden items-center text-[14px] pt-2 pb-2"
                     >
                       <div
-                        className="grid  items-center "
+                        className="flex gap-8 items-center "
                         style={{
                           gridTemplateColumns: " 1.5fr 1.5fr ",
                         }}
@@ -321,7 +323,7 @@ const Products = () => {
                           <div className="h-[45px] w-[45px] ">
                             <img
                               className=" w-[45px]  rounded-xl "
-                              src={Pic2}
+                              src={product.images[0].src}
                               alt="Pic"
                             />
                           </div>
@@ -335,8 +337,12 @@ const Products = () => {
                           <div className="text-[12px] w-[100px] h-[27px] bg-[#B4FED2]  capitalize text-[#0c5132] text-center  border rounded-xl  p-1 ">
                             {product.status}
                           </div>
-                          <div className="text-[12px] w-[100px] font-[450] text-[#666161] flex gap-2 items-center group ">
-                            Inventory
+                          <div className="text-[12px] w-[200px] font-[450] text-[#666161] flex gap-2 items-center group ">
+                            {`${product.variants.reduce((total, variant) => {
+                              return total + variant.inventory_quantity;
+                            }, 0)} in stock for ${
+                              product.variants.length
+                            } variants`}
                           </div>
                           <div className="text-[12px] w-[100px] text-[#666161] font-[450] ">
                             Sales channels
@@ -367,7 +373,7 @@ const Products = () => {
                           {" "}
                           <img
                             className=" w-[45px] object-contain  rounded-xl "
-                            src={Pic2}
+                            src={product.images[0].src}
                             alt="Pic"
                           />
                         </div>
@@ -378,7 +384,11 @@ const Products = () => {
                             </Link>
                           </div>
                           <div className="text-[14px] text-[#666161] font-[450] flex gap-2 items-center group ">
-                            Inventory
+                            {`${product.variants.reduce((total, variant) => {
+                              return total + variant.inventory_quantity;
+                            }, 0)} in stock for ${
+                              product.variants.length
+                            } variants`}
                           </div>
                           <div className="text-[14px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
                             {product.vendor}
