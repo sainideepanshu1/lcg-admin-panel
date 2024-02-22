@@ -36,7 +36,7 @@ function CustomerDetails() {
             </span>
           </button>
 
-          <div className=" flex flex-col gap-3 absolute right-[28px]
+          <div className=" flex flex-col gap-4 absolute right-[28px]
   top-[130px] text-[13px] text-[#303030] bg-white items-start py-[10px] px-[10px] rounded-lg ">
             <button>Send account invite</button>
             <button>Merge customer</button>
