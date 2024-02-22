@@ -7,7 +7,7 @@ export default {
       xl: { max: "1279px" },
       md: { max: "1035px" },
       sm: { max: "767px" },
-      xm: { max: "420px" },
+      xm: { max: "431px" },
     },
     extend: {
       fontFamily: {

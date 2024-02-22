@@ -75,7 +75,7 @@ const AddProduct = () => {
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
-        <div className="w-[95%] ml-auto mr-auto sm:w-full">
+        <div className="w-[75%] ml-auto mr-auto sm:w-full">
           <div className="flex items-center py-6 text-lg font-sans font-bold sm:px-2">
             <Link className="p-1" to="/products">
               <FaArrowLeftLong />
