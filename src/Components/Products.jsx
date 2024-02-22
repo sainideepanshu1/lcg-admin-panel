@@ -120,7 +120,7 @@ const Products = () => {
             </div>
           </div>
           <div className="rounded-lg mt-[24px] xm:p-0 bg-[#ffffff] h-[144vh] overflow-x-hidden  w-full gap-4 justify-between flex flex-col border border-stone-200">
-            <div className="flex justify-between py-1 px-1 text-[#585858] ">
+            <div className="flex justify-between py-1 px-1 text-[#585858]  ">
               <div className="flex  sm:overflow-y-auto  items-center ">
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   All
@@ -153,7 +153,7 @@ const Products = () => {
                   <TbArrowsSort />
                 </span>
 
-                {/* <div className="">
+                <div className="">
                     <div className=" flex gap-2 p-[10px] flex-col bg-white border-[1px] absolute  top-[200px] right-[48px]   rounded-lg  text-heading   xm:top-[175px]  xm:right-[4px] ">
                       <h1>Sort by</h1>
                       <div className="flex flex-col gap-4 items-start" >
@@ -193,8 +193,8 @@ const Products = () => {
                       </div>
 
 
-                    </div> */}
-                {/* </div> */}
+                    </div> 
+                </div>
 
               </div>
             </div>
@@ -314,7 +314,7 @@ const Products = () => {
 
                       <div className="flex gap-4">
                         <div>
-
+                        <img className=" w-[45px]  rounded-xl " src={Pic2} alt="Pic" />
                         </div>
                         <div>
                           <div className="flex font-[450] gap-2 items-center text-[14px] group ">
