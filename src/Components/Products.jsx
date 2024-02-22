@@ -15,6 +15,9 @@ import { useRef } from "react";
 import { ImCancelCircle } from "react-icons/im";
 
 const Products = () => {
+  // ---------------Search bar -------------
+  const [Search, setSearch] = useState();
+
   const [products, setProducts] = useState([]);
   const [sort, setSort] = useState();
   const sortref = useRef(null);
@@ -70,6 +73,12 @@ const Products = () => {
     fetchProducts();
   }, []);
 
+  // ---------------Search bar -------------
+
+  function handleSearch() {
+    setSearch(!Search);
+  }
+
   return (
     <>
       <div className="bg-[#f1f1f1] w-full  overflow-hidden flex flex-col gap-3">
@@ -119,7 +128,11 @@ const Products = () => {
           </div>
           <div className="rounded-lg mt-[24px]  xm:p-0 bg-[#ffffff] h-[80vh] overflow-x-hidden  w-full  flex flex-col border border-stone-200">
             <div className="flex justify-between  py-3 px-1 text-[#585858] ">
-              <div className="flex   sm:overflow-y-auto  items-center ">
+              <div
+                className={`${
+                  Search ? "hidden" : "block"
+                } flex   sm:overflow-y-auto  items-center`}
+              >
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   All
                 </button>
@@ -142,10 +155,12 @@ const Products = () => {
                   </Link>
                 </button>
               </div>
-            
-                <div className=" hidden flex w-full gap-3    ">
-                  <div className=" w-full    py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  flex gap-2 items-center">
-                    <div className="w-full flex items-center">
+
+              <div
+                className={`${Search ? "block" : "hidden"} flex w-full gap-3 `}
+              >
+                <div className=" w-full    py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  flex gap-2 items-center">
+                  <div className="w-full flex items-center">
                     <span className="text-[#616161]">
                       <IoIosSearch />
                     </span>
@@ -153,20 +168,38 @@ const Products = () => {
                       placeholder="Searching all products "
                       className="w-full outline-none text-[14px] bg-[#faf8f8] text-[#303030] focus-within:bg-[#f1f1f1c2]"
                     />
-                    </div>
-
-                      <span className=" cursor-pointer"><ImCancelCircle /></span>
-                  
                   </div>
-                  <div className="flex gap-2 ">
-                  <button className=" bg-black text-[14px] text-white rounded-lg 
-          px-[7px] py-[5px]">Cancel</button>
-                  <button className=" bg-black text-[14px] text-white rounded-lg mr-[5px]
-          px-[7px] py-[5px]">Search</button>
+
+                  <span className=" cursor-pointer">
+                    <ImCancelCircle />
+                  </span>
+                </div>
+                <div className="flex gap-2 ">
+                  <button
+                  onClick={handleSearch}
+                    className={`${
+                      Search ? "block" : "hidden"
+                    } bg-black text-[14px] text-white rounded-lg  px-[7px] py-[5px] `}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    
+                    className="  bg-black text-[14px] text-white rounded-lg mr-[5px]
+          px-[7px] py-[5px]"
+                  >
+                    Search
+                  </button>
                 </div>
               </div>
+
               <div className="flex gap-1">
-                <button  className="  border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
+                <button
+                  onClick={handleSearch}
+                  className={`${
+                    Search ? "hidden" : "block"
+                  } border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center`}
+                >
                   <IoSearchOutline /> <CgSortAz />
                 </button>
 
