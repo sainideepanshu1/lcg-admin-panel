@@ -5,6 +5,8 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Editor from "./Editor";
+import { MdDelete } from "react-icons/md";
+
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -72,6 +74,49 @@ const AddProduct = () => {
     }
   };
 
+
+  // ------------------Variants----------------------
+  // const [fields, setFields] = useState(['']);
+
+  // const handleInputChange = (index, value) => {
+  //   const newFields = [...fields];
+
+  //   // If the current input is the last one and it's not empty, add a new empty field
+  //   if (index === newFields.length - 1 && value.trim() !== '') {
+  //     newFields.push('');
+  //   }
+
+  //   newFields[index] = value;
+  //   setFields(newFields);
+  // };
+
+  // const handleDelete = (index) => {
+  //   // Ensure there is always at least one input field and exclude the first one
+  //   if (fields.length > 1 && index > 0) {
+  //     const newFields = [...fields];
+  //     newFields.splice(index, 1);
+  //     setFields(newFields);
+  //   }
+  // };
+
+  // const [showFields, setShowFields] = useState(false);
+
+  // const toggleFields = () => {
+  //   setShowFields(!showFields);
+  // };
+
+
+
+  const [mields, setMields] = useState([]);
+
+  const addNewField = () => {
+    setMields([...mields, { id: Date.now() }]);
+  };
+
+  const deleteField = (id) => {
+    setMields(mields.filter(mield => mield.id !== id));
+  };
+
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -82,7 +127,7 @@ const AddProduct = () => {
             </Link>
             Add product
           </div>
-          <form onSubmit={handleSubmit}>
+          <div >
             <div className="flex gap-3 sm:flex-col sm:items-center">
               <div className="w-[70%] flex flex-col sm:w-[93%]">
                 <div className="rounded-xl bg-white shadow-md p-4">
@@ -187,6 +232,137 @@ const AddProduct = () => {
                       </label>
                     </div>
                   </div>
+                </div>
+
+
+
+                {/* -----------------Variants Section-------------------------- */}
+
+                <div className="rounded-xl my-4 bg-white shadow-md p-4">
+                  <div className="px-4 py-4">
+                    <h2>Variants</h2>
+                  </div>
+
+                  <div>
+      {mields.map((field) => (
+        <div key={field.id}>
+<div className="flex">
+<select id="optionsName" className= "mt-4 w-80 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>Choose Option</option>
+                      <option value="size">Size</option>
+                      <option value="colour">Colour</option>
+                      <option value="material">Material</option>
+                      <option value="style">Style</option>
+                    </select>
+          <button onClick={() => deleteField(field.id)}><MdDelete size={30} color="red" /></button><br />
+</div>
+          <input
+                          type="text"
+                          className="mb-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[80%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          // value={value}
+                          // onChange={(e) => handleInputChange(index, e.target.value)}
+                          id={`field${field.id}`}
+                          name={`field${field.id}`}
+
+                        />
+                        <hr className="border-[2px]"/>
+        </div>
+      ))}
+
+      <button onClick={addNewField}>Add New Field</button>
+    </div>
+
+                  
+
+
+
+
+
+
+                  {/* <div className="max-w-sm mx-5 pb-3">
+                    <label htmlFor="optionsName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option Name</label>
+                    <select id="optionsName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                      <option selected>Choose Option</option>
+                      <option value="size">Size</option>
+                      <option value="colour">Colour</option>
+                      <option value="material">Material</option>
+                      <option value="style">Style</option>
+                    </select>
+
+
+                    <label htmlFor="optionsName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-6">Option Value</label>
+                    {fields.map((value, index) => (
+                      <div key={index} className="flex m-2">
+                        <input
+                          type="text"
+                          className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[80%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                          value={value}
+                          onChange={(e) => handleInputChange(index, e.target.value)}
+                        />
+
+                        {fields.length > 1 && index > 0 && (
+                          <button className="ml-3" onClick={() => handleDelete(index)}><MdDelete size={30} color="red" /></button>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                  <hr />
+
+                  <div className="pt-4">
+                    <button className="text-[#00A9FF]" onClick={toggleFields}>Add another Option</button>
+
+                    {showFields && (
+                      <div className="max-w-sm mx-5 pb-3">
+                        <label htmlFor="optionsName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option Name</label>
+                        <select id="optionsName" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                          <option selected>Choose Option</option>
+                          <option value="size">Size</option>
+                          <option value="colour">Colour</option>
+                          <option value="material">Material</option>
+                          <option value="style">Style</option>
+                        </select>
+
+
+                        <label htmlFor="optionsName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white pt-6">Option Value</label>
+                        {fields.map((value, index) => (
+                          <div key={index} className="flex m-2">
+                            <input
+                              type="text"
+                              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[80%] p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                              value={value}
+                              onChange={(e) => handleInputChange(index, e.target.value)}
+                            />
+
+                            {fields.length > 1 && index > 0 && (
+                              <button className="ml-3" onClick={() => handleDelete(index)}><MdDelete size={30} color="red" /></button>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                  </div> */}
+
+
+                </div>
+
+                <div className=" rounded-xl my-4 bg-white shadow-md">
+                  <div className="flex p-3 ">
+                    <div className="w-1/2 text-[13px]">
+                      Variant
+                    </div>
+                    <div className="flex w-1/2">
+                      <p className="w-1/2 text-[13px]">Price</p>
+                      <p className="w-1/2 text-[13px]">Available</p>
+                    </div>
+                  </div>
+                  <hr />
+                  {/* <div className="m-3">
+                    {fields.map((value, index) => (
+                      <div key={index}>{value}</div>
+                    ))}
+                  </div> */}
+
                 </div>
               </div>
 
@@ -307,6 +483,7 @@ const AddProduct = () => {
             <div>
               <div className="rounded-xl flex items-center justify-center  p-4">
                 <button
+                  onSubmit={handleSubmit}
                   type="submit"
                   className="bg-[#1A1A1A] text-[#E3E3E3] text-heading p-3 rounded-lg"
                 >
@@ -314,7 +491,7 @@ const AddProduct = () => {
                 </button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>
