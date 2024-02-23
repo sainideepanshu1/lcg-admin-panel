@@ -66,7 +66,7 @@ const Products = () => {
   const fetchAllProducts = async () => {
     try {
       const response = await axios.get(
-        `http://192.168.29.185:8000/api/product/getProducts?page=${page}&perPage=${perPage}`
+        `http://localhost:8000/api/product/getProducts?page=${page}&perPage=${perPage}`
       );
       const newProducts = response.data;
 
