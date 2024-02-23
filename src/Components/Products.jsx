@@ -1,28 +1,38 @@
+import toast from "react-hot-toast";
 import React, { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import { BsThreeDots } from "react-icons/bs";
+import { BsChevronBarLeft, BsThreeDots } from "react-icons/bs";
 import axios from "axios";
 import { TbArrowsSort } from "react-icons/tb";
 import { IoIosSearch } from "react-icons/io";
-import Pic2 from "../assets/Product2.jpg";
-import { FaLongArrowAltDown } from "react-icons/fa";
-import { FaLongArrowAltUp } from "react-icons/fa";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import {
+  FaChevronLeft,
+  FaChevronRight,
+  FaLongArrowAltDown,
+  FaLongArrowAltUp,
+} from "react-icons/fa";
 import { useRef } from "react";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { ImCancelCircle } from "react-icons/im";
 
 const Products = () => {
   // ---------------Search bar -------------
   const [Search, setSearch] = useState();
-
-  const [products, setProducts] = useState([]);
   const [sort, setSort] = useState();
+  const [perPage, setPerPage] = useState(50);
+  const [toggle, setToggle] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [page, setPage] = useState(1);
+  const [selectAll, setSelectAll] = useState(false);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
   const sortref = useRef(null);
 
-  const [toggle, setToggle] = useState(false);
   const imexRef = useRef(null);
   const handleClickOutside = (event) => {
     if (imexRef.current && !imexRef.current.contains(event.target)) {
@@ -53,31 +63,96 @@ const Products = () => {
     };
   }, []);
 
-  const fetchProducts = async () => {
+  const fetchAllProducts = async () => {
     try {
-      const { data } = await axios.get(
-        "http://localhost:8000/api/product/allProducts"
+      const response = await axios.get(
+        `http://localhost:8000/api/product/getProducts?page=${page}&perPage=${perPage}`
       );
-      setProducts(data.products);
-      console.log(data);
+      const newProducts = response.data;
+
+      setProducts(newProducts);
+      setIsLoading(false);
     } catch (error) {
-      console.log(error);
-      if (error.response.data) {
-        toast.error(error.response.data.message, { duration: 2000 });
-      } else {
-        toast.error(error.message, { duration: 2000 });
-      }
+      console.error("Error fetching products:", error);
     }
   };
+
+  const handlePrevPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+      setIsLoading(true);
+      setProducts([]);
+      setSelectAll(false);
+      setSelectedProducts([]);
+    }
+  };
+
+  const handleNextPage = () => {
+    setPage(page + 1);
+    setIsLoading(true);
+    setProducts([]);
+    setSelectAll(false);
+    setSelectedProducts([]);
+  };
+
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchAllProducts();
+  }, [page, perPage]);
+
+  const handleSelectAll = () => {
+    setSelectAll(!selectAll);
+
+    if (!selectAll) {
+      const allProductIds = products.map((product) => product._id);
+      setSelectedProducts(allProductIds);
+    } else {
+      setSelectedProducts([]);
+    }
+  };
+
+  const handlePerPageChange = (e) => {
+    const newPerPage = Number(e.target.value);
+    setPerPage(newPerPage);
+    setPage(1);
+  };
+
+  const handleSelectProduct = (productId) => {
+    const updatedSelection = selectedProducts.includes(productId)
+      ? selectedProducts.filter((id) => id !== productId)
+      : [...selectedProducts, productId];
+
+    setSelectedProducts(updatedSelection);
+  };
 
   // ---------------Search bar -------------
 
   function handleSearch() {
     setSearch(!Search);
   }
+
+  const fetchSearched = async () => {
+    if (searchTerm.trim() === "") {
+      return;
+    }
+
+    try {
+      setIsLoading(true);
+      const { data } = await axios.get(
+        `http://localhost:8000/api/product/searchProduct?search=${searchTerm}`
+      );
+
+      if (data.length > 0) {
+        setProducts(data);
+      } else {
+        toast.error("No Results found!!!");
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      toast.error("Error fetching products. Please try again later.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <>
@@ -165,7 +240,11 @@ const Products = () => {
                       <IoIosSearch />
                     </span>
                     <input
-                      placeholder="Searching all products "
+                      placeholder="Searching all products"
+                      value={searchTerm}
+                      onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                      }}
                       className="w-full outline-none text-[14px] bg-[#faf8f8] text-[#303030] focus-within:bg-[#f1f1f1c2]"
                     />
                   </div>
@@ -176,7 +255,7 @@ const Products = () => {
                 </div>
                 <div className="flex gap-2 ">
                   <button
-                  onClick={handleSearch}
+                    onClick={handleSearch}
                     className={`${
                       Search ? "block" : "hidden"
                     } bg-black text-[14px] text-white rounded-lg  px-[7px] py-[5px] `}
@@ -184,6 +263,7 @@ const Products = () => {
                     Cancel
                   </button>
                   <button
+                    onClick={fetchSearched}
                     className="  bg-black text-[14px] text-white rounded-lg mr-[5px]
           px-[7px] py-[5px]"
                   >
@@ -285,7 +365,12 @@ const Products = () => {
                   <div className="destop_type flex gap-8 items-center table-heading ">
                     <div className=" flex gap-8  sticky left-0 border-y-gray-300 text-[#666161] bg-[#f1f1f1] w-[100px] ">
                       <div className="text-center  flex items-center">
-                        <input className="h-4  w-4" type="checkbox" />
+                        <input
+                          className="h-4 w-4"
+                          type="checkbox"
+                          checked={selectAll}
+                          onChange={handleSelectAll}
+                        />
                       </div>
                       <div className="h-[45px] w-[45px] "></div>
                     </div>
@@ -326,65 +411,73 @@ const Products = () => {
                     </div>
                   </div>
                 </div>
-
-                {products.map((product, index) => {
-                  return (
-                    <div
-                      key={index}
-                      className="w-full px-2 border-l-0 grid border border-y-gray-100 xm:hidden items-center text-[14px] pt-2 pb-2"
-                    >
+                {isLoading && <Skeleton count={50} />}
+                <div>
+                  {products.map((product, index) => {
+                    return (
                       <div
-                        className="flex gap-8 items-center "
-                        style={{
-                          gridTemplateColumns: " 1.5fr 1.5fr ",
-                        }}
+                        key={index}
+                        className="w-full px-2 border-l-0 grid border border-y-gray-100 xm:hidden items-center text-[14px] pt-2 pb-2"
                       >
-                        <div className=" flex gap-6 sticky left-0 bg-white border-y-gray-300 text-[#666161]  w-[100px] ">
-                          <div className="text-center  flex items-center">
-                            <input className="h-4  w-4" type="checkbox" />
+                        <div
+                          className="flex gap-8 items-center "
+                          style={{
+                            gridTemplateColumns: " 1.5fr 1.5fr ",
+                          }}
+                        >
+                          <div className=" flex gap-6 sticky left-0 bg-white border-y-gray-300 text-[#666161]  w-[100px] ">
+                            <div className="text-center  flex items-center">
+                              <input
+                                className="h-4  w-4"
+                                type="checkbox"
+                                checked={selectedProducts.includes(product._id)}
+                                onChange={() => {
+                                  handleSelectProduct(product._id);
+                                }}
+                              />
+                            </div>
+                            <div className="h-[45px] w-[45px] ">
+                              <img
+                                className=" w-[45px]  rounded-xl "
+                                src={product.images[0].src}
+                                alt="Pic"
+                              />
+                            </div>
                           </div>
-                          <div className="h-[45px] w-[45px] ">
-                            <img
-                              className=" w-[45px]  rounded-xl "
-                              src={product.images[0].src}
-                              alt="Pic"
-                            />
-                          </div>
-                        </div>
-                        <div className="flex items-center  gap-4">
-                          <div className="flex font-[450] gap-2 w-[200px] text-[#000] items-center pl-2 pr-2  text-[12px] hover:underline group ">
-                            <Link to={`/product/${product._id}`}>
-                              {product.title}
-                            </Link>
-                          </div>
-                          <div className="text-[12px] w-[100px] h-[27px] bg-[#B4FED2]  capitalize text-[#0c5132] text-center  border rounded-xl  p-1 ">
-                            {product.status}
-                          </div>
-                          <div className="text-[12px] w-[200px] font-[450] text-[#666161] flex gap-2 items-center group ">
-                            {`${product.variants.reduce((total, variant) => {
-                              return total + variant.inventory_quantity;
-                            }, 0)} in stock for ${
-                              product.variants.length
-                            } variants`}
-                          </div>
-                          <div className="text-[12px] w-[100px] text-[#666161] font-[450] ">
-                            Sales channels
-                          </div>
-                          <div className="text-[12px] w-[100px] text-[#666161] text-center font-[450] ">
-                            Markets
-                          </div>
-                          <div className="text-[12px]  w-[100px] font-[450] text-[#666161] flex gap-2 items-center group  cursor-pointer ">
-                            {product.product_type}
-                          </div>
-                          <div className="text-[12px] w-[100px] font-[450] text-[#666161] flex gap-2 group items-center cursor-pointer ">
-                            {product.vendor}
+                          <div className="flex items-center  gap-4">
+                            <div className="flex font-[450] gap-2 w-[200px] text-[#000] items-center pl-2 pr-2  text-[12px] hover:underline group ">
+                              <Link to={`/product/${product._id}`}>
+                                {product.title}
+                              </Link>
+                            </div>
+                            <div className="text-[12px] w-[100px] h-[27px] bg-[#B4FED2]  capitalize text-[#0c5132] text-center  border rounded-xl  p-1 ">
+                              {product.status}
+                            </div>
+                            <div className="text-[12px] w-[200px] font-[450] text-[#666161] flex gap-2 items-center group ">
+                              {`${product.variants.reduce((total, variant) => {
+                                return total + variant.inventory_quantity;
+                              }, 0)} in stock for ${
+                                product.variants.length
+                              } variants`}
+                            </div>
+                            <div className="text-[12px] w-[100px] text-[#666161] font-[450] ">
+                              Sales channels
+                            </div>
+                            <div className="text-[12px] w-[100px] text-[#666161] text-center font-[450] ">
+                              Markets
+                            </div>
+                            <div className="text-[12px]  w-[100px] font-[450] text-[#666161] flex gap-2 items-center group  cursor-pointer ">
+                              {product.product_type}
+                            </div>
+                            <div className="text-[12px] w-[100px] font-[450] text-[#666161] flex gap-2 group items-center cursor-pointer ">
+                              {product.vendor}
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-
+                    );
+                  })}
+                </div>
                 {products.map((product, index) => {
                   return (
                     <div
@@ -428,6 +521,33 @@ const Products = () => {
                 })}
               </div>
             </div>
+          </div>
+          <div className="flex justify-end mr-3 mt-3 gap-3 items-center">
+            <div className="text-heading">
+              Display
+              <select value={perPage} onChange={handlePerPageChange}>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              results per page
+            </div>
+            <button
+              onClick={handlePrevPage}
+              disabled={page === 1}
+              className={`${
+                page === 1
+                  ? "text-gray-300"
+                  : "active:shadow-inner active:border active:border-gray-500"
+              } p-3 rounded-lg`}
+            >
+              <FaChevronLeft />
+            </button>
+            <button
+              onClick={handleNextPage}
+              className="active:shadow-inner active:border active:border-gray-500 p-3 rounded-lg"
+            >
+              <FaChevronRight />
+            </button>
           </div>
         </div>
       </div>
