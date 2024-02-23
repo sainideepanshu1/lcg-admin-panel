@@ -4,7 +4,6 @@ import { CiCircleQuestion } from "react-icons/ci";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { Customers } from "../Data/CustomerData";
 import { FaReddit } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 import { PiLinkSimpleLight } from "react-icons/pi";
@@ -15,12 +14,11 @@ import { FaLinkedin } from "react-icons/fa6";
 import { HiDotsHorizontal } from "react-icons/hi";
 import Editor from "./Editor";
 
-
 const Product = () => {
-    const { id } = useParams();
-    const [Dot, setDot] = useState(false);
+  const { id } = useParams();
+  const [Dot, setDot] = useState(false);
   const [share, setShare] = useState(false);
-    const [productData, setProductData] = useState({});
+  const [productData, setProductData] = useState({});
   const [product, setProduct] = useState({
     title: "",
     description: "",
@@ -34,14 +32,14 @@ const Product = () => {
     vendor: "",
     tax: false,
   });
-    
+
   const updateDescription = (newDescription) => {
     setProduct((prevProduct) => ({
       ...prevProduct,
       description: newDescription,
     }));
   };
-    
+
   const optionRef = useRef();
   const handleClickOutside = (event) => {
     if (optionRef.current && !optionRef.current.contains(event.target)) {
@@ -73,7 +71,6 @@ const Product = () => {
   }, []);
 
   // ----------------
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -93,17 +90,16 @@ const Product = () => {
 
   const handleSubmit = async (e) => {
     try {
-     
     } catch (error) {
       console.log(error);
       toast.error(error.message, { duration: 2000 });
     }
   };
 
-    const getProductByID = async () => {
+  const getProductByID = async () => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8000/api/product/getProduct/${id}`
+        `http://localhost:8000/api/product/single-product/${id}`
       );
 
       setProductData(data.product);
@@ -126,12 +122,10 @@ const Product = () => {
     }
   };
 
-    useEffect(() => {
+  useEffect(() => {
     getProductByID();
   }, []);
 
-  
-  
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -141,9 +135,7 @@ const Product = () => {
               <Link className="p-1" to="/">
                 <FaArrowLeftLong />
               </Link>
-              <div className="break-words">
-                  {product.title}
-              </div>
+              <div className="break-words">{product.title}</div>
             </div>
 
             <div>
@@ -545,4 +537,4 @@ const Product = () => {
   );
 };
 
-export default Product;
+export default Product;
