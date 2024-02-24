@@ -12,6 +12,7 @@ import Customers from "./Components/Customers";
 import AddCustomers from "./Components/AddCustomers";
 import CustomerDetails from "./Components/CustomerDetails";
 import Orders from "./Components/Orders";
+import Createorder from "./Components/Createorder";
 
 
 
@@ -41,6 +42,7 @@ function App() {
           <Route path="/AddCustomers" element={<AddCustomers/>} />
           <Route path="/CustomerDetails" element={<CustomerDetails/>} />
           <Route path="/Orders" element={<Orders/>} />
+          <Route path="/Orders/Create-order" element={<Createorder/>} />
           
           
         </Routes>

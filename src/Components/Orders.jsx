@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { TbArrowsSort } from "react-icons/tb";
-import { CiViewColumn } from "react-icons/ci";
+ 
 
 
 const Orders = () => {
@@ -26,10 +26,10 @@ const Orders = () => {
             </div>
             <button>
               <Link
-                to="/products/add-product"
+                to="/Orders/Create-order"
                 className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
               >
-                Add Orders
+                Create order
               </Link>
             </button>
           </div>
@@ -64,13 +64,7 @@ const Orders = () => {
             <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
               <IoSearchOutline /> <CgSortAz />
             </button>
-
-            <button className="border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center">
-            <CiViewColumn />
-            </button>
-
-
-            <button
+             <button
               className="border shadow-lg cursor-pointer hover:bg-[#e3e3e3] transition-all flex items-center rounded-lg xm:text-[12px] text-[18px] px-2 py-0">
               <TbArrowsSort />
             </button>
