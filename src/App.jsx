@@ -41,8 +41,8 @@ function App() {
           <Route path="/customers" element={<Customers/>} />
           <Route path="/AddCustomers" element={<AddCustomers/>} />
           <Route path="/CustomerDetails" element={<CustomerDetails/>} />
-          <Route path="/Orders" element={<Orders/>} />
-          <Route path="/Orders/Create-order" element={<Createorder/>} />
+          <Route path="/orders" element={<Orders/>} />
+          <Route path="/orders/create-order" element={<Createorder/>} />
           
           
         </Routes>

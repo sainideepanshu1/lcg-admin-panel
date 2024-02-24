@@ -26,7 +26,7 @@ const Orders = () => {
             </div>
             <button>
               <Link
-                to="/Orders/Create-order"
+                to="/orders/create-order"
                 className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
               >
                 Create order

@@ -29,7 +29,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to="/Orders"
+                  to="/orders"
                 >
                   <FaInbox /> Orders
                 </Link>
@@ -126,7 +126,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li>
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to="/"
+                  to="/orders"
                   onClick={toggleSidebar}
                 >
                   <FaInbox /> Orders
