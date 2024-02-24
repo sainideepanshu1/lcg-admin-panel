@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import { BsChevronBarLeft, BsThreeDots } from "react-icons/bs";
+import {  BsThreeDots } from "react-icons/bs";
 import axios from "axios";
 import { TbArrowsSort } from "react-icons/tb";
 import { IoIosSearch } from "react-icons/io";
@@ -143,16 +143,18 @@ const Products = () => {
 
       if (data.length > 0) {
         setProducts(data);
+        setIsLoading(false);
+
       } else {
         toast.error("No Results found!!!");
       }
     } catch (error) {
       console.error("Error fetching products:", error);
       toast.error("Error fetching products. Please try again later.");
-    } finally {
-      setIsLoading(false);
     }
+
   };
+
 
   return (
     <>
@@ -178,7 +180,7 @@ const Products = () => {
                 {toggle && (
                   <div className=" flex gap-4 p-[10px] flex-col bg-white border-[1px] absolute  top-[100px] right-[174px]  hover:bg-[#E3E3E3] rounded-lg  text-heading ">
                     <button>Export</button>
-                    <button>Import</button>
+                    
                   </div>
                 )}
               </div>
@@ -187,9 +189,7 @@ const Products = () => {
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
                   Export
                 </button>
-                <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading">
-                  Import
-                </button>
+                
               </div>
               <button>
                 <Link
@@ -204,9 +204,8 @@ const Products = () => {
           <div className="rounded-lg mt-[24px]  xm:p-0 bg-[#ffffff] h-[80vh] overflow-x-hidden  w-full  flex flex-col border border-stone-200">
             <div className="flex justify-between  py-3 px-1 text-[#585858] ">
               <div
-                className={`${
-                  Search ? "hidden" : "block"
-                } flex   sm:overflow-y-auto  items-center`}
+                className={`${Search ? "hidden" : "block"
+                  } flex   sm:overflow-y-auto  items-center`}
               >
                 <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-heading xm:text-[12px] font-[600] ">
                   All
@@ -256,9 +255,8 @@ const Products = () => {
                 <div className="flex gap-2 ">
                   <button
                     onClick={handleSearch}
-                    className={`${
-                      Search ? "block" : "hidden"
-                    } bg-black text-[14px] text-white rounded-lg  px-[7px] py-[5px] `}
+                    className={`${Search ? "block" : "hidden"
+                      } bg-black text-[14px] text-white rounded-lg  px-[7px] py-[5px] `}
                   >
                     Cancel
                   </button>
@@ -275,9 +273,8 @@ const Products = () => {
               <div className="flex gap-1">
                 <button
                   onClick={handleSearch}
-                  className={`${
-                    Search ? "hidden" : "block"
-                  } border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center`}
+                  className={`${Search ? "hidden" : "block"
+                    } border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center`}
                 >
                   <IoSearchOutline /> <CgSortAz />
                 </button>
@@ -437,11 +434,16 @@ const Products = () => {
                               />
                             </div>
                             <div className="h-[45px] w-[45px] ">
-                              <img
-                                className=" w-[45px]  rounded-xl "
-                                src={product.images[0].src}
-                                alt="Pic"
-                              />
+                              {product.images.length > 0 ? (
+                                <img
+                                  className="w-[45px] rounded-xl"
+                                  src={product.images[0].src}
+                                  alt="Pic"
+                                />
+                              ) : (
+                                <div>No Image</div>
+                              )}
+
                             </div>
                           </div>
                           <div className="flex items-center  gap-4">
@@ -456,9 +458,8 @@ const Products = () => {
                             <div className="text-[12px] w-[200px] font-[450] text-[#666161] flex gap-2 items-center group ">
                               {`${product.variants.reduce((total, variant) => {
                                 return total + variant.inventory_quantity;
-                              }, 0)} in stock for ${
-                                product.variants.length
-                              } variants`}
+                              }, 0)} in stock for ${product.variants.length
+                                } variants`}
                             </div>
                             <div className="text-[12px] w-[100px] text-[#666161] font-[450] ">
                               Sales channels
@@ -487,11 +488,16 @@ const Products = () => {
                       <div className="flex gap-4">
                         <div>
                           {" "}
-                          <img
-                            className=" w-[45px] object-contain  rounded-xl "
-                            src={product.images[0].src}
-                            alt="Pic"
-                          />
+                          {product.images.length > 0 ? (
+                            <img
+                              className="w-[45px] rounded-xl"
+                              src={product.images[0].src}
+                              alt="Pic"
+                            />
+                          ) : (
+                            <div>No Image</div>
+                          )}
+
                         </div>
                         <div>
                           <div className="flex font-[450] gap-2 items-center text-[14px] group ">
@@ -502,9 +508,8 @@ const Products = () => {
                           <div className="text-[14px] text-[#666161] font-[450] flex gap-2 items-center group ">
                             {`${product.variants.reduce((total, variant) => {
                               return total + variant.inventory_quantity;
-                            }, 0)} in stock for ${
-                              product.variants.length
-                            } variants`}
+                            }, 0)} in stock for ${product.variants.length
+                              } variants`}
                           </div>
                           <div className="text-[14px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
                             {product.vendor}
@@ -534,11 +539,10 @@ const Products = () => {
             <button
               onClick={handlePrevPage}
               disabled={page === 1}
-              className={`${
-                page === 1
+              className={`${page === 1
                   ? "text-gray-300"
                   : "active:shadow-inner active:border active:border-gray-500"
-              } p-3 rounded-lg`}
+                } p-3 rounded-lg`}
             >
               <FaChevronLeft />
             </button>
@@ -553,6 +557,7 @@ const Products = () => {
       </div>
     </>
   );
-};
+
+              }
 
 export default Products;
