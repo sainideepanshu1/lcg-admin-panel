@@ -72,7 +72,7 @@ html.p-theme-light {
   --p-color-bg-surface-warning-hover: rgba(255, 235, 213, 1);
   --p-color-bg-surface-warning-active: rgba(255, 228, 198, 1);
   --p-color-bg-surface-critical: rgba(254, 233, 232, 1);
-  --p-color-bg-surface-critical-hover: rgba(254, 226, 225, 1);
+  --p-color-bg-surface-critical-hover: #fee2e1;
   --p-color-bg-surface-critical-active: rgba(254, 218, 217, 1);
   --p-color-bg-surface-emphasis: rgba(240, 242, 255, 1);
   --p-color-bg-surface-emphasis-hover: rgba(234, 237, 255, 1);
@@ -90,7 +90,7 @@ html.p-theme-light {
   --p-color-bg-fill-secondary: rgba(241, 241, 241, 1);
   --p-color-bg-fill-secondary-hover: rgba(235, 235, 235, 1);
   --p-color-bg-fill-secondary-active: rgba(227, 227, 227, 1);
-  --p-color-bg-fill-tertiary: rgba(227, 227, 227, 1);
+  --p-color-bg-fill-tertiary: #e3e3e3;
   --p-color-bg-fill-tertiary-hover: rgba(212, 212, 212, 1);
   --p-color-bg-fill-tertiary-active: rgba(204, 204, 204, 1);
   --p-color-bg-fill-brand: rgba(48, 48, 48, 1);
@@ -109,11 +109,11 @@ html.p-theme-light {
   --p-color-bg-fill-warning: rgba(255, 184, 0, 1);
   --p-color-bg-fill-warning-hover: rgba(229, 165, 0, 1);
   --p-color-bg-fill-warning-active: rgba(178, 132, 0, 1);
-  --p-color-bg-fill-warning-secondary: rgba(255, 214, 164, 1);
+  --p-color-bg-fill-warning-secondary: #ffd6a4;
   --p-color-bg-fill-caution: rgba(255, 230, 0, 1);
   --p-color-bg-fill-caution-hover: rgba(234, 211, 0, 1);
   --p-color-bg-fill-caution-active: rgba(225, 203, 0, 1);
-  --p-color-bg-fill-caution-secondary: rgba(255, 235, 120, 1);
+  --p-color-bg-fill-caution-secondary: #ffeb78;
   --p-color-bg-fill-critical: rgba(229, 28, 0, 1);
   --p-color-bg-fill-critical-hover: rgba(181, 38, 11, 1);
   --p-color-bg-fill-critical-active: rgba(142, 31, 11, 1);
@@ -139,8 +139,8 @@ html.p-theme-light {
   --p-color-text: #303030;
   --p-color-text-secondary: #616161;
   --p-color-text-disabled: #b5b5b5;
-  --p-color-text-link: rgba(0, 91, 211, 1);
-  --p-color-text-link-hover: rgba(0, 66, 153, 1);
+  --p-color-text-link: #005bd3;
+  --p-color-text-link-hover: #004299;
   --p-color-text-link-active: rgba(0, 46, 106, 1);
   --p-color-text-brand: rgba(74, 74, 74, 1);
   --p-color-text-brand-hover: rgba(48, 48, 48, 1);
@@ -158,12 +158,12 @@ html.p-theme-light {
   --p-color-text-success-active: rgba(9, 42, 27, 1);
   --p-color-text-success-secondary: rgba(41, 132, 90, 1);
   --p-color-text-success-on-bg-fill: rgba(248, 255, 251, 1);
-  --p-color-text-caution: rgba(79, 71, 0, 1);
+  --p-color-text-caution: #4f4700;
   --p-color-text-caution-hover: rgba(51, 46, 0, 1);
   --p-color-text-caution-active: rgba(31, 28, 0, 1);
   --p-color-text-caution-secondary: rgba(130, 117, 0, 1);
   --p-color-text-caution-on-bg-fill: rgba(51, 46, 0, 1);
-  --p-color-text-warning: rgba(94, 66, 0, 1);
+  --p-color-text-warning: #5e4200;
   --p-color-text-warning-hover: rgba(65, 45, 0, 1);
   --p-color-text-warning-active: rgba(37, 26, 0, 1);
   --p-color-text-warning-secondary: rgba(149, 111, 0, 1);
