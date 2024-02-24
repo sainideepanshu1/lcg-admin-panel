@@ -90,7 +90,7 @@ html.p-theme-light {
   --p-color-bg-fill-secondary: rgba(241, 241, 241, 1);
   --p-color-bg-fill-secondary-hover: rgba(235, 235, 235, 1);
   --p-color-bg-fill-secondary-active: rgba(227, 227, 227, 1);
-  --p-color-bg-fill-tertiary: rgba(227, 227, 227, 1);
+  --p-color-bg-fill-tertiary: #e3e3e3;
   --p-color-bg-fill-tertiary-hover: rgba(212, 212, 212, 1);
   --p-color-bg-fill-tertiary-active: rgba(204, 204, 204, 1);
   --p-color-bg-fill-brand: rgba(48, 48, 48, 1);

@@ -7,8 +7,9 @@ import { MdCurrencyRupee } from "react-icons/md";
 import { IoCheckbox } from "react-icons/io5";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
+import Product2 from '../assets/Product2.jpg'
 import { LuClipboard } from "react-icons/lu";
+import { Link } from "react-router-dom";
 
 import { CiShop } from "react-icons/ci";
 
@@ -114,7 +115,7 @@ function CustomerDetails() {
               <span className="text-[13px]">All time</span>
             </div>
 
-            <div className="flex px-[40px]  gap-[200px]">
+            <div className="flex px-[40px] xm:px-[0px]  gap-[200px] xm:gap-5">
               <div className=" flex flex-col gap-1 border-l px-[10px] ">
                 <span className="text-[#616161] text-[13px] border-b-[2px] border-dotted  ">
                   Amount spent
@@ -139,9 +140,9 @@ function CustomerDetails() {
             <h2 className="text-[14px] font-semibold text-[#303030]">
               Last order placed
             </h2>
-            <div className="border-[1px] rounded-[8px] my-[8px] px-[10px] py-[20px]">
-              <div className="flex justify-between">
-                <div className="flex items-center gap-2">
+            <div className="border-[1px] rounded-[8px] my-[8px] py-[20px]">
+              <div className="flex justify-between px-[10px] ">
+                <div className="flex items-start flex-wrap gap-2">
                   <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
                     #41678
                   </h2>
@@ -173,10 +174,61 @@ function CustomerDetails() {
                 </div>
               </div>
 
-              <div className=" text-[#616161] text-[13px] pt-[5px]">
+              <div className=" text-[#616161] text-[13px] pt-[5px] pb-[15px] px-[10px] ">
                 <h2>23 February 2024 at 10:02 am from Online Store</h2>
               </div>
+             <hr/>
+
+             <div className="flex justify-between items-start px-[10px] pt-[15px]">
+              <div className="flex items-center gap-[10px]">
+                <div className=" w-[43px] h-[40px] object-contain ">
+                  <img className="rounded-md" src={Product2} alt="" />
+                </div>
+                <div className="">
+                  <div className="text-[13px] font-semibold">
+                  <h2>Glowing Panda - A Memorable Gift</h2>
+                  </div>
+
+                  <div className="text-[13px] text-[#303030] bg-[#e3e3e3] px-2 my-[4px] rounded-lg line-clamp-1">
+                  <h3 className="line-clamp-1">Brown / Without Gift Wrap / Without Gift Card</h3>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex items-center  gap-6">
+                <div className="text-[13px] xm:hidden">x1</div>
+
+              <div className="flex items-center text-[14px] font-semibold ">
+                  <span className="flex items-center">
+                    <MdCurrencyRupee />
+                    649
+                  </span>{" "}
+                  <span>.00</span>
+                </div>
+
+              </div>
+
+             </div>
+            
+
+
+
             </div>
+            <div className=" flex justify-end gap-2">
+              <div className="">
+                <Link to='/'>
+                <button className="text-[13px] border-[1px] px-[10px] py-1 rounded-lg text-[#303030] font-semibold">View all orders</button>
+                </Link>
+              </div>
+              <div>
+                <Link to='/'>
+                <button className="text-[13px] border-[1px] px-[10px] py-1 rounded-lg text-[white] font-semibold bg-black">Create order</button>
+                </Link>
+              </div>
+
+            </div>
+            
+            
           </div>
         </div>
         <div className="w-[30%]  xl:w-[100%]  border-[1px bg-white py-[20px] px-[15px]	 shadow-md rounded-[8px]">
@@ -189,12 +241,10 @@ function CustomerDetails() {
                 </span>
               </div>
 
-              <div className="">
-
-              </div>
+              <div className=""></div>
             </div>
           </div>
-          <h2 className="text-[13px] font-semibold py-[13px]">
+          <h2 className="text-[13px] font-semibold py-[8px]">
             Contact information
           </h2>
 
@@ -216,8 +266,21 @@ function CustomerDetails() {
             <h3 className="py-[2px]">Will receive notifications in English</h3>
           </div>
 
-          <div className="">
-     
+          <div className="py-[8px]">
+            <h3 className="text-[13px] font-semibold">Default address</h3>
+            <div className="text-[13px] py-[8px] flex flex-col gap-[2px]">
+              <h2>Deepak Roy</h2>
+              <h2>2</h2>
+              <h2>
+                Mandir complex Back Side Road 792001 TEZU Arunachal Pradesh
+                India
+              </h2>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <h3 className="text-[13px] font-semibold">Tax exemptions</h3>
+            <h3 className="text-[13px] text-[#616161]">No exemptions</h3>
           </div>
         </div>
       </div>
