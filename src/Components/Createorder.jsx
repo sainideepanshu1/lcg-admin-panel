@@ -4,8 +4,31 @@ import { Link } from "react-router-dom";
 import { GoPencil } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useEffect, useRef, useState } from "react";
+
+import { IoIosClose } from 'react-icons/io';
 
 const Createorder = () => {
+  const [show, setshow] = useState(false);
+  const [item, setitem] = useState(false);
+  const itemref = useRef(null);
+
+  const handleclick = (event) => {
+    if (itemref.current && !itemref.current.contains(event.target)) {
+      setitem(false)
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("click", handleclick, true);
+    return () => {
+      document.removeEventListener("click", handleclick)
+    }
+  })
+
+
+
+
+
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -28,15 +51,158 @@ const Createorder = () => {
                         </label>
                       </div>
                       <label>
+
                         <Link
-                          to="/"
-                          className="text-[12px] text-[#0068d9]" htmlFor=""
+                          onClick={() =>
+                            setitem(!item)
+                          }
+                          ref={itemref}
+
+                          className="text-[12px] text-[#0068d9] " htmlFor=""
                         >
                           Add custom item
                         </Link>
                       </label>
 
+
                     </div>
+
+
+
+
+
+
+
+
+
+
+
+                    {item && (
+                      <div className='fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm'>
+                        <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
+                          <div className='flex border-b-2  p-3 bg-[#f3f3f3] rounded-t-xl justify-between'>
+                            <div className="">
+                              <h2>Add custom item</h2>
+                            </div>
+                            <div >
+                              <div onClick={() =>
+                                setitem(!item)
+
+                              }
+                                className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px]">
+                                <IoIosClose />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="flex flex-col  px-4 pb-4 gap-3">
+                            <div className="grid grid-cols-3 px-2 py-4 gap-3 sm:flex sm:flex-col">
+                              <div>
+                                <div className="pr-4 ">
+                                  <h2 className="text-heading  text-heading-color font-[450]">
+                                    Item name
+                                  </h2>
+                                </div>
+                                <div>
+                                  <input
+                                    name="tags"
+                                    type="text"
+                                    className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <div className="text-heading">Price</div>
+                                <div className="group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                  <span className="p-1 text-[#616161]">&#8377;</span>
+                                  <input
+
+                                    type="number"
+                                    placeholder="0.00"
+                                    name="price"
+
+                                    className="w-[90%] px-1 outline-none focus:outline-none"
+                                  />
+                                </div>
+                              </div>
+                              <div>
+                                <div className="text-heading">Quantity</div>
+                                <div className="group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                  <span className="p-1 text-[#616161]">&#8377;</span>
+                                  <input
+
+                                    type="number"
+                                    placeholder="0.00"
+                                    name="comparePrice"
+
+                                    className="w-[90%] px-1 outline-none focus:outline-none"
+                                  />
+                                  {/* <div className="group relative">
+                            <CiCircleQuestion size={20} />
+                            <div className="hidden group-hover:block p-[0.75rem] absolute shadow-md text-[12px] bg-white rounded-lg w-[16.75rem]">
+                              To display a markdown, enter a value higher than
+                              your price.
+                              <br /> Often shown with a strikethrough.
+                            </div>
+                          </div> */}
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <label
+                                className="text-sm flex items-center gap-2"
+                                htmlFor="tax"
+                              >
+                                <input
+                                  type="checkbox"
+                                  id="tax"
+                                  name="tax"
+                                />
+
+                                Item is taxable
+                              </label>
+                            </div>
+                            <div>
+                              <label
+                                className="text-sm flex items-center gap-2"
+                                htmlFor="tax"
+                              >
+                                <input
+                                  type="checkbox"
+                                  id="tax"
+                                  name="tax"
+                                />
+                                Item is a physical product
+                              </label>
+                            </div>
+
+                          </div>
+                          <div className='flex border-t-2 p-3 rounded-b-xl '>
+                            <div className="">
+                              <h2>Add custom item</h2>
+                            </div>
+                            <div >
+                              <button>
+                                <Link
+                                  to="/orders/create-order"
+                                  className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
+                                >
+                                  Create order
+                                </Link>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    )}
+
+
+
+
+
+
+
 
                   </div>
                   <div className="flex flex-col gap-4">
@@ -104,17 +270,17 @@ const Createorder = () => {
                         <span className="text-[#616161] text-heading font-[650]">&#8377;0.00 </span>
                       </div>
                     </div>
-                  
+
                   </div>
                   <div className=' w-full py-4  border-t bg-[#f7f7f7] rounded-b-xl  px-4 '>
-                      <h3
-                        className="text-sm text-heading flex items-center gap-2"
-                        htmlFor="tax"
-                      >
+                    <h3
+                      className="text-sm text-heading flex items-center gap-2"
+                      htmlFor="tax"
+                    >
 
-                        Add a product to calculate total and view payment options.
-                      </h3>
-                    </div>
+                      Add a product to calculate total and view payment options.
+                    </h3>
+                  </div>
                 </div>
               </div>
               <div className="w-[30%] sm:w-[93%] sm:flex sm:flex-col-reverse sm:items-center">
@@ -149,29 +315,54 @@ const Createorder = () => {
                           Customer
                         </h1>
                       </div>
-                      <div className="p-4 pt-2">
-                        <div className="py-[6px] px-3 w-full gap-1 flex items-center rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading">
+                      <div className={`p-4 pt-2 relative ${item ? "-z-10" : ""}`}>
+                        <div className="py-[6px] hover:bg-[#FAFAFA]  px-3 w-full gap-1 flex items-center rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading">
                           <div className='text-[16px]'><CiSearch /></div>
                           <input
-                            className='outline-none line-clamp-1 '
+                            onClick={() => setshow(!show)}
+                            className='outline-none hover:bg-[#FAFAFA] py-1 line-clamp-1 '
                             type="text"
                             name=" Customer"
                             placeholder="Search or Create a Customer "
 
 
                           />
+
+
                         </div>
+                        {
+                          show && <div className="rounded-xl my-4 p-1 bg-white shadow-md border absolute z-10  b  overflow-y-auto overflow-x-auto w-[90%]  mt-1">
+                            <div className="text-heading  flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded-md pl-2  selection:  ">
+                              <h3 className="text-sm text-heading flex  items-center gap-2">
+                                Create a new customer
+                              </h3>
+                            </div>
+
+
+
+
+                            <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
+                              <div>    <h1>ajay</h1>
+                                <h1> ajaygsss1@123o,hmail</h1></div>
+                            </div>
+                            <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
+                              <div >    <h1>ajay</h1>
+                                <h1> ajaygsss1@123o,hmail</h1></div>
+                            </div>
+                            <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2   ">
+                              <div >    <h1>ajay</h1>
+                                <h1> ajaygsss1@123o,hmail</h1></div>
+                            </div>
+                            <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
+                              <div>    <h1>ajay</h1>
+                                <h1> ajaygsss1@123o,hmail</h1></div>
+                            </div>
+                          </div>
+                        }
                       </div>
                     </div>
-
-
                   </div>
                 </div>
-
-
-
-
-
               </div>
             </div>
           </form>
@@ -206,192 +397,3 @@ export default Createorder
 
 
 
-// import { Link } from "react-router-dom";
-// import { FaArrowLeftLong } from "react-icons/fa6";
-// import { CiCircleQuestion } from "react-icons/ci";
-// import { useState } from "react";
-// import axios from "axios";
-// import toast from "react-hot-toast";
-// import Editor from "./Editor";
-
-// const AddProduct = () => {
-//   const [product, setProduct] = useState({
-//     title: "",
-//     description: "",
-//     price: "",
-//     comparePrice: "",
-//     status: "",
-//     productCategory: "",
-//     productType: "",
-//     tags: "",
-//     collections: "",
-//     vendor: "",
-//     tax: false,
-//   });
-
-//   const updateDescription = (newDescription) => {
-//     setProduct((prevProduct) => ({
-//       ...prevProduct,
-//       description: newDescription,
-//     }));
-//   };
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setProduct((prevProduct) => ({
-//       ...prevProduct,
-//       [name]: value,
-//     }));
-//   };
-
-//   const handleCheckboxChange = (e) => {
-//     const { name, checked } = e.target;
-//     setProduct((prevProduct) => ({
-//       ...prevProduct,
-//       [name]: checked,
-//     }));
-//   };
-
-//   const handleSubmit = async (e) => {
-//     try {
-//       e.preventDefault();
-//       const res = await axios.post(
-//         "http://localhost:8000/api/product/add-product",
-//         product
-//       );
-//       toast.success(res.data.message);
-//       console.log("Form submitted with data:", product);
-//       setProduct({
-//         title: "",
-//         description: "",
-//         price: "",
-//         comparePrice: "",
-//         status: "",
-//         productCategory: "",
-//         productType: "",
-//         tags: "",
-//         collections: "",
-//         vendor: "",
-//         tax: false,
-//       });
-//     } catch (error) {
-//       console.log(error);
-//       toast.error(error.message, { duration: 2000 });
-//     }
-//   };
-
-//   return (
-//     <>
-//       <div className="bg-[#F1F1F1] w-full h-full">
-//         <div className="w-[75%] ml-auto mr-auto sm:w-full">
-//           <div className="flex items-center py-6 text-lg font-sans font-bold sm:px-2">
-//             <Link className="p-1" to="/products">
-//               <FaArrowLeftLong />
-//             </Link>
-//             Create order
-
-//           </div>
-//           <form onSubmit={handleSubmit}>
-//             <div className="flex gap-3 sm:flex-col sm:items-center">
-//               <div className="w-[70%] flex flex-col sm:w-[93%]">
-//                 <div className="rounded-xl bg-white shadow-md p-4">
-//                   <div className="flex flex-col gap-4">
-//                     <div>
-//                       <div>
-//                         <label className="text-sm" htmlFor="">
-//                           Products
-//                         </label>
-//                       </div>
-//                       <input
-//                         className="hover:bg-[#FAFAFA] text-[0.8125rem] text-[#303030] w-full border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]"
-//                         type="text"
-//                         name="Products"
-//                         onChange={handleChange}
-//                         value={product.Products}
-//                         placeholder="Search products"
-//                       />
-//                     </div>
-
-//                   </div>
-//                 </div>
-
-//                 <div className="rounded-xl my-4 bg-white shadow-md p-4">
-//                   <div className="px-4 pt-4">
-//                     <h2>Payment</h2>
-//                   </div>
-//                   <div className="flex flex-col gap-3">
-//                     <div className="grid grid-cols-3 px-2 py-4 gap-3 sm:flex sm:flex-col">
-//                       <div>
-
-
-//                       </div>
-//                       <div>
-
-
-//                       </div>
-//                     </div>
-//                     <div>
-//                       <label
-//                         className="text-sm flex items-center gap-2"
-//                         htmlFor="tax"
-//                       >
-
-//                         Add a product to calculate total and view payment options.
-//                       </label>
-//                     </div>
-//                   </div>
-//                 </div>
-//               </div>
-
-//               {/* right */}
-//               <div className="w-[30%] sm:w-[93%] sm:flex sm:flex-col-reverse sm:items-center">
-//                 <div className="sm:mt-3 sm:w-full">
-//                   <div className="bg-white rounded-[0.75rem] shadow-md">
-//                     <div className="px-4 pt-4">
-//                       <h2 className="text-heading text-heading-color font-[650]">
-//                         Notes
-//                       </h2>
-//                     </div>
-//                     <div className="p-4 pt-2">
-
-
-
-
-//                     </div>
-//                   </div>
-//                 </div>
-//                 <div className="mt-3 sm:w-full">
-//                   <div className="bg-white rounded-[0.75rem] shadow-md">
-
-
-//                     <div>
-//                       <div className="px-4 pt-4">
-//                         <h2 className="text-heading text-heading-color font-[450]">
-//                           Customer
-//                         </h2>
-//                       </div>
-//                       <div className="p-4 pt-2">
-//                         <input
-//                           type="text"
-//                           name="vendor"
-//                           value={product.Customer}
-//                           onChange={handleChange}
-//                           className="py-[6px] px-3 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
-//                         />
-//                       </div>
-//                     </div>
-
-
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//           </form>
-//         </div>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default AddProduct;
