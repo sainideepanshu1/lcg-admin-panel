@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import  { useEffect, useRef } from "react";
 import Lovecraft from "../assets/lovecrafts2.webp";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
