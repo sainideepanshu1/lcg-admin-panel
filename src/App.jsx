@@ -40,8 +40,8 @@ function App() {
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
           <Route path="/customers" element={<Customers/>} />
-          <Route path="/AddCustomers" element={<AddCustomers/>} />
-          <Route path="/CustomerDetails" element={<CustomerDetails/>} />
+          <Route path="/customers/add-customers" element={<AddCustomers/>} />
+          <Route path="/customers/customer-details" element={<CustomerDetails/>} />
           <Route path="/orders" element={<Orders/>} />
           <Route path="/orders/create-order" element={<Createorder/>} />
           <Route path="/orders/order-details" element={<OrderDetails/>} />
