@@ -413,7 +413,7 @@ function Customers() {
           <div>
             {customers.map((customer, index) => (
               <div key={index}>
-                <Link to={`/CustomerDetails/${customer._id}`}>
+                <Link to={`/customers/add-customers/${customer._id}`}>
                   <div
                     className="grid justify-between gap-4 border-t border-b bg-white text-[#303030] px-[10px] py-[8px] text-[13px] font-medium items-center hover:bg-[#f5f3f3] cursor-pointer sm:hidden"
                     style={{ gridTemplateColumns: '0fr 3fr 3fr 4fr 2fr 2fr' }}
