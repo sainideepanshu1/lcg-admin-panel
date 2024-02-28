@@ -5,13 +5,15 @@ import { GoPencil } from "react-icons/go";
 import { CiSearch } from "react-icons/ci";
 import { AiOutlineInfoCircle } from "react-icons/ai";
 import { useEffect, useRef, useState } from "react";
-
 import { IoIosClose } from 'react-icons/io';
 
 const Createorder = () => {
   const [show, setshow] = useState(false);
   const [item, setitem] = useState(false);
   const itemref = useRef(null);
+
+  const [notes, setnotes] = useState(false);
+  const notesref = useRef(null);
 
   const handleclick = (event) => {
     if (itemref.current && !itemref.current.contains(event.target)) {
@@ -25,10 +27,17 @@ const Createorder = () => {
     }
   })
 
-
-
-
-
+  const notesclick = (event) => {
+    if (notesref.current && !notesref.current.contains(event.target)) {
+      setnotes(false)
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("click", notesclick, true);
+    return () => {
+      document.removeEventListener("click", notesclick)
+    }
+  })
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -63,20 +72,7 @@ const Createorder = () => {
                           Add custom item
                         </Link>
                       </label>
-
-
                     </div>
-
-
-
-
-
-
-
-
-
-
-
                     {item && (
                       <div className='fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm'>
                         <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
@@ -193,17 +189,7 @@ const Createorder = () => {
                           </div>
                         </div>
                       </div>
-
-
                     )}
-
-
-
-
-
-
-
-
                   </div>
                   <div className="flex flex-col gap-4">
                     <div className='flex justify-between w-full gap-1'>
@@ -292,23 +278,73 @@ const Createorder = () => {
                           Notes
                         </h2>
                       </div>
-                      <div>
+                      <div onClick={() =>
+                        setnotes(!notes)
+                      }
+                      >
                         <GoPencil />
                       </div>
                     </div>
                     <div className="p-4 text-heading pt-2">
-
                       No notes
-
-
                     </div>
                   </div>
                 </div>
 
+
+                {notes && (
+                  <div className='fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm'>
+                    <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
+                      <div className='flex border-b-2  p-3 bg-[#f3f3f3] rounded-t-xl justify-between'>
+                        <div className="">
+                          <h2>Add Note</h2>
+                        </div>
+                        <div >
+                          <div onClick={() =>
+                            setnotes(!notes)
+
+                          }
+                            className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px]">
+                            <IoIosClose />
+                          </div>
+                        </div>
+                      </div>
+                      <div className='p-2 w-full '>  
+                        <textarea  rows={3} cols={10}
+                        className='outline-none border p-2 rounded-md w-full'
+                        type="text" />
+                      </div>
+                      <div className='flex border-t-2 p-3 rounded-b-xl '>
+                        <div className="">
+                          <button>
+                            <Link
+                              to="/orders/create-order"
+                              className=" text-[black] rounded-lg px-3 py-2 text-[12px]"
+                            >
+                              Cancel
+                            </Link>
+                          </button>
+                        </div>
+                        <div >
+                          <button>
+                            <Link
+                              to="/orders/create-order"
+                              className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
+                            >
+                              Done
+                            </Link>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+
+
+
                 <div className="mt-3 sm:w-full">
                   <div className="bg-white rounded-[0.75rem] shadow-md">
-
-
                     <div>
                       <div className="px-4 pt-4">
                         <h1 className="text-heading text-heading-color font-[650]">
@@ -324,24 +360,19 @@ const Createorder = () => {
                             type="text"
                             name=" Customer"
                             placeholder="Search or Create a Customer "
-
-
                           />
-
-
                         </div>
                         {
                           show && <div className="rounded-xl my-4 p-1 bg-white shadow-md border absolute z-10  b  overflow-y-auto overflow-x-auto w-[90%]  mt-1">
-                            <div className="text-heading  flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded-md pl-2  selection:  ">
+                         <div className='border-b-2 pb-2'>
+                         <div className="text-heading  flex flex-col text-[black]  w-full py-1 hover:bg-[#f7f7f7] rounded-md pl-2  selection:  ">
                               <h3 className="text-sm text-heading flex  items-center gap-2">
                                 Create a new customer
                               </h3>
-                            </div>
-
-
-
-
-                            <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
+                            </div> 
+                         </div>
+                            <div className='pt-2'> 
+                            <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1  hover:bg-[#f7f7f7] rounded pl-2  ">
                               <div>    <h1>ajay</h1>
                                 <h1> ajaygsss1@123o,hmail</h1></div>
                             </div>
@@ -356,6 +387,7 @@ const Createorder = () => {
                             <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
                               <div>    <h1>ajay</h1>
                                 <h1> ajaygsss1@123o,hmail</h1></div>
+                            </div>
                             </div>
                           </div>
                         }
