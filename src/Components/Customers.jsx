@@ -5,7 +5,6 @@ import { useState } from "react";
 import { useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
-
 import { IoChevronUp } from "react-icons/io5";
 import { LuLayout } from "react-icons/lu";
 import { IoFilterSharp } from "react-icons/io5";
@@ -18,9 +17,10 @@ import { FaAngleLeft } from "react-icons/fa6";
 import axios from "axios";
 function Customers() {
   const [toggle, setToggle] = useState(false);
-  const [filter, setFilter] = useState(false);
   const imexRef = useRef(null);
-  const [checkbox, setcheckbox] = useState(false);
+  const [filter, setFilter] = useState(false);
+
+  const [checkbox,setcheckbox]=useState(false);
 
   const [customers, setCustomers] = useState([]);
 
