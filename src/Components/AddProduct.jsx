@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Editor from "./Editor";
+import { MdDelete } from "react-icons/md";
+import { MdCancel } from "react-icons/md";
+
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -47,29 +50,268 @@ const AddProduct = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+
+      const mieldsWithoutId = mields.map(({ id, fields, ...rest }) => ({
+        name: `Choose ${rest.optionName}`,
+        values: fields.map(({ id, ...fieldRest }) => fieldRest.value),
+      }));
+
       const res = await axios.post(
         "http://localhost:8000/api/product/add-product",
-        product
+        {
+          title: product.title,
+          body_html: product.description,
+          product_type: product.productType,
+          vendor: product.vendor,
+          status: product.status,
+          variants: combinations,
+          options: mieldsWithoutId,
+
+        }
       );
       toast.success(res.data.message);
       console.log("Form submitted with data:", product);
-      setProduct({
-        title: "",
-        description: "",
-        price: "",
-        comparePrice: "",
-        status: "",
-        productCategory: "",
-        productType: "",
-        tags: "",
-        collections: "",
-        vendor: "",
-        tax: false,
-      });
+      // setProduct({
+      //   title: "",
+      //   description: "",
+      //   price: "",
+      //   comparePrice: "",
+      //   status: "",
+      //   productCategory: "",
+      //   productType: "",
+      //   tags: "",
+      //   collections: "",
+      //   vendor: "",
+      //   tax: false,
+      // });
+      // setMields([]);
     } catch (error) {
       console.log(error);
       toast.error(error.message, { duration: 2000 });
     }
+  };
+
+  const [mields, setMields] = useState([]);
+  const [hiddenFields, setHiddenFields] = useState([]);
+  const [combinations, setCombinations] = useState([]);
+
+  const hideMield = (mieldId) => {
+    const isFieldsValid = mields
+      .find((mield) => mield.id === mieldId)
+      .fields.every((field) => field.value.trim() !== "");
+
+    if (isFieldsValid) {
+      setHiddenFields((prevHiddenFields) => [...prevHiddenFields, mieldId]);
+      generateCombinations();
+    } else {
+      toast.error("Please delete or fill all empty input fields");
+    }
+  };
+
+  const showMield = (mieldId) => {
+    setHiddenFields((prevHiddenFields) =>
+      prevHiddenFields.filter((id) => id !== mieldId)
+    );
+  };
+
+  const addNewField = () => {
+    // Always add a new mield
+    const newMield = {
+      id: new Date().getTime(),
+      optionName: "", // Add an empty string as the default value for optionName
+      fields: [
+        {
+          id: new Date().getTime(),
+          value: "",
+        },
+      ],
+    };
+    setMields([...mields, newMield]);
+  };
+
+  const deleteMield = (mieldId) => {
+    setMields((prevMields) => {
+      const updatedMields = prevMields.filter((mield) => mield.id !== mieldId);
+      setHiddenFields((prevHiddenFields) =>
+        prevHiddenFields.filter((id) => id !== mieldId)
+      );
+
+      return updatedMields;
+    });
+  };
+
+  useEffect(() => {
+    generateCombinations();
+  }, [mields]);
+
+  const deleteField = (mieldId, fieldId) => {
+    const updatedMields = mields.map((mield) => {
+      if (mield.id === mieldId) {
+        if (mield.fields.length > 1) {
+          const updatedFields = mield.fields.filter(
+            (field) => field.id !== fieldId
+          );
+          return { ...mield, fields: updatedFields };
+        }
+      }
+      return mield;
+    });
+    setMields(updatedMields);
+  };
+
+  const addNewFieldToMield = (mieldId) => {
+    const mieldIndex = mields.findIndex((mield) => mield.id === mieldId);
+
+    if (mieldIndex !== -1) {
+      const mieldToUpdate = mields[mieldIndex];
+
+      const newField = {
+        id: new Date().getTime(),
+        value: "",
+      };
+
+      const updatedMields = [
+        ...mields.slice(0, mieldIndex),
+        {
+          ...mieldToUpdate,
+          fields: [...mieldToUpdate.fields, newField],
+        },
+        ...mields.slice(mieldIndex + 1),
+      ];
+
+      setMields(updatedMields);
+    }
+  };
+
+  const handleInputChange = (mieldId, fieldId, value) => {
+    const updatedMields = mields.map((mield) => {
+      if (mield.id === mieldId) {
+        const updatedFields = mield.fields.map((field) =>
+          field.id === fieldId ? { ...field, value } : field
+        );
+
+        return { ...mield, fields: updatedFields };
+      }
+      return mield;
+    });
+
+    setMields(updatedMields);
+  };
+
+  const handleOptionChange = (mieldId, optionName) => {
+    const updatedMields = mields.map((mield) =>
+      mield.id === mieldId ? { ...mield, optionName } : mield
+    );
+    setMields(updatedMields);
+  };
+
+  const generateCombinations = () => {
+    const allVariants = [];
+
+    // Helper function to get all combinations
+    const getCombinations = (options, index, currentCombination) => {
+      if (index === options.length) {
+        const combinationObject = {
+          name: currentCombination.map((option) => option.value).join(","),
+          ...currentCombination.reduce((acc, option) => {
+            acc[option.name] = option.value;
+            return acc;
+          }, {}),
+          price: 0,
+          stock: 0,
+        };
+        allVariants.push(combinationObject);
+        return;
+      }
+
+      options[index].values.forEach((value) => {
+        getCombinations(options, index + 1, [
+          ...currentCombination,
+          { name: options[index].name, value },
+        ]);
+      });
+    };
+
+    const optionNames = mields.map((mield) => mield.optionName.toLowerCase());
+
+    // Create an array of options for each unique option name
+    const uniqueOptions = Array.from(new Set(optionNames)).map((name) => ({
+      name,
+      values: [],
+    }));
+
+    mields.forEach((mield) => {
+      const optionIndex = uniqueOptions.findIndex(
+        (option) => option.name === mield.optionName.toLowerCase()
+      );
+
+      if (optionIndex !== -1) {
+        const fieldValues = mield.fields
+          .map((field) => field.value.trim())
+          .filter(Boolean);
+
+        uniqueOptions[optionIndex].values.push(...fieldValues);
+      }
+    });
+
+    // Only add combinations if there are mields
+    if (uniqueOptions.length > 0) {
+      getCombinations(uniqueOptions, 0, []);
+
+      // Preserve existing price and stock values
+      const updatedVariants = allVariants.map((newVariant) => {
+        const existingVariant = combinations.find(
+          (existing) => existing.name === newVariant.name
+        );
+        return existingVariant ? existingVariant : newVariant;
+      });
+
+      setCombinations(updatedVariants);
+    } else {
+      // If no mields, set combinations to an empty array
+      setCombinations([]);
+    }
+  };
+
+  const updateCombinationValues = (index, newPrice, newStock) => {
+    if (index >= 0 && index < combinations.length) {
+      setCombinations((prevCombinations) => {
+        const updatedCombinations = [...prevCombinations];
+        updatedCombinations[index] = {
+          ...updatedCombinations[index],
+          price: newPrice,
+          stock: newStock,
+        };
+        return updatedCombinations;
+      });
+    }
+  };
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (isPopupOpen) {
+      // Add the class to disable overflow
+      body.classList.add('overflow-hidden');
+    } else {
+      // Remove the class to enable overflow
+      body.classList.remove('overflow-hidden');
+    }
+
+    // Cleanup by removing the class on component unmount
+    return () => {
+      body.classList.remove('overflow-hidden');
+    };
+  }, [isPopupOpen]);
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
@@ -82,7 +324,7 @@ const AddProduct = () => {
             </Link>
             Add product
           </div>
-          <form onSubmit={handleSubmit}>
+          <div>
             <div className="flex gap-3 sm:flex-col sm:items-center">
               <div className="w-[70%] flex flex-col sm:w-[93%]">
                 <div className="rounded-xl bg-white shadow-md p-4">
@@ -187,6 +429,176 @@ const AddProduct = () => {
                       </label>
                     </div>
                   </div>
+                </div>
+
+                {/* -----------------Variants Section-------------------------- */}
+
+                <div className="rounded-xl my-4 bg-white shadow-md p-4">
+                  <div className="px-4 py-4">
+                    <h2>Variants</h2>
+                  </div>
+
+                  <div>
+                    {mields.map((mield) => (
+                      <div key={mield.id} className="mb-4">
+                        <div className="flex items-center mb-2">
+                          <select
+                            id={`optionsName_${mield.id}`}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            value={mield.optionName}
+                            onChange={(e) =>
+                              handleOptionChange(mield.id, e.target.value)
+                            }
+                          >
+                            <option value="" disabled>
+                              --Choose Option--
+                            </option>
+                            <option value="Size">Size</option>
+                            <option value="Color">Color</option>
+                            <option value="Material">Material</option>
+                            <option value="Style">Style</option>
+                          </select>
+                          <button
+                            onClick={() => deleteMield(mield.id)}
+                            className="ml-2"
+                          >
+                            <MdDelete size={25} color="#303030" />
+                          </button>
+                        </div>
+                        <div
+                          className={`${hiddenFields.includes(mield.id) ? "hidden" : ""
+                            }`}
+                        >
+                          {mield.fields.map((field) => (
+                            <div
+                              key={field.id}
+                              className="flex items-center mb-1"
+                            >
+                              <input
+                                type="text"
+                                placeholder="Option Value"
+                                className="my-1 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[80%] p-2.5"
+                                value={field.value}
+                                onChange={(e) =>
+                                  handleInputChange(
+                                    mield.id,
+                                    field.id,
+                                    e.target.value
+                                  )
+                                }
+                                id={`field${field.id}`}
+                                name={`field${field.id}`}
+                              />
+                              <button
+                                onClick={() => deleteField(mield.id, field.id)}
+                                className="ml-2"
+                              >
+                                <MdDelete size={20} color="#303030" />
+                              </button>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-2 flex gap-2">
+                          {hiddenFields.includes(mield.id) ? (
+                            <button
+                              onClick={() => showMield(mield.id)}
+                              className="bg-[#1A1A1A] text-[#E3E3E3] text-heading px-3 py-2 rounded-lg"
+                            >
+                              Edit
+                            </button>
+                          ) : (
+                            <>
+                              <button
+                                onClick={() => addNewFieldToMield(mield.id)}
+                                className="bg-[#1A1A1A] text-[#E3E3E3] text-heading px-3 py-2 rounded-lg"
+                              >
+                                Add New Field
+                              </button>
+                              <button
+                                onClick={() => hideMield(mield.id)}
+                                className="bg-[#1A1A1A] text-[#E3E3E3] text-heading px-3 py-2 rounded-lg"
+                              >
+                                Save
+                              </button>
+                            </>
+                          )}
+                        </div>
+
+                        <hr className="border-[2px] my-2" />
+                      </div>
+                    ))}
+
+                    <button
+                      onClick={addNewField}
+                      className="bg-[#1A1A1A] text-[#E3E3E3] text-heading px-3 py-2 mt-2 rounded-lg"
+                    >
+                      Add New Option
+                    </button>
+                    {/* <button
+                      onClick={generateCombinations}
+                      className="bg-[#1A1A1A] text-[#E3E3E3] text-heading px-3 py-2 mt-2 rounded-lg"
+                    >
+                      Generate Variants
+                    </button> */}
+                  </div>
+                </div>
+
+                <div className=" rounded-xl my-4 bg-white shadow-md">
+                  <div className="flex p-3 ">
+                    <div className="w-1/2 text-[13px] font-bold">Variant</div>
+                    <div className="flex w-1/2">
+                      <p className="w-1/2 text-[13px] font-bold">Price</p>
+                      <p className="w-1/2 text-[13px] font-bold">Available</p>
+                    </div>
+                  </div>
+                  {combinations.map((item, index) => (
+                    <div key={index} className="flex p-3">
+                      <div className="text-left w-1/2 text-[13px]">
+                        <button className="hover:underline">{item.name}</button>
+                      </div>
+                      <div className="flex w-1/2 gap-3">
+                        <div className="w-1/2 text-[13px]">
+                          <div className="h-[30px] group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                            <span className="p-1 text-[#616161]">&#8377;</span>
+                            <input
+                              type="number"
+                              placeholder="0.00"
+                              name="price"
+                              value={item.price}
+                              onChange={(e) =>
+                                updateCombinationValues(
+                                  index,
+                                  parseFloat(e.target.value),
+                                  item.stock
+                                )
+                              }
+                              className="w-[90%] px-1 outline-none focus:outline-none"
+                            />
+                          </div>
+                        </div>
+                        <div className="w-1/2 text-[13px]">
+                          <div className="h-[30px] group border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                            <input
+                              type="number"
+                              placeholder="0"
+                              name="stock"
+                              value={item.stock}
+                              onChange={(e) =>
+                                updateCombinationValues(
+                                  index,
+                                  item.price,
+                                  parseFloat(e.target.value)
+                                )
+                              }
+                              className="w-[90%] px-2 outline-none focus:outline-none"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+
+                  <hr />
                 </div>
               </div>
 
@@ -304,9 +716,119 @@ const AddProduct = () => {
                 </div>
               </div>
             </div>
+
+            {/* -------------------Edit variants------------------ */}
+
+            <button onClick={openPopup}>Open Popup</button>
+            {isPopupOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-full border-2 rounded-[15px] bg-white">
+              <div className="flex justify-between p-5 ">
+                <p className="font-[650]">Edit ____</p>
+                <button className="m-1" onClick={closePopup}>
+                  <MdCancel />
+                </button>
+              </div>
+              <hr className="border-2" />
+                    <div className="px-8 pt-6 pb-5 grid grid-cols-3 gap-3 items-center bg-[white]">
+                      <div>
+                        <h2 className="text-heading text-heading-color font-[450]">
+                          Price
+                        </h2>
+                        <input
+                          type="text"
+                          className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-heading text-heading-color font-[450]">
+                          Compare at Price
+                        </h2>
+                        <input
+                          type="text"
+                          className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                        />
+                      </div>
+
+                    </div>
+
+
+                    <hr className="border-[1px]" />
+
+
+                    <div className="px-8 py-4 bg-[white]">
+                      <h2 className=" text-heading-color font-[550] p-2 pb-4 text-[16px]">
+                        Inventory
+                      </h2>
+
+                      <div className="grid grid-cols-3 gap-3 items-center">
+
+                        <div>
+
+                          <h2 className="text-heading text-heading-color font-[450]">
+                            SKU(Stock Keeping Unit)
+                          </h2>
+                          <input
+                            type="text"
+                            className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                          />
+                        </div>
+
+                        <div className="col-span-2">
+                          <h2 className="text-heading text-heading-color font-[450]">
+                            Barcode (ISBN, UPC, GTIN, etc.)
+                          </h2>
+                          <input
+                            type="text"
+                            className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                          />
+                        </div>
+
+                      </div>
+
+
+
+
+                    </div>
+                    <hr className="border-[1px]" />
+
+                    <div className="px-8 pt-8 pb-5 bg-[white] ">
+                      <h2 className="text-heading text-heading-color font-[450]">
+                        Weight(In kg  )
+                      </h2>
+                      <input
+                        type="text"
+                        className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                      />
+                    </div>
+                    <hr className="border-[1px]" />
+
+
+                    <div className="bg-[white] rounded-b-[15px] flex justify-end pr-7 py-3">
+                      <button className="text-[#1A1A1A] bg-[#E3E3E3] text-heading px-2 py-1 m-2 rounded-lg"
+                        onClick={closePopup}
+                      >Cancel</button>
+                      <button className=" text-[#E3E3E3] bg-[#1A1A1A] text-heading px-2 py-1 m-2 rounded-lg"
+                        onClick={closePopup}
+                      >Save</button>
+                    </div>
+
+                  </div>
+
+
+              </div>
+            </div>
+                )}
+
+
+
+
+
             <div>
               <div className="rounded-xl flex items-center justify-center  p-4">
                 <button
+                  onClick={handleSubmit}
                   type="submit"
                   className="bg-[#1A1A1A] text-[#E3E3E3] text-heading p-3 rounded-lg"
                 >
@@ -314,7 +836,7 @@ const AddProduct = () => {
                 </button>
               </div>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </>
