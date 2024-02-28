@@ -5,8 +5,6 @@ import { useState } from "react";
 import { useRef } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
-import { CgSortAz } from "react-icons/cg";
-
 import { IoChevronUp } from "react-icons/io5";
 import { LuLayout } from "react-icons/lu";
 import { IoFilterSharp } from "react-icons/io5";

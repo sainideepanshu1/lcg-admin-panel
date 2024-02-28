@@ -14,9 +14,7 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { CiAt } from "react-icons/ci";
 import { FiHash } from "react-icons/fi";
 import { CiShop } from "react-icons/ci";
-// import { ImAttachment } from "react-icons/im";
-// import copy from "copy-to-clipboa";
-// import copy from "copy-to-clipboard";
+
 import { GrSquare } from "react-icons/gr";
 
 
