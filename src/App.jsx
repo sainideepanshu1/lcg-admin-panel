@@ -18,6 +18,7 @@ import Createorder from "./Components/Createorder";
 
 
 
+
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -43,6 +44,7 @@ function App() {
           <Route path="/CustomerDetails" element={<CustomerDetails/>} />
           <Route path="/orders" element={<Orders/>} />
           <Route path="/orders/create-order" element={<Createorder/>} />
+      
           
           
         </Routes>
