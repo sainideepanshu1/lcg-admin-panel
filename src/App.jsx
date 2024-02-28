@@ -41,7 +41,7 @@ function App() {
           <Route path="/create-collection" element={<CreateCollection />} />
           <Route path="/customers" element={<Customers/>} />
           <Route path="/customers/add-customers" element={<AddCustomers/>} />
-          <Route path="/customers/customer-details" element={<CustomerDetails/>} />
+          <Route path="/customers/customer-details/:customerID" element={<CustomerDetails/>} />
           <Route path="/orders" element={<Orders/>} />
           <Route path="/orders/create-order" element={<Createorder/>} />
           <Route path="/orders/order-details" element={<OrderDetails/>} />
