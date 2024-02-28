@@ -1,18 +1,18 @@
 import { Link } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { CiCircleQuestion } from "react-icons/ci";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Editor from "./Editor";
 import { MdDelete } from "react-icons/md";
 import { MdCancel } from "react-icons/md";
 
-
 const AddProduct = () => {
   const [product, setProduct] = useState({
     title: "",
     description: "",
+    media: [],
     price: "",
     comparePrice: "",
     status: "",
@@ -66,7 +66,6 @@ const AddProduct = () => {
           status: product.status,
           variants: combinations,
           options: mieldsWithoutId,
-
         }
       );
       toast.success(res.data.message);
@@ -115,10 +114,9 @@ const AddProduct = () => {
   };
 
   const addNewField = () => {
-    // Always add a new mield
     const newMield = {
       id: new Date().getTime(),
-      optionName: "", // Add an empty string as the default value for optionName
+      optionName: "",
       fields: [
         {
           id: new Date().getTime(),
@@ -212,13 +210,14 @@ const AddProduct = () => {
     const getCombinations = (options, index, currentCombination) => {
       if (index === options.length) {
         const combinationObject = {
-          name: currentCombination.map((option) => option.value).join(","),
-          ...currentCombination.reduce((acc, option) => {
-            acc[option.name] = option.value;
+          title: currentCombination.map((option) => option.value).join(" / "),
+          ...currentCombination.reduce((acc, option, optionIndex) => {
+            const optionKey = `option${optionIndex + 1}`;
+            acc[optionKey] = option.value;
             return acc;
           }, {}),
           price: 0,
-          stock: 0,
+          inventory_quantity: 0,
         };
         allVariants.push(combinationObject);
         return;
@@ -261,14 +260,13 @@ const AddProduct = () => {
       // Preserve existing price and stock values
       const updatedVariants = allVariants.map((newVariant) => {
         const existingVariant = combinations.find(
-          (existing) => existing.name === newVariant.name
+          (existing) => existing.title === newVariant.title
         );
         return existingVariant ? existingVariant : newVariant;
       });
 
       setCombinations(updatedVariants);
     } else {
-      // If no mields, set combinations to an empty array
       setCombinations([]);
     }
   };
@@ -280,7 +278,7 @@ const AddProduct = () => {
         updatedCombinations[index] = {
           ...updatedCombinations[index],
           price: newPrice,
-          stock: newStock,
+          inventory_quantity: newStock,
         };
         return updatedCombinations;
       });
@@ -313,6 +311,41 @@ const AddProduct = () => {
   const closePopup = () => {
     setIsPopupOpen(false);
   };
+
+  //image upload
+  const imageUploader = useRef(null);
+
+  const handleMediaChange = (e) => {
+    const files = e.target.files;
+
+    if (files) {
+      const validMedia = Array.from(files).filter((file) => {
+        return file.type.startsWith("image/") || file.type.startsWith("video/");
+      });
+
+      if (validMedia.length === files.length) {
+        setProduct((prevProduct) => ({
+          ...prevProduct,
+          media: [...prevProduct.media, ...validMedia],
+        }));
+      } else {
+        alert("Please select image and video files only.");
+      }
+    }
+  };
+
+  const isImage = (file) => file.type.startsWith("image");
+  const isVideo = (file) => file.type.startsWith("video");
+
+  const removeMedia = (index) => {
+    setProduct((prevProduct) => {
+      const updatedMedia = [...prevProduct.media];
+      updatedMedia.splice(index, 1);
+      return { ...prevProduct, media: updatedMedia };
+    });
+  };
+
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
     <>
@@ -357,17 +390,73 @@ const AddProduct = () => {
                     </div>
                   </div>
                 </div>
-                <div className="rounded-xl my-4 bg-white shadow-md p-4">
+                <div className="flex flex-col gap-3 rounded-xl my-4 bg-white shadow-md p-4">
                   <div className="px-5 pt-5">Media</div>
-                  <div className="p-4">
-                    <input
-                      type="file"
-                      // multiple
-                      accept="image/*"
-                      className="w-full"
-                      name=""
-                      id=""
-                    />
+                  <div className="p-4 border-dashed border-[3px] hover:bg-[#ebeaea] transition-all cursor-pointer flex items-center justify-center">
+                    <label
+                      className="flex gap-2 items-center"
+                      htmlFor="image-input"
+                    >
+                      <button
+                        onClick={() => {
+                          imageUploader.current.click();
+                        }}
+                        className="shadow-xl text-heading border border-[#e2e2e2] p-2 rounded-lg bg-white hover:bg-[#f1f1f1]"
+                      >
+                        Upload New
+                      </button>
+                      <input
+                        type="file"
+                        multiple
+                        accept="image/*,video/*"
+                        onChange={handleMediaChange}
+                        className="hidden"
+                        ref={imageUploader}
+                      />
+                    </label>
+                  </div>
+                  <div className="grid gap-5 grid-cols-4">
+                    {product.media &&
+                      product.media.map((media, index) => (
+                        <div
+                          className="first:col-span-2 first:row-span-2 relative group"
+                          key={index}
+                          onMouseEnter={() => setHoveredIndex(index)}
+                          onMouseLeave={() => setHoveredIndex(null)}
+                        >
+                          {typeof media === "string" ? (
+                            <img
+                              src={media}
+                              alt="product media"
+                              className="w-full h-full object-cover"
+                            />
+                          ) : isImage(media) ? (
+                            <img
+                              src={URL.createObjectURL(media)}
+                              alt="product media"
+                              className="w-full h-full object-cover"
+                            />
+                          ) : isVideo(media) ? (
+                            <video
+                              src={URL.createObjectURL(media)}
+                              alt="product media"
+                              controls
+                              className="w-full h-full object-cover"
+                            ></video>
+                          ) : (
+                            <div>No Preview Available</div>
+                          )}
+
+                          {hoveredIndex === index && (
+                            <button
+                              onClick={() => removeMedia(index)}
+                              className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+                            >
+                              &#x2716;
+                            </button>
+                          )}
+                        </div>
+                      ))}
                   </div>
                 </div>
                 <div className="rounded-xl my-4 bg-white shadow-md p-4">
@@ -437,7 +526,6 @@ const AddProduct = () => {
                   <div className="px-4 py-4">
                     <h2>Variants</h2>
                   </div>
-
                   <div>
                     {mields.map((mield) => (
                       <div key={mield.id} className="mb-4">
@@ -466,8 +554,9 @@ const AddProduct = () => {
                           </button>
                         </div>
                         <div
-                          className={`${hiddenFields.includes(mield.id) ? "hidden" : ""
-                            }`}
+                          className={`${
+                            hiddenFields.includes(mield.id) ? "hidden" : ""
+                          }`}
                         >
                           {mield.fields.map((field) => (
                             <div
@@ -534,12 +623,6 @@ const AddProduct = () => {
                     >
                       Add New Option
                     </button>
-                    {/* <button
-                      onClick={generateCombinations}
-                      className="bg-[#1A1A1A] text-[#E3E3E3] text-heading px-3 py-2 mt-2 rounded-lg"
-                    >
-                      Generate Variants
-                    </button> */}
                   </div>
                 </div>
 
@@ -554,7 +637,9 @@ const AddProduct = () => {
                   {combinations.map((item, index) => (
                     <div key={index} className="flex p-3">
                       <div className="text-left w-1/2 text-[13px]">
-                        <button className="hover:underline">{item.name}</button>
+                        <button className="hover:underline">
+                          {item.title}
+                        </button>
                       </div>
                       <div className="flex w-1/2 gap-3">
                         <div className="w-1/2 text-[13px]">
@@ -569,7 +654,7 @@ const AddProduct = () => {
                                 updateCombinationValues(
                                   index,
                                   parseFloat(e.target.value),
-                                  item.stock
+                                  item.inventory_quantity
                                 )
                               }
                               className="w-[90%] px-1 outline-none focus:outline-none"
@@ -581,8 +666,8 @@ const AddProduct = () => {
                             <input
                               type="number"
                               placeholder="0"
-                              name="stock"
-                              value={item.stock}
+                              name="inventory_quantity"
+                              value={item.inventory_quantity}
                               onChange={(e) =>
                                 updateCombinationValues(
                                   index,
