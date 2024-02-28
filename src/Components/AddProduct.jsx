@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Editor from "./Editor";
 import { MdDelete } from "react-icons/md";
+import { MdCancel } from "react-icons/md";
 
 const AddProduct = () => {
   const [product, setProduct] = useState({
@@ -284,6 +285,33 @@ const AddProduct = () => {
     }
   };
 
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (isPopupOpen) {
+      // Add the class to disable overflow
+      body.classList.add('overflow-hidden');
+    } else {
+      // Remove the class to enable overflow
+      body.classList.remove('overflow-hidden');
+    }
+
+    // Cleanup by removing the class on component unmount
+    return () => {
+      body.classList.remove('overflow-hidden');
+    };
+  }, [isPopupOpen]);
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
   //image upload
   const imageUploader = useRef(null);
 
@@ -318,6 +346,7 @@ const AddProduct = () => {
   };
 
   const [hoveredIndex, setHoveredIndex] = useState(null);
+
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -772,6 +801,115 @@ const AddProduct = () => {
                 </div>
               </div>
             </div>
+
+            {/* -------------------Edit variants------------------ */}
+
+            <button onClick={openPopup}>Open Popup</button>
+            {isPopupOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-30">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <div className="w-full border-2 rounded-[15px] bg-white">
+              <div className="flex justify-between p-5 ">
+                <p className="font-[650]">Edit ____</p>
+                <button className="m-1" onClick={closePopup}>
+                  <MdCancel />
+                </button>
+              </div>
+              <hr className="border-2" />
+                    <div className="px-8 pt-6 pb-5 grid grid-cols-3 gap-3 items-center bg-[white]">
+                      <div>
+                        <h2 className="text-heading text-heading-color font-[450]">
+                          Price
+                        </h2>
+                        <input
+                          type="text"
+                          className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                        />
+                      </div>
+                      <div>
+                        <h2 className="text-heading text-heading-color font-[450]">
+                          Compare at Price
+                        </h2>
+                        <input
+                          type="text"
+                          className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                        />
+                      </div>
+
+                    </div>
+
+
+                    <hr className="border-[1px]" />
+
+
+                    <div className="px-8 py-4 bg-[white]">
+                      <h2 className=" text-heading-color font-[550] p-2 pb-4 text-[16px]">
+                        Inventory
+                      </h2>
+
+                      <div className="grid grid-cols-3 gap-3 items-center">
+
+                        <div>
+
+                          <h2 className="text-heading text-heading-color font-[450]">
+                            SKU(Stock Keeping Unit)
+                          </h2>
+                          <input
+                            type="text"
+                            className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                          />
+                        </div>
+
+                        <div className="col-span-2">
+                          <h2 className="text-heading text-heading-color font-[450]">
+                            Barcode (ISBN, UPC, GTIN, etc.)
+                          </h2>
+                          <input
+                            type="text"
+                            className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                          />
+                        </div>
+
+                      </div>
+
+
+
+
+                    </div>
+                    <hr className="border-[1px]" />
+
+                    <div className="px-8 pt-8 pb-5 bg-[white] ">
+                      <h2 className="text-heading text-heading-color font-[450]">
+                        Weight(In kg  )
+                      </h2>
+                      <input
+                        type="text"
+                        className="py-[6px] px-3 w-[200px] rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                      />
+                    </div>
+                    <hr className="border-[1px]" />
+
+
+                    <div className="bg-[white] rounded-b-[15px] flex justify-end pr-7 py-3">
+                      <button className="text-[#1A1A1A] bg-[#E3E3E3] text-heading px-2 py-1 m-2 rounded-lg"
+                        onClick={closePopup}
+                      >Cancel</button>
+                      <button className=" text-[#E3E3E3] bg-[#1A1A1A] text-heading px-2 py-1 m-2 rounded-lg"
+                        onClick={closePopup}
+                      >Save</button>
+                    </div>
+
+                  </div>
+
+
+              </div>
+            </div>
+                )}
+
+
+
+
+
             <div>
               <div className="rounded-xl flex items-center justify-center  p-4">
                 <button

@@ -48,14 +48,14 @@ html.p-theme-light {
   --p-color-bg-surface-active: rgba(243, 243, 243, 1);
   --p-color-bg-surface-selected: rgba(241, 241, 241, 1);
   --p-color-bg-surface-disabled: rgba(0, 0, 0, 0.05);
-  --p-color-bg-surface-secondary: rgba(247, 247, 247, 1);
+  --p-color-bg-surface-secondary: #f7f7f7;
   --p-color-bg-surface-secondary-hover: rgba(241, 241, 241, 1);
   --p-color-bg-surface-secondary-active: rgba(235, 235, 235, 1);
   --p-color-bg-surface-secondary-selected: rgba(235, 235, 235, 1);
   --p-color-bg-surface-tertiary: rgba(243, 243, 243, 1);
   --p-color-bg-surface-tertiary-hover: rgba(235, 235, 235, 1);
   --p-color-bg-surface-tertiary-active: rgba(227, 227, 227, 1);
-  --p-color-bg-surface-brand: rgba(227, 227, 227, 1);
+  --p-color-bg-surface-brand: #e3e3e3;
   --p-color-bg-surface-brand-hover: rgba(235, 235, 235, 1);
   --p-color-bg-surface-brand-active: rgba(241, 241, 241, 1);
   --p-color-bg-surface-brand-selected: rgba(241, 241, 241, 1);
