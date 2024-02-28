@@ -18,8 +18,9 @@ import { FaAngleRight } from "react-icons/fa6";
 import { FaAngleLeft } from "react-icons/fa6";
 function Customers() {
   const [toggle, setToggle] = useState(false);
-  const [filter, setFilter] = useState(false);
   const imexRef = useRef(null);
+  const [filter, setFilter] = useState(false);
+
   const [checkbox,setcheckbox]=useState(false);
 
     // ---------click option--------
