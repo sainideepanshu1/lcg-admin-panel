@@ -15,6 +15,7 @@ const CreateCollection = () => {
   const handleChange = (e) => {
     setCollection({ ...collection, [e.target.name]: e.target.value });
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!collection.title || !collection.description) {
