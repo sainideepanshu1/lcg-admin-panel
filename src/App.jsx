@@ -18,6 +18,7 @@ import OrderDetails from "./Components/OrderDetails";
 
 
 
+
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -39,11 +40,11 @@ function App() {
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
           <Route path="/customers" element={<Customers/>} />
-          <Route path="/AddCustomers" element={<AddCustomers/>} />
-          <Route path="/CustomerDetails" element={<CustomerDetails/>} />
+          <Route path="/customers/add-customers" element={<AddCustomers/>} />
+          <Route path="/customers/customer-details/:customerID" element={<CustomerDetails/>} />
           <Route path="/orders" element={<Orders/>} />
           <Route path="/orders/create-order" element={<Createorder/>} />
-          <Route path="/OrderDetails" element={<OrderDetails/>} />
+          <Route path="/orders/order-details" element={<OrderDetails/>} />
           
           
         </Routes>

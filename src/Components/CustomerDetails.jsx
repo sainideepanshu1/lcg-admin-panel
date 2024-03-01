@@ -170,10 +170,10 @@ function CustomerDetails() {
             <div className="border-[1px] rounded-[8px] my-[8px] py-[20px]">
               <div className="flex justify-between px-[10px] ">
                 <div className="flex items-start flex-wrap gap-2">
-                  <Link to="/OrderDetails">
-                    <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
-                      #41678
-                    </h2>
+                  <Link to="/orders/order-details">
+                  <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
+                    #41678
+                  </h2>
                   </Link>
                   <div className="flex gap-1 items-center text-[12px] text-[#5e4200] bg-[#ffd6a4] px-[5px] py-[2px] rounded-lg">
                     <span>

@@ -125,6 +125,16 @@ const Products = () => {
   };
 
   // ---------------Search bar -------------
+const onKeyDown = (e) =>{
+  if (e.key === 'Enter') {
+    // 👇 Get input value
+    fetchSearched()
+  }
+}
+
+const handleClearSearch = ()=>{
+  setSearchTerm("")
+}
 
   function handleSearch() {
     setSearch(!Search);
@@ -244,13 +254,14 @@ const Products = () => {
                       onChange={(e) => {
                         setSearchTerm(e.target.value);
                       }}
+                      onKeyDown={onKeyDown}
                       className="w-full outline-none text-[14px] bg-[#faf8f8] text-[#303030] focus-within:bg-[#f1f1f1c2]"
                     />
                   </div>
 
-                  <span className=" cursor-pointer">
+                  <button onClick={handleClearSearch} className=" cursor-pointer">
                     <ImCancelCircle />
-                  </span>
+                  </button >
                 </div>
                 <div className="flex gap-2 ">
                   <button
