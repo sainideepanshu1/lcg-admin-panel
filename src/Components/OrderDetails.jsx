@@ -135,7 +135,7 @@ function OrderDetails() {
 
         <div>
           <div className="flex  gap-2 sm:hidden">
-            <Link to='Restock'>
+            <Link to='/orders/order-details/restock'>
               <button className="flex text-heading items-center px-[12px] py-[3px] gap-1   bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg">
                 Restock
               </button>
