@@ -14,7 +14,6 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { CiAt } from "react-icons/ci";
 import { FiHash } from "react-icons/fi";
 import { CiShop } from "react-icons/ci";
-
 import { GrSquare } from "react-icons/gr";
 
 function CustomerDetails() {
@@ -258,6 +257,9 @@ function CustomerDetails() {
             </div>
           </div>
 
+
+          
+
           <div className="">
             <h3 className="text-[14px] font-semibold text-[#303030] py-1">
               Timeline
@@ -335,7 +337,8 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
-                        5.22 pm
+
+                        5.00pm
                       </span>
                     </div>
                   </div>
@@ -418,9 +421,11 @@ function CustomerDetails() {
               </div>
             </div>
           </div>
+          
         </div>
 
         <div className="w-[30%] xl:w-[100%]  flex flex-col gap-[15px]">
+        
           <div className="    border-[1px bg-white py-[20px] px-[15px]	 shadow-md rounded-[8px]">
             <div className="flex justify-between  items-center ">
               <h3 className="text-[13px] font-semibold">Customer</h3>
