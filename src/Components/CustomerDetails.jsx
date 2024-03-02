@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import { FiChevronDown } from "react-icons/fi";
@@ -16,7 +16,6 @@ import { FiHash } from "react-icons/fi";
 import { CiShop } from "react-icons/ci";
 
 import { GrSquare } from "react-icons/gr";
-
 
 function CustomerDetails() {
   const [action, setaction] = useState();
@@ -79,7 +78,6 @@ function CustomerDetails() {
     <div className="bg-[#F1F1F1] w-full h-[100%] :px-[100px] md:px[10px]">
       <div className="flex my-6 items-center justify-between px-7 py-1 sm:px-6 xm:px-2 ">
         <div>
-          
           <div className="flex items-center gap-2 xm:">
             <Link to="/Customers">
               <FaArrowLeftLong />
@@ -174,9 +172,9 @@ function CustomerDetails() {
               <div className="flex justify-between px-[10px] ">
                 <div className="flex items-start flex-wrap gap-2">
                   <Link to="/orders/order-details">
-                  <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
-                    #41678
-                  </h2>
+                    <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
+                      #41678
+                    </h2>
                   </Link>
                   <div className="flex gap-1 items-center text-[12px] text-[#5e4200] bg-[#ffd6a4] px-[5px] py-[2px] rounded-lg">
                     <span>
@@ -319,60 +317,104 @@ function CustomerDetails() {
             <div className="border-l-[2.5px] relative  max-h-[800px] ml-10  border-[#a5a4a4] top-0">
               <div className=" flex flex-col gap-6 py-[40px] ">
                 <div className="flex flex-col">
-                  <h3 className="px-[20px] text-[#616161] text-[13px]"   >Yesterday</h3>
+                  <h3 className="px-[20px] text-[#616161] text-[13px]">
+                    Yesterday
+                  </h3>
                   <div className="flex items-center px-[20px] py-[10px]   ">
-                    <span className="absolute left-[-10px] text-[#747373]"><GrSquare /></span>
+                    <span className="absolute left-[-10px] text-[#747373]">
+                      <GrSquare />
+                    </span>
                     <div className="flex gap-[30px]">
-                    <h3 className="text-[#303030] text-[13px]">Order Confirmation email for order <Link ><button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">#42544</button></Link> sent to this customer (Aroramonica4@gmail.com).</h3>
-                    <span className="flex  text-[#303030] text-[14px]">5.22 pm</span>
+                      <h3 className="text-[#303030] text-[13px]">
+                        Order Confirmation email for order{" "}
+                        <Link>
+                          <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
+                            #42544
+                          </button>
+                        </Link>{" "}
+                        sent to this customer (Aroramonica4@gmail.com).
+                      </h3>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
-
-
 
                 <div className="flex flex-col">
-                  <h3 className="px-[20px] text-[#616161] text-[13px]"   >Yesterday</h3>
+                  <h3 className="px-[20px] text-[#616161] text-[13px]">
+                    Yesterday
+                  </h3>
                   <div className="flex items-center px-[20px] py-[10px]   ">
-                    <span className="absolute left-[-10px] text-[#747373]"><GrSquare /></span>
+                    <span className="absolute left-[-10px] text-[#747373]">
+                      <GrSquare />
+                    </span>
                     <div className="flex gap-[30px]">
-                    <h3 className="text-[#303030] text-[13px]">Order Confirmation email for order <Link><button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">#42544</button></Link> sent to this customer (Aroramonica4@gmail.com).</h3>
-                    <span className="flex  text-[#303030] text-[14px]">5.22 pm</span>
+                      <h3 className="text-[#303030] text-[13px]">
+                        Order Confirmation email for order{" "}
+                        <Link>
+                          <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
+                            #42544
+                          </button>
+                        </Link>{" "}
+                        sent to this customer (Aroramonica4@gmail.com).
+                      </h3>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
-
-
 
                 <div className="flex flex-col">
-                  <h3 className="px-[20px] text-[#616161] text-[13px]"   >Yesterday</h3>
+                  <h3 className="px-[20px] text-[#616161] text-[13px]">
+                    Yesterday
+                  </h3>
                   <div className="flex items-center px-[20px] py-[10px]   ">
-                    <span className="absolute left-[-10px] text-[#747373]"><GrSquare /></span>
+                    <span className="absolute left-[-10px] text-[#747373]">
+                      <GrSquare />
+                    </span>
                     <div className="flex gap-[30px]">
-                    <h3 className="text-[#303030] text-[13px]">Order Confirmation email for order <Link><button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">#42544</button></Link> sent to this customer (Aroramonica4@gmail.com).</h3>
-                    <span className="flex  text-[#303030] text-[14px]">5.22 pm</span>
+                      <h3 className="text-[#303030] text-[13px]">
+                        Order Confirmation email for order{" "}
+                        <Link>
+                          <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
+                            #42544
+                          </button>
+                        </Link>{" "}
+                        sent to this customer (Aroramonica4@gmail.com).
+                      </h3>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
-
 
                 <div className="flex flex-col">
-                  <h3 className="px-[20px] text-[#616161] text-[13px]"   >Yesterday</h3>
+                  <h3 className="px-[20px] text-[#616161] text-[13px]">
+                    Yesterday
+                  </h3>
                   <div className="flex items-center px-[20px] py-[10px]   ">
-                    <span className="absolute left-[-10px] text-[#747373]"><GrSquare /></span>
+                    <span className="absolute left-[-10px] text-[#747373]">
+                      <GrSquare />
+                    </span>
                     <div className="flex gap-[30px]">
-                    <h3 className="text-[#303030] text-[13px]">Order Confirmation email for order <Link><button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">#42544</button></Link> sent to this customer (Aroramonica4@gmail.com).</h3>
-                    <span className="flex  text-[#303030] text-[14px]">5.22 pm</span>
+                      <h3 className="text-[#303030] text-[13px]">
+                        Order Confirmation email for order{" "}
+                        <Link>
+                          <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
+                            #42544
+                          </button>
+                        </Link>{" "}
+                        sent to this customer (Aroramonica4@gmail.com).
+                      </h3>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
-
-              
-
-
-
-              
-                
               </div>
             </div>
           </div>
