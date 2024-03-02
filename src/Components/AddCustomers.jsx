@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { LuAlertTriangle } from "react-icons/lu";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
+import { Link } from 'react-router-dom';
+
 function AddCustomers() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -15,13 +17,7 @@ function AddCustomers() {
   });
 
   
-    // if (!formData.email.trim()) {
-    //   setErrors({ ...errors, email: "Email is required" });
-    // } else if (!/^\S+@\S+\.\S+/.test(formData.email)) {
-    //   setErrors({ ...errors, email: "Invalid email format" });
-    // } else {
-    //   setErrors({ ...errors, email: "" });
-    // }
+ 
 // ---------------form vaildition----
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -80,8 +76,13 @@ function AddCustomers() {
       </div>
 
       <div className="flex items-center   text-[20px] font-bold px-7 py-6 gap-3">
-        <span className="text-[16px]">
-          <FaArrowLeftLong />
+        <span  
+        
+        className="text-[16px]">
+          <Link  to="/customers" >
+           <FaArrowLeftLong />
+           </Link>
+          
         </span>
         <h3>New customer</h3>
       </div>

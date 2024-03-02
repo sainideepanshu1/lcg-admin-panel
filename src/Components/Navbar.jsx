@@ -1,5 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import Lovecraft from "../assets/lovecrafts2.png";
+import  { useEffect, useRef } from "react";
+import Lovecraft from "../assets/lovecrafts2.webp";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
 import { IoCloseCircleOutline } from "react-icons/io5";
