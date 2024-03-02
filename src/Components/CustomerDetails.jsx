@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import { FiChevronDown } from "react-icons/fi";
@@ -171,9 +171,9 @@ function CustomerDetails() {
               <div className="flex justify-between px-[10px] ">
                 <div className="flex items-start flex-wrap gap-2">
                   <Link to="/orders/order-details">
-                  <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
-                    #41678
-                  </h2>
+                    <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
+                      #41678
+                    </h2>
                   </Link>
                   <div className="flex gap-1 items-center text-[12px] text-[#5e4200] bg-[#ffd6a4] px-[5px] py-[2px] rounded-lg">
                     <span>
@@ -337,6 +337,7 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
+
                         5.00pm
                       </span>
                     </div>
@@ -361,7 +362,9 @@ function CustomerDetails() {
                         </Link>{" "}
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
-                      <span className="flex  text-[#303030] text-[14px]">5.22pm </span>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -384,7 +387,9 @@ function CustomerDetails() {
                         </Link>{" "}
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
-                      <span className="flex  text-[#303030] text-[14px]">5.22pm </span>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -407,7 +412,9 @@ function CustomerDetails() {
                         </Link>{" "}
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
-                      <span className="flex  text-[#303030] text-[14px]">5.22pm</span>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22 pm
+                      </span>
                     </div>
                   </div>
                 </div>
