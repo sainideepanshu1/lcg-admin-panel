@@ -14,6 +14,7 @@ import CustomerDetails from "./Components/CustomerDetails";
 import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
+import Restock from "./Components/Restock";
 
 
 
@@ -44,6 +45,8 @@ function App() {
           <Route path="/orders" element={<Orders/>} />
           <Route path="/orders/create-order" element={<Createorder/>} />
           <Route path="/OrderDetails" element={<OrderDetails/>} />
+          <Route path="/OrderDetails/restock" element={<Restock/>} />
+          
           
           
         </Routes>

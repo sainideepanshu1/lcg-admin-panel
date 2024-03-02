@@ -414,6 +414,7 @@ function CustomerDetails() {
               </div>
             </div>
           </div>
+          
         </div>
 
         <div className="w-[30%] xl:w-[100%]  flex flex-col gap-[15px]">
