@@ -5,8 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
-import Collections from './Components/Collections';
-import Product from './Components/Product'
+import Collections from "./Components/Collections";
+import Product from "./Components/Product";
 import Products from "./Components/Products";
 import Customers from "./Components/Customers";
 import AddCustomers from "./Components/AddCustomers";
@@ -15,10 +15,6 @@ import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
 import Restock from "./Components/Restock";
-
-
-
-
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -33,20 +29,23 @@ function App() {
       <Navbar toggleSidebar={toggleSidebar} />
       <div className="flex">
         <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <Routes>          
+        <Routes>
           <Route path="/" element={<>Home</>} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/products" element={<Products />} />
           <Route path="/products/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
-          <Route path="/customers" element={<Customers/>} />
-          <Route path="/customers/add-customers" element={<AddCustomers/>} />
-          <Route path="/customers/customer-details/:customerID" element={<CustomerDetails/>} />
-          <Route path="/orders" element={<Orders/>} />
-          <Route path="/orders/create-order" element={<Createorder/>} />
-          <Route path="/orders/order-details" element={<OrderDetails/>} />    
-          <Route path="/orders/order-details/restock" element={<Restock/>} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/customers/add-customers" element={<AddCustomers />} />
+          <Route
+            path="/customers/customer-details/:customerID"
+            element={<CustomerDetails />}
+          />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/create-order" element={<Createorder />} />
+          <Route path="/orders/order-details" element={<OrderDetails />} />
+          <Route path="/orders/order-details/restock" element={<Restock />} />
         </Routes>
       </div>
     </>

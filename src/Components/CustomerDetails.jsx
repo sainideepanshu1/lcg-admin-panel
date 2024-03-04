@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-
 import { FiChevronDown } from "react-icons/fi";
 import { MdCurrencyRupee } from "react-icons/md";
 import { IoCheckbox } from "react-icons/io5";

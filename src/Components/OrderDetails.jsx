@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { MdCurrencyRupee } from "react-icons/md";
 import { IoCheckbox } from "react-icons/io5";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import { BsThreeDotsVertical } from "react-icons/bs";
+
 import { LuClipboard } from "react-icons/lu";
 import { BiIntersect } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
@@ -14,7 +14,7 @@ import { LuPencil } from "react-icons/lu";
 import { BsEmojiSmile } from "react-icons/bs";
 import { CiAt } from "react-icons/ci";
 import { FiHash } from "react-icons/fi";
-import { CiShop } from "react-icons/ci";
+
 import { MdOutlineCancel } from "react-icons/md";
 import { BsArchive } from "react-icons/bs";
 import { FiPrinter } from "react-icons/fi";
@@ -474,6 +474,7 @@ function OrderDetails() {
             </div>
           </div>
         </div>
+
         <div className=" flex flex-col gap-4 w-[30%] xl:w-[100%]">
           <div className=" xl:w-[100%]  border-[1px bg-white py-[15px] px-[15px]	 shadow-md rounded-[8px]">
             <div>
@@ -522,7 +523,7 @@ function OrderDetails() {
 
               <div className="flex justify-between items-center">
                 <div>
-                  <span className="text-[#005bd3] text-[13px] hover:underline">
+                  <span className="text-[#005bd3]  hover:underline text-[13px]">
                     Gauravsaini@gmail.com
                   </span>
                 </div>
