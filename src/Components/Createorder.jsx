@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { FaArrowLeftLong } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 import { GoPencil } from 'react-icons/go';
-import { CiSearch, CiAt } from 'react-icons/ci';
+import { CiSearch } from 'react-icons/ci';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { useEffect, useRef, useState } from 'react';
 import { IoIosClose } from 'react-icons/io';
 import { CgAdd } from 'react-icons/cg';
 import { BsEmojiSmile } from 'react-icons/bs';
+import { CiAt } from 'react-icons/ci';
 import Product2 from '../assets/Product2.jpg';
 import { FiHash } from 'react-icons/fi';
 import { GrSquare } from 'react-icons/gr';
@@ -71,7 +73,7 @@ const Createorder = () => {
   useEffect(() => {
     document.addEventListener('click', notesclick, true);
     return () => {
-      document.removeEventListener("click", notesclick);
+      document.removeEventListener('click', notesclick);
     };
   });
   return (
@@ -388,7 +390,7 @@ const Createorder = () => {
                         </div>
                         <div></div>
                         <span className="text-[#616161] text-heading">
-                          &#8377;0.00
+                          &#8377;0.00{' '}
                         </span>
                       </div>
                       <div className="flex justify-between text-[#bcbab7] ">
@@ -409,6 +411,7 @@ const Createorder = () => {
                         <div></div>
                         <span className="text-heading">&#8377;0.00 </span>
                       </div>
+
                       <div className="flex justify-between text-[#bcbab7] ">
                         <div className="text-heading w-[180px] items-start">
                           Partial Payment
@@ -441,7 +444,7 @@ const Createorder = () => {
                         </div>
                         <div></div>
                         <span className="text-[#616161] text-heading font-[650]">
-                          &#8377;0.00
+                          &#8377;0.00{' '}
                         </span>
                       </div>
                     </div>
@@ -725,28 +728,31 @@ const Createorder = () => {
                             <div className="pt-2">
                               <div className="text-[12px] flex flex-col text-[#303030] w-full py-1  hover:bg-[#f7f7f7] rounded pl-2  ">
                                 <div>
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1> ajaygsss1@123o,hmail</h1>
                                 </div>
                               </div>
                               <div className="text-[12px] flex flex-col text-[#303030] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
                                 <div>
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1> ajaygsss1@123o,hmail</h1>
                                 </div>
                               </div>
-                              <div className="text-heading flex flex-col text-[#bcbab7] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2   ">
-                                <div>
                               <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2   ">
                                 <div>
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1> ajaygsss1@123o,hmail</h1>
                                 </div>
                               </div>
                               <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
                                 <div>
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1>
+                                    {' '}
                                     ajaygsss1@123ohfjgkhlj;k'kjlhkgjfhdsgafda,hmail
                                   </h1>
                                 </div>
