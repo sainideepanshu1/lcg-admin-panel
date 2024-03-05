@@ -134,7 +134,7 @@ function Customers() {
             </div>
             <button>
               <Link
-                to="/AddCustomers"
+                to="/customers/add-customers"
                 className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
               >
                 Add customer
