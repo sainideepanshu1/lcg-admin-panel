@@ -97,7 +97,7 @@ const Products = () => {
 
   useEffect(() => {
     fetchAllProducts();
-  }, [page, perPage]);
+  }, [fetchAllProducts, page, perPage]);
 
   const handleSelectAll = () => {
     setSelectAll(!selectAll);
