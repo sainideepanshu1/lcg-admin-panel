@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 import { FiChevronDown } from "react-icons/fi";
@@ -22,28 +22,6 @@ function CustomerDetails() {
 
   const [Customer, setCustomer] = useState();
   const CustomerRef = useRef();
-
-  // ---------------emoji picker code----------
-  const [inputStr, setInputStr] = useState("");
-  const [showPicker, setShowPicker] = useState(false);
-
-  const onEmojiClick = (event, emojiObject) => {
-    setInputStr((prevInput) => prevInput + emojiObject.emoji);
-    setShowPicker(false);
-  };
-
-  // ------------code clipbord------\
-
-  const [copyText, setCopyText] = useState("");
-
-  const handleCopyText = (e) => {
-    setCopyText(e.target.value);
-  };
-
-  const copyToClipboard = () => {
-    copy(copyText);
-    alert(`You have copied "${copyText}"`);
-  };
 
   // ----------more-action-------------
   const handleaction = (event) => {
@@ -171,9 +149,9 @@ function CustomerDetails() {
               <div className="flex justify-between px-[10px] ">
                 <div className="flex items-start flex-wrap gap-2">
                   <Link to="/orders/order-details">
-                  <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
-                    #41678
-                  </h2>
+                    <h2 className="text-[0.8125rem] hover:underline cursor-pointer	 text-[#004299] font-semibold ">
+                      #41678
+                    </h2>
                   </Link>
                   <div className="flex gap-1 items-center text-[12px] text-[#5e4200] bg-[#ffd6a4] px-[5px] py-[2px] rounded-lg">
                     <span>
@@ -256,9 +234,6 @@ function CustomerDetails() {
               </div>
             </div>
           </div>
-
-
-          
 
           <div className="">
             <h3 className="text-[14px] font-semibold text-[#303030] py-1">
@@ -361,7 +336,9 @@ function CustomerDetails() {
                         </Link>{" "}
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
-                      <span className="flex  text-[#303030] text-[14px]">5.22pm </span>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22pm{" "}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -384,7 +361,9 @@ function CustomerDetails() {
                         </Link>{" "}
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
-                      <span className="flex  text-[#303030] text-[14px]">5.22pm </span>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22pm{" "}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -407,7 +386,9 @@ function CustomerDetails() {
                         </Link>{" "}
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
-                      <span className="flex  text-[#303030] text-[14px]">5.22pm</span>
+                      <span className="flex  text-[#303030] text-[14px]">
+                        5.22pm
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -417,7 +398,6 @@ function CustomerDetails() {
         </div>
 
         <div className="w-[30%] xl:w-[100%]  flex flex-col gap-[15px]">
-        
           <div className="    border-[1px bg-white py-[20px] px-[15px]	 shadow-md rounded-[8px]">
             <div className="flex justify-between  items-center ">
               <h3 className="text-[13px] font-semibold">Customer</h3>

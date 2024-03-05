@@ -1,9 +1,10 @@
-import React, { useState, useRef, useMemo } from "react";
+/* eslint-disable react/prop-types */
+import { useState, useRef, useMemo, useEffect } from "react";
 import JoditEditor from "jodit-react";
 
-const Editor = ({ description, updateDescription, placeholder }) => {
+const Editor = ({ initialContent, updateDescription, placeholder }) => {
   const editor = useRef(null);
-  const [content, setContent] = useState(description);
+  const [content, setContent] = useState(initialContent);
 
   const config = useMemo(
     () => ({
@@ -12,6 +13,11 @@ const Editor = ({ description, updateDescription, placeholder }) => {
     }),
     [placeholder]
   );
+
+  // Update content when the initialContent prop changes
+  useEffect(() => {
+    setContent(initialContent);
+  }, [initialContent]);
 
   return (
     <JoditEditor

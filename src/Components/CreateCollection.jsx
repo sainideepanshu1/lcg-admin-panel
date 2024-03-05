@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { Link } from "react-router-dom";
-import Editor from "./Editor";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -15,7 +14,7 @@ const CreateCollection = () => {
   const handleChange = (e) => {
     setCollection({ ...collection, [e.target.name]: e.target.value });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!collection.title || !collection.description) {

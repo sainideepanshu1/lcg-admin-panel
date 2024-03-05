@@ -1,4 +1,5 @@
-import  { useEffect, useRef } from "react";
+/* eslint-disable react/prop-types */
+import { useEffect, useRef } from "react";
 import Lovecraft from "../assets/lovecrafts2.webp";
 import { IoIosSearch } from "react-icons/io";
 import { FaRegBell } from "react-icons/fa";
@@ -13,10 +14,9 @@ function Navbar({ toggleSidebar }) {
 
   const [profile, setprofile] = useState(false);
 
-
   // profile open
   const popprofile = useRef(null);
-  
+
   function ToggleProfile() {
     setprofile(!profile);
   }
@@ -161,7 +161,7 @@ function Navbar({ toggleSidebar }) {
             </span>
           </div>
 
-         <div className="">
+          <div className="">
             <div
               onClick={ToggleProfile}
               className="cursor-pointer p-[6px] rounded-lg text-white bg-[#303030] hover:bg-[var(--p-color-bg-fill-inverse-hover)] transition-colors"

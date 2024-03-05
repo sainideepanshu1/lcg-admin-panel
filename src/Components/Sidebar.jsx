@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdPerson } from "react-icons/io";

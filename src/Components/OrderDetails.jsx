@@ -1,4 +1,3 @@
-import React from "react";
 import { useEffect, useRef, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { FiChevronDown } from "react-icons/fi";
@@ -6,15 +5,10 @@ import { Link } from "react-router-dom";
 import { MdCurrencyRupee } from "react-icons/md";
 import { IoCheckbox } from "react-icons/io5";
 import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import { BsThreeDotsVertical } from "react-icons/bs";
 import { LuClipboard } from "react-icons/lu";
 import { BiIntersect } from "react-icons/bi";
 import { FiEye } from "react-icons/fi";
 import { LuPencil } from "react-icons/lu";
-import { BsEmojiSmile } from "react-icons/bs";
-import { CiAt } from "react-icons/ci";
-import { FiHash } from "react-icons/fi";
-import { CiShop } from "react-icons/ci";
 import { MdOutlineCancel } from "react-icons/md";
 import { BsArchive } from "react-icons/bs";
 import { FiPrinter } from "react-icons/fi";
@@ -25,19 +19,17 @@ import { IoClose } from "react-icons/io5";
 import { FaRegClock } from "react-icons/fa";
 import { FiAlertTriangle } from "react-icons/fi";
 
-import OutsideClickHandler from 'react-outside-click-handler';
-
 function OrderDetails() {
-  const[payment,setpayment]=useState();
+  const [payment, setpayment] = useState();
 
-  function paymenthandle(){
-    setpayment(!payment)
+  function paymenthandle() {
+    setpayment(!payment);
   }
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
-  
+  // const handleClose = () => {
+  //   setIsOpen(false);
+  // };
+
   const [action, setaction] = useState();
   const actionref = useRef();
 
@@ -278,7 +270,6 @@ function OrderDetails() {
 
                 <div className="cursor-pointer ">
                   <button
-                    
                     onClick={() => setHold(!hold)}
                     className="text-[#616161]"
                   >
@@ -364,112 +355,99 @@ function OrderDetails() {
                 </div>
 
                 <div className="cursor-pointer ">
-                  <button
-                    
-                    onClick={paymenthandle}
-                    className="text-[#616161]"
-                  >
+                  <button onClick={paymenthandle} className="text-[#616161]">
                     <BsThreeDots />
                   </button>
-                  {payment &&(
-                    <OutsideClickHandler onOutsideClick={handleClose}>
-                  <div  >
-                    <div className="absolute  right-[5px] bg-white border-[1px] px-[14px] py-[8px] rounded-lg ">
-                      <button className="text-[13px]">Add payment terms</button>
+                  {payment && (
+                    <div>
+                      <div className="absolute  right-[5px] bg-white border-[1px] px-[14px] py-[8px] rounded-lg ">
+                        <button className="text-[13px]">
+                          Add payment terms
+                        </button>
+                      </div>
                     </div>
-                    </div>
-                    </OutsideClickHandler>)}
+                  )}
 
-{/* className={`${payment?"block":"hidden"}` }*/}
-                    
-                 
+                  {/* className={`${payment?"block":"hidden"}` }*/}
                 </div>
-
-              
               </div>
-              
             </div>
-          
-            <div className=" flex flex-col gap-2 border-[1px] py-[10px] mx-[10px] rounded-lg">
 
+            <div className=" flex flex-col gap-2 border-[1px] py-[10px] mx-[10px] rounded-lg">
               <div className="flex justify-between px-[8px]">
                 <h3 className="text-[13px]">Subtotal</h3>
                 <h3 className="text-[13px]"> 1 item</h3>
                 <div className=" ">
-                 
                   <div className="flex items-center text-[14px] font-medium">
                     <span className="flex items-center">
                       <MdCurrencyRupee />
                       649
                     </span>
                     <span>.00</span>
-                    </div>
                   </div>
+                </div>
               </div>
 
               <div className="flex justify-between px-[8px]">
                 <h3 className="text-[13px]">Shipping</h3>
-                <h3 className="text-[13px] px-[10px]">Cash on delivery (0.3 kg: Items 0.3 kg, Package 0.0 kg)</h3>
+                <h3 className="text-[13px] px-[10px]">
+                  Cash on delivery (0.3 kg: Items 0.3 kg, Package 0.0 kg)
+                </h3>
                 <div className=" ">
-                 
                   <div className="flex items-center text-[14px] font-medium">
                     <span className="flex items-center">
                       <MdCurrencyRupee />
                       100
                     </span>
                     <span>.00</span>
-                    </div>
                   </div>
+                </div>
               </div>
 
               <div className="flex justify-between px-[8px]">
                 <h3 className="text-[13px] font-semibold">Total</h3>
-                
+
                 <div className=" ">
-                 
                   <div className="flex items-center text-[14px] font-medium">
                     <span className="flex items-center">
                       <MdCurrencyRupee />
                       100
                     </span>
                     <span>.00</span>
-                    </div>
                   </div>
+                </div>
               </div>
               <hr></hr>
-              
+
               <div className="flex justify-between px-[8px]">
                 <h3 className="text-[13px] ">Paid</h3>
-                
+
                 <div className=" ">
-                 
                   <div className="flex items-center text-[14px] font-medium">
                     <span className="flex items-center">
-                      <MdCurrencyRupee />
-                      0
+                      <MdCurrencyRupee />0
                     </span>
                     <span>.00</span>
-                    </div>
                   </div>
+                </div>
               </div>
 
               <div className="flex justify-between items-center text-[#5e4200] bg-[#fae2e1] rounded-lg mx-[10px] p-[10px]">
                 <div className="flex gap-2 items-center">
-                  <span className="text-[14px]"><FiAlertTriangle /></span>
+                  <span className="text-[14px]">
+                    <FiAlertTriangle />
+                  </span>
                   <h3>Balance</h3>
                 </div>
 
-              <div className="flex items-center text-[14px] font-medium">
-                    <span className="flex items-center">
-                      <MdCurrencyRupee />
-                      100
-                    </span>
-                    <span>.00</span>
-                    </div>
+                <div className="flex items-center text-[14px] font-medium">
+                  <span className="flex items-center">
+                    <MdCurrencyRupee />
+                    100
+                  </span>
+                  <span>.00</span>
+                </div>
               </div>
-              
-
-
             </div>
             <div className="flex gap-2 justify-end py-2 px-3">
               <button className="text-[13px] border-[1px] px-[10px] py-[6px] rounded-lg  font-semibold">
@@ -549,7 +527,9 @@ function OrderDetails() {
 
               <div className="py-[8px]">
                 <div className="flex justify-between items-center">
-                  <h3 className="text-[13px] font-semibold">Shipping  address</h3>
+                  <h3 className="text-[13px] font-semibold">
+                    Shipping address
+                  </h3>
                   <span className="text-[#616161] ">
                     <LuPencil />
                   </span>
