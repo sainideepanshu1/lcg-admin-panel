@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LuAlertTriangle } from "react-icons/lu";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
+import { Link } from 'react-router-dom';
+
 function AddCustomers() {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -14,7 +16,9 @@ function AddCustomers() {
     email: "",
     phoneNumber: "",
   });
-
+  
+ 
+// ---------------form vaildition----
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -65,8 +69,13 @@ function AddCustomers() {
       </div>
 
       <div className="flex items-center   text-[20px] font-bold px-7 py-6 gap-3">
-        <span className="text-[16px]">
-          <FaArrowLeftLong />
+        <span  
+        
+        className="text-[16px]">
+          <Link  to="/customers" >
+           <FaArrowLeftLong />
+           </Link>
+          
         </span>
         <h3>New customer</h3>
       </div>
@@ -319,43 +328,43 @@ function AddCustomers() {
               <option value="" disabled>
                 Select a state
               </option>
-              <option value="Active">Andaman and Nicobar Islands</option>
-              <option value="Draft">Andhra Pradesh</option>
-              <option value="Draft">Arunachal Pradesh </option>
-              <option value="Draft">Assam </option>
-              <option value="Draft">Bihar </option>
-              <option value="Draft">Chandigarh </option>
-              <option value="Draft">Chhattisgarh </option>
-              <option value="Draft">Dadra and Nagar Haveli </option>
-              <option value="Draft">Daman and Diu </option>
-              <option value="Draft">Delhi </option>
-              <option value="Draft">Goa </option>
-              <option value="Draft">Gujarat </option>
-              <option value="Draft">Haryana </option>
-              <option value="Draft">Himachal Pradesh </option>
-              <option value="Draft">Jammu and Kashmir </option>
-              <option value="Draft">Jharkhand </option>
-              <option value="Draft">Karnataka </option>
-              <option value="Draft">Kerala </option>
-              <option value="Draft">Ladakh </option>
-              <option value="Draft">Lakshadweep </option>
-              <option value="Draft">Madhya Pradesh </option>
-              <option value="Draft">Maharashtra </option>
-              <option value="Draft">Manipur </option>
-              <option value="Draft">Meghalaya </option>
-              <option value="Draft">Mizoram </option>
-              <option value="Draft">Mizoram </option>
-              <option value="Draft">Odisha </option>
-              <option value="Draft">Puducherry </option>
-              <option value="Draft">Punjab </option>
-              <option value="Draft">Rajasthan </option>
-              <option value="Draft">Sikkim </option>
-              <option value="Draft">Tamil Nadu </option>
-              <option value="Draft">Telangana </option>
-              <option value="Draft">Tripura </option>
-              <option value="Draft">Uttar Pradesh </option>
-              <option value="Draft">Uttarakhand </option>
-              <option value="Draft">West Bengal </option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh </option>
+              <option value="Assam ">Assam </option>
+              <option value="Bihar">Bihar </option>
+              <option value="Chandigarh">Chandigarh </option>
+              <option value="Chhattisgarh ">Chhattisgarh </option>
+              <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli </option>
+              <option value="DrDaman and Diu aft">Daman and Diu </option>
+              <option value="Delhi">Delhi </option>
+              <option value="Goa">Goa </option>
+              <option value="Gujarat">Gujarat </option>
+              <option value="Haryana">Haryana </option>
+              <option value="Himachal Pradesh ">Himachal Pradesh </option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir </option>
+              <option value="Jharkhand">Jharkhand </option>
+              <option value="Karnataka">Karnataka </option>
+              <option value="Kerala ">Kerala </option>
+              <option value="Ladakh ">Ladakh </option>
+              <option value="Lakshadweep">Lakshadweep </option>
+              <option value="Madhya Pradesh ">Madhya Pradesh </option>
+              <option value="Maharashtra">Maharashtra </option>
+              <option value="Manipur">Manipur </option>
+              <option value="Meghalaya">Meghalaya </option>
+              <option value="Mizoram">Mizoram </option>
+              <option value="Mizoram">Mizoram </option>
+              <option value="Odisha">Odisha </option>
+              <option value="Puducherry">Puducherry </option>
+              <option value="Punjab">Punjab </option>
+              <option value="Rajasthan">Rajasthan </option>
+              <option value="Sikkim">Sikkim </option>
+              <option value="Tamil Nadu">Tamil Nadu </option>
+              <option value="Telangana">Telangana </option>
+              <option value="Tripura">Tripura </option>
+              <option value="Uttar Pradesh">Uttar Pradesh </option>
+              <option value="Uttarakhand">Uttarakhand </option>
+              <option value="West Bengal ">West Bengal </option>
             </select>
           </div>
 

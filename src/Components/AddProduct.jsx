@@ -192,8 +192,79 @@ const AddProduct = () => {
   };
 
   useEffect(() => {
+    const generateCombinations = () => {
+      const allVariants = [];
+
+      // Helper function to get all combinations
+      const getCombinations = (options, index, currentCombination) => {
+        if (index === options.length) {
+          const combinationObject = {
+            title: currentCombination.map((option) => option.value).join(" / "),
+            ...currentCombination.reduce((acc, option, optionIndex) => {
+              const optionKey = `option${optionIndex + 1}`;
+              acc[optionKey] = option.value;
+              return acc;
+            }, {}),
+            price: 0,
+            inventory_quantity: 0,
+            compare_at_price: 0,
+            sku: "",
+            barcode: "",
+          };
+          allVariants.push(combinationObject);
+          return;
+        }
+
+        options[index].values.forEach((value) => {
+          getCombinations(options, index + 1, [
+            ...currentCombination,
+            { name: options[index].name, value },
+          ]);
+        });
+      };
+
+      const optionNames = mields.map((mield) => mield.optionName.toLowerCase());
+
+      // Create an array of options for each unique option name
+      const uniqueOptions = Array.from(new Set(optionNames)).map((name) => ({
+        name,
+        values: [],
+      }));
+
+      mields.forEach((mield) => {
+        const optionIndex = uniqueOptions.findIndex(
+          (option) => option.name === mield.optionName.toLowerCase()
+        );
+
+        if (optionIndex !== -1) {
+          const fieldValues = mield.fields
+            .map((field) => field.value.trim())
+            .filter(Boolean);
+
+          uniqueOptions[optionIndex].values.push(...fieldValues);
+        }
+      });
+
+      // Only add combinations if there are mields
+      if (uniqueOptions.length > 0) {
+        getCombinations(uniqueOptions, 0, []);
+
+        // Preserve existing price and stock values
+        const updatedVariants = allVariants.map((newVariant) => {
+          const existingVariant = combinations.find(
+            (existing) => existing.title === newVariant.title
+          );
+          return existingVariant ? existingVariant : newVariant;
+        });
+
+        setCombinations(updatedVariants);
+      } else {
+        setCombinations([]);
+      }
+    };
+
     generateCombinations();
-  }, [mields]);
+  }, [combinations, mields]);
 
   const deleteField = (mieldId, fieldId) => {
     const updatedMields = mields.map((mield) => {
@@ -254,77 +325,6 @@ const AddProduct = () => {
       mield.id === mieldId ? { ...mield, optionName } : mield
     );
     setMields(updatedMields);
-  };
-
-  const generateCombinations = () => {
-    const allVariants = [];
-
-    // Helper function to get all combinations
-    const getCombinations = (options, index, currentCombination) => {
-      if (index === options.length) {
-        const combinationObject = {
-          title: currentCombination.map((option) => option.value).join(" / "),
-          ...currentCombination.reduce((acc, option, optionIndex) => {
-            const optionKey = `option${optionIndex + 1}`;
-            acc[optionKey] = option.value;
-            return acc;
-          }, {}),
-          price: 0,
-          inventory_quantity: 0,
-          compare_at_price: 0,
-          sku: "",
-          barcode: "",
-        };
-        allVariants.push(combinationObject);
-        return;
-      }
-
-      options[index].values.forEach((value) => {
-        getCombinations(options, index + 1, [
-          ...currentCombination,
-          { name: options[index].name, value },
-        ]);
-      });
-    };
-
-    const optionNames = mields.map((mield) => mield.optionName.toLowerCase());
-
-    // Create an array of options for each unique option name
-    const uniqueOptions = Array.from(new Set(optionNames)).map((name) => ({
-      name,
-      values: [],
-    }));
-
-    mields.forEach((mield) => {
-      const optionIndex = uniqueOptions.findIndex(
-        (option) => option.name === mield.optionName.toLowerCase()
-      );
-
-      if (optionIndex !== -1) {
-        const fieldValues = mield.fields
-          .map((field) => field.value.trim())
-          .filter(Boolean);
-
-        uniqueOptions[optionIndex].values.push(...fieldValues);
-      }
-    });
-
-    // Only add combinations if there are mields
-    if (uniqueOptions.length > 0) {
-      getCombinations(uniqueOptions, 0, []);
-
-      // Preserve existing price and stock values
-      const updatedVariants = allVariants.map((newVariant) => {
-        const existingVariant = combinations.find(
-          (existing) => existing.title === newVariant.title
-        );
-        return existingVariant ? existingVariant : newVariant;
-      });
-
-      setCombinations(updatedVariants);
-    } else {
-      setCombinations([]);
-    }
   };
 
   const updateCombinationValues = (index, newPrice, newStock) => {

@@ -14,6 +14,8 @@ import CustomerDetails from "./Components/CustomerDetails";
 import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
+import Restock from "./Components/Restock";
+import EditOrder from "./Components/EditOrder";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -44,6 +46,8 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/create-order" element={<Createorder />} />
           <Route path="/orders/order-details" element={<OrderDetails />} />
+          <Route path="/orders/order-details/restock" element={<Restock />} />
+          <Route path="/orders/order-details/edit-order" element={<EditOrder />} />
         </Routes>
       </div>
     </>

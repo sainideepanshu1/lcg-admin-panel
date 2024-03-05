@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-
 import { FiChevronDown } from "react-icons/fi";
 import { MdCurrencyRupee } from "react-icons/md";
 import { IoCheckbox } from "react-icons/io5";
@@ -312,6 +311,7 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
+
                         5.00pm
                       </span>
                     </div>
@@ -337,7 +337,7 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
-                        5.22pm{" "}
+                        5.22 pm
                       </span>
                     </div>
                   </div>
@@ -362,7 +362,7 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
-                        5.22pm{" "}
+                        5.22 pm
                       </span>
                     </div>
                   </div>
@@ -387,7 +387,7 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
-                        5.22pm
+                        5.22 pm
                       </span>
                     </div>
                   </div>
@@ -395,6 +395,7 @@ function CustomerDetails() {
               </div>
             </div>
           </div>
+          
         </div>
 
         <div className="w-[30%] xl:w-[100%]  flex flex-col gap-[15px]">
