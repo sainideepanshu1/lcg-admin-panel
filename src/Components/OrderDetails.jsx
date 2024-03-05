@@ -129,7 +129,7 @@ function OrderDetails() {
               Chainpur , Bandipur UP, India . Customer for about 2 hours
             </span>
 
-            <span></span>
+          
           </div>
         </div>
 
@@ -140,7 +140,7 @@ function OrderDetails() {
                 Restock
               </button>
             </Link>
-            <Link>
+            <Link to='/orders/order-details/edit-order'>
               <button className="flex text-heading items-center px-[12px] py-[3px] gap-1   bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg">
                 Edit
               </button>
