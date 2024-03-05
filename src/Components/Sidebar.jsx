@@ -1,14 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { IoMdPerson } from "react-icons/io";
-import { TbBrandGoogleAnalytics } from "react-icons/tb";
-import { PiDivideFill } from "react-icons/pi";
-import { TbTargetArrow } from "react-icons/tb";
-import { FaInbox } from "react-icons/fa6";
-import { IoMdPricetag } from "react-icons/io";
-import { TbSettingsFilled } from "react-icons/tb";
-import { HiCollection } from "react-icons/hi";
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AiFillHome } from 'react-icons/ai';
+import { IoMdPerson } from 'react-icons/io';
+import { TbBrandGoogleAnalytics } from 'react-icons/tb';
+import { PiDivideFill } from 'react-icons/pi';
+import { TbTargetArrow } from 'react-icons/tb';
+import { FaInbox } from 'react-icons/fa6';
+import { IoMdPricetag } from 'react-icons/io';
+import { TbSettingsFilled } from 'react-icons/tb';
+import { HiCollection } from 'react-icons/hi';
+import { TfiAngleDoubleRight } from 'react-icons/tfi';
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   return (
@@ -32,6 +33,15 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                   to="/orders"
                 >
                   <FaInbox /> Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to='/draftorders'
+                >
+                  <TfiAngleDoubleRight />
+                  Draft Orders
                 </Link>
               </li>
               <li>
@@ -102,10 +112,10 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       </div>
       <div
         className={`h-screen w-full transition-all duration-500 z-10 bg-[#00000080] top-[48px] hidden sm:absolute ${
-          isSidebarOpen ? "sm:left-0" : "sm:left-[-100%]"
+          isSidebarOpen ? 'sm:left-0' : 'sm:left-[-100%]'
         }  sm:block fixed`}
         onClick={(e) => {
-          if (e.target.classList.contains("bg-[#00000080]")) {
+          if (e.target.classList.contains('bg-[#00000080]')) {
             toggleSidebar();
           }
         }}

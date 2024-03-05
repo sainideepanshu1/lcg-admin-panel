@@ -22,7 +22,7 @@ import { ImCancelCircle } from "react-icons/im";
 const Products = () => {
   // ---------------Search bar -------------
   const [Search, setSearch] = useState();
-  const [sort, setSort] = useState();
+  
   const [perPage, setPerPage] = useState(50);
   const [toggle, setToggle] = useState(false);
   const [products, setProducts] = useState([]);
@@ -31,6 +31,7 @@ const Products = () => {
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [sort, setSort] = useState();
   const sortref = useRef(null);
 
   const imexRef = useRef(null);
@@ -273,8 +274,7 @@ const handleClearSearch = ()=>{
                   </button>
                   <button
                     onClick={fetchSearched}
-                    className="  bg-black text-[14px] text-white rounded-lg mr-[5px]
-          px-[7px] py-[5px]"
+                    className="  bg-black text-[14px] text-white rounded-lg mr-[5px] px-[7px] py-[5px]"
                   >
                     Search
                   </button>

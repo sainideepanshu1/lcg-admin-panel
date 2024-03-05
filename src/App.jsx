@@ -14,6 +14,7 @@ import CustomerDetails from "./Components/CustomerDetails";
 import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
+import Draftorders from "./Components/Draftorders";
 
 
 
@@ -45,6 +46,7 @@ function App() {
           <Route path="/orders" element={<Orders/>} />
           <Route path="/orders/create-order" element={<Createorder/>} />
           <Route path="/orders/order-details" element={<OrderDetails/>} />
+          <Route path="/draftorders" element={<Draftorders/>} />
           
           
         </Routes>
