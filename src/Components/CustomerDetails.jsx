@@ -22,28 +22,6 @@ function CustomerDetails() {
   const [Customer, setCustomer] = useState();
   const CustomerRef = useRef();
 
-  // ---------------emoji picker code----------
-  const [inputStr, setInputStr] = useState("");
-  const [showPicker, setShowPicker] = useState(false);
-
-  const onEmojiClick = (event, emojiObject) => {
-    setInputStr((prevInput) => prevInput + emojiObject.emoji);
-    setShowPicker(false);
-  };
-
-  // ------------code clipbord------\
-
-  const [copyText, setCopyText] = useState("");
-
-  const handleCopyText = (e) => {
-    setCopyText(e.target.value);
-  };
-
-  const copyToClipboard = () => {
-    copy(copyText);
-    alert(`You have copied "${copyText}"`);
-  };
-
   // ----------more-action-------------
   const handleaction = (event) => {
     if (actionref.current && !actionref.current.contains(event.target)) {
@@ -256,9 +234,6 @@ function CustomerDetails() {
             </div>
           </div>
 
-
-          
-
           <div className="">
             <h3 className="text-[14px] font-semibold text-[#303030] py-1">
               Timeline
@@ -424,7 +399,6 @@ function CustomerDetails() {
         </div>
 
         <div className="w-[30%] xl:w-[100%]  flex flex-col gap-[15px]">
-        
           <div className="    border-[1px bg-white py-[20px] px-[15px]	 shadow-md rounded-[8px]">
             <div className="flex justify-between  items-center ">
               <h3 className="text-[13px] font-semibold">Customer</h3>

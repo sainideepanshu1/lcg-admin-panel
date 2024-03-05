@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LuAlertTriangle } from "react-icons/lu";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
@@ -10,12 +10,12 @@ function AddCustomers() {
     email: "",
     phoneNumber: "",
   });
+
   const [errors, setErrors] = useState({
     firstName: "",
     email: "",
     phoneNumber: "",
   });
-
   
  
 // ---------------form vaildition----
@@ -23,9 +23,8 @@ function AddCustomers() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const handleFormSubmit = (e) => {  
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-
 
     if (!formData.firstName.trim()) {
       setErrors({ ...errors, firstName: "First name is required" });
@@ -33,23 +32,17 @@ function AddCustomers() {
       setErrors({ ...errors, firstName: "" });
     }
 
- 
-
-
     if (!formData.phoneNumber.trim()) {
-      setErrors({...errors,phoneNumber:"Phone number is required"})
-     
+      setErrors({ ...errors, phoneNumber: "Phone number is required" });
     } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
-      setErrors({...errors,phoneNumber:"Invalid phone number format"})
-    }
-    else{
-      setErrors({...errors,phoneNumber:""})
-    }
-    setErrors(formErrors);
-    if (Object.values(formErrors).every(error => !error)) {
-      
+      setErrors({ ...errors, phoneNumber: "Invalid phone number format" });
+    } else {
+      setErrors({ ...errors, phoneNumber: "" });
     }
 
+    if (Object.values(errors).every((error) => !error)) {
+      // Form submission logic (execute only if there are no errors)
+    }
   };
 
   return (
@@ -103,14 +96,14 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2 ">
                 <input
-                placeholder="First Name"
+                  placeholder="First Name"
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                 />
-                {errors.firstName &&  (
+                {errors.firstName && (
                   <p className="text-[#ff0000e5] py-[3px]">
                     {errors.firstName}*
                   </p>
@@ -126,7 +119,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="Last name"
+                  placeholder="Last name"
                   type="text"
                   name="Last name"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -145,18 +138,18 @@ function AddCustomers() {
                 </div>
                 <div className="p-4 pt-2">
                   <input
-                  placeholder="Email"
+                    placeholder="Email"
                     type="Email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                   />
-                     {/* {errors.email && (
+                  {/* {errors.email && (
                   <p className="text-[#ff0000e5] py-[3px]">
                     {errors.email}*
                   </p> */}
-                {/* )} */}
+                  {/* )} */}
                 </div>
                 {/* {errors.firstName && (
                   <p className="text-[#ff0000e5] py-[3px]">
@@ -175,18 +168,18 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="Phone Number"
+                placeholder="Phone Number"
                 type="text"
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
                 name="phoneNumber"
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
               />
-               {errors.phoneNumber && (
-                  <p className="text-[#ff0000e5] py-[3px]">
-                    {errors.phoneNumber}*
-                  </p>
-                )}
+              {errors.phoneNumber && (
+                <p className="text-[#ff0000e5] py-[3px]">
+                  {errors.phoneNumber}*
+                </p>
+              )}
             </div>
           </div>
 
@@ -208,8 +201,6 @@ function AddCustomers() {
               them to your marketing emails or SMS.
             </p>
           </div>
-
-         
         </div>
       </div>
 
@@ -232,7 +223,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2 ">
                 <input
-                placeholder="First name"
+                  placeholder="First name"
                   type="text"
                   name="First name"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -248,7 +239,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="Last name"
+                  placeholder="Last name"
                   type="text"
                   name="Last name"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -266,7 +257,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="Company"
+                  placeholder="Company"
                   type="text"
                   name="Company"
                   className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -287,7 +278,7 @@ function AddCustomers() {
                   <IoSearch />
                 </span>
                 <input
-                placeholder="Address"
+                  placeholder="Address"
                   type="text"
                   name="Address"
                   className="py-[6px]   mx-3 w-full text-heading outline-none"
@@ -304,7 +295,7 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="Apartment,suite,etc."
+                placeholder="Apartment,suite,etc."
                 type="text"
                 name="Apartment, suite, etc."
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -321,7 +312,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="City"
+                  placeholder="City"
                   type="text"
                   name="City"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -385,7 +376,7 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="PIN code"
+                placeholder="PIN code"
                 type="text"
                 name="Apartment, suite, etc."
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -401,14 +392,11 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="Phone"
+                placeholder="Phone"
                 type="text"
                 name="Phone"
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
               />
-
-              
-              
             </div>
           </div>
         </div>
@@ -437,7 +425,7 @@ function AddCustomers() {
         <div className=" flex flex-col gap-2 text-[14px] font-semibold">
           <h3 className="font-bold">Notes</h3>
           <p className="text-[#616161]">
-            Notes are private and won't be shared with the customer.
+            Notes are private and won&apos;t be shared with the customer.
           </p>
         </div>
 
@@ -447,7 +435,7 @@ function AddCustomers() {
           </div>
           <div className="p-4 pt-2">
             <input
-            placeholder="Note"
+              placeholder="Note"
               type="text"
               name="Note"
               className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -472,7 +460,7 @@ function AddCustomers() {
           </div>
           <div className="p-4 pt-2">
             <input
-            placeholder="Tags"
+              placeholder="Tags"
               type="text"
               name="Tags"
               className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -498,7 +486,6 @@ function AddCustomers() {
 
       <div className="flex justify-center px-7 py-5  ">
         <div className="flex items-center gap-3 text-[14px]">
-          
           <button
             onClick={handleFormSubmit}
             className="bg-[#303030]  py-[5px] px-[20px] rounded-lg hover:bg-[rgba(74,74,74,1)] text-white"
