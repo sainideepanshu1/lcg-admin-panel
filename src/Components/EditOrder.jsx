@@ -154,7 +154,7 @@ function EditOrder() {
             </div>
         </div>
         <div className='flex flex-col gap-4 w-[30%] xl:w-[100%]'>
-            <div className='xl:w-[100%]  border-[1px bg-white py-[15px]	 shadow-md rounded-[8px]'>
+            <div className='xl:w-[100%]  border-[1px bg-white py-[15px]	 shadow-md rounded-[8px]'> 
 
             </div>
         </div>
