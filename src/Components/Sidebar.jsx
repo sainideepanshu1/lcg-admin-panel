@@ -37,6 +37,15 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to='/draftorders'
+                >
+                  <TfiAngleDoubleRight />
+                  Draft Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/products"
                 >
                   <IoMdPricetag /> Products
@@ -102,10 +111,10 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       </div>
       <div
         className={`h-screen w-full transition-all duration-500 z-10 bg-[#00000080] top-[48px] hidden sm:absolute ${
-          isSidebarOpen ? "sm:left-0" : "sm:left-[-100%]"
+          isSidebarOpen ? 'sm:left-0' : 'sm:left-[-100%]'
         }  sm:block fixed`}
         onClick={(e) => {
-          if (e.target.classList.contains("bg-[#00000080]")) {
+          if (e.target.classList.contains('bg-[#00000080]')) {
             toggleSidebar();
           }
         }}

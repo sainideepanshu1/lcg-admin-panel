@@ -241,14 +241,14 @@ const Createorder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex w-full justify-between">
-                    <div className='flex gap-8'>
-                      <div></div>
+                  <div className="flex w-[100%]  justify-between">
+                    <div className='flex w-[70%] gap-8'>
+                      <div className='w-[10%]'></div>
                       <div>
                         <h1>Product</h1>
                       </div>
                     </div>
-                    <div className="flex gap-8">
+                    <div className="flex w-[30%] gap-8">
                       <div>
                         <h1>Quantity</h1>
                       </div>
@@ -256,29 +256,29 @@ const Createorder = () => {
                       <div>
                         <h1>Total</h1>
                       </div>
-                      <div></div>
+                      <div className=''></div>
                     </div>
                   </div>
-                  <div className="flex w-full justify-between">
-                    <div className='flex gap-2'>
+                  <div className="flex w-100% justify-between">
+                    <div className='flex gap-2 w-[70%] '>
                       <div className='w-[45px] h-[45px]'> <img src={Product2} alt="pic" /></div>
                       <div>
                         <h1 className='text-[13px] text-[#4260da]'>1st Birthday Sublimation Baby Frame</h1>
                         <h1  className='text-[13px]'>Without Gift Wrap</h1>
                         <h1  className='text-[13px]'>SKU: LCG-BF-BSBF-0001</h1>
-                        <span className=" text-[#4260da] text-heading">
+                        <span className=" text-[#4260da]  text-heading">
                           &#8377;899.00{' '}
                         </span>
                       </div>
                     </div>
-                    <div className="flex gap-8">
+                    <div className="flex w-[30%] gap-5 items-center">
                     <div>
                                 
-                                <div className="group border-[#8a8a8a] border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <div className="group border-[#8a8a8a]  border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
                                   <input
                                     type="number"
                                     placeholder="1"
-                                    className="w-[95%] px-1 rounded-[0.5rem] outline-none focus:outline-none"
+                                    className=" px-1 w-[60px] rounded-[0.5rem] outline-none focus:outline-none"
                                   />
                               
                                 </div>
