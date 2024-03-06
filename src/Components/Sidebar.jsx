@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdPerson } from "react-icons/io";
 import { TbBrandGoogleAnalytics } from "react-icons/tb";
+import { TfiAngleDoubleRight } from "react-icons/tfi";
 import { PiDivideFill } from "react-icons/pi";
 import { TbTargetArrow } from "react-icons/tb";
 import { FaInbox } from "react-icons/fa6";
