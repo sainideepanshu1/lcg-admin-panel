@@ -15,6 +15,7 @@ import { useState } from "react";
 function Restock() {
   const[counter,setCount]=useState(0)
 
+
   const handleInc=()=>{
     if(counter!==1)
   setCount(counter+1) 
@@ -25,7 +26,7 @@ function Restock() {
   }
 
   return (
-    <div className="bg-[#F1F1F1] w-full h-[100%] :px-[100px] md:px[10px]">
+    <div className="bg-[#F1F1F1] w-full h-[100%] md:px[10px]">
       <div className="my-6  px-7 py-1 sm:px-6 xm:px-2 ">
         <div className="flex gap-2 items-center  ">
           <div className="">
@@ -75,7 +76,7 @@ function Restock() {
               </p>
             </div>
 
-            <div className=" flex justify-between items-start mx-[10px] border-[1px] px-[10px] my-[10px] py-[10px] rounded-lg ">
+            <div className=" flex xm:flex-wrap gap-2 justify-between items-start mx-[10px] border-[1px] px-[10px] my-[10px] py-[10px] rounded-lg ">
               <div className="  flex items-start gap-[10px]">
                 <div className=" w-[43px] h-[40px] object-contain ">
                   <img className="rounded-md" src={Product2} alt="" />
