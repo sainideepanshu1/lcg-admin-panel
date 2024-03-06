@@ -102,9 +102,9 @@ const Createorder = () => {
                       </div>
                       <label
                         onClick={() => setItem(!item)}
-                        // ref={itemref}
-                        className="text-[12px] text-[#0068d9] "
-                        htmlFor=""
+                        
+                        className="text-[12px] text-[#0068d9]  cursor-pointer hover:underline  "
+                      
                       >
                         Add custom item
                       </label>
@@ -113,8 +113,8 @@ const Createorder = () => {
                       <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
                         <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
                           <div className="flex border-b-2  p-3 bg-[#f3f3f3] rounded-t-xl justify-between">
-                            <div className="">
-                              <h2>Add custom item</h2>
+                            <div >
+                              <h2 className="cursor-pointer">Add custom item</h2>
                             </div>
                             <div>
                               <div

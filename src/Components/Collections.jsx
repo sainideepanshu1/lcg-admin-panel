@@ -1,10 +1,9 @@
-import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { CgSortAz } from "react-icons/cg";
 import { CiViewColumn } from "react-icons/ci";
 import { SlArrowDown, SlArrowUp } from "react-icons/sl";
 import { Link } from "react-router-dom";
-import Pic1 from '../assets/Product1.jpg'
+import Pic1 from "../assets/Product1.jpg";
 
 const Collections = () => {
   return (
@@ -91,33 +90,28 @@ const Collections = () => {
                 </div>
               </div>
 
-
-              <div
-              className="w-full border-l-0 border-r-0 px-2 pl-[1rem] hidden xm:block lg:hidden items-center border border-y-gray-100 text-[#30304b] text-[0.813rem] pt-3 pb-3">
-
+              <div className="w-full border-l-0 border-r-0 px-2 pl-[1rem] hidden xm:block lg:hidden items-center border border-y-gray-100 text-[#30304b] text-[0.813rem] pt-3 pb-3">
                 <div className="flex gap-4">
                   <div>
-                    <img className="h-[45px] w-[45px] rounded-xl " src={Pic1} alt="Pic" />
+                    <img
+                      className="h-[45px] w-[45px] rounded-xl "
+                      src={Pic1}
+                      alt="Pic"
+                    />
                   </div>
                   <div>
                     <div className="flex font-[450] gap-2 items-center text-heading group ">
-                      <Link to="/product">
-                      Title
-                      </Link>
+                      <Link to="/product">Title</Link>
                     </div>
                     <div className="text-[12px] text-[#666161] font-[450] flex gap-2 items-center group ">
-                    Products
-
+                      Products
                     </div>
                     <div className="text-[12px] text-[#666161] font-[450] flex gap-2 group items-center cursor-pointer ">
-                    Product conditions
+                      Product conditions
                     </div>
-                 
                   </div>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>

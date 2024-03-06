@@ -2,20 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width:1918px) {
-  .destop_type{
+@media (max-width: 1918px) {
+  .destop_type {
     grid-template-columns: 0.3fr 1.5fr;
   }
-  
 }
 
-.table-heading{
+.table-heading {
   grid-template-columns: 1.5fr 1.5fr;
 }
-@media (max-width:767px) {
-  .table-heading{
+@media (max-width: 767px) {
+  .table-heading {
     grid-template-columns: 0.3fr 1.7fr;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 :root,

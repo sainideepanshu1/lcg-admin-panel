@@ -1,15 +1,14 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { AiFillHome } from 'react-icons/ai';
-import { IoMdPerson } from 'react-icons/io';
-import { TbBrandGoogleAnalytics } from 'react-icons/tb';
-import { PiDivideFill } from 'react-icons/pi';
-import { TbTargetArrow } from 'react-icons/tb';
-import { FaInbox } from 'react-icons/fa6';
-import { IoMdPricetag } from 'react-icons/io';
-import { TbSettingsFilled } from 'react-icons/tb';
-import { HiCollection } from 'react-icons/hi';
-import { TfiAngleDoubleRight } from 'react-icons/tfi';
+/* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+import { AiFillHome } from "react-icons/ai";
+import { IoMdPerson } from "react-icons/io";
+import { TbBrandGoogleAnalytics } from "react-icons/tb";
+import { PiDivideFill } from "react-icons/pi";
+import { TbTargetArrow } from "react-icons/tb";
+import { FaInbox } from "react-icons/fa6";
+import { IoMdPricetag } from "react-icons/io";
+import { TbSettingsFilled } from "react-icons/tb";
+import { HiCollection } from "react-icons/hi";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
   return (
