@@ -15,6 +15,7 @@ import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
 import Draftorders from "./Components/Draftorders";
+import Abandoendcheck from "./Components/AbandoendCheck";
 
 
 
@@ -47,7 +48,7 @@ function App() {
           <Route path="/orders/create-order" element={<Createorder/>} />
           <Route path="/orders/order-details" element={<OrderDetails/>} />
           <Route path="/draftorders" element={<Draftorders/>} />
-          
+          <Route path="/Abandoned" element={<Abandoendcheck/>} />
           
         </Routes>
       </div>
