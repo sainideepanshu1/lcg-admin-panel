@@ -108,7 +108,7 @@ const Createorder = () => {
                       </label>
                     </div>
                     {item && (
-                      <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-start justify-center backdrop-blur-sm">
+                      <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
                         <div className="rounded-xl my-4 bg-white   w-[45%] shadow-md ">
                           <div className="flex items-center  px-3 py-2 bg-[#f3f3f3] rounded-t-xl justify-between">
                             <div>
