@@ -1,19 +1,11 @@
-import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { CgSortAz } from 'react-icons/cg';
-import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { Link } from 'react-router-dom';
-import { BsThreeDots } from 'react-icons/bs';
-import axios from 'axios';
 import { TbArrowsSort } from 'react-icons/tb';
 import { IoIosSearch } from 'react-icons/io';
-import Skeleton from 'react-loading-skeleton';
-
 import 'react-loading-skeleton/dist/skeleton.css';
 import {
-  FaChevronLeft,
-  FaChevronRight,
   FaLongArrowAltDown,
   FaLongArrowAltUp,
 } from 'react-icons/fa';
@@ -163,14 +155,14 @@ const Orders = () => {
               </span>
               {sort && (
                 <div className="  ">
-                  <div className=" flex  p-[20px] flex-col bg-white border-[1px] absolute  top-[226px] right-[60px]   rounded-lg  text-heading gap-2  xm:top-[175px]  xm:right-[4px] ">
+                  <div className=" flex  p-[20px] flex-col bg-white border-[1px] absolute  top-[226px] right-[60px]   rounded-lg  text-heading gap-1  xm:top-[175px]  xm:right-[4px] ">
                     <h1>Sort by</h1>
-                    <div className="flex flex-col gap-4 items-start">
+                    <div className="flex flex-col gap-2 items-start">
                       <label className="flex gap-2 items-center">
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_title"
+                          value="Order_number"
                         />
                         Order number
                       </label>
@@ -178,7 +170,7 @@ const Orders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="created"
+                          value="date"
                         />
                        Date
                       </label>
@@ -186,7 +178,7 @@ const Orders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="updated"
+                          value="Items"
                         />
                        Items
                       </label>
@@ -194,7 +186,7 @@ const Orders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="inventory"
+                          value="Destination"
                         />
                         Destination
                       </label>
@@ -202,19 +194,19 @@ const Orders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_type"
+                          value="Customer_name"
                         />
                         Customer name
                       </label>
                       <label className="flex gap-2 items-center">
-                        <input type="radio" name="sort_option" value="vendor" />
+                        <input type="radio" name="sort_option" value="payment_status" />
                         Payment status
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_type"
+                          value=" fulfillment_status"
                         />
                         Fulfillment status
                       </label>
@@ -222,7 +214,7 @@ const Orders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_type"
+                          value="total"
                         />
                         Total
                       </label>
@@ -230,7 +222,7 @@ const Orders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_type"
+                          value="Channel"
                         />
                         Channel
                       </label>
