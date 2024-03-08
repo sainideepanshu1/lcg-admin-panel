@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { LuAlertTriangle } from "react-icons/lu";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
@@ -10,12 +10,12 @@ function AddCustomers() {
     email: "",
     phoneNumber: "",
   });
+
   const [errors, setErrors] = useState({
     firstName: "",
     email: "",
     phoneNumber: "",
   });
-
   
  
 // ---------------form vaildition----
@@ -23,9 +23,8 @@ function AddCustomers() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const handleFormSubmit = (e) => {  
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-
 
     if (!formData.firstName.trim()) {
       setErrors({ ...errors, firstName: "First name is required" });
@@ -33,23 +32,17 @@ function AddCustomers() {
       setErrors({ ...errors, firstName: "" });
     }
 
- 
-
-
     if (!formData.phoneNumber.trim()) {
-      setErrors({...errors,phoneNumber:"Phone number is required"})
-     
+      setErrors({ ...errors, phoneNumber: "Phone number is required" });
     } else if (!/^\d{10}$/.test(formData.phoneNumber)) {
-      setErrors({...errors,phoneNumber:"Invalid phone number format"})
-    }
-    else{
-      setErrors({...errors,phoneNumber:""})
-    }
-    setErrors(formErrors);
-    if (Object.values(formErrors).every(error => !error)) {
-      
+      setErrors({ ...errors, phoneNumber: "Invalid phone number format" });
+    } else {
+      setErrors({ ...errors, phoneNumber: "" });
     }
 
+    if (Object.values(errors).every((error) => !error)) {
+      // Form submission logic (execute only if there are no errors)
+    }
   };
 
   return (
@@ -103,14 +96,14 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2 ">
                 <input
-                placeholder="First Name"
+                  placeholder="First Name"
                   type="text"
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleInputChange}
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                 />
-                {errors.firstName &&  (
+                {errors.firstName && (
                   <p className="text-[#ff0000e5] py-[3px]">
                     {errors.firstName}*
                   </p>
@@ -126,7 +119,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="Last name"
+                  placeholder="Last name"
                   type="text"
                   name="Last name"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -145,18 +138,18 @@ function AddCustomers() {
                 </div>
                 <div className="p-4 pt-2">
                   <input
-                  placeholder="Email"
+                    placeholder="Email"
                     type="Email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
                     className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
                   />
-                     {/* {errors.email && (
+                  {/* {errors.email && (
                   <p className="text-[#ff0000e5] py-[3px]">
                     {errors.email}*
                   </p> */}
-                {/* )} */}
+                  {/* )} */}
                 </div>
                 {/* {errors.firstName && (
                   <p className="text-[#ff0000e5] py-[3px]">
@@ -175,18 +168,18 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="Phone Number"
+                placeholder="Phone Number"
                 type="text"
                 value={formData.phoneNumber}
                 onChange={handleInputChange}
                 name="phoneNumber"
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
               />
-               {errors.phoneNumber && (
-                  <p className="text-[#ff0000e5] py-[3px]">
-                    {errors.phoneNumber}*
-                  </p>
-                )}
+              {errors.phoneNumber && (
+                <p className="text-[#ff0000e5] py-[3px]">
+                  {errors.phoneNumber}*
+                </p>
+              )}
             </div>
           </div>
 
@@ -208,8 +201,6 @@ function AddCustomers() {
               them to your marketing emails or SMS.
             </p>
           </div>
-
-         
         </div>
       </div>
 
@@ -232,7 +223,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2 ">
                 <input
-                placeholder="First name"
+                  placeholder="First name"
                   type="text"
                   name="First name"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -248,7 +239,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="Last name"
+                  placeholder="Last name"
                   type="text"
                   name="Last name"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -266,7 +257,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="Company"
+                  placeholder="Company"
                   type="text"
                   name="Company"
                   className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -287,7 +278,7 @@ function AddCustomers() {
                   <IoSearch />
                 </span>
                 <input
-                placeholder="Address"
+                  placeholder="Address"
                   type="text"
                   name="Address"
                   className="py-[6px]   mx-3 w-full text-heading outline-none"
@@ -304,7 +295,7 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="Apartment,suite,etc."
+                placeholder="Apartment,suite,etc."
                 type="text"
                 name="Apartment, suite, etc."
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -321,7 +312,7 @@ function AddCustomers() {
               </div>
               <div className="p-4 pt-2">
                 <input
-                placeholder="City"
+                  placeholder="City"
                   type="text"
                   name="City"
                   className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -337,43 +328,43 @@ function AddCustomers() {
               <option value="" disabled>
                 Select a state
               </option>
-              <option value="Active">Andaman and Nicobar Islands</option>
-              <option value="Draft">Andhra Pradesh</option>
-              <option value="Draft">Arunachal Pradesh </option>
-              <option value="Draft">Assam </option>
-              <option value="Draft">Bihar </option>
-              <option value="Draft">Chandigarh </option>
-              <option value="Draft">Chhattisgarh </option>
-              <option value="Draft">Dadra and Nagar Haveli </option>
-              <option value="Draft">Daman and Diu </option>
-              <option value="Draft">Delhi </option>
-              <option value="Draft">Goa </option>
-              <option value="Draft">Gujarat </option>
-              <option value="Draft">Haryana </option>
-              <option value="Draft">Himachal Pradesh </option>
-              <option value="Draft">Jammu and Kashmir </option>
-              <option value="Draft">Jharkhand </option>
-              <option value="Draft">Karnataka </option>
-              <option value="Draft">Kerala </option>
-              <option value="Draft">Ladakh </option>
-              <option value="Draft">Lakshadweep </option>
-              <option value="Draft">Madhya Pradesh </option>
-              <option value="Draft">Maharashtra </option>
-              <option value="Draft">Manipur </option>
-              <option value="Draft">Meghalaya </option>
-              <option value="Draft">Mizoram </option>
-              <option value="Draft">Mizoram </option>
-              <option value="Draft">Odisha </option>
-              <option value="Draft">Puducherry </option>
-              <option value="Draft">Punjab </option>
-              <option value="Draft">Rajasthan </option>
-              <option value="Draft">Sikkim </option>
-              <option value="Draft">Tamil Nadu </option>
-              <option value="Draft">Telangana </option>
-              <option value="Draft">Tripura </option>
-              <option value="Draft">Uttar Pradesh </option>
-              <option value="Draft">Uttarakhand </option>
-              <option value="Draft">West Bengal </option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh </option>
+              <option value="Assam ">Assam </option>
+              <option value="Bihar">Bihar </option>
+              <option value="Chandigarh">Chandigarh </option>
+              <option value="Chhattisgarh ">Chhattisgarh </option>
+              <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli </option>
+              <option value="DrDaman and Diu aft">Daman and Diu </option>
+              <option value="Delhi">Delhi </option>
+              <option value="Goa">Goa </option>
+              <option value="Gujarat">Gujarat </option>
+              <option value="Haryana">Haryana </option>
+              <option value="Himachal Pradesh ">Himachal Pradesh </option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir </option>
+              <option value="Jharkhand">Jharkhand </option>
+              <option value="Karnataka">Karnataka </option>
+              <option value="Kerala ">Kerala </option>
+              <option value="Ladakh ">Ladakh </option>
+              <option value="Lakshadweep">Lakshadweep </option>
+              <option value="Madhya Pradesh ">Madhya Pradesh </option>
+              <option value="Maharashtra">Maharashtra </option>
+              <option value="Manipur">Manipur </option>
+              <option value="Meghalaya">Meghalaya </option>
+              <option value="Mizoram">Mizoram </option>
+              <option value="Mizoram">Mizoram </option>
+              <option value="Odisha">Odisha </option>
+              <option value="Puducherry">Puducherry </option>
+              <option value="Punjab">Punjab </option>
+              <option value="Rajasthan">Rajasthan </option>
+              <option value="Sikkim">Sikkim </option>
+              <option value="Tamil Nadu">Tamil Nadu </option>
+              <option value="Telangana">Telangana </option>
+              <option value="Tripura">Tripura </option>
+              <option value="Uttar Pradesh">Uttar Pradesh </option>
+              <option value="Uttarakhand">Uttarakhand </option>
+              <option value="West Bengal ">West Bengal </option>
             </select>
           </div>
 
@@ -385,7 +376,7 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="PIN code"
+                placeholder="PIN code"
                 type="text"
                 name="Apartment, suite, etc."
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -401,14 +392,11 @@ function AddCustomers() {
             </div>
             <div className="p-4 pt-2">
               <input
-              placeholder="Phone"
+                placeholder="Phone"
                 type="text"
                 name="Phone"
                 className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
               />
-
-              
-              
             </div>
           </div>
         </div>
@@ -437,7 +425,7 @@ function AddCustomers() {
         <div className=" flex flex-col gap-2 text-[14px] font-semibold">
           <h3 className="font-bold">Notes</h3>
           <p className="text-[#616161]">
-            Notes are private and won't be shared with the customer.
+            Notes are private and won&apos;t be shared with the customer.
           </p>
         </div>
 
@@ -447,7 +435,7 @@ function AddCustomers() {
           </div>
           <div className="p-4 pt-2">
             <input
-            placeholder="Note"
+              placeholder="Note"
               type="text"
               name="Note"
               className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -472,7 +460,7 @@ function AddCustomers() {
           </div>
           <div className="p-4 pt-2">
             <input
-            placeholder="Tags"
+              placeholder="Tags"
               type="text"
               name="Tags"
               className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
@@ -498,7 +486,6 @@ function AddCustomers() {
 
       <div className="flex justify-center px-7 py-5  ">
         <div className="flex items-center gap-3 text-[14px]">
-          
           <button
             onClick={handleFormSubmit}
             className="bg-[#303030]  py-[5px] px-[20px] rounded-lg hover:bg-[rgba(74,74,74,1)] text-white"

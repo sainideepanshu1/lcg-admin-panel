@@ -1,4 +1,4 @@
- import toast from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { CgSortAz } from 'react-icons/cg';
