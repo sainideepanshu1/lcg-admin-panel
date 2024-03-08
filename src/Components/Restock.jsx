@@ -14,8 +14,6 @@ import { useState } from "react";
 
 function Restock() {
   const[counter,setCount]=useState(0)
-
-
   const handleInc=()=>{
     if(counter!==1)
   setCount(counter+1) 
@@ -24,6 +22,7 @@ function Restock() {
     if(counter!==0)
     setCount(counter-1) 
   }
+
 
   return (
     <div className="bg-[#F1F1F1] w-full h-[100%] md:px[10px]">
@@ -146,6 +145,7 @@ function Restock() {
             </div>
           </div>
 
+
           <div className=" flex flex-col gap-2 border-[1px] w-full   bg-white py-[15px]	 shadow-md rounded-[8px] px-[8px]">
             <h3 className="text-[#303030] text-[14px] font-semibold">
               Reason for refund
@@ -171,7 +171,7 @@ function Restock() {
               <div className="flex flex-col gap-2  px-[15px]">
                <div className="">
                 <div className="flex justify-between">
-                  <h3 className="text-[14px]">Item subtotal</h3>
+                  <h3 className="text-[14px]">Updated total</h3>
                
                 <div className="flex items-center text-[14px] ">
                 <span className="flex items-center">
