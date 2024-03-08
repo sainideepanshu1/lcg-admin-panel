@@ -1,17 +1,17 @@
-import { FaArrowLeftLong } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import { GoPencil } from "react-icons/go";
-import { CiSearch } from "react-icons/ci";
-import { AiOutlineInfoCircle } from "react-icons/ai";
-import { useEffect, useRef, useState } from "react";
-import { IoIosClose } from "react-icons/io";
-import { CgAdd } from "react-icons/cg";
-import { BsEmojiSmile } from "react-icons/bs";
-import { CiAt } from "react-icons/ci";
-import Product2 from "../assets/Product2.jpg";
-import { FiHash } from "react-icons/fi";
-import { GrSquare } from "react-icons/gr";
-import { MdDelete } from "react-icons/md";
+import { FaArrowLeftLong } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
+import { GoPencil } from 'react-icons/go';
+import { CiSearch } from 'react-icons/ci';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { useEffect, useRef, useState } from 'react';
+import { IoIosClose } from 'react-icons/io';
+import { CgAdd } from 'react-icons/cg';
+import { BsEmojiSmile } from 'react-icons/bs';
+import { CiAt } from 'react-icons/ci';
+import Product2 from '../assets/Product2.jpg';
+import { FiHash } from 'react-icons/fi';
+import { GrSquare } from 'react-icons/gr';
+import { MdDelete } from 'react-icons/md';
 
 const Createorder = () => {
   const [show, setShow] = useState(false);
@@ -24,15 +24,15 @@ const Createorder = () => {
   const [browse, setbrowse] = useState(false);
   const browseref = useRef(null);
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const handlechange = (e) => {
     setInputValue(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.trim()!== "") {
+    if (inputValue.trim() !== '') {
       settodos([...todos, inputVlauetrim()]);
-      setInputValue("");
+      setInputValue('');
     }
   };
   const handleDelete = (index) => {
@@ -47,9 +47,9 @@ const Createorder = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener("click", handleclick, true);
+    document.addEventListener('click', handleclick, true);
     return () => {
-      document.removeEventListener("click", handleclick);
+      document.removeEventListener('click', handleclick);
     };
   });
   const browseclick = (event) => {
@@ -58,9 +58,9 @@ const Createorder = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener("click", browseclick, true);
+    document.addEventListener('click', browseclick, true);
     return () => {
-      document.removeEventListener("click", browseclick);
+      document.removeEventListener('click', browseclick);
     };
   });
 
@@ -70,9 +70,9 @@ const Createorder = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener("click", notesclick, true);
+    document.addEventListener('click', notesclick, true);
     return () => {
-      document.removeEventListener("click", notesclick);
+      document.removeEventListener('click', notesclick);
     };
   });
   return (
@@ -207,15 +207,14 @@ const Createorder = () => {
                           <hr />
 
                           <div className="flex  justify-end  px-3 py-4 gap-2 rounded-b-xl ">
-                            <button 
-  onClick={() => setItem(!item)} className=" text-[black] rounded-lg border  px-3 py-1  text-[12px]">
+                            <button
+                              onClick={() => setItem(!item)}
+                              className=" text-[black] rounded-lg border  px-3 py-1  text-[12px]"
+                            >
                               Cancel
                             </button>
 
                             <button
-                              // onClick={() => {
-                              //   setnotes(false);
-                              // }}
                               className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
                               type="Submit"
                             >
@@ -272,7 +271,7 @@ const Createorder = () => {
                   <div className="flex w-100% justify-between">
                     <div className="flex gap-2 w-[70%] ">
                       <div className="w-[45px] h-[45px]">
-                        {" "}
+                        {' '}
                         <img src={Product2} alt="pic" />
                       </div>
                       <div>
@@ -282,7 +281,7 @@ const Createorder = () => {
                         <h1 className="text-[13px]">Without Gift Wrap</h1>
                         <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
                         <span className=" text-[#4260da]  text-heading">
-                          &#8377;899.00{" "}
+                          &#8377;899.00{' '}
                         </span>
                       </div>
                     </div>
@@ -299,11 +298,11 @@ const Createorder = () => {
 
                       <div>
                         <span className=" text-[#4260da] text-heading">
-                          &#8377;899.00{" "}
+                          &#8377;899.00{' '}
                         </span>
                       </div>
                       <div>
-                        {" "}
+                        {' '}
                         <MdDelete />
                       </div>
                     </div>
@@ -326,7 +325,7 @@ const Createorder = () => {
                           </div>
                         </div>
                       </div>
-                      <hr/>
+                      <hr />
                       <div className="p-2 w-full">
                         <div className="hover:bg-[#FAFAFA]  gap-1 flex items-center text-[0.8125rem] text-[#303030] w-full border-[0.04125rem] border-[#8a8a8a] font-sans  pl-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]">
                           <div className="text-[16px]">
@@ -341,7 +340,7 @@ const Createorder = () => {
                           />
                         </div>
                       </div>
-                      <hr/>
+                      <hr />
 
                       <div className="justify-between flex flex-col overflow-y-auto">
                         <div className="hover:bg-[#E3E3E3] p-2 ">
@@ -355,27 +354,27 @@ const Createorder = () => {
                           </h1>
                         </div>
 
-                       
-                        <hr/>
+                        <hr />
                         <div className="hover:bg-[#E3E3E3] p-2  ">
                           <h1 className="text-heading text-[#737373] font-[550] ">
                             Collections
                           </h1>
                         </div>
-                        <hr/>
+                        <hr />
                         <div className="hover:bg-[#E3E3E3] p-2  ">
                           <h1 className="text-heading text-[#737373] font-[550] ">
                             Vendors
                           </h1>
                         </div>
                       </div>
-                      <hr/>
+                      <hr />
                       <div className="flex  justify-between  p-3 rounded-b-xl ">
-                        <div className="">
-                       
-                        </div>
+                        <div className=""></div>
                         <div className="flex gap-2">
-                          <button   onClick={() => setbrowse(!browse)} className=" text-[black] rounded-lg border  px-3 py-1 text-[12px]">
+                          <button
+                            onClick={() => setbrowse(!browse)}
+                            className=" text-[black] rounded-lg border  px-3 py-1 text-[12px]"
+                          >
                             Cancel
                           </button>
 
@@ -409,7 +408,7 @@ const Createorder = () => {
                         </div>
                         <div></div>
                         <span className="text-[#616161] text-heading">
-                          &#8377;0.00{" "}
+                          &#8377;0.00{' '}
                         </span>
                       </div>
                       <div className="flex justify-between text-[#bcbab7] ">
@@ -443,10 +442,10 @@ const Createorder = () => {
                       </div>
                       <div className="flex justify-between text-[#bcbab7] ">
                         <div className="text-heading flex items-center gap-1 w-[180px]">
-                          Estimated tax{" "}
+                          Estimated tax{' '}
                           <div className="text-[#616161] text-[16px]">
                             <AiOutlineInfoCircle />
-                          </div>{" "}
+                          </div>{' '}
                         </div>
                         <div className=" w-[100px]  text-heading">
                           Not calculated
@@ -456,14 +455,14 @@ const Createorder = () => {
                       </div>
                       <div className="flex justify-between">
                         <div className="text-heading text-heading-color w-[180px] font-[650]">
-                          Total{" "}
+                          Total{' '}
                         </div>
                         <div className="text-[#616161]  w-[100px]  text-heading">
                           ---
                         </div>
                         <div></div>
                         <span className="text-[#616161] text-heading font-[650]">
-                          &#8377;0.00{" "}
+                          &#8377;0.00{' '}
                         </span>
                       </div>
                     </div>
@@ -540,7 +539,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{" "}
+                              Order Confirmation email for order{' '}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -565,7 +564,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{" "}
+                              Order Confirmation email for order{' '}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -590,7 +589,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{" "}
+                              Order Confirmation email for order{' '}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -615,7 +614,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{" "}
+                              Order Confirmation email for order{' '}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -716,9 +715,9 @@ const Createorder = () => {
                         </h1>
                       </div>
                       <div
-                        className={`p-4 pt-2 relative ${item ? "-z-10" : ""} ${
-                          notes ? "-z-10" : ""
-                        }  ${browse ? "-z-10" : ""}`}
+                        className={`p-4 pt-2 relative ${item ? '-z-10' : ''} ${
+                          notes ? '-z-10' : ''
+                        }  ${browse ? '-z-10' : ''}`}
                       >
                         <div className="py-[6px] hover:bg-[#FAFAFA]  px-3 w-full gap-1 flex items-center rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading">
                           <div className="text-[16px]">
@@ -747,31 +746,31 @@ const Createorder = () => {
                             <div className="pt-2">
                               <div className="text-[12px] flex flex-col text-[#303030] w-full py-1  hover:bg-[#f7f7f7] rounded pl-2  ">
                                 <div>
-                                  {" "}
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1> ajaygsss1@123o,hmail</h1>
                                 </div>
                               </div>
                               <div className="text-[12px] flex flex-col text-[#303030] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
                                 <div>
-                                  {" "}
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1> ajaygsss1@123o,hmail</h1>
                                 </div>
                               </div>
                               <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2   ">
                                 <div>
-                                  {" "}
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1> ajaygsss1@123o,hmail</h1>
                                 </div>
                               </div>
                               <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
                                 <div>
-                                  {" "}
+                                  {' '}
                                   <h1>ajay</h1>
                                   <h1>
-                                    {" "}
+                                    {' '}
                                     ajaygsss1@123ohfjgkhlj;k'kjlhkgjfhdsgafda,hmail
                                   </h1>
                                 </div>

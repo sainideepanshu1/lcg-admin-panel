@@ -1,17 +1,34 @@
-/* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
-import { AiFillHome } from "react-icons/ai";
-import { IoMdPerson } from "react-icons/io";
-import { TbBrandGoogleAnalytics } from "react-icons/tb";
-import { TfiAngleDoubleRight } from "react-icons/tfi";
-import { PiDivideFill } from "react-icons/pi";
-import { TbTargetArrow } from "react-icons/tb";
-import { FaInbox } from "react-icons/fa6";
-import { IoMdPricetag } from "react-icons/io";
-import { TbSettingsFilled } from "react-icons/tb";
-import { HiCollection } from "react-icons/hi";
+import { useEffect, useState } from 'react';
+import { useRef } from 'react';
+import { Link } from 'react-router-dom';
+import { AiFillHome } from 'react-icons/ai';
+import { IoMdPerson } from 'react-icons/io';
+import { TbBrandGoogleAnalytics } from 'react-icons/tb';
+import { TfiAngleDoubleRight } from 'react-icons/tfi';
+import { PiDivideFill } from 'react-icons/pi';
+import { TbTargetArrow } from 'react-icons/tb';
+import { FaInbox } from 'react-icons/fa6';
+import { IoMdPricetag } from 'react-icons/io';
+import { TbSettingsFilled } from 'react-icons/tb';
+import { HiCollection } from 'react-icons/hi';
+import { GoReply } from 'react-icons/go';
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+  const [Order, setOrder] = useState();
+  const Orderref = useRef(null);
+
+  const handleOrderClick = (event) => {
+    if (Orderref.current && !Orderref.current.contains(event.target)) {
+      setOrder(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleOrderClick);
+
+    return () => {
+      document.removeEventListener('click', handleOrderClick);
+    };
+  }, []);
   return (
     <>
       <div className="h-screen w-[17%] sticky top-0 sm:hidden ">
@@ -29,30 +46,47 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               </li>
               <li>
                 <Link
+                  ref={Orderref}
+                  onClick={() => {
+                    setOrder(!Order);
+                  }}
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/orders"
                 >
                   <FaInbox /> Orders
                 </Link>
               </li>
-              <li>
-                <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to='/draftorders'
-                >
-                  <TfiAngleDoubleRight />
-                  Draft Orders
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to='/Abandoned'
-                >
-                  <TfiAngleDoubleRight />
-                  Abandoned 
-                </Link>
-              </li>
+              {Order && (
+                <div className="">
+                  <li>
+                    <Link
+                      className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] group rounded-lg"
+                      to="/draftorders"
+                    >
+                      <div className='w-3'>
+                        <div className="rotate-180  hidden group-hover:block">
+                          <GoReply />
+                        </div>
+                      </div>
+                      Draft Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] group rounded-lg"
+                      to="/Abandoned"
+                    >
+                     <div className='w-3'>
+                        <div className="rotate-180 hidden group-hover:block">
+                          <GoReply />
+                        </div>
+                      </div>
+                      Abandoned
+                    </Link>
+                  </li>
+                </div>
+              )}
+
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
@@ -154,7 +188,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li>
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to='/draftorders'
+                  to="/draftorders"
                   onClick={toggleSidebar}
                 >
                   <TfiAngleDoubleRight /> Draft Orders
@@ -163,10 +197,10 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li>
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to='/Abandoned'
+                  to="/Abandoned"
                   onClick={toggleSidebar}
                 >
-                  <TfiAngleDoubleRight /> Abandoned 
+                  <TfiAngleDoubleRight /> Abandoned
                 </Link>
               </li>
               <li>

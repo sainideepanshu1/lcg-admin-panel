@@ -6,15 +6,15 @@ import { TbArrowsSort } from 'react-icons/tb';
 import { IoIosSearch } from 'react-icons/io';
 import { IoChevronForwardCircleOutline } from 'react-icons/io5';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {
-  FaLongArrowAltDown,
-  FaLongArrowAltUp,
-} from 'react-icons/fa';
+import { IoIosClose } from 'react-icons/io';
+import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
 import { useRef } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 
 const Abandoendcheck = () => {
-  
+  const [Export, setExport] = useState(false);
+  const Exportref = useRef(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [sort, setSort] = useState();
   const sortref = useRef(null);
@@ -44,7 +44,18 @@ const Abandoendcheck = () => {
     };
   }, []);
 
- 
+  const Exportclick = (event) => {
+    if (Exportref.current && !Exportref.current.contains(event.target)) {
+      setExport(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('click', Exportclick, true);
+    return () => {
+      document.removeEventListener('click', Exportclick);
+    };
+  });
+
   return (
     <>
       <div className="bg-[#f1f1f1] w-full  px-12 xm:px-0  sm:px-2 ">
@@ -56,15 +67,125 @@ const Abandoendcheck = () => {
             </h1>
           </div>
 
-          <button>
-            <Link
-              to="/orders/create-order"
-              className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
-            >
-              Export
-            </Link>
+          <button
+            onClick={() => setExport(!Export)}
+            className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
+          >
+            Export
           </button>
         </div>
+        {Export && (
+          <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
+            <div className="rounded-xl my-4 bg-white  w-[40%] sm:w-[80%] xm:w-[100%] shadow-md ">
+              <div className="flex   p-3 bg-[#f3f3f3] rounded-t-xl justify-between">
+                <div className="">
+                  <h2>Export abandoned checkouts</h2>
+                </div>
+                <div>
+                  <div
+                    onClick={() => setExport(!Export)}
+                    className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px]"
+                  >
+                    <IoIosClose />
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div className="p-6 flex flex-col gap-2">
+                <div className=" flex flex-col bg-white text-[13px] gap-2 ">
+                  <h1>Export</h1>
+                  <div className="flex flex-col gap-4 xm:text-[12px] items-start">
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="Current page"
+                      />
+                      Current page
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="All abandoned checkouts"
+                      />
+                      All abandoned checkouts
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="Selected: 0 abandoned checkouts"
+                      />
+                      Selected: 0 abandoned checkouts
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="50+ abandoned checkouts search"
+                      />
+                      50+ abandoned checkouts matching your search
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="
+                          Abandoned checkouts by date"
+                      />
+                      Abandoned checkouts by date
+                    </label>
+                  </div>
+                </div>
+                <div className=" flex flex-col bg-white text-[13px]  gap-2 ">
+                  <h1>Export as</h1>
+                  <div className="flex flex-col gap-4 xm:text-[12px] items-start">
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value=" CSV for Excel, Numbers,"
+                      />
+                      CSV for Excel, Numbers, or other spreadsheet programs
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="Plain CSV file"
+                      />
+                      Plain CSV file
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div className="flex  justify-between  p-3 rounded-b-xl ">
+                <div className=""></div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setExport(!Export)}
+                    className=" text-[black] rounded-lg border  px-3 py-1 text-[12px]"
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setnotes(false);
+                    }}
+                    className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+                    type="Submit"
+                  >
+                    Export abandoned checkouts
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* <-------table heding-------> */}
         <div className="rounded-lg mt-[24px]  xm:p-0 bg-[#ffffff] h-[80vh] overflow-x-hidden  w-full  flex flex-col border border-stone-200">
@@ -79,7 +200,7 @@ const Abandoendcheck = () => {
                   All
                 </button>
               </div>
-           
+
               <div>
                 <button>
                   <Link
@@ -157,7 +278,7 @@ const Abandoendcheck = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_title"
+                          value=" Checkout_number"
                         />
                         Checkout number
                       </label>
@@ -165,7 +286,7 @@ const Abandoendcheck = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="created"
+                          value="Date"
                         />
                         Date
                       </label>
@@ -173,7 +294,7 @@ const Abandoendcheck = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="updated"
+                          value="Customer name"
                         />
                         Customer name
                       </label>
@@ -181,7 +302,7 @@ const Abandoendcheck = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="inventory"
+                          value="Recovery status"
                         />
                         Recovery status
                       </label>
@@ -189,7 +310,7 @@ const Abandoendcheck = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_type"
+                          value="Total price"
                         />
                         Total price
                       </label>
@@ -285,7 +406,6 @@ const Abandoendcheck = () => {
               <div className="text-end ">
                 <h3> Total</h3>
               </div>
-             
             </div>
             <hr />
             <div

@@ -1,14 +1,9 @@
-import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { CgSortAz } from 'react-icons/cg';
-import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { Link } from 'react-router-dom';
-import { BsThreeDots } from 'react-icons/bs';
-import axios from 'axios';
 import { TbArrowsSort } from 'react-icons/tb';
 import { IoIosSearch } from 'react-icons/io';
-import Skeleton from 'react-loading-skeleton';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { LuCopyPlus } from 'react-icons/lu';
 import { RiErrorWarningLine } from 'react-icons/ri';
@@ -18,8 +13,6 @@ import { GoCheckbox } from 'react-icons/go';
 
 import 'react-loading-skeleton/dist/skeleton.css';
 import {
-  FaChevronLeft,
-  FaChevronRight,
   FaLongArrowAltDown,
   FaLongArrowAltUp,
 } from 'react-icons/fa';
@@ -230,7 +223,7 @@ const Draftorders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="product_title"
+                          value="Draft order number"
                         />
                         Draft order number
                       </label>
@@ -238,7 +231,7 @@ const Draftorders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="created"
+                          value="date"
                         />
                         Date
                       </label>
@@ -246,7 +239,7 @@ const Draftorders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="updated"
+                          value="status"
                         />
                         Status
                       </label>
@@ -254,7 +247,7 @@ const Draftorders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="inventory"
+                          value="total price"
                         />
                         Total price
                       </label>
