@@ -76,7 +76,7 @@ const Abandoendcheck = () => {
         </div>
         {Export && (
           <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
-            <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
+            <div className="rounded-xl my-4 bg-white  w-[40%] sm:w-[80%] xm:w-[100%] shadow-md ">
               <div className="flex   p-3 bg-[#f3f3f3] rounded-t-xl justify-between">
                 <div className="">
                   <h2>Export abandoned checkouts</h2>
@@ -94,7 +94,7 @@ const Abandoendcheck = () => {
               <div className="p-6 flex flex-col gap-2">
                 <div className=" flex flex-col bg-white text-[13px] gap-2 ">
                   <h1>Export</h1>
-                  <div className="flex flex-col gap-4 items-start">
+                  <div className="flex flex-col gap-4 xm:text-[12px] items-start">
                     <label className="flex gap-2 items-center">
                       <input
                         type="radio"
@@ -138,9 +138,9 @@ const Abandoendcheck = () => {
                     </label>
                   </div>
                 </div>
-                <div className=" flex flex-col bg-white text-[13px] gap-2 ">
+                <div className=" flex flex-col bg-white text-[13px]  gap-2 ">
                   <h1>Export as</h1>
-                  <div className="flex flex-col gap-4 items-start">
+                  <div className="flex flex-col gap-4 xm:text-[12px] items-start">
                     <label className="flex gap-2 items-center">
                       <input
                         type="radio"
