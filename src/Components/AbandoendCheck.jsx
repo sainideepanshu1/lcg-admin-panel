@@ -1,34 +1,20 @@
-import toast from 'react-hot-toast';
 import { useEffect, useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import { CgSortAz } from 'react-icons/cg';
-import { SlArrowDown, SlArrowUp } from 'react-icons/sl';
 import { Link } from 'react-router-dom';
-import { BsThreeDots } from 'react-icons/bs';
-import axios from 'axios';
 import { TbArrowsSort } from 'react-icons/tb';
 import { IoIosSearch } from 'react-icons/io';
-import Skeleton from 'react-loading-skeleton';
-import { RiDeleteBinLine } from 'react-icons/ri';
-import { LuCopyPlus } from 'react-icons/lu';
-import { RiErrorWarningLine } from 'react-icons/ri';
 import { IoChevronForwardCircleOutline } from 'react-icons/io5';
-import { TbPointFilled } from 'react-icons/tb';
-import { GoCheckbox } from 'react-icons/go';
-
 import 'react-loading-skeleton/dist/skeleton.css';
 import {
-  FaChevronLeft,
-  FaChevronRight,
   FaLongArrowAltDown,
   FaLongArrowAltUp,
 } from 'react-icons/fa';
 import { useRef } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 
-const Draftorders = () => {
-  const [toggle, setToggle] = useState(false);
-  const imexRef = useRef(null);
+const Abandoendcheck = () => {
+  
   const [searchTerm, setSearchTerm] = useState('');
   const [sort, setSort] = useState();
   const sortref = useRef(null);
@@ -58,43 +44,26 @@ const Draftorders = () => {
     };
   }, []);
 
-  const handleClickOutside = (event) => {
-    if (imexRef.current && !imexRef.current.contains(event.target)) {
-      setToggle(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
-  }, []);
-
+ 
   return (
     <>
       <div className="bg-[#f1f1f1] w-full  px-12 xm:px-0  sm:px-2 ">
         {/* <-------heding-----> */}
         <div className="justify-between items-center flex px-2 py-8">
           <div>
-            <h1 className="text-[20px] font-[600] text-[#000000]">Drafts</h1>
+            <h1 className="text-[20px] font-[600] text-[#000000]">
+              Abandoned Checkouts
+            </h1>
           </div>
-          <div className="flex gap-4">
-            <div className=" items-center">
-              <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] ">
-                Export
-              </button>
-            </div>
-            <button>
-              <Link
-                to="/orders/create-order"
-                className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
-              >
-                Create order
-              </Link>
-            </button>
-          </div>
+
+          <button>
+            <Link
+              to="/orders/create-order"
+              className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
+            >
+              Export
+            </Link>
+          </button>
         </div>
 
         {/* <-------table heding-------> */}
@@ -103,61 +72,19 @@ const Draftorders = () => {
             <div
               className={`${
                 Search ? 'hidden' : 'block'
-              } flex  gap-2 sm:overflow-y-auto  items-center`}
+              } flex  gap-2 sm:overflow-y-auto text-center items-center`}
             >
               <div>
-                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
+                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[14px]  xm:text-[16px] sm:text-[16px] font-[600] ">
                   All
                 </button>
               </div>
-              <div>
-                <button
-                  ref={imexRef}
-                  onClick={() => {
-                    setToggle(!toggle);
-                  }}
-                  className=" relative w-max hover:bg-[#E3E3E3]  rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] "
-                >
-                  Open and invoice sent
-                </button>
-                {toggle && (
-                  <div className="flex z-20 gap-4 py-[10px] px-[10px] items-start flex-col bg-white border-[1px] absolute top-[225px]  rounded-lg text-heading">
-                    <button className="flex items-center rounded-lg py-1 px-3 text-[12px] hover:bg-[#E3E3E3] gap-1 ">
-                      {' '}
-                      <RiErrorWarningLine /> Rename view
-                    </button>
-                    <button className="flex items-center rounded-lg py-1 px-3 text-[12px] hover:bg-[#E3E3E3] gap-1 ">
-                      {' '}
-                      <LuCopyPlus /> Duplicate view
-                    </button>
-                    <button className="flex items-center rounded-lg py-1 text-[12px] text-[#942A17] px-3 hover:bg-[#E3E3E3] gap-1 ">
-                      {' '}
-                      <RiDeleteBinLine /> Delete view
-                    </button>
-                  </div>
-                )}
-              </div>
-
-              <div>
-                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
-                  Open
-                </button>
-              </div>
-              <div>
-                <button className="w-max hover:bg-[#E3E3E3]  rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
-                  Invoice sent
-                </button>
-              </div>
-              <div>
-                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
-                  Completed
-                </button>
-              </div>
+           
               <div>
                 <button>
                   <Link
                     to=""
-                    className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] "
+                    className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px] xm:text-[18px] font-[600] "
                   >
                     +
                   </Link>
@@ -232,7 +159,7 @@ const Draftorders = () => {
                           name="sort_option"
                           value="product_title"
                         />
-                        Draft order number
+                        Checkout number
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
@@ -248,7 +175,7 @@ const Draftorders = () => {
                           name="sort_option"
                           value="updated"
                         />
-                        Status
+                        Customer name
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
@@ -256,7 +183,7 @@ const Draftorders = () => {
                           name="sort_option"
                           value="inventory"
                         />
-                        Total price
+                        Recovery status
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
@@ -264,7 +191,7 @@ const Draftorders = () => {
                           name="sort_option"
                           value="product_type"
                         />
-                        Product type
+                        Total price
                       </label>
                     </div>
 
@@ -292,7 +219,7 @@ const Draftorders = () => {
                 <input type="checkbox" className="rounded " />
               </div>
               <div className="">
-                <h3>Draft order</h3>
+                <h3>Checkout</h3>
               </div>
               <div>
                 <h3> Date</h3>
@@ -302,7 +229,7 @@ const Draftorders = () => {
               </div>
 
               <div>
-                <h3>Status</h3>
+                <h3>Recovery Status</h3>
               </div>
 
               <div className="text-end">
@@ -318,28 +245,25 @@ const Draftorders = () => {
                 <input type="checkbox" className="rounded " />
               </div>
               <div className=" font-[650] text-[#3F3F3F]">
-                <h3>#D39495</h3>
+                <h3>#34249405825283</h3>
               </div>
               <div>
-                <h3> 6 minutes ago</h3>
+                <h3> 28 Oct at 5:44 pm</h3>
               </div>
               <div className="flex group items-center gap-2">
-                <h3>Sanjay Bhopaji Thakor</h3>
+                <h3>Adithhyan S R</h3>
                 <div className=" hidden group-hover:block cursor-pointer text-[#686767] text-[16px] ">
                   {' '}
                   <IoChevronForwardCircleOutline />
                 </div>
               </div>
 
-              <div className="flex items-center pl-1 gap-1 rounded-lg bg-[#E3E3E3]  w-[100px]">
-                <div>
-                  <TbPointFilled />
-                </div>
-                <h3>Completed</h3>
+              <div className="text-center rounded-lg py-1 bg-[#FFD6A4]  w-[100px]">
+                <h3>Recovered</h3>
               </div>
 
               <div className="text-end">
-                <h3> ₹699.00 INR</h3>
+                <h3> ₹199.00 </h3>
               </div>
             </div>
             <hr />
@@ -349,26 +273,19 @@ const Draftorders = () => {
               className="grid justify-between gap-4 border-t  bg-[#f5f3f3] text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center  "
               style={{ gridTemplateColumns: '0.1fr 2.5fr 2fr' }}
             >
-              <div className="xm:hidden">
+              <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
-              <div className=" flex xm:hidden flex-col">
+              <div className=" flex flex-col">
                 <div>
-                  <h3>Draft order</h3>
+                  <h3>Checkout</h3>
                 </div>
               </div>
 
-              <div className="text-end xm:hidden">
+              <div className="text-end ">
                 <h3> Total</h3>
               </div>
-              <div className='xm:block hidden'>
-                <div className="flex gap-1 items-center text-black text-[14px] bg-white rounded-lg  px-[7px] py-[5px] ">
-                  <div>
-                    <GoCheckbox />
-                  </div>
-                  <button>Select</button>
-                </div>
-              </div>
+             
             </div>
             <hr />
             <div
@@ -379,29 +296,26 @@ const Draftorders = () => {
                 <input type="checkbox" className="rounded " />
               </div>
               <div className=" flex flex-col">
-              <div className=" font-[650] text-[#3F3F3F]">
-                  <h3>#D39495</h3>
+                <div>
+                  <h3>#34249405825283</h3>
                 </div>
                 <div>
-                  <h3> 6 minutes ago</h3>
+                  <h3> 28 Oct at 5:44 pm</h3>
                 </div>
                 <div className="flex group items-center gap-2">
-                  <h3>Sanjay Bhopaji Thakor</h3>
-                  <div className=" hidden group-hover:block cursor-pointer text-[#686767] text-[16px] ">
+                  <h3>Adithhyan S R</h3>
+                  <div className=" hidden group-hover:block cursor-pointer text-[16px] ">
                     {' '}
                     <IoChevronForwardCircleOutline />
                   </div>
                 </div>
-                <div className="flex items-center pl-1 gap-1 rounded-lg bg-[#E3E3E3]  w-[100px]">
-                  <div>
-                    <TbPointFilled />
-                  </div>
-                  <h3>Completed</h3>
+                <div className=" text-center rounded-lg py-1 bg-[#FFD6A4]  w-[100px]">
+                  <h3>Recovered</h3>
                 </div>
               </div>
 
               <div className="text-end">
-                <h3> ₹699.00 INR</h3>
+                <h3> ₹199.00</h3>
               </div>
             </div>
             <hr />
@@ -412,4 +326,4 @@ const Draftorders = () => {
   );
 };
 
-export default Draftorders;
+export default Abandoendcheck;

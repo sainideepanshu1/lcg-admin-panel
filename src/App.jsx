@@ -15,6 +15,7 @@ import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
 import Draftorders from "./Components/Draftorders";
+import Abandoendcheck from "./Components/AbandoendCheck";
 import Restock from "./Components/Restock";
 import EditOrder from "./Components/EditOrder";
 
@@ -50,6 +51,7 @@ function App() {
           <Route path="/orders/order-details/restock" element={<Restock />} />
           <Route path="/orders/order-details/edit-order" element={<EditOrder />} />
           <Route path="/draftorders" element={<Draftorders/>} />
+          <Route path="/Abandoned" element={<Abandoendcheck/>} />
         </Routes>
       </div>
     </>
