@@ -12,7 +12,7 @@ import { CiAt } from 'react-icons/ci';
 import Product2 from '../assets/Product2.jpg';
 import { FiHash } from 'react-icons/fi';
 import { GrSquare } from 'react-icons/gr';
-import { MdDelete } from "react-icons/md";
+import { MdDelete } from 'react-icons/md';
 
 const Createorder = () => {
   const [show, setShow] = useState(false);
@@ -241,56 +241,139 @@ const Createorder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex w-[100%]  justify-between">
-                    <div className='flex w-[70%] gap-8'>
-                      <div className='w-[10%]'></div>
-                      <div>
-                        <h1>Product</h1>
+                  <div className='xm:hidden'>
+                    {' '}
+                    <div className="flex w-[100%]  justify-between">
+                      <div className="flex text-[13px] font-[650] w-[70%] gap-8">
+                        <div className="w-[10%]"></div>
+                        <div>
+                          <h1>Product</h1>
+                        </div>
+                      </div>
+                      <div className="flex text-[13px] font-[650]  w-[30%] gap-8">
+                        <div>
+                          <h1>Quantity</h1>
+                        </div>
+
+                        <div className="text-[13px] font-[650] ">
+                          <h1>Total</h1>
+                        </div>
+                        <div className=""></div>
                       </div>
                     </div>
-                    <div className="flex w-[30%] gap-8">
-                      <div>
-                        <h1>Quantity</h1>
+                    <div className="flex w-100% justify-between">
+                      <div className="flex gap-2 w-[70%] ">
+                        <div className="w-[45px] h-[45px] ">
+                          {' '}
+                          <img
+                            className="rounded-lg"
+                            src={Product2}
+                            alt="pic"
+                          />
+                        </div>
+                        <div>
+                          <h1 className="text-[13px] text-[#4260da]">
+                            1st Birthday Sublimation Baby Frame
+                          </h1>
+                          <h1 className="text-[13px]">Without Gift Wrap</h1>
+                          <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
+                          <span className=" text-[#4260da]  text-heading">
+                            &#8377;899.00{' '}
+                          </span>
+                        </div>
                       </div>
+                      <div className="flex w-[30%] gap-5 items-center">
+                        <div>
+                          <div className="group border-[#8a8a8a]  border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                            <input
+                              type="number"
+                              placeholder="1"
+                              className=" px-1 w-[60px] rounded-[0.5rem] outline-none focus:outline-none"
+                            />
+                          </div>
+                        </div>
 
-                      <div>
-                        <h1>Total</h1>
+                        <div>
+                          <span className=" text-[#4260da] text-heading">
+                            &#8377;899.00{' '}
+                          </span>
+                        </div>
+                        <div>
+                          {' '}
+                          <MdDelete />
+                        </div>
                       </div>
-                      <div className=''></div>
                     </div>
                   </div>
-                  <div className="flex w-100% justify-between">
-                    <div className='flex gap-2 w-[70%] '>
-                      <div className='w-[45px] h-[45px]'> <img src={Product2} alt="pic" /></div>
-                      <div>
-                        <h1 className='text-[13px] text-[#4260da]'>1st Birthday Sublimation Baby Frame</h1>
-                        <h1  className='text-[13px]'>Without Gift Wrap</h1>
-                        <h1  className='text-[13px]'>SKU: LCG-BF-BSBF-0001</h1>
-                        <span className=" text-[#4260da]  text-heading">
-                          &#8377;899.00{' '}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex w-[30%] gap-5 items-center">
-                    <div>
-                                
+                  <div className='hidden xm:block '>
+                    {' '}
+                    <div className="flex">
+                      <div className="flex flex-col w-[100%]  justify-between">
+                        <div className="flex text-[13px] font-[650] w-[70%] gap-8">
+                          <div className="w-[10%]"></div>
+                          <div>
+                            <h1>Product</h1>
+                          </div>
+                        </div>
+                        <div className="flex gap-2  ">
+                          <div className="w-[45px] h-[45px] ">
+                            {' '}
+                            <img
+                              className="rounded-lg"
+                              src={Product2}
+                              alt="pic"
+                            />
+                          </div>
+                          <div>
+                            <div className="flex gap-[51px] justify-between">
+                              <div>
+                                {' '}
+                                <h1 className="text-[13px] text-[#4260da]">
+                                  1st Birthday Sublimation Baby Frame
+                                </h1>
+                              </div>
+                              <div>
+                                {' '}
+                                <MdDelete />
+                              </div>
+                            </div>
+                            <h1 className="text-[13px]">Without Gift Wrap</h1>
+                            <h1 className="text-[13px]">
+                              SKU: LCG-BF-BSBF-0001
+                            </h1>
+                            <span className=" text-[#4260da]  text-heading">
+                              &#8377;899.00{' '}
+                            </span>
+                            <div className='flex gap-[180px]'>
+                              <div>
+                                {' '}
+                                <div className="text-[13px] font-[650]">
+                                  <h1>Quantity</h1>
+                                </div>
                                 <div className="group border-[#8a8a8a]  border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
                                   <input
                                     type="number"
                                     placeholder="1"
                                     className=" px-1 w-[60px] rounded-[0.5rem] outline-none focus:outline-none"
                                   />
-                              
                                 </div>
                               </div>
-
-                      <div>
-                      <span className=" text-[#4260da] text-heading">
-                          &#8377;899.00{' '}
-                        </span>
+                              <div>
+                                <div className="text-[13px] text-end font-[650] ">
+                                  <h1>Total</h1>
+                                </div>
+                                <div>
+                                  <span className=" text-[#4260da]  text-heading">
+                                    &#8377;899.00{' '}
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
-                      <div> <MdDelete /></div>
-                    </div >
+                    </div>
+       
                   </div>
                 </div>
 

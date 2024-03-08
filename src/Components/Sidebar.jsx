@@ -47,6 +47,15 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to='/Abandoned'
+                >
+                  <TfiAngleDoubleRight />
+                  Abandoned 
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/products"
                 >
                   <IoMdPricetag /> Products
@@ -140,6 +149,24 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                   onClick={toggleSidebar}
                 >
                   <FaInbox /> Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to='/draftorders'
+                  onClick={toggleSidebar}
+                >
+                  <TfiAngleDoubleRight /> Draft Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to='/Abandoned'
+                  onClick={toggleSidebar}
+                >
+                  <TfiAngleDoubleRight /> Abandoned 
                 </Link>
               </li>
               <li>
