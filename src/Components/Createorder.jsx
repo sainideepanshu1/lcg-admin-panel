@@ -31,7 +31,7 @@ const Createorder = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (inputValue.trim() !== "") {
+    if (inputValue.trim()!== "") {
       settodos([...todos, inputVlauetrim()]);
       setInputValue("");
     }
