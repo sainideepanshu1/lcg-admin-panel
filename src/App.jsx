@@ -18,6 +18,7 @@ import Draftorders from "./Components/Draftorders";
 import Abandoendcheck from "./Components/AbandoendCheck";
 import Restock from "./Components/Restock";
 import EditOrder from "./Components/EditOrder";
+import DraftOrderDetail from "./Components/DraftOrderDetail";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -51,6 +52,7 @@ function App() {
           <Route path="/orders/order-details/restock" element={<Restock />} />
           <Route path="/orders/order-details/edit-order" element={<EditOrder />} />
           <Route path="/draftorders" element={<Draftorders/>} />
+          <Route path="/draftorders/draft-order-detail" element={<DraftOrderDetail/>} />
           <Route path="/Abandoned" element={<Abandoendcheck/>} />
         </Routes>
       </div>
