@@ -1,33 +1,11 @@
 import React from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-
 import { FaCheck } from "react-icons/fa6";
-
-import { FiChevronDown } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
-import { IoCheckbox } from "react-icons/io5";
-import { MdCheckBoxOutlineBlank } from "react-icons/md";
-import { LuClipboard } from "react-icons/lu";
-import { BiIntersect } from "react-icons/bi";
-import { FiEye } from "react-icons/fi";
-import { LuPencil } from "react-icons/lu";
 import { BsEmojiSmile } from "react-icons/bs";
 import { CiAt } from "react-icons/ci";
 import { FiHash } from "react-icons/fi";
-import { MdOutlineCancel } from "react-icons/md";
-import { BsArchive } from "react-icons/bs";
-import { FiPrinter } from "react-icons/fi";
 import Product2 from "../assets/Product2.jpg";
-import { HiOutlineArchiveBoxXMark } from "react-icons/hi2";
-import { BsThreeDots } from "react-icons/bs";
-import { IoClose } from "react-icons/io5";
-import { FaRegClock } from "react-icons/fa";
-import { FiAlertTriangle } from "react-icons/fi";
-import { BsFillBoxFill } from "react-icons/bs";
-import OutsideClickHandler from "react-outside-click-handler";
-import { IoEyeSharp } from "react-icons/io5";
-import { TfiPanel } from "react-icons/tfi";
 import { GrSquare } from "react-icons/gr";
 import { IoIosClose } from "react-icons/io";
 import { useState } from "react";
@@ -43,7 +21,7 @@ function DraftOrderDetail() {
         <div className=" flex justify-between">
           <div className="flex gap-2 items-center  ">
             <div className="">
-              <Link to="OrderDetails">
+              <Link to="/draftorders">
                 <span className=" text-[#4a4a4a]">
                   <FaArrowLeftLong />
                 </span>
