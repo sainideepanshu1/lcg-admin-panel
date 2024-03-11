@@ -93,7 +93,7 @@ function OrderDetails() {
   }, []);
 
   return (
-    <div className="bg-[#F1F1F1] w-full h-[100%] :px-[100px] md:px[10px]">
+    <div className="bg-[#F1F1F1] w-full h-[100%]  md:px[10px]">
       <div className="flex my-6 items-start justify-between px-7 py-1 sm:px-6 xm:px-2 ">
         <div>
           <div className="flex items-center gap-2 flex-wrap">
