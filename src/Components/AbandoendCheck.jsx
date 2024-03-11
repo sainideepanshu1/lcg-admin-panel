@@ -238,14 +238,15 @@ const Abandoendcheck = () => {
             </div>
             <hr />
             <div
-              className="grid justify-between gap-4 border-t  text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center overflow-x-auto sm:hidden xm:hidden "
+              className="grid justify-between gap-4 border-t  text-[#686767] px-[10px] py-[8px] text-[13px] font-medium cursor-pointer items-center overflow-x-auto sm:hidden xm:hidden "
               style={{ gridTemplateColumns: '0.5fr 2fr 2fr 4fr 2fr 2fr' }}
             >
               <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
-              <div className=" font-[650] text-[#3F3F3F]">
-                <h3>#34249405825283</h3>
+              <div  className=" font-[650] text-[rgb(63,63,63)] cursor-pointer">
+                <Link to='/Abandoned/abandoned-checkouts-detail'>
+                <h3>#34249405825283  </h3></Link>
               </div>
               <div>
                 <h3> 28 Oct at 5:44 pm</h3>
@@ -297,7 +298,8 @@ const Abandoendcheck = () => {
               </div>
               <div className=" flex flex-col">
                 <div>
-                  <h3>#34249405825283</h3>
+                <Link to='/Abandoned/abandoned-checkouts-detail'>
+                <h3>#34249405825283</h3></Link>
                 </div>
                 <div>
                   <h3> 28 Oct at 5:44 pm</h3>
