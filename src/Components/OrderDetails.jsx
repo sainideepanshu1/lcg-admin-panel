@@ -462,6 +462,8 @@ function OrderDetails() {
                 </div>
               </div>
             </div>
+
+            
             <div className="flex gap-2 justify-end py-2 px-3">
               <button className="text-[13px] border-[1px] px-[10px] py-[6px] rounded-lg  font-semibold">
                 Send invoice
