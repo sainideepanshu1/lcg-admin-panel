@@ -53,7 +53,7 @@ html.p-theme-light {
   --p-color-bg-surface: #ffffff;
   --p-color-bg-surface-hover: rgba(247, 247, 247, 1);
   --p-color-bg-surface-active: rgba(243, 243, 243, 1);
-  --p-color-bg-surface-selected: rgba(241, 241, 241, 1);
+  --p-color-bg-surface-selected: #f1f1f1;
   --p-color-bg-surface-disabled: rgba(0, 0, 0, 0.05);
   --p-color-bg-surface-secondary: #f7f7f7;
   --p-color-bg-surface-secondary-hover: rgba(241, 241, 241, 1);
