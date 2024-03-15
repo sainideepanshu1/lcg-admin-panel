@@ -12,6 +12,7 @@ import { FaInbox } from "react-icons/fa6";
 import { HiCollection } from "react-icons/hi";
 import { SidebarContext } from "../Contexts/SidebarContext";
 import { TfiAngleDoubleRight } from "react-icons/tfi";
+import { GoReply } from "react-icons/go";
 
 const Sidebar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
