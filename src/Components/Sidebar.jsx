@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext,useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdPerson, IoMdPricetag } from "react-icons/io";
@@ -14,6 +14,7 @@ import { SidebarContext } from "../Contexts/SidebarContext";
 
 const Sidebar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const [order,setOrder]=useState(false);
   return (
     <>
       <div className="h-screen w-[17%] sticky top-0 sm:hidden ">
@@ -40,7 +41,7 @@ const Sidebar = () => {
                   <FaInbox /> Orders
                 </Link>
               </li>
-              {Order && (
+              {order && (
                 <div className="">
                   <li>
                     <Link
@@ -173,7 +174,7 @@ const Sidebar = () => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/draftorders"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <TfiAngleDoubleRight /> Draft Orders
                 </Link>
@@ -182,7 +183,7 @@ const Sidebar = () => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/Abandoned"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <TfiAngleDoubleRight /> Abandoned
                 </Link>
