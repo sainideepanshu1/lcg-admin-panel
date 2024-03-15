@@ -1,17 +1,19 @@
-/* eslint-disable react/prop-types */
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
-import { IoMdPerson } from "react-icons/io";
-import { TbBrandGoogleAnalytics } from "react-icons/tb";
-import { TfiAngleDoubleRight } from "react-icons/tfi";
+import { IoMdPerson, IoMdPricetag } from "react-icons/io";
+import {
+  TbBrandGoogleAnalytics,
+  TbTargetArrow,
+  TbSettingsFilled,
+} from "react-icons/tb";
 import { PiDivideFill } from "react-icons/pi";
-import { TbTargetArrow } from "react-icons/tb";
 import { FaInbox } from "react-icons/fa6";
-import { IoMdPricetag } from "react-icons/io";
-import { TbSettingsFilled } from "react-icons/tb";
 import { HiCollection } from "react-icons/hi";
+import { SidebarContext } from "../Contexts/SidebarContext";
 
-const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
+const Sidebar = () => {
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   return (
     <>
       <div className="h-screen w-[17%] sticky top-0 sm:hidden ">
@@ -33,15 +35,6 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                   to="/orders"
                 >
                   <FaInbox /> Orders
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
-                  to='/draftorders'
-                >
-                  <TfiAngleDoubleRight />
-                  Draft Orders
                 </Link>
               </li>
               <li>
@@ -112,11 +105,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
       </div>
       <div
         className={`h-screen w-full transition-all duration-500 z-10 bg-[#00000080] top-[48px] hidden sm:absolute ${
-          isSidebarOpen ? 'sm:left-0' : 'sm:left-[-100%]'
+          isSidebarOpen ? "sm:left-0" : "sm:left-[-100%]"
         }  sm:block fixed`}
         onClick={(e) => {
-          if (e.target.classList.contains('bg-[#00000080]')) {
-            toggleSidebar();
+          if (e.target.classList.contains("bg-[#00000080]")) {
+            setIsSidebarOpen(!isSidebarOpen);
           }
         }}
       >
@@ -127,7 +120,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2  py-1 px-2  hover:bg-[#fafafa] rounded-lg"
                   to="/"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <AiFillHome />
                   Home
@@ -137,7 +130,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/orders"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <FaInbox /> Orders
                 </Link>
@@ -146,7 +139,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/products"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <IoMdPricetag /> Products
                 </Link>
@@ -155,7 +148,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/collections"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <HiCollection /> Collections
                 </Link>
@@ -164,7 +157,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/customers"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <IoMdPerson />
                   Customers
@@ -174,7 +167,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <TbBrandGoogleAnalytics />
                   Analytics
@@ -185,7 +178,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2 py-1 px-2  hover:bg-[#fafafa] rounded-lg"
                   to="/"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <TbTargetArrow />
                   Marketing
@@ -195,7 +188,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <PiDivideFill />
                   Discounts
@@ -205,7 +198,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
                 <Link
                   className="flex font-[700] items-center gap-2  py-1 px-2 hover:bg-[#fafafa] rounded-lg "
                   to="/"
-                  onClick={toggleSidebar}
+                  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <TbSettingsFilled />
                   Settings
