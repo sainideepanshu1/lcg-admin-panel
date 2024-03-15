@@ -8,8 +8,10 @@ import { Link } from "react-router-dom";
 import OutsideClickHandler from "react-outside-click-handler";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import axios from "axios";
+import toast from "react-hot-toast";
 
-export default function AllCustomersTable({ customers }) {
+export default function AllCustomersTable({ customers, fetchAllCustomers }) {
   const {
     sort,
     setSort,
@@ -38,6 +40,24 @@ export default function AllCustomersTable({ customers }) {
 
     setSelectedCustomers(updatedSelection);
   };
+
+  const handleDeleteCustomers = async () => {
+    try {
+      await axios.delete(
+        `http://localhost:8000/api/customers/deleteCustomer`,
+        { data: { ids: selectedCustomers } } // Send the IDs array directly
+      );
+      toast.success("Customer deleted Successfully");
+      // Refresh the customer list after deletion
+      fetchAllCustomers();
+      setSelectAll(false);
+      setSelectedCustomers([]);
+    } catch (error) {
+      toast.error("Error deleting customers:", error);
+    }
+  };
+
+  
 
   return (
     <div className=" bg-white rounded-xl border-[1px] border-[#a09f9fdc] shadow-md my-[10px] mx-7   xm:mx-0 gap-0 justify-normal xm:rounded-md xm:border-[0px] ">
@@ -158,7 +178,8 @@ export default function AllCustomersTable({ customers }) {
               className="rounded "
             />
           </div>
-          <div className="">
+
+          <div>
             <h3>Customer name</h3>
           </div>
           <div>
@@ -179,18 +200,7 @@ export default function AllCustomersTable({ customers }) {
         <div className={`${selectedCustomers.length > 0 ? "block" : "hidden"}`}>
           <div className="onclick customer option flex gap-[30px] text-[13px] px-3 py-2 xm:gap-1 xm:text-[12px] xm:px-1">
             <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
-              <button>Merge customers</button>
-            </div>
-
-            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
-              <button>Add tags</button>
-            </div>
-            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
-              <button>Remove tags</button>
-            </div>
-
-            <div className=" px-[5px] py-[4px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg cursor-pointer">
-              <button>Delete customers</button>
+              <button onClick={handleDeleteCustomers}>Delete customers</button>
             </div>
           </div>
         </div>

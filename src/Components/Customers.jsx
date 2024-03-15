@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { BsThreeDots } from "react-icons/bs";
 import { FaAngleDown } from "react-icons/fa";
@@ -79,9 +79,11 @@ function Customers() {
     setTextareaValue(event.target.value);
   };
 
+
+
   return (
     <>
-      <div className="bg-[#F1F1F1] w-full h-[100%] justify-between ">
+      <div className="bg-[#F1F1F1] w-full h-screen justify-between ">
         <div className="flex mt-6 items-center justify-between px-7 py-1 sm:px-6 ">
           <div>
             <h1 className="text-[20px] font-[600] text-[#000000]">Customers</h1>
@@ -230,7 +232,7 @@ function Customers() {
           </div>
         </div>
         {/* ------------------customer detail----------- */}
-        <AllCustomersTable customers={customers} />
+        <AllCustomersTable customers={customers} fetchAllCustomers={fetchAllCustomers} />
 
         <div className=" p-3  bg-[#f5f3f3] rounded-bl-xl rounded-br-xl ">
           <div className="flex justify-end items-center">
