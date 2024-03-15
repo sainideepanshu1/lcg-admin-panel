@@ -11,6 +11,7 @@ import { PiDivideFill } from "react-icons/pi";
 import { FaInbox } from "react-icons/fa6";
 import { HiCollection } from "react-icons/hi";
 import { SidebarContext } from "../Contexts/SidebarContext";
+import { TfiAngleDoubleRight } from "react-icons/tfi";
 
 const Sidebar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
