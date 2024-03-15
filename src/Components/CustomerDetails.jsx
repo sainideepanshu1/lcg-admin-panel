@@ -1,55 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { FiChevronDown } from "react-icons/fi";
-import { MdCurrencyRupee } from "react-icons/md";
+import { FiChevronDown, FiHash } from "react-icons/fi";
+import { MdCurrencyRupee, MdCheckBoxOutlineBlank } from "react-icons/md";
 import { IoCheckbox } from "react-icons/io5";
-import { MdCheckBoxOutlineBlank } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Product2 from "../assets/Product2.jpg";
-import { LuClipboard } from "react-icons/lu";
+import { LuClipboard, LuPencil } from "react-icons/lu";
 import { Link } from "react-router-dom";
-import { LuPencil } from "react-icons/lu";
 import { BsEmojiSmile } from "react-icons/bs";
-import { CiAt } from "react-icons/ci";
-import { FiHash } from "react-icons/fi";
-import { CiShop } from "react-icons/ci";
+import { CiAt, CiShop } from "react-icons/ci";
 import { GrSquare } from "react-icons/gr";
+import OutsideClickHandler from "react-outside-click-handler";
 
 function CustomerDetails() {
-  const [action, setaction] = useState();
-  const actionref = useRef();
+  const [action, setAction] = useState(false);
 
-  const [Customer, setCustomer] = useState();
-  const CustomerRef = useRef();
+  const [customer, setCustomer] = useState(false);
 
-  // ----------more-action-------------
-  const handleaction = (event) => {
-    if (actionref.current && !actionref.current.contains(event.target)) {
-      setaction(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleaction);
-
-    return () => {
-      document.removeEventListener("click", handleaction);
-    };
-  }, []);
-
-  // ---------------customer---------------
-  const CustomerClick = (event) => {
-    if (CustomerRef.current && !CustomerRef.current.contains(event.target)) {
-      setCustomer(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", CustomerClick);
-    return () => {
-      document.removeEventListener("click", CustomerClick);
-    };
-  }, []);
   return (
     <div className="bg-[#F1F1F1] w-full h-[100%] :px-[100px] md:px[10px]">
       <div className="flex my-6 items-center justify-between px-7 py-1 sm:px-6 xm:px-2 ">
@@ -71,12 +38,9 @@ function CustomerDetails() {
           </div>
         </div>
 
-        <div className="">
+        <OutsideClickHandler onOutsideClick={() => setAction(false)}>
           <button
-            ref={actionref}
-            onClick={() => {
-              setaction(!action);
-            }}
+            onClick={() => setAction(true)}
             className="relative flex text-heading items-center px-[12px] py-[3px] gap-1 border-[1px] w-[122px]  bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg "
           >
             <span className="text-[#080808]">More action</span>
@@ -86,8 +50,8 @@ function CustomerDetails() {
           </button>
           {action && (
             <div
-              className=" z-10 flex flex-col gap-2 absolute right-[28px]
-  top-[130px] text-[13px] text-[#303030] bg-white items-start py-[10px] px-[10px] rounded-lg "
+              className="z-10 flex flex-col gap-2 absolute right-[28px]
+  top-[130px] text-[13px] text-[#303030] bg-white items-start py-[10px] px-[10px] rounded-lg shadow-md"
             >
               <button className=" py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg">
                 Send account invite
@@ -106,7 +70,7 @@ function CustomerDetails() {
               </button>
             </div>
           )}
-        </div>
+        </OutsideClickHandler>
       </div>
 
       <div className=" flex  my-6  px-7 py-1 sm:px-6 xm:px-2 gap-4 xl:flex-wrap">
@@ -311,7 +275,6 @@ function CustomerDetails() {
                         sent to this customer (Aroramonica4@gmail.com).
                       </h3>
                       <span className="flex  text-[#303030] text-[14px]">
-
                         5.00pm
                       </span>
                     </div>
@@ -395,26 +358,24 @@ function CustomerDetails() {
               </div>
             </div>
           </div>
-          
         </div>
 
         <div className="w-[30%] xl:w-[100%]  flex flex-col gap-[15px]">
           <div className="    border-[1px bg-white py-[20px] px-[15px]	 shadow-md rounded-[8px]">
             <div className="flex justify-between  items-center ">
               <h3 className="text-[13px] font-semibold">Customer</h3>
-              <div className="relative">
-                <div
-                  ref={CustomerRef}
-                  onClick={() => {
-                    setCustomer(!Customer);
-                  }}
-                  className="  cursor-pointer py-1 px-[6px] transition ease-in-out rounded-md hover:bg-[#d8d8d8]"
-                >
-                  <span className="">
-                    <BsThreeDotsVertical />
-                  </span>
+              <OutsideClickHandler onOutsideClick={() => setCustomer(false)}>
+                <div className="relative">
+                  <div
+                    onClick={() => setCustomer(true)}
+                    className="  cursor-pointer py-1 px-[6px] transition ease-in-out rounded-md hover:bg-[#d8d8d8]"
+                  >
+                    <span className="">
+                      <BsThreeDotsVertical />
+                    </span>
+                  </div>
                 </div>
-                {Customer && (
+                {customer && (
                   <div className=" border-[1px]  w-[220px] z-10 flex flex-col gap-2 absolute right-[0px] top-[38px] text-[13px] text-[#303030] bg-white items-start py-[10px] px-[10px] rounded-lg ">
                     <button className=" py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg">
                       Edit contact information
@@ -430,7 +391,7 @@ function CustomerDetails() {
                     </button>
                   </div>
                 )}
-              </div>
+              </OutsideClickHandler>
             </div>
             <h2 className="text-[13px] font-semibold py-[8px]">
               Contact information

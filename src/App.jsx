@@ -2,12 +2,9 @@ import Sidebar from "../src/Components/Sidebar";
 import Navbar from "./Components/Navbar";
 import AddProduct from "./Components/AddProduct";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
 import { Toaster } from "react-hot-toast";
 import CreateCollection from "./Components/CreateCollection";
 import Collections from "./Components/Collections";
-import Product from "./Components/Product";
-import Products from "./Components/Products";
 import Customers from "./Components/Customers";
 import AddCustomers from "./Components/AddCustomers";
 import CustomerDetails from "./Components/CustomerDetails";
@@ -18,24 +15,22 @@ import Draftorders from "./Components/Draftorders";
 import Abandoendcheck from "./Components/AbandoendCheck";
 import Restock from "./Components/Restock";
 import EditOrder from "./Components/EditOrder";
+import AllProducts from "./Components/AllProducts";
+import EditProduct from "./Components/EditProduct";
+import DraftOrderDetail from "./Components/DraftOrderDetail";
+import AbandonedCheckoutsDetail from "./Components/AbandonedCheckoutsDetail";
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-    document.body.style.overflow = isSidebarOpen ? "auto" : "hidden";
-  };
   return (
     <>
       <Toaster />
-      <Navbar toggleSidebar={toggleSidebar} />
+      <Navbar />
       <div className="flex">
-        <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <Sidebar />
         <Routes>
           <Route path="/" element={<>Home</>} />
-          <Route path="/product/:id" element={<Product />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/product/:id" element={<EditProduct />} />
+          <Route path="/products" element={<AllProducts />} />
           <Route path="/products/add-product" element={<AddProduct />} />
           <Route path="/collections" element={<Collections />} />
           <Route path="/create-collection" element={<CreateCollection />} />
@@ -51,7 +46,9 @@ function App() {
           <Route path="/orders/order-details/restock" element={<Restock />} />
           <Route path="/orders/order-details/edit-order" element={<EditOrder />} />
           <Route path="/draftorders" element={<Draftorders/>} />
+          <Route path="/draftorders/draft-order-detail" element={<DraftOrderDetail/>} />
           <Route path="/Abandoned" element={<Abandoendcheck/>} />
+          <Route path="/Abandoned/abandoned-checkouts-detail" element={<AbandonedCheckoutsDetail/>} />
         </Routes>
       </div>
     </>

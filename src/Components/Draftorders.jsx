@@ -10,7 +10,6 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import { IoChevronForwardCircleOutline } from 'react-icons/io5';
 import { TbPointFilled } from 'react-icons/tb';
 import { GoCheckbox } from 'react-icons/go';
-
 import 'react-loading-skeleton/dist/skeleton.css';
 import {
   FaLongArrowAltDown,
@@ -310,8 +309,8 @@ const Draftorders = () => {
               <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
-              <div className=" font-[650] text-[#3F3F3F]">
-                <h3>#D39495</h3>
+              <div className=" font-[650] text-[#3F3F3F] hover:underline">
+           <Link to='/draftorders/draft-order-detail'> <h3>#D39495</h3></Link>    
               </div>
               <div>
                 <h3> 6 minutes ago</h3>

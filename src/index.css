@@ -1,4 +1,24 @@
 @tailwind base;
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 14px;
+  border: 3px solid;
+}
+
 @tailwind components;
 @tailwind utilities;
 
@@ -53,7 +73,7 @@ html.p-theme-light {
   --p-color-bg-surface: #ffffff;
   --p-color-bg-surface-hover: rgba(247, 247, 247, 1);
   --p-color-bg-surface-active: rgba(243, 243, 243, 1);
-  --p-color-bg-surface-selected: rgba(241, 241, 241, 1);
+  --p-color-bg-surface-selected: #f1f1f1;
   --p-color-bg-surface-disabled: rgba(0, 0, 0, 0.05);
   --p-color-bg-surface-secondary: #f7f7f7;
   --p-color-bg-surface-secondary-hover: rgba(241, 241, 241, 1);
@@ -109,7 +129,7 @@ html.p-theme-light {
   --p-color-bg-fill-info-hover: rgba(81, 192, 255, 1);
   --p-color-bg-fill-info-active: rgba(0, 148, 213, 1);
   --p-color-bg-fill-info-secondary: rgba(213, 235, 255, 1);
-  --p-color-bg-fill-success: rgba(41, 132, 90, 1);
+  --p-color-bg-fill-success: #29845a;
   --p-color-bg-fill-success-hover: rgba(19, 111, 69, 1);
   --p-color-bg-fill-success-active: rgba(12, 81, 50, 1);
   --p-color-bg-fill-success-secondary: #b4fed2;
