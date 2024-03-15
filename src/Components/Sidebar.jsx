@@ -34,7 +34,7 @@ const Sidebar = () => {
               <li>
                 <Link
                   onClick={() => {
-                    setOrder(!Order);
+                    setOrder(!order);
                   }}
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/orders"
