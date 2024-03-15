@@ -31,12 +31,47 @@ const Sidebar = () => {
               </li>
               <li>
                 <Link
+                  ref={Orderref}
+                  onClick={() => {
+                    setOrder(!Order);
+                  }}
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
                   to="/orders"
                 >
                   <FaInbox /> Orders
                 </Link>
               </li>
+              {Order && (
+                <div className="">
+                  <li>
+                    <Link
+                      className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] group rounded-lg"
+                      to="/draftorders"
+                    >
+                      <div className='w-3'>
+                        <div className="rotate-180  hidden group-hover:block">
+                          <GoReply />
+                        </div>
+                      </div>
+                      Draft Orders
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] group rounded-lg"
+                      to="/Abandoned"
+                    >
+                     <div className='w-3'>
+                        <div className="rotate-180 hidden group-hover:block">
+                          <GoReply />
+                        </div>
+                      </div>
+                      Abandoned
+                    </Link>
+                  </li>
+                </div>
+              )}
+
               <li>
                 <Link
                   className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
@@ -133,6 +168,24 @@ const Sidebar = () => {
                   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
                 >
                   <FaInbox /> Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to="/draftorders"
+                  onClick={toggleSidebar}
+                >
+                  <TfiAngleDoubleRight /> Draft Orders
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex font-[700] items-center gap-2 py-1 px-2 hover:bg-[#fafafa] rounded-lg"
+                  to="/Abandoned"
+                  onClick={toggleSidebar}
+                >
+                  <TfiAngleDoubleRight /> Abandoned
                 </Link>
               </li>
               <li>

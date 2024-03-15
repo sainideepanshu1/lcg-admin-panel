@@ -82,7 +82,7 @@ function AddCustomers() {
   return (
     <>
       <div
-        className="bg-[#F1F1F1] w-full h-[100%] "
+        className="bg-[#F1F1F1] w-full"
         onSubmit={handleFormSubmit}
       >
         <div className="flex items-center   text-[20px] font-bold px-7 py-6 gap-3">
@@ -331,9 +331,7 @@ function AddCustomers() {
                 value={formData.addresses.province}
                 onChange={handleAddressChange}
               >
-                <option value={""} disabled>
-                  --Select a state--
-                </option>
+                <option disabled>Select a state</option>
                 <option value="Andaman and Nicobar Islands">
                   Andaman and Nicobar Islands
                 </option>

@@ -4,23 +4,17 @@ import { CgSortAz } from 'react-icons/cg';
 import { Link } from 'react-router-dom';
 import { TbArrowsSort } from 'react-icons/tb';
 import { IoIosSearch } from 'react-icons/io';
-import { RiDeleteBinLine } from 'react-icons/ri';
-import { LuCopyPlus } from 'react-icons/lu';
-import { RiErrorWarningLine } from 'react-icons/ri';
 import { IoChevronForwardCircleOutline } from 'react-icons/io5';
-import { TbPointFilled } from 'react-icons/tb';
-import { GoCheckbox } from 'react-icons/go';
 import 'react-loading-skeleton/dist/skeleton.css';
-import {
-  FaLongArrowAltDown,
-  FaLongArrowAltUp,
-} from 'react-icons/fa';
+import { IoIosClose } from 'react-icons/io';
+import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
 import { useRef } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 
-const Draftorders = () => {
-  const [toggle, setToggle] = useState(false);
-  const imexRef = useRef(null);
+const Abandoendcheck = () => {
+  const [Export, setExport] = useState(false);
+  const Exportref = useRef(null);
+
   const [searchTerm, setSearchTerm] = useState('');
   const [sort, setSort] = useState();
   const sortref = useRef(null);
@@ -50,19 +44,17 @@ const Draftorders = () => {
     };
   }, []);
 
-  const handleClickOutside = (event) => {
-    if (imexRef.current && !imexRef.current.contains(event.target)) {
-      setToggle(false);
+  const Exportclick = (event) => {
+    if (Exportref.current && !Exportref.current.contains(event.target)) {
+      setExport(false);
     }
   };
-
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside, true);
-
+    document.addEventListener('click', Exportclick, true);
     return () => {
-      document.removeEventListener('click', handleClickOutside, true);
+      document.removeEventListener('click', Exportclick);
     };
-  }, []);
+  });
 
   return (
     <>
@@ -70,24 +62,130 @@ const Draftorders = () => {
         {/* <-------heding-----> */}
         <div className="justify-between items-center flex px-2 py-8">
           <div>
-            <h1 className="text-[20px] font-[600] text-[#000000]">Drafts</h1>
+            <h1 className="text-[20px] font-[600] text-[#000000]">
+              Abandoned Checkouts
+            </h1>
           </div>
-          <div className="flex gap-4">
-            <div className=" items-center">
-              <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] ">
-                Export
-              </button>
-            </div>
-            <button>
-              <Link
-                to="/orders/create-order"
-                className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
-              >
-                Create order
-              </Link>
-            </button>
-          </div>
+
+          <button
+            onClick={() => setExport(!Export)}
+            className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-2 text-[12px]"
+          >
+            Export
+          </button>
         </div>
+        {Export && (
+          <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
+            <div className="rounded-xl my-4 bg-white  w-[40%] sm:w-[80%] xm:w-[100%] shadow-md ">
+              <div className="flex   p-3 bg-[#f3f3f3] rounded-t-xl justify-between">
+                <div className="">
+                  <h2>Export abandoned checkouts</h2>
+                </div>
+                <div>
+                  <div
+                    onClick={() => setExport(!Export)}
+                    className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px]"
+                  >
+                    <IoIosClose />
+                  </div>
+                </div>
+              </div>
+              <hr />
+              <div className="p-6 flex flex-col gap-2">
+                <div className=" flex flex-col bg-white text-[13px] gap-2 ">
+                  <h1>Export</h1>
+                  <div className="flex flex-col gap-4 xm:text-[12px] items-start">
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="Current page"
+                      />
+                      Current page
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="All abandoned checkouts"
+                      />
+                      All abandoned checkouts
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="Selected: 0 abandoned checkouts"
+                      />
+                      Selected: 0 abandoned checkouts
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="50+ abandoned checkouts search"
+                      />
+                      50+ abandoned checkouts matching your search
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="
+                          Abandoned checkouts by date"
+                      />
+                      Abandoned checkouts by date
+                    </label>
+                  </div>
+                </div>
+                <div className=" flex flex-col bg-white text-[13px]  gap-2 ">
+                  <h1>Export as</h1>
+                  <div className="flex flex-col gap-4 xm:text-[12px] items-start">
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value=" CSV for Excel, Numbers,"
+                      />
+                      CSV for Excel, Numbers, or other spreadsheet programs
+                    </label>
+                    <label className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        name="sort_option"
+                        value="Plain CSV file"
+                      />
+                      Plain CSV file
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <hr />
+
+              <div className="flex  justify-between  p-3 rounded-b-xl ">
+                <div className=""></div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setExport(!Export)}
+                    className=" text-[black] rounded-lg border  px-3 py-1 text-[12px]"
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      setnotes(false);
+                    }}
+                    className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+                    type="Submit"
+                  >
+                    Export abandoned checkouts
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* <-------table heding-------> */}
         <div className="rounded-lg mt-[24px]  xm:p-0 bg-[#ffffff] h-[80vh] overflow-x-hidden  w-full  flex flex-col border border-stone-200">
@@ -95,61 +193,19 @@ const Draftorders = () => {
             <div
               className={`${
                 Search ? 'hidden' : 'block'
-              } flex  gap-2 sm:overflow-y-auto  items-center`}
+              } flex  gap-2 sm:overflow-y-auto text-center items-center`}
             >
               <div>
-                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
+                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[14px]  xm:text-[16px] sm:text-[16px] font-[600] ">
                   All
                 </button>
               </div>
-              <div>
-                <button
-                  ref={imexRef}
-                  onClick={() => {
-                    setToggle(!toggle);
-                  }}
-                  className=" relative w-max hover:bg-[#E3E3E3]  rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] "
-                >
-                  Open and invoice sent
-                </button>
-                {toggle && (
-                  <div className="flex z-20 gap-4 py-[10px] px-[10px] items-start flex-col bg-white border-[1px] absolute top-[225px]  rounded-lg text-heading">
-                    <button className="flex items-center rounded-lg py-1 px-3 text-[12px] hover:bg-[#E3E3E3] gap-1 ">
-                      {' '}
-                      <RiErrorWarningLine /> Rename view
-                    </button>
-                    <button className="flex items-center rounded-lg py-1 px-3 text-[12px] hover:bg-[#E3E3E3] gap-1 ">
-                      {' '}
-                      <LuCopyPlus /> Duplicate view
-                    </button>
-                    <button className="flex items-center rounded-lg py-1 text-[12px] text-[#942A17] px-3 hover:bg-[#E3E3E3] gap-1 ">
-                      {' '}
-                      <RiDeleteBinLine /> Delete view
-                    </button>
-                  </div>
-                )}
-              </div>
 
-              <div>
-                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
-                  Open
-                </button>
-              </div>
-              <div>
-                <button className="w-max hover:bg-[#E3E3E3]  rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
-                  Invoice sent
-                </button>
-              </div>
-              <div>
-                <button className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
-                  Completed
-                </button>
-              </div>
               <div>
                 <button>
                   <Link
                     to=""
-                    className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[18px] xm:text-[12px] font-[600] "
+                    className="w-max hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px] xm:text-[18px] font-[600] "
                   >
                     +
                   </Link>
@@ -222,15 +278,15 @@ const Draftorders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="Draft order number"
+                          value=" Checkout_number"
                         />
-                        Draft order number
+                        Checkout number
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
                           type="radio"
                           name="sort_option"
-                          value="date"
+                          value="Date"
                         />
                         Date
                       </label>
@@ -238,25 +294,25 @@ const Draftorders = () => {
                         <input
                           type="radio"
                           name="sort_option"
-                          value="status"
+                          value="Customer name"
                         />
-                        Status
+                        Customer name
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
                           type="radio"
                           name="sort_option"
-                          value="total price"
+                          value="Recovery status"
+                        />
+                        Recovery status
+                      </label>
+                      <label className="flex gap-2 items-center">
+                        <input
+                          type="radio"
+                          name="sort_option"
+                          value="Total price"
                         />
                         Total price
-                      </label>
-                      <label className="flex gap-2 items-center">
-                        <input
-                          type="radio"
-                          name="sort_option"
-                          value="product_type"
-                        />
-                        Product type
                       </label>
                     </div>
 
@@ -284,7 +340,7 @@ const Draftorders = () => {
                 <input type="checkbox" className="rounded " />
               </div>
               <div className="">
-                <h3>Draft order</h3>
+                <h3>Checkout</h3>
               </div>
               <div>
                 <h3> Date</h3>
@@ -294,7 +350,7 @@ const Draftorders = () => {
               </div>
 
               <div>
-                <h3>Status</h3>
+                <h3>Recovery Status</h3>
               </div>
 
               <div className="text-end">
@@ -303,35 +359,33 @@ const Draftorders = () => {
             </div>
             <hr />
             <div
-              className="grid justify-between gap-4 border-t  text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center overflow-x-auto sm:hidden xm:hidden "
+              className="grid justify-between gap-4 border-t  text-[#686767] px-[10px] py-[8px] text-[13px] font-medium cursor-pointer items-center overflow-x-auto sm:hidden xm:hidden "
               style={{ gridTemplateColumns: '0.5fr 2fr 2fr 4fr 2fr 2fr' }}
             >
               <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
-              <div className=" font-[650] text-[#3F3F3F] hover:underline">
-           <Link to='/draftorders/draft-order-detail'> <h3>#D39495</h3></Link>    
+              <div  className=" font-[650] text-[rgb(63,63,63)] cursor-pointer">
+                <Link to='/Abandoned/abandoned-checkouts-detail'>
+                <h3>#34249405825283  </h3></Link>
               </div>
               <div>
-                <h3> 6 minutes ago</h3>
+                <h3> 28 Oct at 5:44 pm</h3>
               </div>
               <div className="flex group items-center gap-2">
-                <h3>Sanjay Bhopaji Thakor</h3>
+                <h3>Adithhyan S R</h3>
                 <div className=" hidden group-hover:block cursor-pointer text-[#686767] text-[16px] ">
                   {' '}
                   <IoChevronForwardCircleOutline />
                 </div>
               </div>
 
-              <div className="flex items-center pl-1 gap-1 rounded-lg bg-[#E3E3E3]  w-[100px]">
-                <div>
-                  <TbPointFilled />
-                </div>
-                <h3>Completed</h3>
+              <div className="text-center rounded-lg py-1 bg-[#FFD6A4]  w-[100px]">
+                <h3>Recovered</h3>
               </div>
 
               <div className="text-end">
-                <h3> ₹699.00 INR</h3>
+                <h3> ₹199.00 </h3>
               </div>
             </div>
             <hr />
@@ -341,25 +395,17 @@ const Draftorders = () => {
               className="grid justify-between gap-4 border-t  bg-[#f5f3f3] text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center  "
               style={{ gridTemplateColumns: '0.1fr 2.5fr 2fr' }}
             >
-              <div className="xm:hidden">
+              <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
-              <div className=" flex xm:hidden flex-col">
+              <div className=" flex flex-col">
                 <div>
-                  <h3>Draft order</h3>
+                  <h3>Checkout</h3>
                 </div>
               </div>
 
-              <div className="text-end xm:hidden">
+              <div className="text-end ">
                 <h3> Total</h3>
-              </div>
-              <div className='xm:block hidden'>
-                <div className="flex gap-1 items-center text-black text-[14px] bg-white rounded-lg  px-[7px] py-[5px] ">
-                  <div>
-                    <GoCheckbox />
-                  </div>
-                  <button>Select</button>
-                </div>
               </div>
             </div>
             <hr />
@@ -371,29 +417,27 @@ const Draftorders = () => {
                 <input type="checkbox" className="rounded " />
               </div>
               <div className=" flex flex-col">
-              <div className=" font-[650] text-[#3F3F3F]">
-                  <h3>#D39495</h3>
+                <div>
+                <Link to='/Abandoned/abandoned-checkouts-detail'>
+                <h3>#34249405825283</h3></Link>
                 </div>
                 <div>
-                  <h3> 6 minutes ago</h3>
+                  <h3> 28 Oct at 5:44 pm</h3>
                 </div>
                 <div className="flex group items-center gap-2">
-                  <h3>Sanjay Bhopaji Thakor</h3>
-                  <div className=" hidden group-hover:block cursor-pointer text-[#686767] text-[16px] ">
+                  <h3>Adithhyan S R</h3>
+                  <div className=" hidden group-hover:block cursor-pointer text-[16px] ">
                     {' '}
                     <IoChevronForwardCircleOutline />
                   </div>
                 </div>
-                <div className="flex items-center pl-1 gap-1 rounded-lg bg-[#E3E3E3]  w-[100px]">
-                  <div>
-                    <TbPointFilled />
-                  </div>
-                  <h3>Completed</h3>
+                <div className=" text-center rounded-lg py-1 bg-[#FFD6A4]  w-[100px]">
+                  <h3>Recovered</h3>
                 </div>
               </div>
 
               <div className="text-end">
-                <h3> ₹699.00 INR</h3>
+                <h3> ₹199.00</h3>
               </div>
             </div>
             <hr />
@@ -404,4 +448,4 @@ const Draftorders = () => {
   );
 };
 
-export default Draftorders;
+export default Abandoendcheck;

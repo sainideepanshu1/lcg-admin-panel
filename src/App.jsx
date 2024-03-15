@@ -12,10 +12,13 @@ import Orders from "./Components/Orders";
 import Createorder from "./Components/Createorder";
 import OrderDetails from "./Components/OrderDetails";
 import Draftorders from "./Components/Draftorders";
+import Abandoendcheck from "./Components/AbandoendCheck";
 import Restock from "./Components/Restock";
 import EditOrder from "./Components/EditOrder";
 import AllProducts from "./Components/AllProducts";
 import EditProduct from "./Components/EditProduct";
+import DraftOrderDetail from "./Components/DraftOrderDetail";
+import AbandonedCheckoutsDetail from "./Components/AbandonedCheckoutsDetail";
 
 function App() {
   return (
@@ -41,11 +44,11 @@ function App() {
           <Route path="/orders/create-order" element={<Createorder />} />
           <Route path="/orders/order-details" element={<OrderDetails />} />
           <Route path="/orders/order-details/restock" element={<Restock />} />
-          <Route
-            path="/orders/order-details/edit-order"
-            element={<EditOrder />}
-          />
-          <Route path="/draftorders" element={<Draftorders />} />
+          <Route path="/orders/order-details/edit-order" element={<EditOrder />} />
+          <Route path="/draftorders" element={<Draftorders/>} />
+          <Route path="/draftorders/draft-order-detail" element={<DraftOrderDetail/>} />
+          <Route path="/Abandoned" element={<Abandoendcheck/>} />
+          <Route path="/Abandoned/abandoned-checkouts-detail" element={<AbandonedCheckoutsDetail/>} />
         </Routes>
       </div>
     </>

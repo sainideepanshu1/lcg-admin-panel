@@ -81,7 +81,7 @@ function Customers() {
 
   return (
     <>
-      <div className="bg-[#F1F1F1] w-full h-screen justify-between ">
+      <div className="bg-[#F1F1F1] w-full h-[100%] justify-between ">
         <div className="flex mt-6 items-center justify-between px-7 py-1 sm:px-6 ">
           <div>
             <h1 className="text-[20px] font-[600] text-[#000000]">Customers</h1>
