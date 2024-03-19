@@ -11,9 +11,14 @@ import { BsEmojiSmile } from "react-icons/bs";
 import { CiAt, CiShop } from "react-icons/ci";
 import { GrSquare } from "react-icons/gr";
 import OutsideClickHandler from "react-outside-click-handler";
+import { IoIosClose } from "react-icons/io";
+import { IoSearch } from "react-icons/io5";
 
 function CustomerDetails() {
   const [action, setAction] = useState(false);
+  const [editContact, setEditContact] = useState(false);
+  const [ManageAddress, setmanageAddress] = useState(false);
+  const [editaddress, seteditaddress] = useState(false);
 
   const [customer, setCustomer] = useState(false);
 
@@ -377,12 +382,454 @@ function CustomerDetails() {
                 </div>
                 {customer && (
                   <div className=" border-[1px]  w-[220px] z-10 flex flex-col gap-2 absolute right-[0px] top-[38px] text-[13px] text-[#303030] bg-white items-start py-[10px] px-[10px] rounded-lg ">
-                    <button className=" py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg">
-                      Edit contact information
-                    </button>
-                    <button className="py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg">
-                      Manage addresses{" "}
-                    </button>
+                    <div>
+                      <button
+                        onClick={() => setEditContact(!editContact)}
+                        className=" py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg"
+                      >
+                        Edit contact information
+                      </button>
+
+                      {editContact && (
+                        <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm ">
+                          <div className="rounded-xl my-4 bg-white   w-[45%] shadow-md   sm:w-[80%]">
+                            <div className="flex items-center  px-3 py-2 bg-[#f3f3f3] rounded-t-xl justify-between">
+                              <div>
+                                <h2 className="cursor-pointer text-[#303030] text-[14px] font-semibold ">
+                                  Edit customer
+                                </h2>
+                              </div>
+                              <div>
+                                <div
+                                  onClick={() => setEditContact(!editContact)}
+                                  className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[20px] cursor-pointer"
+                                >
+                                  <IoIosClose />
+                                </div>
+                              </div>
+                            </div>
+
+                            <hr />
+                            <div className="flex gap-2">
+                              <div>
+                                <div className="px-4 pt-4">
+                                  <h2 className="text-heading text-heading-color font-[450]">
+                                    First name
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2 ">
+                                  <input
+                                    placeholder="First Name"
+                                    type="text"
+                                    name="first_name"
+                                    className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+                              <div className="">
+                                <div className="px-4 pt-4">
+                                  <h2 className="text-heading text-heading-color font-[450]">
+                                    Last Name
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2 ">
+                                  <input
+                                    placeholder="Last Name"
+                                    type="text"
+                                    name="Last_name"
+                                    className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                            <div>
+                              <div className="px-4 ">
+                                <h2 className="text-heading text-heading-color font-[450]">
+                                  Email
+                                </h2>
+                              </div>
+                              <div className="p-4 pt-2">
+                                <input
+                                  placeholder="Email"
+                                  type="email"
+                                  name="email"
+                                  className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                />
+                              </div>
+                            </div>
+
+                            <div>
+                              <div className="px-4 ">
+                                <h2 className="text-heading text-heading-color font-[450]">
+                                  Phone number
+                                </h2>
+                              </div>
+                              <div className="p-4 pt-2">
+                                <input
+                                  placeholder="Phone Number"
+                                  type="text"
+                                  name="phone"
+                                  className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                />
+                              </div>
+                            </div>
+
+                            <hr />
+
+                            <div className="flex  justify-end  px-3 py-4 gap-2 rounded-b-xl ">
+                              <button
+                                onClick={() => setEditContact(!editContact)}
+                                className=" text-[black] rounded-lg border  px-3 py-1  text-[12px]"
+                              >
+                                Cancel
+                              </button>
+
+                              <button
+                                className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+                                type="Save"
+                              >
+                                Save
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div>
+                      <button
+                        onClick={() => setmanageAddress(!ManageAddress)}
+                        className="py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg"
+                      >
+                        Manage addresses
+                      </button>
+
+                      {ManageAddress && (
+                        <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen  flex  items-center justify-center backdrop-blur-sm ">
+                          <div className="rounded-xl relative my-4 bg-white   w-[45%] shadow-md   sm:w-[80%]">
+                            <div className="flex items-center  px-3 py-2 bg-[#f3f3f3] rounded-t-xl justify-between">
+                              <div>
+                                <h2 className="cursor-pointer text-[#303030] text-[14px] font-semibold ">
+                                  Manage addresses
+                                </h2>
+                              </div>
+                              <div>
+                                <button
+                                  className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[20px] cursor-pointer"
+                                  onClick={() =>
+                                    setmanageAddress(!ManageAddress)
+                                  }
+                                >
+                                  <IoIosClose />
+                                </button>
+                              </div>
+                            </div>
+                            <hr />
+                            <div className="px-3 py-2">
+                              <span className="text-heading-color absolute rounded-lg left-[37px] top-[70px] px-[8px] py-[2px] bg-[#e3e3e3]  ">
+                                Default
+                              </span>
+
+                              <div className="flex  justify-between items-start border-[1px] rounded-lg my-[20px] bg-[#f7f7f7]">
+                                <div className="py-[25px]  text-[13px] font-[450] px-[12px]">
+                                  <h3>Saddam Hussain</h3>
+                                  <h3>Osman Bagh kamatipura PS bahadurpura</h3>
+                                  <h3>500064 HYDERABAD Telangana</h3>
+                                  <h3>India</h3>
+                                  <h3>9866999061</h3>
+                                </div>
+                                <div className="py-[30px] px-[12px] ">
+                                  <div>
+                                    <button
+                                      onClick={() =>
+                                        seteditaddress(!editaddress)
+                                      }
+                                      className="cursor-pointer py-1 px-[6px] transition ease-in-out rounded-md hover:bg-[#d8d8d8]"
+                                    >
+                                      <LuPencil />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                              <hr />
+
+                              <div className="text-end py-[10px]">
+                                <button
+                                  onClick={() => seteditaddress(!editaddress)}
+                                  className="text-[black] rounded-lg border  px-3 py-1  text-[12px]"
+                                >
+                                  Add new address
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {editaddress && (
+                        <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen  flex  items-center justify-center backdrop-blur-sm ">
+                          <div className=" h-[80%]  overflow-y-auto relative my-4 bg-white   w-[45%] shadow-md   sm:w-[80%]">
+                            <div className="flex items-center h-[400] px-3 py-2 bg-[#f3f3f3] rounded-t-xl justify-between">
+                              <div>
+                                <h2 className="cursor-pointer text-[#303030] text-[14px] font-semibold ">
+                                  Edit address
+                                </h2>
+                              </div>
+                              <div>
+                                <button
+                                  className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[20px] cursor-pointer"
+                                  onClick={() => {
+                                    setmanageAddress(false);
+                                    seteditaddress(!editaddress);
+                                  }}
+                                >
+                                  <IoIosClose />
+                                </button>
+                              </div>
+                            </div>
+                            <hr />
+                            <div>
+                              <div className="flex gap-2">
+                                <div>
+                                  <div className="px-4 pt-4">
+                                    <h2 className="text-heading text-heading-color font-[450]">
+                                      First name
+                                    </h2>
+                                  </div>
+                                  <div className="p-4 pt-2 ">
+                                    <input
+                                      placeholder="First Name"
+                                      type="text"
+                                      name="first_name"
+                                      className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                    />
+                                  </div>
+                                </div>
+                                <div className="">
+                                  <div className="px-4 pt-4">
+                                    <h2 className="text-heading text-heading-color font-[450]">
+                                      Last Name
+                                    </h2>
+                                  </div>
+                                  <div className="p-4 pt-2 ">
+                                    <input
+                                      placeholder="Last Name"
+                                      type="text"
+                                      name="Last_name"
+                                      className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="px-4 ">
+                                  <h2 className="text-heading text-heading-color font-[450]">
+                                    Company
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2">
+                                  <input
+                                    placeholder="Company"
+                                    type="text"
+                                    name="company"
+                                    className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="px-4 ">
+                                  <h2 className="text-heading text-heading-color font-semibold">
+                                    Address
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2">
+                                  <div className="flex items-center rounded-[0.5rem]  border-[#8a8a8a] border-[0.04125rem] ">
+                                    <span className=" text-[#8a8a8a] pl-[8px]">
+                                      {/* You can replace this with your desired icon */}
+                                      <IoSearch />
+                                    </span>
+                                    <input
+                                      placeholder="Address"
+                                      type="text"
+                                      name="address1"
+                                      className="py-[6px]   mx-3 w-full text-heading outline-none"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="px-4 ">
+                                  <h2 className="text-heading text-heading-color font-[450]">
+                                    Apartment, suite, etc.
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2">
+                                  <input
+                                    placeholder="Apartment, suite, etc."
+                                    type="text"
+                                    name="address2"
+                                    className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+
+                              <div className="flex items-center sm:block ">
+                                <div>
+                                  <div className="px-4 pt-3">
+                                    <h2 className="text-heading text-heading-color font-[450]">
+                                      City
+                                    </h2>
+                                  </div>
+                                  <div className="p-4 pt-2">
+                                    <input
+                                      placeholder="City"
+                                      type="text"
+                                      name="city"
+                                      className="py-[6px] px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                    />
+                                  </div>
+                                </div>
+
+                                <select
+                                  className="w-[48%] mt-[24px] bg-white text-heading border-[#8a8a8a] border rounded-[0.5rem] py-[8px] pl-[12px] mx-4  pr-[8px] sm:w-[95%] xm:w-[92%] "
+                                  name="province"
+                                >
+                                  <option disabled>Select a state</option>
+                                  <option value="Andaman and Nicobar Islands">
+                                    Andaman and Nicobar Islands
+                                  </option>
+                                  <option value="Andhra Pradesh">
+                                    Andhra Pradesh
+                                  </option>
+                                  <option value="Arunachal Pradesh">
+                                    Arunachal Pradesh{" "}
+                                  </option>
+                                  <option value="Assam ">Assam </option>
+                                  <option value="Bihar">Bihar </option>
+                                  <option value="Chandigarh">
+                                    Chandigarh{" "}
+                                  </option>
+                                  <option value="Chhattisgarh ">
+                                    Chhattisgarh{" "}
+                                  </option>
+                                  <option value="Dadra and Nagar Haveli">
+                                    Dadra and Nagar Haveli
+                                  </option>
+                                  <option value="Daman and Diu">
+                                    Daman and Diu{" "}
+                                  </option>
+                                  <option value="Delhi">Delhi </option>
+                                  <option value="Goa">Goa </option>
+                                  <option value="Gujarat">Gujarat </option>
+                                  <option value="Haryana">Haryana </option>
+                                  <option value="Himachal Pradesh ">
+                                    Himachal Pradesh{" "}
+                                  </option>
+                                  <option value="Jammu and Kashmir">
+                                    Jammu and Kashmir{" "}
+                                  </option>
+                                  <option value="Jharkhand">Jharkhand </option>
+                                  <option value="Karnataka">Karnataka </option>
+                                  <option value="Kerala ">Kerala </option>
+                                  <option value="Ladakh ">Ladakh </option>
+                                  <option value="Lakshadweep">
+                                    Lakshadweep{" "}
+                                  </option>
+                                  <option value="Madhya Pradesh ">
+                                    Madhya Pradesh{" "}
+                                  </option>
+                                  <option value="Maharashtra">
+                                    Maharashtra{" "}
+                                  </option>
+                                  <option value="Manipur">Manipur </option>
+                                  <option value="Meghalaya">Meghalaya </option>
+                                  <option value="Mizoram">Mizoram </option>
+                                  <option value="Mizoram">Mizoram </option>
+                                  <option value="Odisha">Odisha </option>
+                                  <option value="Puducherry">
+                                    Puducherry{" "}
+                                  </option>
+                                  <option value="Punjab">Punjab </option>
+                                  <option value="Rajasthan">Rajasthan </option>
+                                  <option value="Sikkim">Sikkim </option>
+                                  <option value="Tamil Nadu">
+                                    Tamil Nadu{" "}
+                                  </option>
+                                  <option value="Telangana">Telangana </option>
+                                  <option value="Tripura">Tripura </option>
+                                  <option value="Uttar Pradesh">
+                                    Uttar Pradesh{" "}
+                                  </option>
+                                  <option value="Uttarakhand">
+                                    Uttarakhand{" "}
+                                  </option>
+                                  <option value="West Bengal ">
+                                    West Bengal{" "}
+                                  </option>
+                                </select>
+                              </div>
+
+                              <div>
+                                <div className="px-4 ">
+                                  <h2 className="text-heading text-heading-color font-[450]">
+                                    PIN code
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2">
+                                  <input
+                                    placeholder="PIN code"
+                                    type="number"
+                                    name="zip"
+                                    className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+
+                              <div>
+                                <div className="px-4 ">
+                                  <h2 className="text-heading text-heading-color font-[450]">
+                                    Phone number
+                                  </h2>
+                                </div>
+                                <div className="p-4 pt-2">
+                                  <input
+                                    placeholder="Phone Number"
+                                    type="text"
+                                    name="phone"
+                                    className="py-[6px]  px-5 w-full rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading"
+                                  />
+                                </div>
+                              </div>
+
+                              <hr />
+
+                              <div className="flex  justify-end  px-3 py-4 gap-2 rounded-b-xl ">
+                                <button
+                                  onClick={() => {
+                                    setmanageAddress(false);
+                                    seteditaddress(!editaddress);
+                                  }}
+                                  className=" text-[black] rounded-lg border  px-3 py-1  text-[12px]"
+                                >
+                                  Cancel
+                                </button>
+
+                                <button
+                                  className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+                                  type="Save"
+                                >
+                                  Save
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
                     <button className="py-[5px] px-[6px] hover:bg-[#E3E3E3]  rounded-lg">
                       Edit marketing settings
                     </button>
