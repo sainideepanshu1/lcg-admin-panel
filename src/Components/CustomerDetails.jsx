@@ -922,32 +922,23 @@ function CustomerDetails() {
                       Manage tax exemptions
                     </button>
                   </div>
-                )}
-              </OutsideClickHandler>
-            </div>
-            <h2 className="text-[13px] font-semibold py-[8px]">
-              Contact information
-            </h2>
+                </div>
+              ) : (
+                <h3 className="text-[13px]">No email address provided</h3>
+              )}
 
-            <div className="flex justify-between items-center">
-              <div>
-                <span className="text-[#005bd3] text-[13px] hover:underline">
-                  Gauravsaini@gmail.com
-                </span>
+              <div className="text-[13px]">
+                {isLoading ? (
+                  <Skeleton />
+                ) : (
+                  customer.phone && (
+                    <span className="py-[2px]">{customer.phone}</span>
+                  )
+                )}
+                <h3 className="py-[2px]">
+                  Will receive notifications in English
+                </h3>
               </div>
-              <div>
-                <span className="text-[#616161] font-semibold cursor-pointer">
-                  <LuClipboard />
-                </span>
-              </div>
-            </div>
-            <div className="text-[13px]">
-              <h3 className="text-[13px]">No email address provided</h3>
-              <span className="py-[2px]">+91 82787 57344</span>
-              <h3 className="py-[2px]">
-                Will receive notifications in English
-              </h3>
-            </div>
 
               <div className="py-[8px]">
                 <h3 className="text-[13px] font-semibold">Default address</h3>
