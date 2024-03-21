@@ -57,8 +57,6 @@ export default function AllCustomersTable({ customers, fetchAllCustomers }) {
     }
   };
 
-  
-
   return (
     <div className=" bg-white rounded-xl border-[1px] border-[#a09f9fdc] shadow-md my-[10px] mx-7   xm:mx-0 gap-0 justify-normal xm:rounded-md xm:border-[0px] ">
       <div className=" flex justify-between p-[8px]  ">
@@ -271,36 +269,38 @@ export default function AllCustomersTable({ customers, fetchAllCustomers }) {
             key={index}
             className="border-t border-b bg-white text-[#303030] px-[10px] py-[8px] text-[13px] font-medium items-center"
           >
-            <div className="text-black text-[14px] py-[1px]">
-              <h3>{`${customer.first_name} ${customer.last_name}`}</h3>
-            </div>
-
-            <div className=" py-[1px]">
-              <h3>{`${
-                customer?.default_address?.city
-                  ? `${customer.default_address.city}, ${
-                      customer.default_address.province || ""
-                    }, ${customer.default_address.country}`
-                  : customer?.default_address?.province
-                  ? `${customer.default_address.province}, ${customer.default_address.country}`
-                  : customer?.default_address?.country ?? "-"
-              }`}</h3>
-            </div>
-
-            <div className="flex gap-1">
-              <div>
-                <h3>{`${customer.orders_count} orders`}</h3>
+            <Link to={`/customers/customer-details/${customer._id}`}>
+              <div className="text-black text-[14px] py-[1px]">
+                <h3>{`${customer.first_name} ${customer.last_name}`}</h3>
               </div>
 
-              <div className="flex items-center">
-                <span>
-                  <MdOutlineCurrencyRupee />
-                </span>
+              <div className=" py-[1px]">
+                <h3>{`${
+                  customer?.default_address?.city
+                    ? `${customer.default_address.city}, ${
+                        customer.default_address.province || ""
+                      }, ${customer.default_address.country}`
+                    : customer?.default_address?.province
+                    ? `${customer.default_address.province}, ${customer.default_address.country}`
+                    : customer?.default_address?.country ?? "-"
+                }`}</h3>
+              </div>
+
+              <div className="flex gap-1">
+                <div>
+                  <h3>{`${customer.orders_count} orders`}</h3>
+                </div>
+
                 <div className="flex items-center">
-                  <h3>{customer.total_spent}</h3>
+                  <span>
+                    <MdOutlineCurrencyRupee />
+                  </span>
+                  <div className="flex items-center">
+                    <h3>{customer.total_spent}</h3>
+                  </div>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

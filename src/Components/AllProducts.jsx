@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import toast from "react-hot-toast";
 import { useContext, useEffect, useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
