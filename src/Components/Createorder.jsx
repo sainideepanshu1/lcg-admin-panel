@@ -700,66 +700,9 @@ const Createorder = () => {
                         name="notes"
                         placeholder="No Notes"
                       />
-                    
                     </div>
                   </div>
                 </div>
-
-                {/* {notes && (
-                  <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
-                    <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
-                      <div className="flex border-b-2  p-3 bg-[#f3f3f3] rounded-t-xl justify-between">
-                        <div className="">
-                          <h2>Add Note</h2>
-                        </div>
-                        <div>
-                          <div
-                            onClick={() => setnotes(!notes)}
-                            className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[16px]"
-                          >
-                            <IoIosClose />
-                          </div>
-                        </div>
-                      </div>
-                      <div onSubmit={handleSubmit} className="p-2 w-full ">
-                        <input
-                          className="outline-none border p-2 rounded-md w-full"
-                          type="text"
-                          value={inputValue}
-                          onChange={handlechange}
-                        />
-                      </div>
-                      <div className="flex border-t-2 gap-2 p-3 justify-end rounded-b-xl ">
-                        <div onClick={() => handleDelete(index)} className="">
-                          <button>
-                            <button
-                              onClick={() => {
-                                setnotes(false);
-                              }}
-                              className=" text-[black] rounded-lg border  px-3 py-1 text-[12px]"
-                            >
-                              Cancel
-                            </button>
-                          </button>
-                        </div>
-                        <div>
-                          <button>
-                            <button
-                              onClick={() => {
-                                setnotes(false);
-                              }}
-                              className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
-                              type="Submit"
-                            >
-                              Done
-                            </button>
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )} */}
-
                 <div className="mt-3 sm:w-full">
                   <div className="bg-white rounded-[0.75rem] shadow-md">
                     <div>
@@ -840,6 +783,14 @@ const Createorder = () => {
             </div>
           </div>
         </div>
+        <div className="rounded-xl flex items-center justify-center  p-4">
+                <button
+                  type="submit"
+                  className="bg-[#1A1A1A] text-[#E3E3E3] text-[16px] py-1 px-6 rounded-lg"
+                >
+                  Save
+                </button>
+              </div>
       </div>
     </>
   );
