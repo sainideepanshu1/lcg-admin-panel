@@ -10,7 +10,6 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import { IoChevronForwardCircleOutline } from 'react-icons/io5';
 import { TbPointFilled } from 'react-icons/tb';
 import { GoCheckbox } from 'react-icons/go';
-
 import 'react-loading-skeleton/dist/skeleton.css';
 import {
   FaLongArrowAltDown,

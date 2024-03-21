@@ -82,7 +82,7 @@ function AddCustomers() {
   return (
     <>
       <div
-        className="bg-[#F1F1F1] w-full h-[100%] "
+        className="bg-[#F1F1F1] w-full"
         onSubmit={handleFormSubmit}
       >
         <div className="flex items-center   text-[20px] font-bold px-7 py-6 gap-3">
@@ -332,19 +332,15 @@ function AddCustomers() {
                 onChange={handleAddressChange}
               >
                 <option disabled>Select a state</option>
-                <option value="Andaman and Nicobar Islands">
-                  Andaman and Nicobar Islands
-                </option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
                 <option value="Andhra Pradesh">Andhra Pradesh</option>
                 <option value="Arunachal Pradesh">Arunachal Pradesh </option>
                 <option value="Assam ">Assam </option>
                 <option value="Bihar">Bihar </option>
                 <option value="Chandigarh">Chandigarh </option>
                 <option value="Chhattisgarh ">Chhattisgarh </option>
-                <option value="Dadra and Nagar Haveli">
-                  Dadra and Nagar Haveli
-                </option>
-                <option value="DrDaman and Diu aft">Daman and Diu </option>
+                <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                <option value="Daman and Diu">Daman and Diu </option>
                 <option value="Delhi">Delhi </option>
                 <option value="Goa">Goa </option>
                 <option value="Gujarat">Gujarat </option>

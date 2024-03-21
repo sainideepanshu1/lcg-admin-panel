@@ -1,80 +1,110 @@
-import { FaArrowLeftLong } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
-import { GoPencil } from 'react-icons/go';
-import { CiSearch } from 'react-icons/ci';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
-import { useEffect, useRef, useState } from 'react';
-import { IoIosClose } from 'react-icons/io';
-import { CgAdd } from 'react-icons/cg';
-import { BsEmojiSmile } from 'react-icons/bs';
-import { CiAt } from 'react-icons/ci';
-import Product2 from '../assets/Product2.jpg';
-import { FiHash } from 'react-icons/fi';
-import { GrSquare } from 'react-icons/gr';
-import { MdDelete } from 'react-icons/md';
+import { FaArrowLeftLong } from "react-icons/fa6";
+import { Link, useLocation } from "react-router-dom";
+import { GoPencil } from "react-icons/go";
+import { CiSearch, CiAt } from "react-icons/ci";
+import { AiOutlineInfoCircle } from "react-icons/ai";
+import { useEffect, useRef, useState } from "react";
+import { IoIosClose } from "react-icons/io";
+import { CgAdd } from "react-icons/cg";
+import { BsEmojiSmile } from "react-icons/bs";
+import Product2 from "../assets/Product2.jpg";
+import { FiHash } from "react-icons/fi";
+import { GrSquare } from "react-icons/gr";
+import { MdCancel, MdDelete } from "react-icons/md";
+import axios from "axios";
+import OutsideClickHandler from "react-outside-click-handler";
+import IndiaFlag from "./IndiaFlag";
 
 const Createorder = () => {
+  const [browse, setbrowse] = useState(false);
+  const [notes, setnotes] = useState(false);
   const [show, setShow] = useState(false);
   const [item, setItem] = useState(false);
-  const itemref = useRef(null);
+  const [customerModal, setCustomerModal] = useState(false);
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    phone: "",
+    addresses: {
+      first_name: "",
+      last_name: "",
+      company: "",
+      address1: "",
+      address2: "",
+      city: "",
+      province: "",
+      zip: "",
+      phone: "",
+    },
+  });
+  const location = useLocation();
+  const customer = new URLSearchParams(location.search).get("customer");
 
-  const [notes, setnotes] = useState(false);
+  async function fetchCustomer() {
+    if (customer) {
+      const { data } = await axios.get(
+        "http://localhost:8000/api/customers/getCustomer/" + customer
+      );
+      console.log(data.customer);
+    } else {
+      return;
+    }
+  }
+
+  useEffect(() => {
+    fetchCustomer();
+  }, []);
+
   const notesref = useRef(null);
 
-  const [browse, setbrowse] = useState(false);
   const browseref = useRef(null);
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const handlechange = (e) => {
     setInputValue(e.target.value);
   };
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   if (inputValue.trim() !== '') {
-  //     settodos([...todos, inputVlauetrim()]);
-  //     setInputValue('');
-  //   }
-  // };
-  // const handleDelete = (index) => {
-  //   const updatedtodos = [...todos];
-  //   updatedtodos.splice(index, 1);
-  //   settodos(updatedtodos);
-  // };
 
-  const handleclick = (event) => {
-    if (itemref.current && !itemref.current.contains(event.target)) {
-      setItem(false);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (inputValue.trim() !== "") {
+      settodos([...todos, inputVlauetrim()]);
+      setInputValue("");
     }
   };
-  useEffect(() => {
-    document.addEventListener('click', handleclick, true);
-    return () => {
-      document.removeEventListener('click', handleclick);
-    };
-  });
+  const handleDelete = (index) => {
+    const updatedtodos = [...todos];
+    updatedtodos.splice(index, 1);
+    settodos(updatedtodos);
+  };
+
   const browseclick = (event) => {
     if (browseref.current && !browseref.current.contains(event.target)) {
       setbrowse(false);
     }
   };
   useEffect(() => {
-    document.addEventListener('click', browseclick, true);
+    document.addEventListener("click", browseclick, true);
     return () => {
-      document.removeEventListener('click', browseclick);
+      document.removeEventListener("click", browseclick);
     };
   });
 
-  // const notesclick = (event) => {
-  //   if (notesref.current && !notesref.current.contains(event.target)) {
-  //     setnotes(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   document.addEventListener('click', notesclick, true);
-  //   return () => {
-  //     document.removeEventListener('click', notesclick);
-  //   };
-  // });
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (customerModal) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      body.classList.remove("overflow-hidden");
+    };
+  }, [customerModal]);
+
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -271,7 +301,7 @@ const Createorder = () => {
                   <div className="flex w-100% xm:hidden pt-2 justify-between">
                     <div className="flex gap-2 w-[70%] ">
                       <div className="w-[45px] h-[45px]">
-                        {' '}
+                        {" "}
                         <img src={Product2} alt="pic" />
                       </div>
                       <div>
@@ -298,11 +328,10 @@ const Createorder = () => {
 
                       <div>
                         <span className=" text-[#4260da] text-heading">
-                          &#8377;899.00{' '}
+                          &#8377;899.00{" "}
                         </span>
                       </div>
                       <div>
-                        {' '}
                         <MdDelete />
                       </div>
                     </div>
@@ -440,6 +469,267 @@ const Createorder = () => {
                   </div>
                 )}
 
+                {customerModal && (
+                  <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
+                    <div className="z-40 xm:w-full sm:w-[55%] w-3/5 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                      <div className="w-full border-2 rounded-2xl bg-white">
+                        <div className="flex justify-between p-5 rounded-t-2xl items-center bg-[#f3f3f3]">
+                          <p className="text-heading text-heading-color font-[600]">
+                            Create a new customer
+                          </p>
+                          <button
+                            onClick={() => setCustomerModal(false)}
+                            className="m-1"
+                          >
+                            <MdCancel />
+                          </button>
+                        </div>
+                        <hr className="border-2" />
+                        <div className="h-[70vh] overflow-y-auto">
+                          <div className=" px-4 pt-3 pb-5 flex gap-3 items-center bg-[white] sm:flex sm:flex-col">
+                            <div className="sm:w-full w-1/2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                First Name
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="text"
+                                  className="text-heading w-[90%] px-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                            <div className="sm:w-full w-1/2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                Last Name
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="text"
+                                  className="text-heading w-[90%] px-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className=" px-4 pt-3 pb-5 bg-[white] sm:flex sm:flex-col">
+                            <div className="w-full">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                Email
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="email"
+                                  className="text-heading w-[90%] p-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className=" px-4 pt-3 pb-5 bg-[white] flex flex-col gap-3">
+                            <div className="w-full">
+                              <label
+                                htmlFor="email"
+                                className="text-heading text-heading-color flex items-center cursor-pointer gap-2"
+                              >
+                                <input type="checkbox" id="email" />
+                                Customer accepts email marketing
+                              </label>
+                            </div>
+                            <div className="w-full">
+                              <label
+                                htmlFor="tax"
+                                className="text-heading text-heading-color flex items-center cursor-pointer gap-2"
+                              >
+                                <input type="checkbox" id="tax" />
+                                Customer is tax exempt
+                              </label>
+                            </div>
+                          </div>
+                          <hr className="border" />
+                          <div className="px-4 text-heading font-medium">
+                            Shipping Address
+                          </div>
+                          <div className=" px-4 pt-3 pb-5 bg-[white] sm:flex sm:flex-col">
+                            <div className="w-full py-2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                Country/Region
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="text"
+                                  value={"India"}
+                                  readOnly
+                                  className="text-heading w-[90%] p-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                            <div className="w-full py-2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                Company
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="text"
+                                  className="text-heading w-[90%] p-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                            <div className="w-full py-2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                Address
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="text"
+                                  className="text-heading w-[90%] p-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                            <div className="flex gap-3 items-center bg-[white] sm:flex sm:flex-col">
+                              <div className="sm:w-full w-1/2">
+                                <h2 className="text-heading text-heading-color font-[450]">
+                                  City
+                                </h2>
+                                <div className="group p-1 border-[#8a8a8a] border rounded-[0.5rem] focus-within:border-blue-500">
+                                  <input
+                                    type="text"
+                                    className="text-heading w-[90%] px-1 outline-none focus:outline-none"
+                                  />
+                                </div>
+                              </div>
+                              <div className="sm:w-full w-1/2">
+                                <h2 className="text-heading text-heading-color font-[450]">
+                                  State
+                                </h2>
+                                <div className="group p-1 border-[#8a8a8a] border rounded-[0.5rem] focus-within:border-blue-500">
+                                  <select
+                                    name="state"
+                                    id="state"
+                                    className="text-heading w-full px-1 outline-none focus:outline-none"
+                                  >
+                                    <option value="Andhra Pradesh">
+                                      Andhra Pradesh
+                                    </option>
+                                    <option value="Andaman and Nicobar Islands">
+                                      Andaman and Nicobar Islands
+                                    </option>
+                                    <option value="Arunachal Pradesh">
+                                      Arunachal Pradesh
+                                    </option>
+                                    <option value="Assam">Assam</option>
+                                    <option value="Bihar">Bihar</option>
+                                    <option value="Chandigarh">
+                                      Chandigarh
+                                    </option>
+                                    <option value="Chhattisgarh">
+                                      Chhattisgarh
+                                    </option>
+                                    <option value="Dadar and Nagar Haveli">
+                                      Dadar and Nagar Haveli
+                                    </option>
+                                    <option value="Daman and Diu">
+                                      Daman and Diu
+                                    </option>
+                                    <option value="Delhi">Delhi</option>
+                                    <option value="Lakshadweep">
+                                      Lakshadweep
+                                    </option>
+                                    <option value="Puducherry">
+                                      Puducherry
+                                    </option>
+                                    <option value="Goa">Goa</option>
+                                    <option value="Gujarat">Gujarat</option>
+                                    <option value="Haryana">Haryana</option>
+                                    <option value="Himachal Pradesh">
+                                      Himachal Pradesh
+                                    </option>
+                                    <option value="Jammu and Kashmir">
+                                      Jammu and Kashmir
+                                    </option>
+                                    <option value="Jharkhand">Jharkhand</option>
+                                    <option value="Karnataka">Karnataka</option>
+                                    <option value="Kerala">Kerala</option>
+                                    <option value="Madhya Pradesh">
+                                      Madhya Pradesh
+                                    </option>
+                                    <option value="Maharashtra">
+                                      Maharashtra
+                                    </option>
+                                    <option value="Manipur">Manipur</option>
+                                    <option value="Meghalaya">Meghalaya</option>
+                                    <option value="Mizoram">Mizoram</option>
+                                    <option value="Nagaland">Nagaland</option>
+                                    <option value="Odisha">Odisha</option>
+                                    <option value="Punjab">Punjab</option>
+                                    <option value="Rajasthan">Rajasthan</option>
+                                    <option value="Sikkim">Sikkim</option>
+                                    <option value="Tamil Nadu">
+                                      Tamil Nadu
+                                    </option>
+                                    <option value="Telangana">Telangana</option>
+                                    <option value="Tripura">Tripura</option>
+                                    <option value="Uttar Pradesh">
+                                      Uttar Pradesh
+                                    </option>
+                                    <option value="Uttarakhand">
+                                      Uttarakhand
+                                    </option>
+                                    <option value="West Bengal">
+                                      West Bengal
+                                    </option>
+                                  </select>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="w-full py-2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                PIN Code
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <input
+                                  type="text"
+                                  className="text-heading w-[90%] p-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                            <div className="w-full py-2">
+                              <h2 className="text-heading text-heading-color font-[450]">
+                                Phone
+                              </h2>
+                              <div className="group p-1 border-[#8a8a8a] border flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                                <div className="w-[10%] p-2 border rounded-lg">
+                                  <span className="flex items-center justify-between text-heading">
+                                    <IndiaFlag /> +91
+                                  </span>
+                                </div>
+                                <input
+                                  type="tel"
+                                  pattern="\d*"
+                                  maxLength={10}
+                                  className="text-heading w-[90%] p-1 outline-none focus:outline-none"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="bg-[white] rounded-b-[15px] flex justify-end pr-7 py-3">
+                          <button
+                            className="text-[#1A1A1A] active:bg-[#E3E3E3] text-heading px-2 py-1 m-2 rounded-lg shadow-common active:shadow-active"
+                            onClick={() => {
+                              setCustomerModal(false);
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className=" text-[#E3E3E3] bg-[#1A1A1A] text-heading px-2 py-1 m-2 rounded-lg active:shadow-active"
+                            onClick={() => {}}
+                          >
+                            Save Customer
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 <div className="rounded-xl my-4 bg-white shadow-md border ">
                   <div className=" my-4 bg-white pt-4 px-4 ">
                     <div>
@@ -455,7 +745,7 @@ const Createorder = () => {
                         </div>
                         <div></div>
                         <span className="text-[#616161] text-heading">
-                          &#8377;0.00{' '}
+                          &#8377;0.00{" "}
                         </span>
                       </div>
                       <div className="flex justify-between text-[#bcbab7] ">
@@ -489,10 +779,10 @@ const Createorder = () => {
                       </div>
                       <div className="flex justify-between text-[#bcbab7] ">
                         <div className="text-heading flex items-center gap-1 w-[180px]">
-                          Estimated tax{' '}
+                          Estimated tax{" "}
                           <div className="text-[#616161] text-[16px]">
                             <AiOutlineInfoCircle />
-                          </div>{' '}
+                          </div>{" "}
                         </div>
                         <div className=" w-[100px]  text-heading">
                           Not calculated
@@ -502,14 +792,14 @@ const Createorder = () => {
                       </div>
                       <div className="flex justify-between">
                         <div className="text-heading text-heading-color w-[180px] font-[650]">
-                          Total{' '}
+                          Total{" "}
                         </div>
                         <div className="text-[#616161]  w-[100px]  text-heading">
                           ---
                         </div>
                         <div></div>
                         <span className="text-[#616161] text-heading font-[650]">
-                          &#8377;0.00{' '}
+                          &#8377;0.00{" "}
                         </span>
                       </div>
                     </div>
@@ -586,7 +876,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{' '}
+                              Order Confirmation email for order{" "}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -611,7 +901,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{' '}
+                              Order Confirmation email for order{" "}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -636,7 +926,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{' '}
+                              Order Confirmation email for order{" "}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -661,7 +951,7 @@ const Createorder = () => {
                           </span>
                           <div className="flex gap-[30px]">
                             <h3 className="text-[#303030] text-[13px]">
-                              Order Confirmation email for order{' '}
+                              Order Confirmation email for order{" "}
                               {/* <Link>
                           <button className=" bg-[#e3e3e3] font-semibold rounded-lg py-[2px] px-[4px] text-[#303030] ">
                             #42544
@@ -693,7 +983,6 @@ const Createorder = () => {
                       </div>
                     </div>
                     <div className="p-4 text-heading pt-2">
-                      {/* <p>No Notes</p> */}
                       <textarea
                         className="outline-none py-1 w-[95%]"
                         type="text"
@@ -712,69 +1001,79 @@ const Createorder = () => {
                         </h1>
                       </div>
                       <div
-                        className={`p-4 pt-2 relative ${item ? '-z-10' : ''} ${
-                          notes ? '-z-10' : ''
-                        }  ${browse ? '-z-10' : ''}`}
+                        className={`p-4 pt-2 relative ${item ? "-z-10" : ""} ${
+                          notes || browse || customerModal ? "-z-10" : ""
+                        }  ${browse ? "-z-10" : ""}`}
                       >
-                        <div className="py-[6px] hover:bg-[#FAFAFA]  px-3 w-full gap-1 flex items-center rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading">
-                          <div className="text-[16px]">
-                            <CiSearch />
+                        <OutsideClickHandler
+                          onOutsideClick={() => setShow(false)}
+                        >
+                          <div className="py-[6px] hover:bg-[#FAFAFA]  px-3 w-full gap-1 flex items-center rounded-[0.5rem] border-[#8a8a8a] border-[0.04125rem] text-heading">
+                            <div className="text-[16px]">
+                              <CiSearch />
+                            </div>
+                            <input
+                              onClick={() => setShow(true)}
+                              className="outline-none hover:bg-[#FAFAFA] py-1 line-clamp-1 "
+                              type="text"
+                              name=" Customer"
+                              placeholder="Search or Create a Customer "
+                            />
                           </div>
-                          <input
-                            onClick={() => setShow(!show)}
-                            className="outline-none hover:bg-[#FAFAFA] py-1 line-clamp-1 "
-                            type="text"
-                            name=" Customer"
-                            placeholder="Search or Create a Customer "
-                          />
-                        </div>
-                        {show && (
-                          <div className="rounded-xl my-4 p-1 bg-white shadow-md border absolute z-10  b  overflow-y-auto overflow-x-auto w-[90%]  mt-1">
-                            <div className="border-b-2 pb-2">
-                              <div className="text-[12px] flex items-center gap-2 text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded-md pl-2  selection:  ">
-                                <div className="text-[16px] text-[#303030]  ">
-                                  <CgAdd />
+                          {show && (
+                            <div className="rounded-xl my-4 p-1 bg-white shadow-md border absolute z-10  b  overflow-y-auto overflow-x-auto w-[90%]  mt-1">
+                              <div className="border-b-2 pb-2">
+                                <button
+                                  onClick={() => {
+                                    setShow(false);
+                                    setCustomerModal(true);
+                                  }}
+                                  className="text-[12px] flex items-center gap-2 text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded-md pl-2  selection:  cursor-pointer"
+                                >
+                                  <div className="text-[16px] text-[#303030]  ">
+                                    <CgAdd />
+                                  </div>
+                                  <h3 className="text-sm text-[12px] flex  items-center gap-2">
+                                    Create a new customer
+                                  </h3>
+                                </button>
+                              </div>
+                              <div className="pt-2">
+                                <div className="text-[12px] flex flex-col text-[#303030] w-full py-1  hover:bg-[#f7f7f7] rounded pl-2  ">
+                                  <div>
+                                    {" "}
+                                    <h1>ajay</h1>
+                                    <h1> ajaygsss1@123o,hmail</h1>
+                                  </div>
                                 </div>
-                                <h3 className="text-sm text-[12px] flex  items-center gap-2">
-                                  Create a new customer
-                                </h3>
+                                <div className="text-[12px] flex flex-col text-[#303030] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
+                                  <div>
+                                    {" "}
+                                    <h1>ajay</h1>
+                                    <h1> ajaygsss1@123o,hmail</h1>
+                                  </div>
+                                </div>
+                                <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2   ">
+                                  <div>
+                                    {" "}
+                                    <h1>ajay</h1>
+                                    <h1> ajaygsss1@123o,hmail</h1>
+                                  </div>
+                                </div>
+                                <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
+                                  <div>
+                                    {" "}
+                                    <h1>ajay</h1>
+                                    <h1>
+                                      {" "}
+                                      ajaygsss1@123ohfjgkhlj;k'kjlhkgjfhdsgafda,hmail
+                                    </h1>
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                            <div className="pt-2">
-                              <div className="text-[12px] flex flex-col text-[#303030] w-full py-1  hover:bg-[#f7f7f7] rounded pl-2  ">
-                                <div>
-                                  {' '}
-                                  <h1>ajay</h1>
-                                  <h1> ajaygsss1@123o,hmail</h1>
-                                </div>
-                              </div>
-                              <div className="text-[12px] flex flex-col text-[#303030] w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
-                                <div>
-                                  {' '}
-                                  <h1>ajay</h1>
-                                  <h1> ajaygsss1@123o,hmail</h1>
-                                </div>
-                              </div>
-                              <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2   ">
-                                <div>
-                                  {' '}
-                                  <h1>ajay</h1>
-                                  <h1> ajaygsss1@123o,hmail</h1>
-                                </div>
-                              </div>
-                              <div className="text-[12px] flex flex-col text-[#303030]  w-full py-1 hover:bg-[#f7f7f7] rounded pl-2  ">
-                                <div>
-                                  {' '}
-                                  <h1>ajay</h1>
-                                  <h1>
-                                    {' '}
-                                    ajaygsss1@123ohfjgkhlj;k'kjlhkgjfhdsgafda,hmail
-                                  </h1>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        )}
+                          )}
+                        </OutsideClickHandler>
                       </div>
                     </div>
                   </div>
