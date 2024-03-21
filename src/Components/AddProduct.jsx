@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { Link, useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useContext, useEffect } from "react";
 import axios from "axios";
@@ -17,6 +18,7 @@ import Gallery from "./AddProduct Components/Gallery";
 const AddProduct = () => {
   const { isPopupOpen, showGallery, product, setProduct } =
     useContext(AddProductContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     if (!product) {
@@ -65,23 +67,10 @@ const AddProduct = () => {
           },
         }
       );
-      console.log(res);
-      toast.success(res.data.message);
-      console.log("Form submitted with data:", product);
-      // setProduct({
-      //   title: "",
-      //   description: "",
-      //   price: "",
-      //   comparePrice: "",
-      //   status: "",
-      //   productCategory: "",
-      //   productType: "",
-      //   tags: "",
-      //   collections: "",
-      //   vendor: "",
-      //   tax: false,
-      // });
-      // setMields([]);
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/products");
+      }
     } catch (error) {
       console.log(error);
       toast.error(error?.response?.data?.error || error.message, {

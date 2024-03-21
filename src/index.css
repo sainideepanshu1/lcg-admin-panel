@@ -547,3 +547,53 @@ html.p-theme-light {
   --p-z-index-11: 519;
   --p-z-index-12: 520;
 }
+
+.jodit-container h1 {
+  display: block;
+  font-size: 2em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.jodit-container h2 {
+  display: block;
+  font-size: 1.5em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.jodit-container h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.jodit-container h4 {
+  display: block;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+.jodit-container h5 {
+  display: block;
+  font-size: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.jodit-container h5 {
+  display: block;
+  font-size: 0.67em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
+}
+
+.jodit-container code {
+  font-family: monospace;
+}
