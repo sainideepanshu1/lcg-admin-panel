@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { LuArrowDown, LuArrowUp, LuArrowUpDown } from "react-icons/lu";
 import { MdOutlineCurrencyRupee } from "react-icons/md";
@@ -12,9 +12,15 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 export default function AllCustomersTable({ customers, fetchAllCustomers }) {
+
+  const [searchTerm , setSearchTerm] = useState() 
+
+
+
   const {
     sort,
     setSort,
+    setCustomers,
     selectAll,
     setSelectAll,
     setSelectedCustomers,
@@ -57,6 +63,27 @@ export default function AllCustomersTable({ customers, fetchAllCustomers }) {
     }
   };
 
+  const fetchSearched = async () => {
+    if (searchTerm.trim() === "") {
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8000/api/customers/searchCustomer?query=${searchTerm}`
+      );
+
+      if (data.length > 0) {
+        setCustomers(data);
+      } else {
+        toast.error("No Results found!!!");
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      toast.error("Error fetching products. Please try again later.");
+    } 
+  };
+
   
 
   return (
@@ -69,6 +96,8 @@ export default function AllCustomersTable({ customers, fetchAllCustomers }) {
           <input
             placeholder="Search customers"
             className="w-full outline-none text-[14px] bg-[#faf8f8] text-[#303030] focus-within:bg-[#f1f1f1c2]"
+            value={searchTerm}
+            onChange={(e)=>{setSearchTerm(e.target.value)}}
           />
         </div>
 
@@ -76,6 +105,7 @@ export default function AllCustomersTable({ customers, fetchAllCustomers }) {
           <button
             className=" bg-black text-[14px] text-white rounded-lg mx-[10px]
           px-[7px] py-[5px]"
+          onClick={fetchSearched}
           >
             Search
           </button>
