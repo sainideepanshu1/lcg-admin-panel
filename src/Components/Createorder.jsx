@@ -28,18 +28,18 @@ const Createorder = () => {
   const handlechange = (e) => {
     setInputValue(e.target.value);
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputValue.trim() !== '') {
-      settodos([...todos, inputVlauetrim()]);
-      setInputValue('');
-    }
-  };
-  const handleDelete = (index) => {
-    const updatedtodos = [...todos];
-    updatedtodos.splice(index, 1);
-    settodos(updatedtodos);
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   if (inputValue.trim() !== '') {
+  //     settodos([...todos, inputVlauetrim()]);
+  //     setInputValue('');
+  //   }
+  // };
+  // const handleDelete = (index) => {
+  //   const updatedtodos = [...todos];
+  //   updatedtodos.splice(index, 1);
+  //   settodos(updatedtodos);
+  // };
 
   const handleclick = (event) => {
     if (itemref.current && !itemref.current.contains(event.target)) {
@@ -64,17 +64,17 @@ const Createorder = () => {
     };
   });
 
-  const notesclick = (event) => {
-    if (notesref.current && !notesref.current.contains(event.target)) {
-      setnotes(false);
-    }
-  };
-  useEffect(() => {
-    document.addEventListener('click', notesclick, true);
-    return () => {
-      document.removeEventListener('click', notesclick);
-    };
-  });
+  // const notesclick = (event) => {
+  //   if (notesref.current && !notesref.current.contains(event.target)) {
+  //     setnotes(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   document.addEventListener('click', notesclick, true);
+  //   return () => {
+  //     document.removeEventListener('click', notesclick);
+  //   };
+  // });
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -250,7 +250,7 @@ const Createorder = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="flex w-[100%]  justify-between">
+                  <div className="flex w-[100%] xm:hidden pt-4 justify-between">
                     <div className="flex w-[70%] gap-8">
                       <div className="w-[10%]"></div>
                       <div>
@@ -268,7 +268,7 @@ const Createorder = () => {
                       <div className=""></div>
                     </div>
                   </div>
-                  <div className="flex w-100% justify-between">
+                  <div className="flex w-100% xm:hidden pt-2 justify-between">
                     <div className="flex gap-2 w-[70%] ">
                       <div className="w-[45px] h-[45px]">
                         {' '}
@@ -280,7 +280,7 @@ const Createorder = () => {
                         </h1>
                         <h1 className="text-[13px]">Without Gift Wrap</h1>
                         <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
-                        <span className=" text-[#4260da]  text-heading">
+                        <span className=" text-[#4260da] text-heading">
                           &#8377;899.00{' '}
                         </span>
                       </div>
@@ -304,6 +304,53 @@ const Createorder = () => {
                       <div>
                         {' '}
                         <MdDelete />
+                      </div>
+                    </div>
+                  </div>
+                  <div className=" pt-2 hidden xm:block ">
+                    <div className="flex justify-between">
+                      <div className="flex gap-2 w-[70%] ">
+                        <div className="w-[45px] h-[45px]">
+                          {' '}
+                          <img src={Product2} alt="pic" />
+                        </div>
+                        <div>
+                          <h1 className="text-[13px] text-[#4260da]">
+                            1st Birthday Sublimation Baby Frame
+                          </h1>
+                          <h1 className="text-[13px]">Without Gift Wrap</h1>
+                          <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
+                          <span className=" text-[#4260da] text-heading">
+                            &#8377;899.00{' '}
+                          </span>
+                        </div>
+                      </div>
+                      <div>
+                        <MdDelete />
+                      </div>
+                    </div>
+                    <div className="flex items-center pt-2 justify-around">
+                      <div>
+                        <div>
+                          <h1>Quantity</h1>
+                        </div>
+                        <div className="group border-[#8a8a8a]  border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                          <input
+                            type="number"
+                            placeholder="1"
+                            className=" px-1 w-[200px] rounded-[0.5rem] outline-none focus:outline-none"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div>
+                          <h1>Total</h1>
+                        </div>
+                        <div>
+                          <span className=" text-[#4260da] text-heading">
+                            &#8377;899.00{' '}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -632,7 +679,7 @@ const Createorder = () => {
                   </div>
                 </div>
               </div>
-              <div className="w-[30%] sm:w-[93%] sm:flex sm:flex-col-reverse sm:items-center">
+              <div className="w-[30%] sm:w-[93%] xl:w-[93%] sm:flex sm:flex-col-reverse sm:items-center">
                 <div className="sm:mt-3 sm:w-full">
                   <div className="bg-white rounded-[0.75rem] shadow-md">
                     <div className="px-4 flex justify-between items-center pt-4">
@@ -641,17 +688,24 @@ const Createorder = () => {
                           Notes
                         </h2>
                       </div>
-                      <div onClick={() => setnotes(!notes)}>
+                      <div>
                         <GoPencil />
                       </div>
                     </div>
-                    <div className="p-4 text-heading  pt-2">
-                      {inputValue ? inputValue : <p>No Notes</p>}
+                    <div className="p-4 text-heading pt-2">
+                      {/* <p>No Notes</p> */}
+                      <textarea
+                        className="outline-none py-1 w-[95%]"
+                        type="text"
+                        name="notes"
+                        placeholder="No Notes"
+                      />
+                    
                     </div>
                   </div>
                 </div>
 
-                {notes && (
+                {/* {notes && (
                   <div className="fixed inset-0 bg-black bg-opacity-30 w-screen h-screen flex  items-center justify-center backdrop-blur-sm">
                     <div className="rounded-xl my-4 bg-white  w-[40%] shadow-md ">
                       <div className="flex border-b-2  p-3 bg-[#f3f3f3] rounded-t-xl justify-between">
@@ -704,7 +758,7 @@ const Createorder = () => {
                       </div>
                     </div>
                   </div>
-                )}
+                )} */}
 
                 <div className="mt-3 sm:w-full">
                   <div className="bg-white rounded-[0.75rem] shadow-md">
