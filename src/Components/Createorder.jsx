@@ -21,6 +21,8 @@ const Createorder = () => {
   const [show, setShow] = useState(false);
   const [item, setItem] = useState(false);
   const [customerModal, setCustomerModal] = useState(false);
+  const [products, setProducts] = useState([]);
+
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -38,6 +40,7 @@ const Createorder = () => {
       phone: "",
     },
   });
+
   const location = useLocation();
   const customer = new URLSearchParams(location.search).get("customer");
 
@@ -56,40 +59,19 @@ const Createorder = () => {
     fetchCustomer();
   }, []);
 
-  const notesref = useRef(null);
+  // const browseref = useRef(null);
 
-  const browseref = useRef(null);
-
-  const [inputValue, setInputValue] = useState("");
-  const handlechange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputValue.trim() !== "") {
-      settodos([...todos, inputVlauetrim()]);
-      setInputValue("");
-    }
-  };
-  const handleDelete = (index) => {
-    const updatedtodos = [...todos];
-    updatedtodos.splice(index, 1);
-    settodos(updatedtodos);
-  };
-
-  const browseclick = (event) => {
-    if (browseref.current && !browseref.current.contains(event.target)) {
-      setbrowse(false);
-    }
-  };
-  useEffect(() => {
-    document.addEventListener("click", browseclick, true);
-    return () => {
-      document.removeEventListener("click", browseclick);
-    };
-  });
-
+  // const browseclick = (event) => {
+  //   if (browseref.current && !browseref.current.contains(event.target)) {
+  //     setbrowse(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   document.addEventListener("click", browseclick, true);
+  //   return () => {
+  //     document.removeEventListener("click", browseclick);
+  //   };
+  // });
 
   useEffect(() => {
     const body = document.body;
@@ -105,6 +87,21 @@ const Createorder = () => {
     };
   }, [customerModal]);
 
+  // ------------------Get All Products--------------------
+  const fetchAllProducts = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/product/getProducts`
+      );
+      const newProducts = response.data;
+
+      setProducts(newProducts);
+    } catch (error) {
+      console.error("Error fetching products:", error);
+    } 
+  };
+
+  useEffect(()=>fetchAllProducts, [])
   return (
     <>
       <div className="bg-[#F1F1F1] w-full h-full">
@@ -268,11 +265,13 @@ const Createorder = () => {
                             type="text"
                             name="Products"
                             placeholder="Search products"
+                            
                           />
                         </div>
                         <button
-                          onClick={() => setbrowse(!browse)}
+                          // onClick={() => setbrowse(!browse)}
                           // ref={browseref}
+                          onClick={fetchAllProducts}
                           className="hover:bg-[#FAFAFA] text-[0.8125rem] text-[#303030] w-[80px] border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]"
                         >
                           browse
@@ -311,7 +310,7 @@ const Createorder = () => {
                         <h1 className="text-[13px]">Without Gift Wrap</h1>
                         <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
                         <span className=" text-[#4260da] text-heading">
-                          &#8377;899.00{' '}
+                          &#8377;899.00{" "}
                         </span>
                       </div>
                     </div>
@@ -340,7 +339,7 @@ const Createorder = () => {
                     <div className="flex justify-between">
                       <div className="flex gap-2 w-[70%] ">
                         <div className="w-[45px] h-[45px]">
-                          {' '}
+                          {" "}
                           <img src={Product2} alt="pic" />
                         </div>
                         <div>
@@ -350,7 +349,7 @@ const Createorder = () => {
                           <h1 className="text-[13px]">Without Gift Wrap</h1>
                           <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
                           <span className=" text-[#4260da] text-heading">
-                            &#8377;899.00{' '}
+                            &#8377;899.00{" "}
                           </span>
                         </div>
                       </div>
@@ -377,7 +376,7 @@ const Createorder = () => {
                         </div>
                         <div>
                           <span className=" text-[#4260da] text-heading">
-                            &#8377;899.00{' '}
+                            &#8377;899.00{" "}
                           </span>
                         </div>
                       </div>
@@ -1083,13 +1082,13 @@ const Createorder = () => {
           </div>
         </div>
         <div className="rounded-xl flex items-center justify-center  p-4">
-                <button
-                  type="submit"
-                  className="bg-[#1A1A1A] text-[#E3E3E3] text-[16px] py-1 px-6 rounded-lg"
-                >
-                  Save
-                </button>
-              </div>
+          <button
+            type="submit"
+            className="bg-[#1A1A1A] text-[#E3E3E3] text-[16px] py-1 px-6 rounded-lg"
+          >
+            Save
+          </button>
+        </div>
       </div>
     </>
   );
