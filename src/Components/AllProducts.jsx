@@ -38,9 +38,10 @@ const AllProducts = () => {
     setToggle,
     setSearch,
     setPerPage,
+    products,
+    setProducts,
   } = useContext(ProductsContext);
 
-  const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState([]);
   const fetchAllProducts = async () => {
     try {
