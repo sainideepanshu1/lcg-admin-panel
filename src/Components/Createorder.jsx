@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { GoPencil } from "react-icons/go";
 import { CiSearch, CiAt } from "react-icons/ci";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoIosClose } from "react-icons/io";
 import { CgAdd } from "react-icons/cg";
 import { BsEmojiSmile } from "react-icons/bs";
@@ -30,12 +30,12 @@ const Createorder = () => {
   const [show, setShow] = useState(false);
   const [item, setItem] = useState(false);
   const [customerModal, setCustomerModal] = useState(false);
-  const [customers, setCustomers] = useState([]);
-  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState([]);
+  const [checkedProducts, setCheckedProducts] = useState([]);
   const [selectedProducts, setSelectedProducts] = useState([]);
-  const [allProducts, setAllProducts] = useState(false);
-  const [customerDetails, setCustomerDetails] = useState({
-    first_name: "",
+
+  const [formData, setFormData] = useState({first_name: "",
     last_name: "",
     email: "",
     phone: "",
@@ -51,6 +51,12 @@ const Createorder = () => {
       phone: "",
     },
   });
+  const [customers, setCustomers] = useState([]);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState(false);
+  const [customerDetails, setCustomerDetails] = useState({
+
   const [editingAddress, setEditingAddress] = useState(null);
   const location = useLocation();
   let customer = new URLSearchParams(location.search).get("customer");
@@ -83,7 +89,6 @@ const Createorder = () => {
     fetchCustomer();
   }, []);
 
-  // const browseref = useRef(null);
   useEffect(() => {
     const body = document.body;
 
@@ -97,6 +102,114 @@ const Createorder = () => {
       body.classList.remove("overflow-hidden");
     };
   }, [customerModal]);
+
+  // ------------------Get All Products--------------------
+  // const fetchAllProducts = async () => {
+  //   try {
+  //     const response = await axios.get(
+  //       `http://localhost:8000/api/product/getProducts`
+  //     );
+  //     const newProducts = response.data;
+
+  //     setProducts(newProducts);
+  //   } catch (error) {
+  //     console.error("Error fetching products:", error);
+  //   }
+  // };
+
+  // useEffect(() => fetchAllProducts, []);
+
+  // -----------------Search products---------------------
+
+  const onEnterKeyDown = (e) => {
+    if (e.key === "Enter") {
+      fetchSearched();
+    }
+  };
+
+  const fetchSearched = async () => {
+    if (searchTerm.trim() === "") {
+      return;
+    }
+
+    try {
+      const { data } = await axios.get(
+        `http://localhost:8000/api/product/searchProduct?search=${searchTerm}`
+      );
+
+      if (data.length > 0) {
+        setProducts(data);
+      } else {
+        toast.error("No Results found!!!");
+      }
+    } catch (error) {
+      console.error("Error fetching products:", error);
+      toast.error("Error fetching products. Please try again later.");
+    }
+  };
+  useEffect(() => {
+    return () => {
+      setSearchTerm("");
+    };
+  }, []);
+
+  useEffect(() => {
+    const body = document.body;
+
+    if (browse) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      body.classList.remove("overflow-hidden");
+    };
+  }, [browse]);
+
+  const toggleProductSelection = (product) => {
+    const isChecked = checkedProducts.some(
+      (checkedProduct) => checkedProduct.id === product.id
+    );
+
+    if (isChecked) {
+      const updatedSelectedProducts = selectedProducts.filter(
+        (selectedProduct) => selectedProduct.id !== product.id
+      );
+      setSelectedProducts(updatedSelectedProducts);
+    } else {
+      setSelectedProducts([...selectedProducts, product]);
+      console.log(selectedProducts);
+    }
+
+    setCheckedProducts((prevCheckedProducts) => [
+      ...prevCheckedProducts,
+      product,
+    ]);
+  };
+
+  const toggleVariantSelection = (variant) => {
+    const isChecked = checkedProducts.some(
+      (checkedVariant) => checkedVariant.id === variant.id
+    );
+
+    if (isChecked) {
+      const updatedSelectedVariants = selectedProducts.filter(
+        (selectedVariant) => selectedVariant.id !== variant.id
+      );
+      setSelectedProducts(updatedSelectedVariants);
+    } else {
+      setSelectedProducts([...selectedProducts, variant]);
+    }
+
+    setCheckedProducts((prevCheckedProducts) => [
+      ...prevCheckedProducts,
+      variant,
+    ]);
+  };
+
+  console.log(selectedProducts);
+  console.log(checkedProducts);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -329,7 +442,11 @@ const Createorder = () => {
                             type="text"
                             name="Products"
                             placeholder="Search products"
-                            
+                            onKeyUp={() => setbrowse(!browse)}
+                            value={searchTerm}
+                            onChange={(e) => {
+                              setSearchTerm(e.target.value);
+                            }}
                           />
                         </div>
                         <button
@@ -353,51 +470,54 @@ const Createorder = () => {
                       <div>
                         <h1 className="text-heading">Quantity</h1>
                       </div>
-
                       <div>
                         <h1 className="text-heading">Total</h1>
                       </div>
                       <div className=""></div>
                     </div>
                   </div>
-                  <div className="flex w-100% xm:hidden pt-2 justify-between">
-                    <div className="flex gap-2 w-[70%] ">
-                      <div className="w-[45px] h-[45px]">
-                        {" "}
-                        <img src={Product2} alt="pic" />
-                      </div>
-                      <div>
-                        <h1 className="text-[13px] text-[#4260da]">
-                          1st Birthday Sublimation Baby Frame
-                        </h1>
-                        <h1 className="text-[13px]">Without Gift Wrap</h1>
-                        <h1 className="text-[13px]">SKU: LCG-BF-BSBF-0001</h1>
-                        <span className=" text-[#4260da] text-heading">
-                          &#8377;899.00{" "}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex w-[30%] gap-5 items-center">
-                      <div>
-                        <div className="group border-[#8a8a8a]  border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
-                          <input
-                            type="number"
-                            placeholder="1"
-                            className=" px-1 w-[60px] rounded-[0.5rem] outline-none focus:outline-none"
-                          />
+
+                  {checkedProducts.map((product, index) => (
+                    <div
+                      key={index}
+                      className="flex w-100% xm:hidden pt-2 justify-between"
+                    >
+                      <div className="flex gap-2 w-[70%] ">
+                        <div className="w-[45px] h-[45px]">
+                          <img src={product.image} alt={product.title} />
+                        </div>
+                        <div>
+                          <h1 className="text-[13px] text-[#4260da]">
+                            {product.title}
+                          </h1>
+                          <h1 className="text-[13px]">SKU: {product.sku}</h1>
+                          <span className=" text-[#4260da] text-heading">
+                            &#8377;{product.price}
+                          </span>
                         </div>
                       </div>
-
-                      <div>
-                        <span className=" text-[#4260da] text-heading">
-                          &#8377;899.00{" "}
-                        </span>
-                      </div>
-                      <div>
-                        <MdDelete />
+                      <div className="flex w-[30%] gap-5 items-center">
+                        <div>
+                          <div className="group border-[#8a8a8a]  border w-full flex items-center rounded-[0.5rem] focus-within:border-blue-500">
+                            <input
+                              type="number"
+                              placeholder="1"
+                              className=" px-1 w-[60px] rounded-[0.5rem] outline-none focus:outline-none"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <span className=" text-[#4260da] text-heading">
+                            &#8377;{product.price}
+                          </span>
+                        </div>
+                        <div>
+                          <MdDelete />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
+
                   <div className=" pt-2 hidden xm:block ">
                     <div className="flex justify-between">
                       <div className="flex gap-2 w-[70%] ">
@@ -465,7 +585,7 @@ const Createorder = () => {
                       </div>
                       <hr />
                       <div className="p-2 w-full">
-                        <div className="hover:bg-[#FAFAFA]  gap-1 flex items-center text-[0.8125rem] text-[#303030] w-full border-[0.04125rem] border-[#8a8a8a] font-sans  pl-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]">
+                        <div className="hover:bg-[#FAFAFA] gap-1 flex items-center text-[0.8125rem] text-[#303030] w-full border-[0.04125rem] border-[#8a8a8a] font-sans pl-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450]">
                           <div className="text-[16px]">
                             <CiSearch />
                           </div>
@@ -475,38 +595,105 @@ const Createorder = () => {
                             type="text"
                             name="Products"
                             placeholder="Search products"
+                            value={searchTerm}
+                            onChange={(e) => {
+                              setSearchTerm(e.target.value);
+                            }}
+                            onKeyDown={onEnterKeyDown}
+                            autoFocus={browse}
                           />
+                          <button
+                            onClick={fetchSearched}
+                            className="hover:bg-[#303030] bg-[#000000] text-[#F9FFFF] rounded-lg px-3 py-1 text-[12px]"
+                          >
+                            Search
+                          </button>
                         </div>
                       </div>
                       <hr />
 
                       <div className="justify-between flex flex-col overflow-y-auto">
-                        <button
-                          onClick={() => {
-                            setbrowse(false);
-                            setAllProducts(true);
-                          }}
-                          className="hover:bg-[#E3E3E3] p-2 text-heading text-[#737373] text-left font-[550]"
-                        >
-                          All Products
-                        </button>
+                        {products.map((product, index) => (
+                          <div
+                            key={index}
+                            className="border rounded-md shadow-md mb-4"
+                          >
+                            {/* Product details */}
+                            <div className="p-3 border-b">
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <input
+                                    type="checkbox"
+                                    className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                    onChange={() =>
+                                      toggleProductSelection(product)
+                                    }
+                                  />
+                                  {product.images.length > 0 && (
+                                    <img
+                                      src={product.images[0].src}
+                                      alt={product.images[0].alt}
+                                      className="w-12 h-12 object-cover rounded-md"
+                                    />
+                                  )}
 
-                        <hr />
-                        <button className="hover:bg-[#E3E3E3] p-2 text-heading text-[#737373] text-left font-[550]">
-                          Collections
-                        </button>
-                        <hr />
-                        <button className="hover:bg-[#E3E3E3] p-2 text-heading text-[#737373] text-left font-[550]">
-                          Vendors
-                        </button>
+                                  <div>
+                                    <h3 className="text-sm font-semibold text-gray-800">
+                                      {product.title}
+                                    </h3>
+                                    <p className="text-xs text-gray-600">
+                                      SKU: {product.sku}
+                                    </p>
+                                  </div>
+                                </div>
+                                <span className="text-sm font-semibold text-gray-800">
+                                  &#8377;{product.price}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Variants */}
+                            <div>
+                              {product.variants.map((variant, variantIndex) => (
+                                <div
+                                  key={variantIndex}
+                                  className="p-3 border-b flex items-center justify-between"
+                                >
+                                  <div className="flex items-start gap-4">
+                                    <input
+                                      type="checkbox"
+                                      className="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out"
+                                      onChange={() =>
+                                        toggleVariantSelection(variant)
+                                      }
+                                    />
+                                    <div>
+                                      <h3 className="text-xs font-semibold text-gray-800">
+                                        {variant.title}
+                                      </h3>
+                                      <p className="text-xs text-gray-600">
+                                        SKU: {variant.sku}
+                                      </p>
+                                    </div>
+                                  </div>
+
+                                  <span className="text-sm font-semibold text-gray-800">
+                                    &#8377;{variant.price}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
                       </div>
+
                       <hr />
-                      <div className="flex  justify-between  p-3 rounded-b-xl ">
-                        <div className=""></div>
+                      <div className="flex justify-between p-3 rounded-b-xl">
+                        <div></div>
                         <div className="flex gap-2">
                           <button
                             onClick={() => setbrowse(!browse)}
-                            className=" text-[black] rounded-lg border  px-3 py-1 text-[12px]"
+                            className="text-[black] rounded-lg border px-3 py-1 text-[12px]"
                           >
                             Cancel
                           </button>
@@ -1241,9 +1428,12 @@ const Createorder = () => {
                           ---
                         </div>
                         <div></div>
-                        <span className="text-[#616161] text-heading">
-                          &#8377;0.00{" "}
+                        {checkedProducts.map((product, index)=>{
+                          <span key={index} className="text-[#616161] text-heading">
+                          &#8377;{product.price}{" "}
                         </span>
+                        })}
+                        
                       </div>
                       <div className="flex justify-between text-[#bcbab7] ">
                         <div className="text-heading w-[180px] text-[#bcbab7] ">
