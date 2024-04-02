@@ -83,40 +83,7 @@ const Createorder = () => {
     fetchCustomer();
   }, []);
 
-  const notesref = useRef(null);
-
-  const browseref = useRef(null);
-
-  const [inputValue, setInputValue] = useState("");
-  const handlechange = (e) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputValue.trim() !== "") {
-      settodos([...todos, inputVlauetrim()]);
-      setInputValue("");
-    }
-  };
-  const handleDelete = (index) => {
-    const updatedtodos = [...todos];
-    updatedtodos.splice(index, 1);
-    settodos(updatedtodos);
-  };
-
-  const browseclick = (event) => {
-    if (browseref.current && !browseref.current.contains(event.target)) {
-      setbrowse(false);
-    }
-  };
-  useEffect(() => {
-    document.addEventListener("click", browseclick, true);
-    return () => {
-      document.removeEventListener("click", browseclick);
-    };
-  });
-
+  // const browseref = useRef(null);
   useEffect(() => {
     const body = document.body;
 
@@ -362,10 +329,11 @@ const Createorder = () => {
                             type="text"
                             name="Products"
                             placeholder="Search products"
+                            
                           />
                         </div>
                         <button
-                          onClick={() => setbrowse(!browse)}
+                          // onClick={() => setbrowse(!browse)}
                           // ref={browseref}
                           className="hover:bg-[#FAFAFA] text-[0.8125rem] text-[#303030] w-[80px] border-[0.04125rem] border-[#8a8a8a] font-sans py-[0.375rem] px-[0.75rem] rounded-[0.5rem] caret-[#303030]  font-[450] shadow-common active:shadow-active"
                         >
