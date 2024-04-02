@@ -1,25 +1,23 @@
-import { useEffect, useState } from 'react';
-import { IoSearchOutline } from 'react-icons/io5';
-import { CgSortAz } from 'react-icons/cg';
-import { Link } from 'react-router-dom';
-import { TbArrowsSort } from 'react-icons/tb';
-import { IoIosSearch } from 'react-icons/io';
-import 'react-loading-skeleton/dist/skeleton.css';
-import {
-  FaLongArrowAltDown,
-  FaLongArrowAltUp,
-} from 'react-icons/fa';
-import { useRef } from 'react';
-import { ImCancelCircle } from 'react-icons/im';
+import { useEffect, useState } from "react";
+import { IoSearchOutline } from "react-icons/io5";
+import { CgSortAz } from "react-icons/cg";
+import { Link, useParams } from "react-router-dom";
+import { TbArrowsSort } from "react-icons/tb";
+import { IoIosSearch } from "react-icons/io";
+import "react-loading-skeleton/dist/skeleton.css";
+import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
+import { useRef } from "react";
+import { ImCancelCircle } from "react-icons/im";
 
 const Orders = () => {
-  const [searchTerm, setSearchTerm] = useState('');
+  console.log(useParams());
+  const [searchTerm, setSearchTerm] = useState("");
   const [sort, setSort] = useState();
   const sortref = useRef(null);
   const [Search, setSearch] = useState();
 
   const handleClearSearch = () => {
-    setSearchTerm('');
+    setSearchTerm("");
   };
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -35,10 +33,10 @@ const Orders = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener('click', handleSortClick);
+    document.addEventListener("click", handleSortClick);
 
     return () => {
-      document.removeEventListener('click', handleSortClick);
+      document.removeEventListener("click", handleSortClick);
     };
   }, []);
 
@@ -72,7 +70,7 @@ const Orders = () => {
           <div className="flex justify-between overflow-x-hidden w-full text-[#585858] px-2 py-2 xm:px-4 ">
             <div
               className={`${
-                Search ? 'hidden' : 'block'
+                Search ? "hidden" : "block"
               } flex  gap-2 sm:overflow-y-auto  items-center`}
             >
               <button className="hover:bg-[#E3E3E3] rounded-lg p-2 text-[12px] xm:text-[12px] font-[600] ">
@@ -98,7 +96,7 @@ const Orders = () => {
               </button>
             </div>
             <div
-              className={`${Search ? 'block' : 'hidden'} flex w-full gap-3 `}
+              className={`${Search ? "block" : "hidden"} flex w-full gap-3 `}
             >
               <div className=" w-full    py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  flex gap-2 items-center">
                 <div className="w-full flex items-center">
@@ -121,7 +119,7 @@ const Orders = () => {
                 <button
                   onClick={handleSearch}
                   className={`${
-                    Search ? 'block' : 'hidden'
+                    Search ? "block" : "hidden"
                   } bg-black text-[14px] text-white rounded-lg  px-[7px] py-[5px] `}
                 >
                   Cancel
@@ -138,7 +136,7 @@ const Orders = () => {
               <button
                 onClick={handleSearch}
                 className={`${
-                  Search ? 'hidden' : 'block'
+                  Search ? "hidden" : "block"
                 } border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[12px] text-[18px] px-2 py-0 rounded-lg flex items-center`}
               >
                 <IoSearchOutline /> <CgSortAz />
@@ -167,20 +165,12 @@ const Orders = () => {
                         Order number
                       </label>
                       <label className="flex gap-2 items-center">
-                        <input
-                          type="radio"
-                          name="sort_option"
-                          value="date"
-                        />
-                       Date
+                        <input type="radio" name="sort_option" value="date" />
+                        Date
                       </label>
                       <label className="flex gap-2 items-center">
-                        <input
-                          type="radio"
-                          name="sort_option"
-                          value="Items"
-                        />
-                       Items
+                        <input type="radio" name="sort_option" value="Items" />
+                        Items
                       </label>
                       <label className="flex gap-2 items-center">
                         <input
@@ -199,7 +189,11 @@ const Orders = () => {
                         Customer name
                       </label>
                       <label className="flex gap-2 items-center">
-                        <input type="radio" name="sort_option" value="payment_status" />
+                        <input
+                          type="radio"
+                          name="sort_option"
+                          value="payment_status"
+                        />
                         Payment status
                       </label>
                       <label className="flex gap-2 items-center">
@@ -211,11 +205,7 @@ const Orders = () => {
                         Fulfillment status
                       </label>
                       <label className="flex gap-2 items-center">
-                        <input
-                          type="radio"
-                          name="sort_option"
-                          value="total"
-                        />
+                        <input type="radio" name="sort_option" value="total" />
                         Total
                       </label>
                       <label className="flex gap-2 items-center">
