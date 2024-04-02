@@ -55,7 +55,6 @@ const Createorder = () => {
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [selectedProducts, setSelectedProducts] = useState([]);
   const [allProducts, setAllProducts] = useState(false);
-  const [customerDetails, setCustomerDetails] = useState({
 
   const [editingAddress, setEditingAddress] = useState(null);
   const location = useLocation();
