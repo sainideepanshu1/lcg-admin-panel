@@ -11,11 +11,18 @@ export default {
       xm: { max: "431px" },
     },
     extend: {
+      colors: {
+        buttonBg:
+          "linear-gradient(180deg, rgba(48, 48, 48, 0) 63.53%, rgba(255, 255, 255, .15) 100%) , rgba(48, 48, 48, 1)",
+      },
       boxShadow: {
         common:
           "0rem -.0625rem 0rem 0rem #b5b5b5 inset, 0rem 0rem 0rem .0625rem rgba(0, 0, 0, .1) inset, 0rem .03125rem 0rem .09375rem #FFF inset",
         active:
           "-.0625rem 0rem .0625rem 0rem rgba(26, 26, 26, .122) inset, .0625rem 0rem .0625rem 0rem rgba(26, 26, 26, .122) inset, 0rem .125rem .0625rem 0rem rgba(26, 26, 26, .2) inset",
+        blackCommon:
+          "0rem -.0625rem 0rem .0625rem rgba(0, 0, 0, .8) inset, 0rem 0rem 0rem .0625rem rgba(48, 48, 48, 1) inset, 0rem .03125rem 0rem .09375rem rgba(255, 255, 255, .25) inset",
+        blackActive: "0rem .1875rem 0rem 0rem rgb(0, 0, 0) inset",
       },
       fontFamily: {
         sans: [

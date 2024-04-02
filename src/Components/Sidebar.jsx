@@ -1,4 +1,4 @@
-import { useContext,useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { IoMdPerson, IoMdPricetag } from "react-icons/io";
@@ -16,7 +16,7 @@ import { GoReply } from "react-icons/go";
 
 const Sidebar = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
-  const [order,setOrder]=useState(false);
+  const [order, setOrder] = useState(false);
   return (
     <>
       <div className="h-screen w-[17%] sticky top-0 sm:hidden ">
@@ -48,9 +48,9 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] group rounded-lg"
-                      to="/draftorders"
+                      to="/orders/draftorders"
                     >
-                      <div className='w-3'>
+                      <div className="w-3">
                         <div className="rotate-180  hidden group-hover:block">
                           <GoReply />
                         </div>
@@ -61,9 +61,9 @@ const Sidebar = () => {
                   <li>
                     <Link
                       className="flex items-center gap-2 py-1 px-2 hover:bg-[#fafafa] group rounded-lg"
-                      to="/Abandoned"
+                      to="/orders/abandoned"
                     >
-                     <div className='w-3'>
+                      <div className="w-3">
                         <div className="rotate-180 hidden group-hover:block">
                           <GoReply />
                         </div>

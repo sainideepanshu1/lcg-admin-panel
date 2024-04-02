@@ -44,11 +44,20 @@ function App() {
           <Route path="/orders/create-order" element={<Createorder />} />
           <Route path="/orders/order-details" element={<OrderDetails />} />
           <Route path="/orders/order-details/restock" element={<Restock />} />
-          <Route path="/orders/order-details/edit-order" element={<EditOrder />} />
-          <Route path="/draftorders" element={<Draftorders/>} />
-          <Route path="/draftorders/draft-order-detail" element={<DraftOrderDetail/>} />
-          <Route path="/Abandoned" element={<Abandoendcheck/>} />
-          <Route path="/Abandoned/abandoned-checkouts-detail" element={<AbandonedCheckoutsDetail/>} />
+          <Route
+            path="/orders/order-details/edit-order"
+            element={<EditOrder />}
+          />
+          <Route path="/orders/draftorders" element={<Draftorders />} />
+          <Route
+            path="/orders/draftorders/draft-order-detail"
+            element={<DraftOrderDetail />}
+          />
+          <Route path="/orders/Abandoned" element={<Abandoendcheck />} />
+          <Route
+            path="/orders/Abandoned/abandoned-checkouts-detail"
+            element={<AbandonedCheckoutsDetail />}
+          />
         </Routes>
       </div>
     </>
