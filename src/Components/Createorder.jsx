@@ -33,7 +33,6 @@ const Createorder = () => {
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
   const [checkedProducts, setCheckedProducts] = useState([]);
-  const [selectedProducts, setSelectedProducts] = useState([]);
 
   const [formData, setFormData] = useState({first_name: "",
     last_name: "",
