@@ -30,12 +30,11 @@ import { IoIosClose } from "react-icons/io";
 
 function OrderDetails() {
   const [payment, setpayment] = useState();
-  const[data,setdata]=useState("");
+  const [data, setdata] = useState("");
 
   function paymenthandle() {
     setpayment(!payment);
   }
-
 
   const handleClose = () => {
     setIsOpen(false);
@@ -126,19 +125,17 @@ function OrderDetails() {
             <span>
               Chainpur , Bandipur UP, India . Customer for about 2 hours
             </span>
-
-          
           </div>
         </div>
 
         <div>
           <div className="flex  gap-2 sm:hidden">
-            <Link to='/orders/order-details/restock'>
+            <Link to="/orders/order-details/restock">
               <button className="flex text-heading items-center px-[12px] py-[3px] gap-1   bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg">
                 Restock
               </button>
             </Link>
-            <Link to='/orders/order-details/edit-order'>
+            <Link to="/orders/order-details/edit-order">
               <button className="flex text-heading items-center px-[12px] py-[3px] gap-1   bg-[#E3E3E3] hover:bg-[rgb(206,204,204)] rounded-lg">
                 Edit
               </button>
@@ -463,7 +460,6 @@ function OrderDetails() {
               </div>
             </div>
 
-            
             <div className="flex gap-2 justify-end py-2 px-3">
               <button className="text-[13px] border-[1px] px-[10px] py-[6px] rounded-lg  font-semibold">
                 Send invoice
@@ -616,7 +612,7 @@ function OrderDetails() {
                   <input
                     className="w-full outline-none text-[14px] "
                     type="text"
-                    onChange={(event)=>setdata(event.target.value)}
+                    onChange={(event) => setdata(event.target.value)}
                     placeholder="Leave a comment...."
                   />
                 </div>
@@ -644,7 +640,18 @@ function OrderDetails() {
                   </div>
                 </div>
                 <div>
-                  <button disabled={!data} style={data?{background:'black'}:{background:'rgba(241, 241, 241, 1)', color:"white" }}  className="text-[13px] border-[1px] px-[10px] py-1 rounded-lg text-[white] font-semibold bg-black " >
+                  <button
+                    disabled={!data}
+                    style={
+                      data
+                        ? { background: "black" }
+                        : {
+                            background: "rgba(241, 241, 241, 1)",
+                            color: "white",
+                          }
+                    }
+                    className="text-[13px] border-[1px] px-[10px] py-1 rounded-lg text-[white] font-semibold bg-black "
+                  >
                     Post
                   </button>
                 </div>
@@ -776,11 +783,12 @@ function OrderDetails() {
             </div>
 
             <div className="w-fit">
-               <div className="bg-[#e3e3e3]  flex items-center gap-[2px] rounded-lg  py-1 px-1">
+              <div className="bg-[#e3e3e3]  flex items-center gap-[2px] rounded-lg  py-1 px-1">
                 <span className="text-[12px]">Laxmen</span>
-                <button className="text-[17px] pt-[2px]"><IoIosClose /></button>
-               </div>
-
+                <button className="text-[17px] pt-[2px]">
+                  <IoIosClose />
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -20,10 +20,17 @@ import toast from "react-hot-toast";
 import { IoIosClose } from "react-icons/io";
 
 function CustomerDetails() {
-  const { customerID } = useParams();
   const [customer, setCustomer] = useState({});
+  const [action, setAction] = useState(false);
+  const [customerOptions, setCustomerOptions] = useState(false);
+  const [editContact, setEditContact] = useState(false);
+  const [ManageAddress, setmanageAddress] = useState(false);
+  const [editaddress, seteditaddress] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const { customerID } = useParams();
   const navigate = useNavigate();
+
   const fetchCustomerDetails = async () => {
     const { data } = await axios.get(
       "http://localhost:8000/api/customers/getCustomer/" + customerID
@@ -35,12 +42,6 @@ function CustomerDetails() {
   useEffect(() => {
     fetchCustomerDetails();
   }, []);
-
-  const [action, setAction] = useState(false);
-  const [customerOptions, setCustomerOptions] = useState(false);
-  const [editContact, setEditContact] = useState(false);
-  const [ManageAddress, setmanageAddress] = useState(false);
-  const [editaddress, seteditaddress] = useState(false);
 
   const handleDelete = async (id) => {
     if (

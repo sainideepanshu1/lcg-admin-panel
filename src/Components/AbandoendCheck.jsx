@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
-import { IoSearchOutline } from 'react-icons/io5';
-import { CgSortAz } from 'react-icons/cg';
-import { Link } from 'react-router-dom';
-import { TbArrowsSort } from 'react-icons/tb';
-import { IoIosSearch } from 'react-icons/io';
-import { IoChevronForwardCircleOutline } from 'react-icons/io5';
-import 'react-loading-skeleton/dist/skeleton.css';
-import { IoIosClose } from 'react-icons/io';
-import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
-import { useRef } from 'react';
-import { ImCancelCircle } from 'react-icons/im';
+import { useEffect, useState } from "react";
+import { IoSearchOutline } from "react-icons/io5";
+import { CgSortAz } from "react-icons/cg";
+import { Link } from "react-router-dom";
+import { TbArrowsSort } from "react-icons/tb";
+import { IoIosSearch } from "react-icons/io";
+import { IoChevronForwardCircleOutline } from "react-icons/io5";
+import "react-loading-skeleton/dist/skeleton.css";
+import { IoIosClose } from "react-icons/io";
+import { FaLongArrowAltDown, FaLongArrowAltUp } from "react-icons/fa";
+import { useRef } from "react";
+import { ImCancelCircle } from "react-icons/im";
 
 const Abandoendcheck = () => {
   const [Export, setExport] = useState(false);
   const Exportref = useRef(null);
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [sort, setSort] = useState();
   const sortref = useRef(null);
   const [Search, setSearch] = useState();
 
   const handleClearSearch = () => {
-    setSearchTerm('');
+    setSearchTerm("");
   };
   const handleChange = (event) => {
     setSearchTerm(event.target.value);
@@ -37,10 +37,10 @@ const Abandoendcheck = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener('click', handleSortClick);
+    document.addEventListener("click", handleSortClick);
 
     return () => {
-      document.removeEventListener('click', handleSortClick);
+      document.removeEventListener("click", handleSortClick);
     };
   }, []);
 
@@ -50,9 +50,9 @@ const Abandoendcheck = () => {
     }
   };
   useEffect(() => {
-    document.addEventListener('click', Exportclick, true);
+    document.addEventListener("click", Exportclick, true);
     return () => {
-      document.removeEventListener('click', Exportclick);
+      document.removeEventListener("click", Exportclick);
     };
   });
 
@@ -192,7 +192,7 @@ const Abandoendcheck = () => {
           <div className="flex justify-between overflow-x-hidden w-full text-[#585858] px-2 py-2 xm:px-4 ">
             <div
               className={`${
-                Search ? 'hidden' : 'block'
+                Search ? "hidden" : "block"
               } flex  gap-2 sm:overflow-y-auto text-center items-center`}
             >
               <div>
@@ -214,7 +214,7 @@ const Abandoendcheck = () => {
             </div>
 
             <div
-              className={`${Search ? 'block' : 'hidden'} flex w-full gap-3 `}
+              className={`${Search ? "block" : "hidden"} flex w-full gap-3 `}
             >
               <div className=" w-full    py-1 px-[8px] rounded-lg bg-[#faf8f8] focus-within:outline focus-within:bg-[#f1f1f1c2]  flex gap-2 items-center">
                 <div className="w-full flex items-center">
@@ -237,7 +237,7 @@ const Abandoendcheck = () => {
                 <button
                   onClick={handleSearch}
                   className={`${
-                    Search ? 'block' : 'hidden'
+                    Search ? "block" : "hidden"
                   } bg-black text-[14px] text-white rounded-lg  px-[7px] py-[5px] `}
                 >
                   Cancel
@@ -254,7 +254,7 @@ const Abandoendcheck = () => {
               <button
                 onClick={handleSearch}
                 className={`${
-                  Search ? 'hidden' : 'block'
+                  Search ? "hidden" : "block"
                 } border shadow-lg hover:bg-[#e3e3e3] transition-all xm:text-[18px] text-[18px] px-2 py-0 rounded-lg flex items-center`}
               >
                 <IoSearchOutline /> <CgSortAz />
@@ -283,11 +283,7 @@ const Abandoendcheck = () => {
                         Checkout number
                       </label>
                       <label className="flex gap-2 items-center">
-                        <input
-                          type="radio"
-                          name="sort_option"
-                          value="Date"
-                        />
+                        <input type="radio" name="sort_option" value="Date" />
                         Date
                       </label>
                       <label className="flex gap-2 items-center">
@@ -334,7 +330,7 @@ const Abandoendcheck = () => {
           <div className="sm:hidden xm:hidden">
             <div
               className="grid justify-between gap-4 border-t  bg-[#f5f3f3] text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center overflow-x-auto sm:hidden xm:hidden "
-              style={{ gridTemplateColumns: '0.5fr 2fr 2fr 4fr 2fr 2fr' }}
+              style={{ gridTemplateColumns: "0.5fr 2fr 2fr 4fr 2fr 2fr" }}
             >
               <div className="">
                 <input type="checkbox" className="rounded " />
@@ -360,14 +356,15 @@ const Abandoendcheck = () => {
             <hr />
             <div
               className="grid justify-between gap-4 border-t  text-[#686767] px-[10px] py-[8px] text-[13px] font-medium cursor-pointer items-center overflow-x-auto sm:hidden xm:hidden "
-              style={{ gridTemplateColumns: '0.5fr 2fr 2fr 4fr 2fr 2fr' }}
+              style={{ gridTemplateColumns: "0.5fr 2fr 2fr 4fr 2fr 2fr" }}
             >
               <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
-              <div  className=" font-[650] text-[rgb(63,63,63)] cursor-pointer">
-                <Link to='/Abandoned/abandoned-checkouts-detail'>
-                <h3>#34249405825283  </h3></Link>
+              <div className=" font-[650] text-[rgb(63,63,63)] cursor-pointer">
+                <Link to="/orders/abandoned/abandoned-checkouts-detail">
+                  <h3>#34249405825283 </h3>
+                </Link>
               </div>
               <div>
                 <h3> 28 Oct at 5:44 pm</h3>
@@ -375,7 +372,7 @@ const Abandoendcheck = () => {
               <div className="flex group items-center gap-2">
                 <h3>Adithhyan S R</h3>
                 <div className=" hidden group-hover:block cursor-pointer text-[#686767] text-[16px] ">
-                  {' '}
+                  {" "}
                   <IoChevronForwardCircleOutline />
                 </div>
               </div>
@@ -393,7 +390,7 @@ const Abandoendcheck = () => {
           <div className="sm:block hidden">
             <div
               className="grid justify-between gap-4 border-t  bg-[#f5f3f3] text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center  "
-              style={{ gridTemplateColumns: '0.1fr 2.5fr 2fr' }}
+              style={{ gridTemplateColumns: "0.1fr 2.5fr 2fr" }}
             >
               <div className="">
                 <input type="checkbox" className="rounded " />
@@ -411,15 +408,16 @@ const Abandoendcheck = () => {
             <hr />
             <div
               className="grid justify-between gap-4 border-t  text-[#686767] px-[10px] py-[8px] text-[13px] font-medium items-center  "
-              style={{ gridTemplateColumns: '0.1fr 2.5fr 2fr' }}
+              style={{ gridTemplateColumns: "0.1fr 2.5fr 2fr" }}
             >
               <div className="">
                 <input type="checkbox" className="rounded " />
               </div>
               <div className=" flex flex-col">
                 <div>
-                <Link to='/Abandoned/abandoned-checkouts-detail'>
-                <h3>#34249405825283</h3></Link>
+                  <Link to="/Abandoned/abandoned-checkouts-detail">
+                    <h3>#34249405825283</h3>
+                  </Link>
                 </div>
                 <div>
                   <h3> 28 Oct at 5:44 pm</h3>
@@ -427,7 +425,7 @@ const Abandoendcheck = () => {
                 <div className="flex group items-center gap-2">
                   <h3>Adithhyan S R</h3>
                   <div className=" hidden group-hover:block cursor-pointer text-[16px] ">
-                    {' '}
+                    {" "}
                     <IoChevronForwardCircleOutline />
                   </div>
                 </div>
